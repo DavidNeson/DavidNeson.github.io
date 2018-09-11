@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="机器学习，分类," />
 
 
 
@@ -79,16 +79,38 @@
 
 
 
-<meta name="description" content="From Zero to One">
-<meta property="og:type" content="website">
-<meta property="og:title" content="HelloDavid">
-<meta property="og:url" content="hellodavid.top/categories/test/index.html">
+<meta name="description" content="线性回归 用一组变量的（特征）的线性组合，来建立与结果之间的关系。 模型表达：$y(x, w)=w_0+w_1x_1+…+w_nx_n$ 逻辑回归逻辑回归用于分类，而不是回归。 在线性回归模型中，输出一般是连续的， 对于每一个输入的x，都有一个对应的输出y。因此模型的定义域和值域都可以是无穷。 但是对于逻辑回归，输入可以是连续的[-∞, +∞]，但输出一般是离散的，通常只有两个值{0, 1}。 这">
+<meta name="keywords" content="机器学习，分类">
+<meta property="og:type" content="article">
+<meta property="og:title" content="线性回归和逻辑回归的比较">
+<meta property="og:url" content="hellodavid.top/2018/09/11/linear and logistic learning/index.html">
 <meta property="og:site_name" content="HelloDavid">
-<meta property="og:description" content="From Zero to One">
+<meta property="og:description" content="线性回归 用一组变量的（特征）的线性组合，来建立与结果之间的关系。 模型表达：$y(x, w)=w_0+w_1x_1+…+w_nx_n$ 逻辑回归逻辑回归用于分类，而不是回归。 在线性回归模型中，输出一般是连续的， 对于每一个输入的x，都有一个对应的输出y。因此模型的定义域和值域都可以是无穷。 但是对于逻辑回归，输入可以是连续的[-∞, +∞]，但输出一般是离散的，通常只有两个值{0, 1}。 这">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="/typora-images/1536368052441.png">
+<meta property="og:image" content="/typora-images/clip_image001-1536544529885.png">
+<meta property="og:image" content="/typora-images/1536544616811.png">
+<meta property="og:image" content="/typora-images/clip_image002-1536635833127.png">
+<meta property="og:image" content="/typora-images/clip_image001-1536636102482.png">
+<meta property="og:image" content="/typora-images/1536636241454.png">
+<meta property="og:image" content="/typora-images/clip_image001-1536636266192.png">
+<meta property="og:image" content="/typora-images/clip_image001-1536636284902.png">
+<meta property="og:image" content="/typora-images/clip_image001-1536636334973.png">
+<meta property="og:image" content="/typora-images/1536636433963.png">
+<meta property="og:image" content="/typora-images/clip_image001-1536657627421.png">
+<meta property="og:image" content="/typora-images/clip_image002-1536657627421.png">
+<meta property="og:image" content="/typora-images/clip_image003-1536657627421.png">
+<meta property="og:image" content="/typora-images/1536657740524.png">
+<meta property="og:image" content="/typora-images/clip_image001.png">
+<meta property="og:image" content="/typora-images/clip_image001-1536544424958.png">
+<meta property="og:image" content="/typora-images/clip_image001-1536658028024.png">
+<meta property="og:image" content="/typora-images/clip_image001-1536658067618.png">
+<meta property="og:image" content="/typora-images/clip_image002-1536658067618.png">
+<meta property="og:updated_time" content="2018-09-11T09:31:03.319Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="HelloDavid">
-<meta name="twitter:description" content="From Zero to One">
+<meta name="twitter:title" content="线性回归和逻辑回归的比较">
+<meta name="twitter:description" content="线性回归 用一组变量的（特征）的线性组合，来建立与结果之间的关系。 模型表达：$y(x, w)=w_0+w_1x_1+…+w_nx_n$ 逻辑回归逻辑回归用于分类，而不是回归。 在线性回归模型中，输出一般是连续的， 对于每一个输入的x，都有一个对应的输出y。因此模型的定义域和值域都可以是无穷。 但是对于逻辑回归，输入可以是连续的[-∞, +∞]，但输出一般是离散的，通常只有两个值{0, 1}。 这">
+<meta name="twitter:image" content="/typora-images/1536368052441.png">
 
 
 
@@ -118,13 +140,13 @@
 
 
 
-  <link rel="canonical" href="hellodavid.top/categories/test/"/>
+  <link rel="canonical" href="hellodavid.top/2018/09/11/linear and logistic learning/"/>
 
 
 
 
 
-  <title>分类: test | HelloDavid</title>
+  <title>线性回归和逻辑回归的比较 | HelloDavid</title>
   
 
 
@@ -143,7 +165,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -281,55 +303,270 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block category">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>test<small>分类</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="hellodavid.top/2018/09/11/linear and logistic learning/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="David">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/myavatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HelloDavid">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2018/08/26/hello-world/" itemprop="url">
-              
-                <span itemprop="name">Hello World</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">线性回归和逻辑回归的比较</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-08-26T14:20:08+08:00"
-              content="2018-08-26" >
-          08-26
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-11T17:56:10+08:00">
+                2018-09-11
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/机器学习/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="线性回归"><a href="#线性回归" class="headerlink" title="线性回归"></a>线性回归</h1><p><img src="/../typora-images/1536368052441.png" alt="1536368052441"></p>
+<p>用一组变量的（特征）的线性组合，来建立与结果之间的关系。</p>
+<p>模型表达：$y(x, w)=w_0+w_1x_1+…+w_nx_n$</p>
+<h1 id="逻辑回归"><a href="#逻辑回归" class="headerlink" title="逻辑回归"></a>逻辑回归</h1><p>逻辑回归用于<strong>分类</strong>，而不是回归。</p>
+<p>在线性回归模型中，输出一般是连续的， 对于每一个输入的x，都有一个对应的输出y。因此模型的定义域和值域都可以是无穷。</p>
+<p>但是对于逻辑回归，输入可以是连续的[-∞, +∞]，但输出一般是离散的，通常只有两个值{0, 1}。</p>
+<p>这两个值可以表示对样本的某种分类，高/低、患病/ 健康、阴性/阳性等，这就是最常见的二分类逻辑回归。因此，从整体上来说，通过逻辑回归模型，我们将在整个实数范围上的x映射到了有限个点上，这样就实现了对x的分类。因为每次拿过来一个x，经过逻辑回归分析，就可以将它归入某一类y中。</p>
+<h1 id="逻辑回归与线性回归的关系"><a href="#逻辑回归与线性回归的关系" class="headerlink" title="逻辑回归与线性回归的关系"></a>逻辑回归与线性回归的关系</h1><p>可以认为逻辑回归的输入是线性回归的输出，将逻辑斯蒂函数（Sigmoid曲线）作用于线性回归的输出得到输出结果。</p>
+<p>线性回归y = ax + b, 其中a和b是待求参数；</p>
+<p>逻辑回归p = S(ax + b), 其中a和b是待求参数， S是逻辑斯蒂函数，然后根据p与1-p的大小确定输出的值，通常阈值取0.5，若p大于0.5则归为1这类。</p>
+<p>具体的：</p>
+<p>线性函数如下：</p>
+<p><img src="/../typora-images/clip_image001-1536544529885.png" alt="img"></p>
+<p>构造预测函数：</p>
+<p><img src="/../typora-images/1536544616811.png" alt="1536544616811"></p>
+<p><strong>逻辑回归的损失函数</strong>：</p>
+<p>逻辑回归采用交叉熵作为代价函数，即对数损失函数。能够有效避免梯度消失.</p>
+<p>对数损失函数（logarithmic loss function) 或对数似然损失函数(log-likehood loss function)：</p>
+<p>$$L(Y,P(Y|X))=−logP(Y|X)$$</p>
+<p>逻辑回归中，采用的是负对数损失函数。如果损失函数越小，表示模型越好。</p>
+<p><strong>极大似然估计</strong>：</p>
+<p>极大似然原理的直观想法是，一个随机试验如有若干个可能的结果A，B，C，… ，若在一次试验中，结果A出现了，那么可以认为实验条件对A的出现有利，也即出现的概率P(A)较大。一般说来，事件A发生的概率与某一未知参数θ有关，  θ取值不同，则事件A发生的概率也不同，当我们在一次试验中事件A发生了，则认为此时的θ值应是一切可能取值中使P(A|θ）达到最大的那一个，极大似然估计法就是要选取这样的θ值作为参数的估计值，使所选取的样本在被选的总体中出现的可能性为最大。</p>
+<p>在逻辑回归中目标函数均为最大化条件概率p(y|x),其中x是输入样本</p>
+<p>似然：选择参数使似然概率p(y|x,)最大，y是实际标签</p>
+<p>过程：目标函数→单个样本的似然概率→所有样本的似然概率→log变换, 将累乘变成累加→负号, 变成损失函数</p>
+<p>选择一组参数使得实验结果具有最大概率。</p>
+<p><strong>损失函数的由来</strong>：</p>
+<p>已知估计函数为：</p>
+<p><img src="/../typora-images/clip_image002-1536635833127.png" alt="img"></p>
+<p>则似然概率分布为（即输出值为判断为1的概率，但在输出标签值时实际只与0.5作比较）：</p>
+<p><img src="/../typora-images/clip_image001-1536636102482.png" alt="img"><br>可以写成概率一般式：</p>
+<p><img src="/../typora-images/1536636241454.png" alt="1536636241454"></p>
+<p>由最大似然估计原理，我们可以通过m个训练样本值，来估计出值，使得似然函数值（所有样本的似然函数之积）最大</p>
+<p><img src="/../typora-images/clip_image001-1536636266192.png" alt="img"><br>求log:</p>
+<p><img src="/../typora-images/clip_image001-1536636284902.png" alt="img"><br>取负数，得损失函数：</p>
+<p><img src="/../typora-images/clip_image001-1536636334973.png" alt="img"></p>
+<p>逻辑回归参数迭代，利用反向传播进行计算：</p>
+<p><img src="/../typora-images/1536636433963.png" alt="1536636433963"></p>
+<p>上面这个过程计算的是单个样本对wj的梯度更新。</p>
+<h2 id="为什么逻辑回归采用似然函数，而不是平方损失函数？"><a href="#为什么逻辑回归采用似然函数，而不是平方损失函数？" class="headerlink" title="为什么逻辑回归采用似然函数，而不是平方损失函数？"></a>为什么逻辑回归采用似然函数，而不是平方损失函数？</h2><p>可以从两个角度理解。</p>
+<ol>
+<li><p>交叉熵损失函数的好处是可以克服方差代价函数更新权重过慢的问题（针对激活函数是sigmoid的情况）。</p>
+<p>原因是其梯度里面不在包含对sigmoid函数的导数：</p>
+<p><img src="/../typora-images/clip_image001-1536657627421.png" alt="img"></p>
+<p>而如果使用的是平方损失函数加sigmoid函数，则计算梯度时：</p>
+<p><img src="/../typora-images/clip_image002-1536657627421.png" alt="img"></p>
+<p><img src="/../typora-images/clip_image003-1536657627421.png" alt="img"></p>
+<p>会包含sigmoid的导数(sigmoid的导数值始终小于1），使梯度下降变慢。</p>
+</li>
+<li><p><img src="/../typora-images/1536657740524.png" alt="1536657740524"></p>
+</li>
+</ol>
+<p><img src="/../typora-images/clip_image001.png" alt="img"></p>
+<p>图1 最小二乘作为逻辑回归模型的损失函数(非凸），theta为待优化参数</p>
+<p>​  </p>
+<p><img src="/../typora-images/clip_image001-1536544424958.png" alt="img"></p>
+<p>图2 最大似然作为逻辑回归模型的损失函数，theta为待优化参数</p>
+<h2 id="逻辑回归为什么使用sigmoid函数"><a href="#逻辑回归为什么使用sigmoid函数" class="headerlink" title="逻辑回归为什么使用sigmoid函数"></a>逻辑回归为什么使用sigmoid函数</h2><p>也可以从两点来进行理解</p>
+<ol>
+<li><p>Sigmoid 函数自身的性质</p>
+<p>因为这是一个最简单的，可导的，0-1阶跃函数</p>
+<p>sigmoid 函数连续，单调递增</p>
+<p>sigmiod 函数关于（0，0.5） 中心对称</p>
+<p>对sigmoid函数求导简单 </p>
+</li>
+<li><ol>
+<li>逻辑回归函数的定义</li>
+</ol>
+<p><img src="/../typora-images/clip_image001-1536658028024.png" alt="img"></p>
+<p>因此, 逻辑回归返回的概率是指判别为1类的概率.</p>
+</li>
+</ol>
+<h2 id="逻辑回归和SVM的异同点"><a href="#逻辑回归和SVM的异同点" class="headerlink" title="逻辑回归和SVM的异同点"></a>逻辑回归和SVM的异同点</h2><p><strong>相同点</strong>：</p>
+<p>第一，LR和SVM都是分类算法。</p>
+<p>第二，如果不考虑核函数，LR和SVM都是线性分类算法，也就是说他们的分类决策面都是线性的。</p>
+<p>第三，LR和SVM都是监督学习算法。</p>
+<p>第四，LR和SVM都是判别模型。</p>
+<p>判别模型会生成一个表示P(Y|X)的判别函数（或预测模型），而生成模型先计算联合概率p(Y,X)然后通过贝叶斯公式转化为条件概率。简单来说，在计算判别模型时，不会计算联合概率，而在计算生成模型时，必须先计算联合概率。</p>
+<p><strong>不同点</strong>：</p>
+<p>第一，本质上是其loss function不同</p>
+<p>逻辑回归的损失函数是交叉熵函数：</p>
+<p><img src="/../typora-images/clip_image001-1536658067618.png" alt="img"></p>
+<p>SVM的损失函数：</p>
+<p><img src="/../typora-images/clip_image002-1536658067618.png" alt="img"></p>
+<p>逻辑回归方法基于概率理论，假设样本为1的概率可以用sigmoid函数来表示，然后通过极大似然估计的方法估计出参数的值；</p>
+<p>支持向量机基于几何间隔最大化原理，认为存在最大几何间隔的分类面为最优分类面；</p>
+<p>第二，支持向量机只考虑局部的边界线附近的点，而逻辑回归考虑全局（远离的点对边界线的确定也起作用）。</p>
+<p>第三，在解决非线性问题时，支持向量机采用核函数的机制，而LR通常不采用核函数的方法。</p>
+<p>这个问题理解起来非常简单。分类模型的结果就是计算决策面，模型训练的过程就是决策面的计算过程。通过上面的第二点不同点可以了解，在计算决策面时，SVM算法里只有少数几个代表支持向量的样本参与了计算，也就是只有少数几个样本需要参与核计算（即kernal machine解的系数是稀疏的）。然而，LR算法里，每个样本点都必须参与决策面的计算过程，也就是说，假设我们在LR里也运用核函数的原理，那么每个样本点都必须参与核计算，这带来的计算复杂度是相当高的。所以，在具体应用时，LR很少运用核函数机制。</p>
+<p>第四，SVM的损失函数就自带正则</p>
+<p>参考：</p>
+<p>Poll的博客：<a href="http://www.cnblogs.com/maybe2030/p/5494931.html" target="_blank" rel="noopener">www.cnblogs.com/maybe2030/p/5494931.html</a></p>
+<p>逻辑回归：<a href="https://www.cnblogs.com/Belter/p/6128644.html" target="_blank" rel="noopener">https://www.cnblogs.com/Belter/p/6128644.html</a></p>
+<p>逻辑回归推导：<a href="http://blog.csdn.net/pakko/article/details/37878837" target="_blank" rel="noopener">http://blog.csdn.net/pakko/article/details/37878837</a></p>
+<p>极大似然估计：<a href="http://blog.csdn.net/star_liux/article/details/39666737" target="_blank" rel="noopener">http://blog.csdn.net/star_liux/article/details/39666737</a></p>
+<p>刘建平：<a href="https://www.cnblogs.com/pinard/p/6035872.html" target="_blank" rel="noopener">https://www.cnblogs.com/pinard/p/6035872.html</a></p>
+<p>逻辑回归和SVM的比较：<a href="https://www.cnblogs.com/zhizhan/p/5038747.html" target="_blank" rel="noopener">https://www.cnblogs.com/zhizhan/p/5038747.html</a></p>
 
       
     </div>
+    
+    
+    
 
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/机器学习，分类/" rel="tag"># 机器学习，分类</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/09/11/L1 and L2/" rel="next" title="L1和L2正则化">
+                <i class="fa fa-chevron-left"></i> L1和L2正则化
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -337,6 +574,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -357,8 +598,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -422,6 +672,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#线性回归"><span class="nav-number">1.</span> <span class="nav-text">线性回归</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#逻辑回归"><span class="nav-number">2.</span> <span class="nav-text">逻辑回归</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#逻辑回归与线性回归的关系"><span class="nav-number">3.</span> <span class="nav-text">逻辑回归与线性回归的关系</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么逻辑回归采用似然函数，而不是平方损失函数？"><span class="nav-number">3.1.</span> <span class="nav-text">为什么逻辑回归采用似然函数，而不是平方损失函数？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#逻辑回归为什么使用sigmoid函数"><span class="nav-number">3.2.</span> <span class="nav-text">逻辑回归为什么使用sigmoid函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#逻辑回归和SVM的异同点"><span class="nav-number">3.3.</span> <span class="nav-text">逻辑回归和SVM的异同点</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -589,6 +855,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
