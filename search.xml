@@ -8,7 +8,8 @@
         <category>机器学习</category>
       </categories>
       <tags>
-        <tag>机器学习，分类</tag>
+        <tag>机器学习</tag>
+        <tag>分类</tag>
       </tags>
   </entry>
   <entry>
@@ -19,7 +20,9 @@
         <category>机器学习</category>
       </categories>
       <tags>
-        <tag>机器学习，过拟合，正则化</tag>
+        <tag>机器学习</tag>
+        <tag>过拟合</tag>
+        <tag>正则化</tag>
       </tags>
   </entry>
   <entry>
@@ -39,7 +42,7 @@
     <url>%2F2018%2F08%2F26%2FLeetcode-Reverse%20Linked%20List%2F</url>
     <content type="text"><![CDATA[从排序链表中删除重复元素。Description 解题思路：依次比较相邻的两个链表元素，若值相等，则将前一个节点的next引用为后一个节点的后一个节点。使用cur来依次向下遍历元素，最后返回head。 12345678910111213141516171819# Definition for singly-linked list.# class ListNode(object):# def __init__(self, x):# self.val = x# self.next = Noneclass Solution(object): def deleteDuplicates(self, head): """ :type head: ListNode :rtype: ListNode """ cur = head while cur: while cur.next and cur.next.val==cur.val: cur.next = cur.next.next cur = cur.next return head]]></content>
       <categories>
-        <category>Python</category>
+        <category>python</category>
       </categories>
       <tags>
         <tag>leetcode</tag>
