@@ -79,13 +79,13 @@
 
 
 
-<meta name="description" content="L0范数，L1范数，L2范数L0范数是指向量中非0元素的个数。 如果我们用L0范数来规则化一个参数矩阵W的话（正则项），就是希望W的大部分元素都是0。换句话说，让参数W是稀疏的。 L1范数是指向量中各个元素绝对值之和，也有个美称叫“稀疏规则算子”（Lasso regularization）。 为什么要稀疏？特征选择(Feature Selection)： 稀疏规则化它能实现特征的自动选择。一般来说">
+<meta name="description" content="L0范数，L1范数，L2范数L0范数是指向量中非0元素的个数。 如果我们用L0范数来规则化一个参数矩阵W的话（正则项），就是希望W的大部分元素都是0。换句话说，让参数W是稀疏的。 L1范数是指向量中各个元素绝对值之和，也有个美称叫“稀疏规则算子”（Lasso regularization）。">
 <meta name="keywords" content="机器学习，过拟合，正则化">
 <meta property="og:type" content="article">
 <meta property="og:title" content="L1和L2正则化">
 <meta property="og:url" content="hellodavid.top/2018/09/11/L1 and L2/index.html">
 <meta property="og:site_name" content="HelloDavid">
-<meta property="og:description" content="L0范数，L1范数，L2范数L0范数是指向量中非0元素的个数。 如果我们用L0范数来规则化一个参数矩阵W的话（正则项），就是希望W的大部分元素都是0。换句话说，让参数W是稀疏的。 L1范数是指向量中各个元素绝对值之和，也有个美称叫“稀疏规则算子”（Lasso regularization）。 为什么要稀疏？特征选择(Feature Selection)： 稀疏规则化它能实现特征的自动选择。一般来说">
+<meta property="og:description" content="L0范数，L1范数，L2范数L0范数是指向量中非0元素的个数。 如果我们用L0范数来规则化一个参数矩阵W的话（正则项），就是希望W的大部分元素都是0。换句话说，让参数W是稀疏的。 L1范数是指向量中各个元素绝对值之和，也有个美称叫“稀疏规则算子”（Lasso regularization）。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="/typora-images/clip_image001-1536658592630.png">
 <meta property="og:image" content="/typora-images/clip_image001-1536475369274.png">
@@ -95,10 +95,10 @@
 <meta property="og:image" content="/typora-images/clip_image001-1536658650941.png">
 <meta property="og:image" content="/typora-images/clip_image001-1536475970668.png">
 <meta property="og:image" content="/typora-images/clip_image002-1536475970668.png">
-<meta property="og:updated_time" content="2018-09-11T09:37:55.990Z">
+<meta property="og:updated_time" content="2018-09-11T15:36:14.946Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="L1和L2正则化">
-<meta name="twitter:description" content="L0范数，L1范数，L2范数L0范数是指向量中非0元素的个数。 如果我们用L0范数来规则化一个参数矩阵W的话（正则项），就是希望W的大部分元素都是0。换句话说，让参数W是稀疏的。 L1范数是指向量中各个元素绝对值之和，也有个美称叫“稀疏规则算子”（Lasso regularization）。 为什么要稀疏？特征选择(Feature Selection)： 稀疏规则化它能实现特征的自动选择。一般来说">
+<meta name="twitter:description" content="L0范数，L1范数，L2范数L0范数是指向量中非0元素的个数。 如果我们用L0范数来规则化一个参数矩阵W的话（正则项），就是希望W的大部分元素都是0。换句话说，让参数W是稀疏的。 L1范数是指向量中各个元素绝对值之和，也有个美称叫“稀疏规则算子”（Lasso regularization）。">
 <meta name="twitter:image" content="/typora-images/clip_image001-1536658592630.png">
 
 
@@ -403,6 +403,7 @@
         <h1 id="L0范数，L1范数，L2范数"><a href="#L0范数，L1范数，L2范数" class="headerlink" title="L0范数，L1范数，L2范数"></a>L0范数，L1范数，L2范数</h1><p><strong>L0范数</strong>是指向量中非0元素的个数。</p>
 <p>如果我们用L0范数来规则化一个参数矩阵W的话（正则项），就是希望W的大部分元素都是0。换句话说，让参数W是稀疏的。</p>
 <p><strong>L1范数</strong>是指向量中各个元素绝对值之和，也有个美称叫“稀疏规则算子”（Lasso regularization）。</p>
+<a id="more"></a>
 <h2 id="为什么要稀疏？"><a href="#为什么要稀疏？" class="headerlink" title="为什么要稀疏？"></a>为什么要稀疏？</h2><p>特征选择(Feature Selection)：</p>
 <p>稀疏规则化它能实现特征的自动选择。一般来说，一个样本的大部分特征都是和最终的输出没有关系或者不提供任何信息的，在最小化目标函数的时候考虑这些额外的特征，虽然可以获得更小的训练误差，但在预测新的样本时，这些没用的信息被考虑反而干扰了对正确标签的预测。稀疏规则化算子的引入就是为了完成特征自动选择的光荣使命，它会学习地去掉这些没有信息的特征，也就是把这些特征对应的权重置为0。</p>
 <p>可解释性(Interpretability)：</p>

@@ -102,7 +102,7 @@
 <meta property="og:image" content="/typora-images/clip_image003-1536633238298.png">
 <meta property="og:image" content="/typora-images/clip_image004.png">
 <meta property="og:image" content="/typora-images/clip_image002-1536633337692.png">
-<meta property="og:updated_time" content="2018-09-11T09:38:13.622Z">
+<meta property="og:updated_time" content="2018-09-11T15:36:27.803Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="因子分解机 FM和FFM">
 <meta name="twitter:description" content="因子分解机 Factorization Machine因子分解机主要是考虑了特征之间的关联。 FM主要是为了解决数据稀疏的情况下，（而SVM无法解决稀疏问题），特征怎样组合的问题。 数据稀疏是指数据的维度很大，但是其中为0的维度很多。推荐系统是常见应用场景，原因是推荐系统中类别属性（如商品id）比较多，每一种类别属性经过onehot处理后会产生大量值为0的特征，导致样本变得稀疏，而FM就可以解决这">
@@ -410,6 +410,7 @@
         <h1 id="因子分解机-Factorization-Machine"><a href="#因子分解机-Factorization-Machine" class="headerlink" title="因子分解机 Factorization Machine"></a>因子分解机 Factorization Machine</h1><p>因子分解机主要是考虑了特征之间的关联。</p>
 <p>FM主要是为了解决数据稀疏的情况下，（而SVM无法解决稀疏问题），特征怎样组合的问题。</p>
 <p><strong>数据稀疏</strong>是指数据的维度很大，但是其中为0的维度很多。推荐系统是常见应用场景，原因是推荐系统中类别属性（如商品id）比较多，每一种类别属性经过onehot处理后会产生大量值为0的特征，导致样本变得稀疏，而FM就可以解决这种样本稀疏的问题。</p>
+<a id="more"></a>
 <p>因子分解机FM算法可以处理如下三类问题：</p>
 <p><img src="/../typora-images/clip_image001-1536584997387.png" alt=""></p>
 <h2 id="普通线性模型"><a href="#普通线性模型" class="headerlink" title="普通线性模型"></a>普通线性模型</h2><p>我们将各个特征独立考虑，并没有考虑特征之间的相互关系。</p>

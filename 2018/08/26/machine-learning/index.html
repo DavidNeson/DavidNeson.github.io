@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="HelloDavid">
 <meta property="og:description" content="本文仅为个人笔记，错误之处敬请包涵。                                                         —— David 这篇介绍不涉及任何公式推导，仅提供一些思路以及相应的资料，感兴趣的可以自行查找资料学习。  书籍推荐理论类： 机器学习，周志华； 统计学习方法，李航； 深度学习，Ian goodfellow; 实践类： 机器学习实战，peter">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-27T01:06:03.535Z">
+<meta property="og:updated_time" content="2018-09-11T15:35:45.659Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Machine learning">
 <meta name="twitter:description" content="本文仅为个人笔记，错误之处敬请包涵。                                                         —— David 这篇介绍不涉及任何公式推导，仅提供一些思路以及相应的资料，感兴趣的可以自行查找资料学习。  书籍推荐理论类： 机器学习，周志华； 统计学习方法，李航； 深度学习，Ian goodfellow; 实践类： 机器学习实战，peter">
@@ -420,6 +420,7 @@
 <p>逻辑回归推导：<a href="http://blog.csdn.net/pakko/article/details/37878837" target="_blank" rel="noopener">http://blog.csdn.net/pakko/article/details/37878837</a></p>
 <p>极大似然估计：<a href="http://blog.csdn.net/star_liux/article/details/39666737" target="_blank" rel="noopener">http://blog.csdn.net/star_liux/article/details/39666737</a></p>
 <h3 id="SVM"><a href="#SVM" class="headerlink" title="SVM"></a>SVM</h3><p>通俗来讲，它是一种二类分类模型，其基本模型定义为特征空间上的间隔最大的线性分类器，其学习策略便是间隔最大化，最终可转化为一个凸二次规划问题的求解。</p>
+<a id="more"></a>
 <p>知识点：函数间隔，几何间隔，对偶问题，核函数，软间隔，hinge loss</p>
 <p>相关资料：</p>
 <p>周志华，机器学习：SVM</p>
@@ -450,7 +451,7 @@
 <h3 id="频繁项集和关联分析"><a href="#频繁项集和关联分析" class="headerlink" title="频繁项集和关联分析"></a>频繁项集和关联分析</h3><p>频繁项集主要是指经常出现在一块的物品的集合，关联分析是指从大规模数据中寻找物品间的隐含关系。在寻找频繁项集的过程中，主要有两种算法，Apriori以及FP-growth.</p>
 <p>知识点：清楚相关概念：包括项，项集，事务，关联分析，频繁项集，关联规则，支持度，置信度；熟悉Apriori，和FP-growth算法</p>
 <p>相关资料：</p>
-<p>FP-tree算法的实现：<a href="https://www.cnblogs.com/zhangchaoyang/articles/2198946.html" target="_blank" rel="noopener">https://www.cnblogs.com/zhangchaoyang/articles/2198946.html</a><br><a id="more"></a></p>
+<p>FP-tree算法的实现：<a href="https://www.cnblogs.com/zhangchaoyang/articles/2198946.html" target="_blank" rel="noopener">https://www.cnblogs.com/zhangchaoyang/articles/2198946.html</a> </p>
 <h3 id="序列模式"><a href="#序列模式" class="headerlink" title="序列模式"></a>序列模式</h3><p>序列模式属于频繁模式的进阶，频繁模式是挖掘事务中的频繁项，序列模式是挖掘频繁的子序列。可以认为，事务是项的无序集合，序列是事务的有序集合。因此，可以和频繁项集对比学习。</p>
 <p>知识点：序列的概念，相关算法实现：GSP, SPADE, PrefixSpan,…</p>
 <p>相关资料：</p>
