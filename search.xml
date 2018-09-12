@@ -169,9 +169,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Leetcode-Longest Common Prefix]]></title>
-    <url>%2F2018%2F09%2F12%2FLeetcode-Longest%20Common%20Prefix%2F</url>
-    <content type="text"><![CDATA[Longest Common Prefix最长相同前缀：给定一个字符串数组，找出其中最长的共同前缀。这里leetcode并没有说明共同前缀是指两两之间的前缀还是所有字符串的前缀，实际题意是指采用所有字符串的共同前缀。Description 解题思路：若字符串数组为空则返回空字符串；否则从所有字符串中找出最短的字符串，依次将最短字符串的每个元素和所有字符串对应位置上的元素进行比较，若不同则停止比较并返回；若全部相同，则返回最短字符串。 1234567891011if not strs: return ""shortest = min(strs, key=len)for i in range(len(shortest)): for string in strs: if shortest[i] != string[i]: return shortest[:i] return shortest 改进：将字符串数组进行排序(注意，这里是按照字母表顺序排序，而不是根据长度排序），排序后实际只要比较第一个和最后一个字符串的共同前缀即可，因此大大提升了运行时间。12345678910111213if not strs: return "" strs.sort() first = strs[0] last = strs[-1] minlen = min(len(first), len(last)) for i in range(minlen): if first[i]!=last[i]: return first[:i] return first[:minlen]]]></content>
+    <title><![CDATA[Leetcode-Linked List Cycle]]></title>
+    <url>%2F2018%2F09%2F12%2FLeetcode-Linked%20List%20Cycle%2F</url>
+    <content type="text"><![CDATA[Linked List Cycle判断单链表是否存在环。Description 解题思路：一个单链表如果不存在环，则最后一个元素的下一个节点必然为null.如果单链表存在环，则：设置两个指针，一个慢指针和一个快指针。将链表的环想象成是一个圆形操场，两个人在同一起跑线开始绕着操场无限循环跑，那么快的人必然会再一次和慢的人相遇，即快指针的元素和慢指针的元素相同时，即说明存在环。在代码中，慢指针设置为每次走一步，即slow=slow.next,快指针设置为每次走两步，即fast=fast.next.next。实际步数设置是可以任取的，只是循环次数不同，如可以设置fast=fast.next.next.next。 1234567891011121314151617181920212223# Definition for singly-linked list.# class ListNode(object):# def __init__(self, x):# self.val = x# self.next = Noneclass Solution(object): def hasCycle(self, head): """ :type head: ListNode :rtype: bool """ if head==None: return False slow = head fast = head while fast.next and fast.next.next: slow = slow.next fast = fast.next.next if slow==fast: return True return False 改进：由于每次循环都要判断是否到达最后一个节点，因此leetcode上提供了另一种思路，即采取异常的方式。 “Easier to ask for forgiveness than permission.”12345678910def hasCycle(self, head): try: slow = head fast = head.next while slow is not fast: slow = slow.next fast = fast.next.next return True except: return False]]></content>
       <categories>
         <category>leetcode</category>
       </categories>
@@ -193,9 +193,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Leetcode-Linked List Cycle]]></title>
-    <url>%2F2018%2F09%2F12%2FLeetcode-Linked%20List%20Cycle%2F</url>
-    <content type="text"><![CDATA[Linked List Cycle判断单链表是否存在环。Description 解题思路：一个单链表如果不存在环，则最后一个元素的下一个节点必然为null.如果单链表存在环，则：设置两个指针，一个慢指针和一个快指针。将链表的环想象成是一个圆形操场，两个人在同一起跑线开始绕着操场无限循环跑，那么快的人必然会再一次和慢的人相遇，即快指针的元素和慢指针的元素相同时，即说明存在环。在代码中，慢指针设置为每次走一步，即slow=slow.next,快指针设置为每次走两步，即fast=fast.next.next。实际步数设置是可以任取的，只是循环次数不同，如可以设置fast=fast.next.next.next。 1234567891011121314151617181920212223# Definition for singly-linked list.# class ListNode(object):# def __init__(self, x):# self.val = x# self.next = Noneclass Solution(object): def hasCycle(self, head): """ :type head: ListNode :rtype: bool """ if head==None: return False slow = head fast = head while fast.next and fast.next.next: slow = slow.next fast = fast.next.next if slow==fast: return True return False 改进：由于每次循环都要判断是否到达最后一个节点，因此leetcode上提供了另一种思路，即采取异常的方式。 “Easier to ask for forgiveness than permission.”12345678910def hasCycle(self, head): try: slow = head fast = head.next while slow is not fast: slow = slow.next fast = fast.next.next return True except: return False]]></content>
+    <title><![CDATA[Leetcode-Longest Common Prefix]]></title>
+    <url>%2F2018%2F09%2F12%2FLeetcode-Longest%20Common%20Prefix%2F</url>
+    <content type="text"><![CDATA[Longest Common Prefix最长相同前缀：给定一个字符串数组，找出其中最长的共同前缀。这里leetcode并没有说明共同前缀是指两两之间的前缀还是所有字符串的前缀，实际题意是指采用所有字符串的共同前缀。Description 解题思路：若字符串数组为空则返回空字符串；否则从所有字符串中找出最短的字符串，依次将最短字符串的每个元素和所有字符串对应位置上的元素进行比较，若不同则停止比较并返回；若全部相同，则返回最短字符串。 1234567891011if not strs: return ""shortest = min(strs, key=len)for i in range(len(shortest)): for string in strs: if shortest[i] != string[i]: return shortest[:i] return shortest 改进：将字符串数组进行排序(注意，这里是按照字母表顺序排序，而不是根据长度排序），排序后实际只要比较第一个和最后一个字符串的共同前缀即可，因此大大提升了运行时间。12345678910111213if not strs: return "" strs.sort() first = strs[0] last = strs[-1] minlen = min(len(first), len(last)) for i in range(minlen): if first[i]!=last[i]: return first[:i] return first[:minlen]]]></content>
       <categories>
         <category>leetcode</category>
       </categories>
@@ -277,18 +277,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Leetcode-2sum-python]]></title>
-    <url>%2F2018%2F09%2F12%2Fleetcode-2sum%2F</url>
-    <content type="text"><![CDATA[Given nums = [2, 7, 11, 15], target = 9, Because nums[0] + nums[1] = 2 + 7 = 9, return [0, 1].Description 1234567891011class Solution: def twoSum(self, nums, target): """ :type nums: List[int] :type target: int :rtype: List[int] """ for i in range(0, len(nums)): for j in range(i+1, len(nums)): if nums[i]+nums[j]==target: return [i, j] 初始版本的思路：依次将两个数相加，由于题目中说明只存在一对答案，因此如果存在符合条件的两个下标，就是需要的答案。测试未通过：leetcode要求需要满足时间复杂度。 12345678910class Solution(object): def twoSum(self, nums, target): if len(nums) &lt;= 1: return False buff_dict = &#123;&#125; for i in range(len(nums)): if nums[i] in buff_dict: return [buff_dict[nums[i]], i] else: buff_dict[target - nums[i]] = i leetcode上提供的一种O(n)的python解法，使用字典, python字典采用hash方式。解题思路：建立一个字典，依次比较列表中的元素。如果字典的键中不存在该元素，就将target - nums[i]作为字典的键，并将对应的下标作为值；如果字典键中存在该元素，则说明字典中存在符合要求的对应元素，通过buff_dict[nums[i]]提取出另一个元素的下标。]]></content>
-      <categories>
-        <category>leetcode</category>
-      </categories>
-      <tags>
-        <tag>python</tag>
-        <tag>leetcode</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[Django搭建个人博客]]></title>
     <url>%2F2018%2F09%2F12%2FDjango%20blog%2F</url>
     <content type="text"><![CDATA[最近学着用Django搭建了个个人博客，目前域名正在备案中，现在把我这最近半个月的摸爬滚打经历记录下。 Django入门 Python核心编程 追梦人物的 Django博客教程 菜鸟Django教程 自强学堂Django教程 第一阶段：我首先看了Python核心编程中的Django章节，刚开始看的有些云里雾里。于是我去菜鸟教程那里按着Django教程的步骤搭建了下，菜鸟教程Django部分比较简单，之后对整体有了大致了解后再进一步看核心编程，发现能够比较容易理解了。 第二阶段：这里非常推荐追梦人物博主的博客教程，写的非常详细，按着博主的步骤就能够一步一步的把个人博客搭建起来，并且博主也提到了不少学习资料，对我们这些初学者能提供极大的帮助。另外自强学堂的内容我大致看了下，写的比较细，把个人博客搭建起来后再看可能效果会更好。 Django博客搭建我这里就放一些我在搭建博客时用到的一些不错的资源。 Bootstrap模板：https://html5up.net/这个网站提供了免费的响应式模板，我觉得很漂亮。 日历插件：http://www.jq22.com/yanshi11367这是我使用的日历插件，也可以在这个网站上找到一些别的datepicker的日历插件。 abowman:http://abowman.com/这个网站很有趣，可以在网页上显示一个有趣的动图，有需要的可以自己插入网页。 域名和云服务器我这里是在阿里云上学生优惠买的云服务器，域名也是直接在阿里云购买的。域名购买后记得要进行解析，还有备案（备案真的好麻烦）。 使用nginx后无法出现欢迎界面这个地方我摸索了好久，一直不知道怎么回事，在阿里云服务器上输入sudo service nginx start后，通过域名访问始终无法显示nginx的欢迎界面。后来发现原来是阿里云服务器的安全组设置中没有配置80端口。解决：进入阿里云ECS控制台-&gt;安全组-&gt;配置规则-&gt;公网入方向-&gt;快速配置规则-&gt;选中80端口和443端口，授权对象为0.0.0.0/0，确定即可。 在进展到用nginx和gunicorn步骤时始终出现欢迎界面。解决：进入/etc/nginx/sites-enabled删除default文件，原因是默认配置覆盖了我们的配置。 目前我还在慢慢学习中，待续… – 2018-09-12更新之前的django博客确实搭建成了，当时主要是为了成为一名网络开发工程师，摸索着完成了这一系列步骤。不过，现在转行成了一名算法工程师，也就没有心思继续维护之前的网站了。所以，为了简单，我采用了hexo+next+github的方式重新建立了新的博客，欢迎大家访问我的新的博客：hellodavid.top]]></content>
@@ -299,6 +287,18 @@
         <tag>Django</tag>
         <tag>python</tag>
         <tag>blog</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Leetcode-2sum-python]]></title>
+    <url>%2F2018%2F09%2F12%2Fleetcode-2sum%2F</url>
+    <content type="text"><![CDATA[Given nums = [2, 7, 11, 15], target = 9, Because nums[0] + nums[1] = 2 + 7 = 9, return [0, 1].Description 1234567891011class Solution: def twoSum(self, nums, target): """ :type nums: List[int] :type target: int :rtype: List[int] """ for i in range(0, len(nums)): for j in range(i+1, len(nums)): if nums[i]+nums[j]==target: return [i, j] 初始版本的思路：依次将两个数相加，由于题目中说明只存在一对答案，因此如果存在符合条件的两个下标，就是需要的答案。测试未通过：leetcode要求需要满足时间复杂度。 12345678910class Solution(object): def twoSum(self, nums, target): if len(nums) &lt;= 1: return False buff_dict = &#123;&#125; for i in range(len(nums)): if nums[i] in buff_dict: return [buff_dict[nums[i]], i] else: buff_dict[target - nums[i]] = i leetcode上提供的一种O(n)的python解法，使用字典, python字典采用hash方式。解题思路：建立一个字典，依次比较列表中的元素。如果字典的键中不存在该元素，就将target - nums[i]作为字典的键，并将对应的下标作为值；如果字典键中存在该元素，则说明字典中存在符合要求的对应元素，通过buff_dict[nums[i]]提取出另一个元素的下标。]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+        <tag>leetcode</tag>
       </tags>
   </entry>
   <entry>
