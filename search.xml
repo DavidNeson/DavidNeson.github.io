@@ -253,18 +253,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Leetcode-Best Time to Buy and Sell Stock]]></title>
-    <url>%2F2018%2F09%2F12%2FLeetcode-Best%20Time%20to%20Buy%20and%20Sell%20Stock%2F</url>
-    <content type="text"><![CDATA[Best Time to Buy and Sell Stock买卖股票的最佳时机，返回最大收益。Say you have an array for which the ith element is the price of a given stock on day i. If you were only permitted to complete at most one transaction (ie, buy one and sell one share of the stock), design an algorithm to find the maximum profit.Description 解题思路：依次遍历整个数组，利用minprice这个变量来保存每个元素之前的最低价格，并计算出在该元素卖出时能够带来的最大收益，最后将每个元素卖出时得到的最大收益进行比较即得到整个系统的最大收益。 12345678910111213class Solution(object): def maxProfit(self, prices): """ :type prices: List[int] :rtype: int """ maxprofit = 0 minprice = float('inf') for price in prices: minprice = min(minprice, price) profit = price - minprice maxprofit = max(maxprofit, profit) return maxprofit tip:Python中可以用如下方式表示正负无穷：float(“inf”), float(“-inf”)]]></content>
-      <categories>
-        <category>leetcode</category>
-      </categories>
-      <tags>
-        <tag>python</tag>
-        <tag>leetcode</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[Leetcode-Climbing Stairs]]></title>
     <url>%2F2018%2F09%2F12%2FLeetcode-Climbing%20Stairs%2F</url>
     <content type="text"><![CDATA[Climbing Stairs爬梯子问题。给定一个n级台阶，每次可以走一个台阶或者两个台阶，一共有多少种走法？Description 解题思路：很常见的一种递推题型，要求n级台阶的走法，即可以分解为求n-1级台阶加上n-2级台阶的走法，climbNum[n]=climbNum[n-1]+climbNum[n-2]。所以问题实质上就是求解斐波那契数列。但由于采用递推方式会产生大量重复的计算，因此使用动态规划自底向上的进行计算，其中我们使用一个数组用于保存每步产生的结果。 123456789101112class Solution(object): def climbStairs(self, n): """ :type n: int :rtype: int """ if n&lt;=2: return n climbNum = [1,1,2] for i in range(3,n+1): climbNum.append(climbNum[i-1] + climbNum[i-2]) return climbNum[n]]]></content>
@@ -277,16 +265,15 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Django搭建个人博客]]></title>
-    <url>%2F2018%2F09%2F12%2FDjango%20blog%2F</url>
-    <content type="text"><![CDATA[最近学着用Django搭建了个个人博客，目前域名正在备案中，现在把我这最近半个月的摸爬滚打经历记录下。 Django入门 Python核心编程 追梦人物的 Django博客教程 菜鸟Django教程 自强学堂Django教程 第一阶段：我首先看了Python核心编程中的Django章节，刚开始看的有些云里雾里。于是我去菜鸟教程那里按着Django教程的步骤搭建了下，菜鸟教程Django部分比较简单，之后对整体有了大致了解后再进一步看核心编程，发现能够比较容易理解了。 第二阶段：这里非常推荐追梦人物博主的博客教程，写的非常详细，按着博主的步骤就能够一步一步的把个人博客搭建起来，并且博主也提到了不少学习资料，对我们这些初学者能提供极大的帮助。另外自强学堂的内容我大致看了下，写的比较细，把个人博客搭建起来后再看可能效果会更好。 Django博客搭建我这里就放一些我在搭建博客时用到的一些不错的资源。 Bootstrap模板：https://html5up.net/这个网站提供了免费的响应式模板，我觉得很漂亮。 日历插件：http://www.jq22.com/yanshi11367这是我使用的日历插件，也可以在这个网站上找到一些别的datepicker的日历插件。 abowman:http://abowman.com/这个网站很有趣，可以在网页上显示一个有趣的动图，有需要的可以自己插入网页。 域名和云服务器我这里是在阿里云上学生优惠买的云服务器，域名也是直接在阿里云购买的。域名购买后记得要进行解析，还有备案（备案真的好麻烦）。 使用nginx后无法出现欢迎界面这个地方我摸索了好久，一直不知道怎么回事，在阿里云服务器上输入sudo service nginx start后，通过域名访问始终无法显示nginx的欢迎界面。后来发现原来是阿里云服务器的安全组设置中没有配置80端口。解决：进入阿里云ECS控制台-&gt;安全组-&gt;配置规则-&gt;公网入方向-&gt;快速配置规则-&gt;选中80端口和443端口，授权对象为0.0.0.0/0，确定即可。 在进展到用nginx和gunicorn步骤时始终出现欢迎界面。解决：进入/etc/nginx/sites-enabled删除default文件，原因是默认配置覆盖了我们的配置。 目前我还在慢慢学习中，待续… – 2018-09-12更新之前的django博客确实搭建成了，当时主要是为了成为一名网络开发工程师，摸索着完成了这一系列步骤。不过，现在转行成了一名算法工程师，也就没有心思继续维护之前的网站了。所以，为了简单，我采用了hexo+next+github的方式重新建立了新的博客，欢迎大家访问我的新的博客：hellodavid.top]]></content>
+    <title><![CDATA[Leetcode-Best Time to Buy and Sell Stock]]></title>
+    <url>%2F2018%2F09%2F12%2FLeetcode-Best%20Time%20to%20Buy%20and%20Sell%20Stock%2F</url>
+    <content type="text"><![CDATA[Best Time to Buy and Sell Stock买卖股票的最佳时机，返回最大收益。Say you have an array for which the ith element is the price of a given stock on day i. If you were only permitted to complete at most one transaction (ie, buy one and sell one share of the stock), design an algorithm to find the maximum profit.Description 解题思路：依次遍历整个数组，利用minprice这个变量来保存每个元素之前的最低价格，并计算出在该元素卖出时能够带来的最大收益，最后将每个元素卖出时得到的最大收益进行比较即得到整个系统的最大收益。 12345678910111213class Solution(object): def maxProfit(self, prices): """ :type prices: List[int] :rtype: int """ maxprofit = 0 minprice = float('inf') for price in prices: minprice = min(minprice, price) profit = price - minprice maxprofit = max(maxprofit, profit) return maxprofit tip:Python中可以用如下方式表示正负无穷：float(“inf”), float(“-inf”)]]></content>
       <categories>
-        <category>python</category>
+        <category>leetcode</category>
       </categories>
       <tags>
-        <tag>Django</tag>
         <tag>python</tag>
-        <tag>blog</tag>
+        <tag>leetcode</tag>
       </tags>
   </entry>
   <entry>
@@ -311,6 +298,19 @@
       <tags>
         <tag>深度学习</tag>
         <tag>正则化</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Django搭建个人博客]]></title>
+    <url>%2F2018%2F09%2F12%2FDjango%20blog%2F</url>
+    <content type="text"><![CDATA[最近学着用Django搭建了个个人博客，目前域名正在备案中，现在把我这最近半个月的摸爬滚打经历记录下。 Django入门 Python核心编程 追梦人物的 Django博客教程 菜鸟Django教程 自强学堂Django教程 第一阶段：我首先看了Python核心编程中的Django章节，刚开始看的有些云里雾里。于是我去菜鸟教程那里按着Django教程的步骤搭建了下，菜鸟教程Django部分比较简单，之后对整体有了大致了解后再进一步看核心编程，发现能够比较容易理解了。 第二阶段：这里非常推荐追梦人物博主的博客教程，写的非常详细，按着博主的步骤就能够一步一步的把个人博客搭建起来，并且博主也提到了不少学习资料，对我们这些初学者能提供极大的帮助。另外自强学堂的内容我大致看了下，写的比较细，把个人博客搭建起来后再看可能效果会更好。 Django博客搭建我这里就放一些我在搭建博客时用到的一些不错的资源。 Bootstrap模板：https://html5up.net/这个网站提供了免费的响应式模板，我觉得很漂亮。 日历插件：http://www.jq22.com/yanshi11367这是我使用的日历插件，也可以在这个网站上找到一些别的datepicker的日历插件。 abowman:http://abowman.com/这个网站很有趣，可以在网页上显示一个有趣的动图，有需要的可以自己插入网页。 域名和云服务器我这里是在阿里云上学生优惠买的云服务器，域名也是直接在阿里云购买的。域名购买后记得要进行解析，还有备案（备案真的好麻烦）。 使用nginx后无法出现欢迎界面这个地方我摸索了好久，一直不知道怎么回事，在阿里云服务器上输入sudo service nginx start后，通过域名访问始终无法显示nginx的欢迎界面。后来发现原来是阿里云服务器的安全组设置中没有配置80端口。解决：进入阿里云ECS控制台-&gt;安全组-&gt;配置规则-&gt;公网入方向-&gt;快速配置规则-&gt;选中80端口和443端口，授权对象为0.0.0.0/0，确定即可。 在进展到用nginx和gunicorn步骤时始终出现欢迎界面。解决：进入/etc/nginx/sites-enabled删除default文件，原因是默认配置覆盖了我们的配置。 目前我还在慢慢学习中，待续… – 2018-09-12更新之前的django博客确实搭建成了，当时主要是为了成为一名网络开发工程师，摸索着完成了这一系列步骤。不过，现在转行成了一名算法工程师，也就没有心思继续维护之前的网站了。所以，为了简单，我采用了hexo+next+github的方式重新建立了新的博客，欢迎大家访问我的新的博客：hellodavid.top]]></content>
+      <categories>
+        <category>python</category>
+      </categories>
+      <tags>
+        <tag>Django</tag>
+        <tag>python</tag>
+        <tag>blog</tag>
       </tags>
   </entry>
   <entry>
