@@ -296,7 +296,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="hellodavid.top/2018/09/11/linear and logistic learning/">
+    <link itemprop="mainEntityOfPage" href="hellodavid.top/2018/09/12/Ubuntu Tmux 启用鼠标滚动/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="David">
@@ -315,7 +315,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/09/11/linear and logistic learning/" itemprop="url">线性回归和逻辑回归的比较</a></h1>
+                <a class="post-title-link" href="/2018/09/12/Ubuntu Tmux 启用鼠标滚动/" itemprop="url">Ubuntu Tmux 启用鼠标滚动</a></h1>
         
 
         <div class="post-meta">
@@ -327,8 +327,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-11T17:56:10+08:00">
-                2018-09-11
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-12T22:22:58+08:00">
+                2018-09-12
               </time>
             
 
@@ -350,8 +350,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/机器学习/" itemprop="url" rel="index">
-                    <span itemprop="name">机器学习</span>
+                  <a href="/categories/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
                   </a>
                 </span>
 
@@ -388,20 +388,13 @@
 
       
         
-          <h1 id="线性回归"><a href="#线性回归" class="headerlink" title="线性回归"></a>线性回归</h1><p><img src="/../typora-images/1536368052441.png" alt="1536368052441"></p>
-<p>用一组变量的（特征）的线性组合，来建立与结果之间的关系。</p>
-<p>模型表达：$y(x, w)=w_0+w_1x_1+…+w_nx_n$</p>
-<h1 id="逻辑回归"><a href="#逻辑回归" class="headerlink" title="逻辑回归"></a>逻辑回归</h1><p>逻辑回归用于<strong>分类</strong>，而不是回归。</p>
-<p>在线性回归模型中，输出一般是连续的， 对于每一个输入的x，都有一个对应的输出y。因此模型的定义域和值域都可以是无穷。</p>
-<p>但是对于逻辑回归，输入可以是连续的[-∞, +∞]，但输出一般是离散的，通常只有两个值{0, 1}。</p>
-<p>这两个值可以表示对样本的某种分类，高/低、患病/ 健康、阴性/阳性等，这就是最常见的二分类逻辑回归。因此，从整体上来说，通过逻辑回归模型，我们将在整个实数范围上的x映射到了有限个点上，这样就实现了对x的分类。因为每次拿过来一个x，经过逻辑回归分析，就可以将它归入某一类y中。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/09/11/linear and logistic learning/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+          
+            <h1 id="Ubuntu-Tmux-启用鼠标滚动"><a href="#Ubuntu-Tmux-启用鼠标滚动" class="headerlink" title="Ubuntu Tmux 启用鼠标滚动"></a>Ubuntu Tmux 启用鼠标滚动</h1><p>在Ubuntu上使用Tmux是一件非常舒服的事，但有时使用鼠标滚轮时，和平时使用终端的习惯不怎么一致，因此可以设置启用鼠标滚轮。<br>具体方式：<br>按完前缀ctrl+B后，再按分号：进入命令行模式，<br>输入以下命令：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set -g mouse on</span><br></pre></td></tr></table></figure></p>
+<p>就启用了鼠标滚轮，可以通过鼠标直接选择不同的窗口，也可以上下直接翻页。</p>
+<p><strong>Tip</strong><br>但在以上设置下，会发现无法用中键向 tmux 中复制文本，也无法将 tmux 中选择好的文本中键复制到系统其他应用程序中。<br>这里有一个 trick，那就是在 tmux 中不论选择还是复制时，<strong>都按住 Shift 键</strong>，你会发现熟悉的中键又回来了 :-) 此外，还可以使用 Shift+Insert 快捷键将系统剪切板中的内容输入 tmux 中。 相对于 tmux 原生的选择模式（不加 shift 键），使用系统选择有个缺陷，即当一行内存在多个面板时，无法选择单个面板中的内容，这时就必须使用 tmux 自带的复制粘贴系统了。</p>
+<p>参考：<a href="https://superuser.com/questions/210125/scroll-shell-output-with-mouse-in-tmux" target="_blank" rel="noopener">https://superuser.com/questions/210125/scroll-shell-output-with-mouse-in-tmux</a>,<br><a href="http://mindonmind.github.io/notes/linux/tmux_copy_paste_by_mouse.html" target="_blank" rel="noopener">http://mindonmind.github.io/notes/linux/tmux_copy_paste_by_mouse.html</a><br>里面有人说输入<code>setw -g mouse on</code>,但我没有成功，我的ubuntu版本为14.04。</p>
+
+          
         
       
     </div>
@@ -448,7 +441,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="hellodavid.top/2018/09/11/L1 and L2/">
+    <link itemprop="mainEntityOfPage" href="hellodavid.top/2018/09/12/Splunk-SDK-Python学习/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="David">
@@ -467,7 +460,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/09/11/L1 and L2/" itemprop="url">L1和L2正则化</a></h1>
+                <a class="post-title-link" href="/2018/09/12/Splunk-SDK-Python学习/" itemprop="url">Splunk-SDK-Python学习</a></h1>
         
 
         <div class="post-meta">
@@ -479,304 +472,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-11T17:56:10+08:00">
-                2018-09-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/机器学习/" itemprop="url" rel="index">
-                    <span itemprop="name">机器学习</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="L0范数，L1范数，L2范数"><a href="#L0范数，L1范数，L2范数" class="headerlink" title="L0范数，L1范数，L2范数"></a>L0范数，L1范数，L2范数</h1><p><strong>L0范数</strong>是指向量中非0元素的个数。</p>
-<p>如果我们用L0范数来规则化一个参数矩阵W的话（正则项），就是希望W的大部分元素都是0。换句话说，让参数W是稀疏的。</p>
-<p><strong>L1范数</strong>是指向量中各个元素绝对值之和，也有个美称叫“稀疏规则算子”（Lasso regularization）。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/09/11/L1 and L2/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="hellodavid.top/2018/09/11/FM & FFM/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="David">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/myavatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="HelloDavid">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/11/FM & FFM/" itemprop="url">因子分解机 FM和FFM</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-11T17:56:10+08:00">
-                2018-09-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/推荐系统/" itemprop="url" rel="index">
-                    <span itemprop="name">推荐系统</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="因子分解机-Factorization-Machine"><a href="#因子分解机-Factorization-Machine" class="headerlink" title="因子分解机 Factorization Machine"></a>因子分解机 Factorization Machine</h1><p>因子分解机主要是考虑了特征之间的关联。</p>
-<p>FM主要是为了解决数据稀疏的情况下，（而SVM无法解决稀疏问题），特征怎样组合的问题。</p>
-<p><strong>数据稀疏</strong>是指数据的维度很大，但是其中为0的维度很多。推荐系统是常见应用场景，原因是推荐系统中类别属性（如商品id）比较多，每一种类别属性经过onehot处理后会产生大量值为0的特征，导致样本变得稀疏，而FM就可以解决这种样本稀疏的问题。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/09/11/FM & FFM/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="hellodavid.top/2018/08/26/Leetcode-Reverse Linked List/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="David">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/myavatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="HelloDavid">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/26/Leetcode-Reverse Linked List/" itemprop="url">Remove Duplicates from Sorted List</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-26T17:40:32+08:00">
-                2018-08-26
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-12T22:22:58+08:00">
+                2018-09-12
               </time>
             
 
@@ -837,9 +534,26 @@
       
         
           
-            <p>从排序链表中删除重复元素。<br><a href="https://leetcode.com/problems/remove-duplicates-from-sorted-list/description/" target="_blank" rel="noopener">Description</a></p>
-<p><strong>解题思路</strong>：<br>依次比较相邻的两个链表元素，若值相等，则将前一个节点的next引用为后一个节点的后一个节点。使用cur来依次向下遍历元素，最后返回head。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"># class ListNode(object):</span></span><br><span class="line"><span class="comment">#     def __init__(self, x):</span></span><br><span class="line"><span class="comment">#         self.val = x</span></span><br><span class="line"><span class="comment">#         self.next = None</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">deleteDuplicates</span><span class="params">(self, head)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type head: ListNode</span></span><br><span class="line"><span class="string">        :rtype: ListNode</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        cur = head</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span> cur:</span><br><span class="line">            <span class="keyword">while</span> cur.next <span class="keyword">and</span> cur.next.val==cur.val:</span><br><span class="line">                cur.next = cur.next.next</span><br><span class="line">            cur = cur.next</span><br><span class="line">        <span class="keyword">return</span> head</span><br></pre></td></tr></table></figure>
+            <h1 id="Splunk"><a href="#Splunk" class="headerlink" title="Splunk"></a>Splunk</h1><p>最近在公司实习用到了splunk,需要调用splunk sdk进行一些简单的开发，目前把我这个星期的一些体会记录下。</p>
+<h2 id="什么是splunk"><a href="#什么是splunk" class="headerlink" title="什么是splunk"></a>什么是splunk</h2><p>简单来说，Splunk是一个托管的日志文件管理工具，它的主要功能包括：<br>· 日志聚合功能<br>· 搜索功能<br>· 提取意义<br>· 对结果进行分组，联合，拆分和格式化<br>· 可视化功能<br>· 电子邮件提醒功能<br>而目前我通过splunk sdk主要实现的功能就是搜索功能，即搜索到我想要的日志。</p>
+<h2 id="Splunk-SDK-for-Python"><a href="#Splunk-SDK-for-Python" class="headerlink" title="Splunk SDK for Python"></a>Splunk SDK for Python</h2><p>通过Splunk SDK我们可以和Splunk引擎进行交互。Splunk SDK是基于REST API的，因此通过简短的代码实现我们想要的功能。<br>官方文档：<a href="http://dev.splunk.com/python" target="_blank" rel="noopener">http://dev.splunk.com/python</a></p>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>！ 注意， splunk SDK 目前只支持python2，不支持python3.<br>Ubuntu下安装步骤：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install python-pip //第一步：安装pip工具</span><br><span class="line"></span><br><span class="line">pip freeze                      //查看是否已安装splunk sdk</span><br><span class="line"></span><br><span class="line">pip install splunk-sdk          //第二步：下载splunk sdk</span><br><span class="line"></span><br><span class="line">export PYTHONPATH=~/splunk-sdk-python //添加到python环境变量</span><br></pre></td></tr></table></figure></p>
+<h3 id="模块介绍"><a href="#模块介绍" class="headerlink" title="模块介绍"></a>模块介绍</h3><p>主要有4个模块：</p>
+<ul>
+<li>binding: 基于HTTP的抽象层</li>
+<li>client: 基于REST API的抽象层，其中Service类是其最重要的类，并且client模块比binding模块有更多的好处。</li>
+<li>results: 对splunk返回的数据进行处理</li>
+<li>data: 将Atom Feed data转换为python格式<br>目前我主要用到的模块是client和results模块。</li>
+</ul>
+<h3 id="与Splunk-enterprise建立连接"><a href="#与Splunk-enterprise建立连接" class="headerlink" title="与Splunk enterprise建立连接"></a>与Splunk enterprise建立连接</h3><p>python2<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> splunklib.client <span class="keyword">as</span> client</span><br><span class="line"></span><br><span class="line">HOST = <span class="string">"localhost"</span></span><br><span class="line">PORT = <span class="number">8089</span></span><br><span class="line">USERNAME = <span class="string">"admin"</span></span><br><span class="line">PASSWORD = <span class="string">"changeme"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Create a Service instance and log in </span></span><br><span class="line">service = client.connect(</span><br><span class="line">    host=HOST,</span><br><span class="line">    port=PORT,</span><br><span class="line">    username=USERNAME,</span><br><span class="line">    password=PASSWORD)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Print installed apps to the console to verify login</span></span><br><span class="line"><span class="keyword">for</span> app <span class="keyword">in</span> service.apps:</span><br><span class="line">    <span class="keyword">print</span> app.name</span><br></pre></td></tr></table></figure></p>
+<p>存在的问题：splunk服务器的8089没有打开，因此连接不上<br>解决：<br>splunk的服务器是在一个虚拟网络下的，8089端口不对公网开放，因此可以在该网络下另起一个ubuntu虚拟机，然后ubuntu虚拟机通过22端口与请求相连接，收到请求后，由于ubuntu和splunk server是在一个内网中，因此ubuntu虚拟机可以与splunk server的8089端口通信，获得数据后再返回给请求端。</p>
+<h3 id="Search的一些术语"><a href="#Search的一些术语" class="headerlink" title="Search的一些术语"></a>Search的一些术语</h3><ul>
+<li>search query:即查询命令的集合，例如：<figure class="highlight plain"><figcaption><span>* | head 10```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">* saved search: 被保存的可以被再次使用的搜索查询。</span><br><span class="line">* search job：即一次搜索操作的具体实例。</span><br><span class="line">* Normal search: 异步搜索，能够立刻返回serach job而不用等到结果都搜索完。</span><br><span class="line">* Blocking search:同步搜索，只有所有搜索全都完成后才返回job.</span><br><span class="line">* Oneshot: blocking serach，直接返回搜索结果而不是返回job</span><br><span class="line">  ...</span><br><span class="line"></span><br><span class="line">### 创建一个blocking serach</span><br><span class="line">与normal search的不同点是blocking search是堵塞的，也就是创建job后不会立刻返回，而是等待所有结果搜索结束后才返回，此时job包含了所有的搜索结果。</span><br><span class="line">```python</span><br><span class="line"># Get the collection of jobs</span><br><span class="line">jobs = service.jobs</span><br><span class="line"></span><br><span class="line"># Run a blocking search--search everything, return 1st 100 events</span><br><span class="line">kwargs_blockingsearch = &#123;&quot;exec_mode&quot;: &quot;blocking&quot;&#125;</span><br><span class="line">searchquery_blocking = &quot;search * | head 100&quot;</span><br><span class="line"></span><br><span class="line">print &quot;Wait for the search to finish...&quot;</span><br><span class="line"></span><br><span class="line"># A blocking search returns the job&apos;s SID when the search is done</span><br><span class="line">job = jobs.create(searchquery_blocking, **kwargs_blockingsearch)</span><br><span class="line">print &quot;...done!\n&quot;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="创建一个normal-search"><a href="#创建一个normal-search" class="headerlink" title="创建一个normal search"></a>创建一个normal search</h3><p>normal search 是异步的，即立刻返回job, 但是实际结果并没有返回，因此会存在操作job时没有event返回的情况，我目前的做法是，如果知道大致的搜索时间，则设置一定时间等待后再对job进行操作。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> splunklib.results <span class="keyword">as</span> results</span><br><span class="line"></span><br><span class="line"><span class="comment"># Initialize your service like so</span></span><br><span class="line"><span class="comment"># import splunklib.client as client</span></span><br><span class="line"><span class="comment"># service = client.connect(username="admin", password="changeme")</span></span><br><span class="line"></span><br><span class="line">searchquery_normal = <span class="string">"search * | head 10"</span></span><br><span class="line">kwargs_normalsearch = &#123;<span class="string">"exec_mode"</span>: <span class="string">"normal"</span>&#125;</span><br><span class="line">job = service.jobs.create(searchquery_normal, **kwargs_normalsearch)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Get the results and display them</span></span><br><span class="line"><span class="keyword">for</span> result <span class="keyword">in</span> results.ResultsReader(job.results()):</span><br><span class="line">    <span class="keyword">print</span> result</span><br><span class="line"></span><br><span class="line">job.cancel()</span><br></pre></td></tr></table></figure></p>
+<h3 id="创建一个oneshot-search"><a href="#创建一个oneshot-search" class="headerlink" title="创建一个oneshot search"></a>创建一个oneshot search</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> splunklib.results <span class="keyword">as</span> results</span><br><span class="line"></span><br><span class="line"><span class="comment"># Run a one-shot search and display the results using the results reader</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Set the parameters for the search:</span></span><br><span class="line"><span class="comment"># - Search everything in a 24-hour time range starting June 19, 12:00pm</span></span><br><span class="line"><span class="comment"># - Display the first 10 results</span></span><br><span class="line">kwargs_oneshot = &#123;<span class="string">"earliest_time"</span>: <span class="string">"2014-06-19T12:00:00.000-07:00"</span>,</span><br><span class="line">                  <span class="string">"latest_time"</span>: <span class="string">"2014-06-20T12:00:00.000-07:00"</span>&#125;</span><br><span class="line">searchquery_oneshot = <span class="string">"search * | head 10"</span></span><br><span class="line"></span><br><span class="line">oneshotsearch_results = service.jobs.oneshot(searchquery_oneshot, **kwargs_oneshot)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Get the results and display them using the ResultsReader</span></span><br><span class="line">reader = results.ResultsReader(oneshotsearch_results)</span><br><span class="line"><span class="keyword">for</span> item <span class="keyword">in</span> reader:</span><br><span class="line">    print(item)</span><br></pre></td></tr></table></figure>
+<p>…待续</p>
+
           
         
       
@@ -887,7 +601,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="hellodavid.top/2018/08/26/machine-learning/">
+    <link itemprop="mainEntityOfPage" href="hellodavid.top/2018/09/12/Leetcode-Valid Parentheses/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="David">
@@ -906,7 +620,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/08/26/machine-learning/" itemprop="url">Machine learning</a></h1>
+                <a class="post-title-link" href="/2018/09/12/Leetcode-Valid Parentheses/" itemprop="url">Leetcode-Valid Parentheses</a></h1>
         
 
         <div class="post-meta">
@@ -918,8 +632,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-26T14:43:27+08:00">
-                2018-08-26
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-12T22:22:58+08:00">
+                2018-09-12
               </time>
             
 
@@ -941,8 +655,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/机器学习/" itemprop="url" rel="index">
-                    <span itemprop="name">机器学习</span>
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
                   </a>
                 </span>
 
@@ -979,42 +693,12 @@
 
       
         
-          <blockquote>
-<p>本文仅为个人笔记，错误之处敬请包涵。                                                         —— David</p>
-<p>这篇介绍不涉及任何公式推导，仅提供一些思路以及相应的资料，感兴趣的可以自行查找资料学习。</p>
-</blockquote>
-<h2 id="书籍推荐"><a href="#书籍推荐" class="headerlink" title="书籍推荐"></a>书籍推荐</h2><p>理论类：</p>
-<p>机器学习，周志华；</p>
-<p>统计学习方法，李航；</p>
-<p>深度学习，Ian goodfellow;</p>
-<p>实践类：</p>
-<p>机器学习实战，peter harrington；</p>
-<p>python机器学习及实践，范淼；</p>
-<p>休闲类：</p>
-<p>数学之美，吴军；</p>
-<p>##博客推荐：</p>
-<p>刘建平的博客：<a href="https://www.cnblogs.com/pinard/" target="_blank" rel="noopener">https://www.cnblogs.com/pinard/</a></p>
-<p>peghoty的博客：<a href="https://blog.csdn.net/itplus" target="_blank" rel="noopener">https://blog.csdn.net/itplus</a></p>
-<p>poll的笔记：<a href="http://www.cnblogs.com/maybe2030/" target="_blank" rel="noopener">http://www.cnblogs.com/maybe2030/</a></p>
-<h2 id="监督学习"><a href="#监督学习" class="headerlink" title="监督学习"></a>监督学习</h2><p>监督学习是指对<strong>带标签</strong>的数据进行模型学习。</p>
-<h3 id="回归"><a href="#回归" class="headerlink" title="回归"></a>回归</h3><p>回归任务常见的是线性回归linear regression. </p>
-<p>注意回归和分类任务的区别，回归的标签值是连续值，而分类的标签值是离散值。</p>
-<p>通常我们还会遇到逻辑回归logistic regression, 注意，逻辑回归是用于分类的！</p>
-<p>逻辑回归LR是机器学习中非常基础的算法，因此非常重要。</p>
-<p>知识点：交叉熵损失函数，极大似然估计。</p>
-<p>相关资料：</p>
-<p>poll的博客：<a href="http://www.cnblogs.com/maybe2030/p/5494931.html" target="_blank" rel="noopener">www.cnblogs.com/maybe2030/p/5494931.html</a> </p>
-<p>逻辑回归：<a href="https://www.cnblogs.com/Belter/p/6128644.html" target="_blank" rel="noopener">https://www.cnblogs.com/Belter/p/6128644.html</a></p>
-<p>逻辑回归推导：<a href="http://blog.csdn.net/pakko/article/details/37878837" target="_blank" rel="noopener">http://blog.csdn.net/pakko/article/details/37878837</a></p>
-<p>极大似然估计：<a href="http://blog.csdn.net/star_liux/article/details/39666737" target="_blank" rel="noopener">http://blog.csdn.net/star_liux/article/details/39666737</a></p>
-<h3 id="SVM"><a href="#SVM" class="headerlink" title="SVM"></a>SVM</h3><p>通俗来讲，它是一种二类分类模型，其基本模型定义为特征空间上的间隔最大的线性分类器，其学习策略便是间隔最大化，最终可转化为一个凸二次规划问题的求解。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/08/26/machine-learning/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+          
+            <h1 id="Valid-Parentheses"><a href="#Valid-Parentheses" class="headerlink" title="Valid Parentheses"></a>Valid Parentheses</h1><p>验证有效括号对：给定一个只包含括号类型的字符串，判断该字符串的括号是否有效闭合。<a href="https://leetcode.com/problems/valid-parentheses/description/" target="_blank" rel="noopener">Description</a><br>Given a string containing just the characters ‘(‘, ‘)’, ‘{‘, ‘}’, ‘[‘ and ‘]’, determine if the input string is valid.<br>The brackets must close in the correct order, “()” and “()[]{}” are all valid but “(]” and “([)]” are not.</p>
+<p><strong>解题思路</strong>：<br>采用栈来解决，依次检查给的characters，如果是左括号都入栈；如果是右括号，检查栈如果为空，证明不能匹配，如果栈不空，弹出top，与当前扫描的括号检查是否匹配。全部字符都检查完了以后，判断栈是否为空，空则正确都匹配，不空则证明有没匹配的。</p>
+<p>代码中采用字典方式，将右括号作为键，将左括号作为值。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">isValid</span><span class="params">(self, s)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    :type s: str</span></span><br><span class="line"><span class="string">    :rtype: bool</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    stack = []</span><br><span class="line">    dict = &#123;<span class="string">')'</span>:<span class="string">'('</span>, <span class="string">']'</span>:<span class="string">'['</span>, <span class="string">'&#125;'</span>:<span class="string">'&#123;'</span>&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> char <span class="keyword">in</span> s:</span><br><span class="line">        <span class="keyword">if</span> char <span class="keyword">in</span> dict.values():</span><br><span class="line">            stack.append(char)</span><br><span class="line">        <span class="keyword">elif</span> char <span class="keyword">in</span> dict.keys():</span><br><span class="line">            <span class="keyword">if</span> stack==[] <span class="keyword">or</span> stack.pop()!=dict[char]:</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">False</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">False</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> stack==[]</span><br></pre></td></tr></table></figure></p>
+
+          
         
       
     </div>
@@ -1061,7 +745,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="hellodavid.top/2018/08/26/hello-world/">
+    <link itemprop="mainEntityOfPage" href="hellodavid.top/2018/09/12/mongo输入带'.'的字典/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="David">
@@ -1080,7 +764,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/08/26/hello-world/" itemprop="url">Hello World</a></h1>
+                <a class="post-title-link" href="/2018/09/12/mongo输入带'.'的字典/" itemprop="url">mongo输入带'.'的字典</a></h1>
         
 
         <div class="post-meta">
@@ -1092,8 +776,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-26T14:20:08+08:00">
-                2018-08-26
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-12T22:22:58+08:00">
+                2018-09-12
               </time>
             
 
@@ -1115,8 +799,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/test/" itemprop="url" rel="index">
-                    <span itemprop="name">test</span>
+                  <a href="/categories/mongo/" itemprop="url" rel="index">
+                    <span itemprop="name">mongo</span>
                   </a>
                 </span>
 
@@ -1154,9 +838,892 @@
       
         
           
-            <h2 id="hexo-更新"><a href="#hexo-更新" class="headerlink" title="hexo 更新"></a>hexo 更新</h2><p>hexo clean</p>
-<p>hexo g -d</p>
-<p><img src="/../typora-images/myavatar.jpg" alt="David"> </p>
+            <p>mongodb默认是不允许存储键中带’.’的字典，<br>pymongo中实现的两种解决方案：</p>
+<ol>
+<li>将字典键中的’.’用’_’等其他符号替代；</li>
+<li>但是当字典包含多层嵌套字典，我觉得通过替换过于麻烦，所以我使用了另一种方案：<br><code>collection.insert(docs, check_keys=False)</code><br>即通过设置check_keys来使得mongo不检查’.’， 但是这个方案只限于临时解决方案，因为这个方案只适合于pymongo2.7版本，并且在后续版本中insert这个方法是被废弃的，而新增的insert_one和insert_many并没有checks_keys的属性。</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="hellodavid.top/2018/09/12/Python 正则表达式 匹配邮箱地址/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="David">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/myavatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HelloDavid">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/12/Python 正则表达式 匹配邮箱地址/" itemprop="url">Python 正则表达式 匹配邮箱地址</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-12T22:22:58+08:00">
+                2018-09-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line">pat = <span class="string">r'^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$'</span> </span><br><span class="line">email_address = <span class="string">'ddy_davie@aaa.com'</span></span><br><span class="line">matched_address = re.match(pat, email_address)</span><br><span class="line">print(matched_address.group())</span><br></pre></td></tr></table></figure>
+<p>pat = r’^(\w)+(.\w+)*@(\w)+((.\w+)+)$’ ，</p>
+<p>这个正则表达式目前尝试了基本可以覆盖大部分邮箱类型。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="hellodavid.top/2018/09/12/MongoDB学习/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="David">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/myavatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HelloDavid">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/12/MongoDB学习/" itemprop="url">MongoDB 学习</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-12T22:22:58+08:00">
+                2018-09-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/数据库/" itemprop="url" rel="index">
+                    <span itemprop="name">数据库</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>记录下我在学习mongoDB时遇到的一些问题与解决方案</p>
+<p><em>问题</em>：<br>windows下启动mongoDB后显示等待连接端口，并且停止在这一步：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">2017-09-17T11:57:32.398+0800 I CONTROL  [initandlisten]</span><br><span class="line">2017-09-17T11:57:32.398+0800 I CONTROL  [initandlisten] ** WARNING: Access control is n</span><br><span class="line">2017-09-17T11:57:32.399+0800 I CONTROL  [initandlisten] **          Read and write acce</span><br><span class="line">nrestricted.</span><br><span class="line">2017-09-17T11:57:32.402+0800 I CONTROL  [initandlisten]</span><br><span class="line">2017-09-17T11:57:32.966+0800 I FTDC     [initandlisten] Initializing full-time diagnost</span><br><span class="line">:/data/db/diagnostic.data'</span><br><span class="line">2017-09-17T11:57:32.972+0800 I NETWORK  [thread1] waiting for connections on port 27017</span><br></pre></td></tr></table></figure></p>
+<p><em>解决</em>：<br>其实，这不是卡住了，而是数据库已经启动，并且这个终端还不能关掉，关掉意味着数据库也关了。<br>因此，保留这个终端，再开个终端，进入mongoDB\bin文件夹后输入.\mongo(注意，这里不是.\mongod)回车，就可以进入mongodb了</p>
+<p><em>问题</em>：<br>ubuntu上出现无法连上mongodb的问题，显示已启用另一个终端：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mongod</span><br><span class="line">2017-09-20T04:07:41.308-0400 I STORAGE  [initandlisten] exception in initAndListen: 98 Unable to create/open lock file: /data/db/mongod.lock errno:13 Permission denied Is a mongod instance already running?, terminating</span><br><span class="line">2017-09-20T04:07:41.308-0400 I CONTROL  [initandlisten] dbexit:  rc: 100</span><br></pre></td></tr></table></figure></p>
+<p><em>解决</em>：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo chown -R `id -u` /data/db</span><br></pre></td></tr></table></figure>
+<p>一句话解决，虽然我也不清楚原理。<br>接下来同样是另起一个终端输入mongo即成功</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="hellodavid.top/2018/09/12/Leetcode-Valid Anagram/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="David">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/myavatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HelloDavid">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/12/Leetcode-Valid Anagram/" itemprop="url">Leetcode-Valid Anagram</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-12T22:22:58+08:00">
+                2018-09-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Valid-Anagram"><a href="#Valid-Anagram" class="headerlink" title="Valid Anagram"></a>Valid Anagram</h1><p>给定两个字符串，判断其中一个字符串是否是另一个字符串的异序组合。<br>Given two strings s and t, write a function to determine if t is an anagram of s.</p>
+<p>For example,<br>s = “anagram”, t = “nagaram”, return true.<br>s = “rat”, t = “car”, return false.</p>
+<p><a href="https://leetcode.com/problems/valid-anagram/description/" target="_blank" rel="noopener">Description</a></p>
+<p><strong>tip</strong>：anagram的意思是把单词的字母顺序打乱，重新排列后变成一个新单词。</p>
+<p><strong>解题思路1</strong>：<br>将两个字符串排序后直接比较是否相同。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isAnagram</span><span class="params">(self, s, t)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type s: str</span></span><br><span class="line"><span class="string">        :type t: str</span></span><br><span class="line"><span class="string">        :rtype: bool</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="keyword">return</span> sorted(s) == sorted(t)</span><br></pre></td></tr></table></figure>
+<p><strong>解题思路2</strong>：<br>采用字典的方式，分别记录两个字符串中每个字符的出现次数，比较字典是否相同。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isAnagram</span><span class="params">(self, s, t)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type s: str</span></span><br><span class="line"><span class="string">        :type t: str</span></span><br><span class="line"><span class="string">        :rtype: bool</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        dict1, dict2 = &#123;&#125;, &#123;&#125;</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> s:</span><br><span class="line">            dict1[i] = dict1.get(i, <span class="number">0</span>) + <span class="number">1</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> t:</span><br><span class="line">            dict2[j] = dict2.get(j, <span class="number">0</span>) + <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> dict1 == dict2</span><br></pre></td></tr></table></figure></p>
+<p><strong>tip</strong>:<br>dict.get(key, default=None):对于键key返回其对应的值，或者若dict中不包含key则返回default(注意，default的默认值是None)。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="hellodavid.top/2018/09/12/Leetcode-Search Insert Position/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="David">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/myavatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HelloDavid">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/12/Leetcode-Search Insert Position/" itemprop="url">Leetcode-Search Insert Position</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-12T22:22:58+08:00">
+                2018-09-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Search-Insert-Position"><a href="#Search-Insert-Position" class="headerlink" title="Search Insert Position"></a>Search Insert Position</h1><p>给定一个有序的无重复元素的序列，和一个目标元素，求出该元素在数组中的下标，若数组中不存在该元素，则返回其在数组中的顺序下标。<br><a href="https://leetcode.com/problems/search-insert-position/description/" target="_blank" rel="noopener">Description</a></p>
+<p><strong>解题思路</strong>：<br>直接采用暴力查询。首先判断目标元素是否在数组中，若存在，则直接返回下标。<br>若不存在，将目标元素与数组中的最大最小值比较；如果介于最大最小值之间，则与数组中的任意两个相邻元素进行比较。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">searchInsert</span><span class="params">(self, nums, target)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type nums: List[int]</span></span><br><span class="line"><span class="string">        :type target: int</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="keyword">if</span> target <span class="keyword">in</span> nums:</span><br><span class="line">            <span class="keyword">return</span> nums.index(target)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> target&lt;min(nums):</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        <span class="keyword">elif</span> target&gt;max(nums):</span><br><span class="line">            <span class="keyword">return</span> len(nums)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(len(nums)):</span><br><span class="line">                <span class="keyword">if</span> nums[i]&lt;target <span class="keyword">and</span> nums[i+<span class="number">1</span>]&gt;target:</span><br><span class="line">                    <span class="keyword">return</span> i+<span class="number">1</span></span><br></pre></td></tr></table></figure>
+<p><strong>改进</strong>：<br>采用二分查找的思路，<a href="https://discuss.leetcode.com/topic/25828/python-beats-98" target="_blank" rel="noopener">leetcode</a>上提供的另一种解法。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">searchInsert</span><span class="params">(self, nums, key)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> key &gt; nums[len(nums) - <span class="number">1</span>]:</span><br><span class="line">        <span class="keyword">return</span> len(nums)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> key &lt; nums[<span class="number">0</span>]:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    l, r = <span class="number">0</span>, len(nums) - <span class="number">1</span></span><br><span class="line">    <span class="keyword">while</span> l &lt;= r:</span><br><span class="line">        m = (l + r)/<span class="number">2</span></span><br><span class="line">        <span class="keyword">if</span> nums[m] &gt; key:</span><br><span class="line">            r = m - <span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> r &gt;= <span class="number">0</span>:</span><br><span class="line">                <span class="keyword">if</span> nums[r] &lt; key:</span><br><span class="line">                    <span class="keyword">return</span> r + <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">elif</span> nums[m] &lt; key:</span><br><span class="line">            l = m + <span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> l &lt; len(nums):</span><br><span class="line">                <span class="keyword">if</span> nums[l] &gt; key:</span><br><span class="line">                    <span class="keyword">return</span> l</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">return</span> len(nums)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> m</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="hellodavid.top/2018/09/12/Leetcode-Roman to Integer/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="David">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/myavatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HelloDavid">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/12/Leetcode-Roman to Integer/" itemprop="url">Leetcode-Roman to Integer</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-12T22:22:58+08:00">
+                2018-09-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Roman-to-Integer"><a href="#Roman-to-Integer" class="headerlink" title="Roman to Integer"></a>Roman to Integer</h1><p>将罗马数字转换为阿拉伯数字。<br><a href="https://leetcode.com/problems/roman-to-integer/description/" target="_blank" rel="noopener">Description</a></p>
+<p>leetcode没有说明具体的转换规则，我是按照<a href="https://www.douban.com/note/335254352/" target="_blank" rel="noopener">罗马数字规则</a>设置的。</p>
+<p><strong>解题思路</strong>：<br>一个保存罗马数字映射的字典:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">roman = &#123;&apos;M&apos;: 1000,&apos;D&apos;: 500 ,&apos;C&apos;: 100,&apos;L&apos;: 50,&apos;X&apos;: 10,&apos;V&apos;: 5,&apos;I&apos;: 1&#125;</span><br></pre></td></tr></table></figure></p>
+<p>规则：</p>
+<ul>
+<li>如果一个元素值比右边元素大，则加上这个元素；</li>
+<li>如果一个元素值比右边元素小，则减去这个元素；</li>
+<li>始终加上末尾的元素；</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">romanToInt</span><span class="params">(self, s)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    :type s: str</span></span><br><span class="line"><span class="string">    :rtype: int</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    roman = &#123;<span class="string">'M'</span>: <span class="number">1000</span>,<span class="string">'D'</span>: <span class="number">500</span> ,<span class="string">'C'</span>: <span class="number">100</span>,<span class="string">'L'</span>: <span class="number">50</span>,<span class="string">'X'</span>: <span class="number">10</span>,<span class="string">'V'</span>: <span class="number">5</span>,<span class="string">'I'</span>: <span class="number">1</span>&#125;</span><br><span class="line">        </span><br><span class="line">    num = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(s)<span class="number">-1</span>):            </span><br><span class="line">        <span class="keyword">if</span> roman[s[i]]&gt;=roman[s[i+<span class="number">1</span>]]:</span><br><span class="line">            num = num + roman[s[i]]</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            num = num - roman[s[i]]    </span><br><span class="line">        </span><br><span class="line">    <span class="keyword">return</span> num+roman[s[<span class="number">-1</span>]]</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="hellodavid.top/2018/09/12/Leetcode-Remove element/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="David">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/myavatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HelloDavid">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/12/Leetcode-Remove element/" itemprop="url">Leetcode-Remove element</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-12T22:22:58+08:00">
+                2018-09-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>在我看来是<a href="http://blog.csdn.net/ddydavie/article/details/77043385" target="_blank" rel="noopener">remove duplicated elements from sorted array</a>的姊妹题。</p>
+<p>给定一个数组（未排序）和一个元素，要求从数组中去除这个元素并返回数组长度。超出数组长度的部分不在考虑范围内。<br><a href="https://leetcode.com/problems/remove-element/description/" target="_blank" rel="noopener">Description</a></p>
+<p><strong>解题思路</strong>：<br>利用两个指针，一个用来遍历整个数组，如果与给定的元素不相同，则利用另一个index下标将该元素加入到nums数组中。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">removeElement</span><span class="params">(self, nums, val)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    :type nums: List[int]</span></span><br><span class="line"><span class="string">    :type val: int</span></span><br><span class="line"><span class="string">    :rtype: int</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> nums:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">    </span><br><span class="line">    index = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(nums)):</span><br><span class="line">        <span class="keyword">if</span> nums[i] != val:</span><br><span class="line">            nums[index] = nums[i]</span><br><span class="line">            index += <span class="number">1</span></span><br><span class="line">                    </span><br><span class="line">    <span class="keyword">return</span> index</span><br></pre></td></tr></table></figure></p>
+<p>另外看见一个比较特别的解法：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">removeElement</span><span class="params">(self, nums, val)</span>:</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="keyword">while</span> <span class="keyword">True</span>:</span><br><span class="line">            nums.remove(val)</span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        <span class="keyword">return</span> len(nums)</span><br></pre></td></tr></table></figure></p>
 
           
         
@@ -1195,6 +1762,10 @@
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
 
 
           </div>
@@ -1242,7 +1813,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">32</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1253,7 +1824,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -1264,7 +1835,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">17</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
