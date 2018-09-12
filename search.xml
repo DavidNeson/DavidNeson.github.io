@@ -26,6 +26,18 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[mongo输入带'.'的字典]]></title>
+    <url>%2F2018%2F09%2F12%2Fmongo%E8%BE%93%E5%85%A5%E5%B8%A6'.'%E7%9A%84%E5%AD%97%E5%85%B8%2F</url>
+    <content type="text"><![CDATA[mongodb默认是不允许存储键中带’.’的字典，pymongo中实现的两种解决方案： 将字典键中的’.’用’_’等其他符号替代； 但是当字典包含多层嵌套字典，我觉得通过替换过于麻烦，所以我使用了另一种方案：collection.insert(docs, check_keys=False)即通过设置check_keys来使得mongo不检查’.’， 但是这个方案只限于临时解决方案，因为这个方案只适合于pymongo2.7版本，并且在后续版本中insert这个方法是被废弃的，而新增的insert_one和insert_many并没有checks_keys的属性。]]></content>
+      <categories>
+        <category>mongo</category>
+      </categories>
+      <tags>
+        <tag>数据库</tag>
+        <tag>mongo</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Python 正则表达式 匹配邮箱地址]]></title>
     <url>%2F2018%2F09%2F12%2FPython%20%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%20%E5%8C%B9%E9%85%8D%E9%82%AE%E7%AE%B1%E5%9C%B0%E5%9D%80%2F</url>
     <content type="text"><![CDATA[12345import repat = r'^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$' email_address = 'ddy_davie@aaa.com'matched_address = re.match(pat, email_address)print(matched_address.group()) pat = r’^(\w)+(.\w+)*@(\w)+((.\w+)+)$’ ， 这个正则表达式目前尝试了基本可以覆盖大部分邮箱类型。]]></content>
@@ -58,18 +70,6 @@
       <tags>
         <tag>python</tag>
         <tag>leetcode</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[mongo输入带'.'的字典]]></title>
-    <url>%2F2018%2F09%2F12%2Fmongo%E8%BE%93%E5%85%A5%E5%B8%A6'.'%E7%9A%84%E5%AD%97%E5%85%B8%2F</url>
-    <content type="text"><![CDATA[mongodb默认是不允许存储键中带’.’的字典，pymongo中实现的两种解决方案： 将字典键中的’.’用’_’等其他符号替代； 但是当字典包含多层嵌套字典，我觉得通过替换过于麻烦，所以我使用了另一种方案：collection.insert(docs, check_keys=False)即通过设置check_keys来使得mongo不检查’.’， 但是这个方案只限于临时解决方案，因为这个方案只适合于pymongo2.7版本，并且在后续版本中insert这个方法是被废弃的，而新增的insert_one和insert_many并没有checks_keys的属性。]]></content>
-      <categories>
-        <category>mongo</category>
-      </categories>
-      <tags>
-        <tag>数据库</tag>
-        <tag>mongo</tag>
       </tags>
   </entry>
   <entry>
@@ -157,21 +157,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Leetcode-Linked List Cycle]]></title>
-    <url>%2F2018%2F09%2F12%2FLeetcode-Linked%20List%20Cycle%2F</url>
-    <content type="text"><![CDATA[Linked List Cycle判断单链表是否存在环。Description 解题思路：一个单链表如果不存在环，则最后一个元素的下一个节点必然为null.如果单链表存在环，则：设置两个指针，一个慢指针和一个快指针。将链表的环想象成是一个圆形操场，两个人在同一起跑线开始绕着操场无限循环跑，那么快的人必然会再一次和慢的人相遇，即快指针的元素和慢指针的元素相同时，即说明存在环。在代码中，慢指针设置为每次走一步，即slow=slow.next,快指针设置为每次走两步，即fast=fast.next.next。实际步数设置是可以任取的，只是循环次数不同，如可以设置fast=fast.next.next.next。 1234567891011121314151617181920212223# Definition for singly-linked list.# class ListNode(object):# def __init__(self, x):# self.val = x# self.next = Noneclass Solution(object): def hasCycle(self, head): """ :type head: ListNode :rtype: bool """ if head==None: return False slow = head fast = head while fast.next and fast.next.next: slow = slow.next fast = fast.next.next if slow==fast: return True return False 改进：由于每次循环都要判断是否到达最后一个节点，因此leetcode上提供了另一种思路，即采取异常的方式。 “Easier to ask for forgiveness than permission.”12345678910def hasCycle(self, head): try: slow = head fast = head.next while slow is not fast: slow = slow.next fast = fast.next.next return True except: return False]]></content>
-      <categories>
-        <category>leetcode</category>
-      </categories>
-      <tags>
-        <tag>python</tag>
-        <tag>leetcode</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Leetcode-Maximum Subarray]]></title>
-    <url>%2F2018%2F09%2F12%2FLeetcode-Maximum%20Subarray%2F</url>
-    <content type="text"><![CDATA[Maximum Subarray最大子串和问题：从一个数组中找出一个子串使其和最大。Description tips:子串是指数组中连续的若干个元素，而子序列只要求各元素的顺序与其在数组中一致，而没有连续的要求。 解题思路：自己没有想出来，直接借鉴了网上的动态规划思路，我觉得下面是一些解决的关键点： 对于array[1…n]，如果array[i…j]就是满足和最大的子串，那么对于任何k(i&lt;=k&lt;=j)，我们有array[i…k]的和大于0。具体证明 假设已知0, .., k的最大和sum[k]以后，则0, …, k+1的最大和sum[k+1]分为以下两种情况：1）若sum[k]&gt;=0，则sum[k+1]=sum[k]+A[k+1]。代码中即curSum = curSum+nums[i]。2）若sum[k]&lt;0，另起一个SubArray，令sum[k+1]=A[k+1]。代码中即curSum = nums[i]。 1234567891011121314def maxSubArray(self, nums): """ :type nums: List[int] :rtype: int """ if not nums: return 0 curSum = maxSum = nums[0] for i in range(1, len(nums)): curSum = max(nums[i], curSum+nums[i]) maxSum = max(maxSum, curSum) return maxSum]]></content>
+    <title><![CDATA[Leetcode-Intersection of Two Linked Lists]]></title>
+    <url>%2F2018%2F09%2F12%2FLeetcode-Intersection%20of%20Two%20Linked%20Lists%2F</url>
+    <content type="text"><![CDATA[Intersection of Two Linked Lists寻找两个无环链表的交点。Description 解题思路： 如果两个链长度相同的话，那么对应的一个个比下去就能找到； 如果两个链长度不相同，分别计算出两个链表的长度，计算出长度差值，然后让长度更长的那个链表从头节点先遍历长度差的步数，这样以后两个链表按尾部对齐。接着长链表和短链表同步往下走，遇到的第一个相同的节点就是最早的公共节点。 123456789101112131415161718192021222324252627282930# Definition for singly-linked list.# class ListNode(object):# def __init__(self, x):# self.val = x# self.next = Noneclass Solution(object): def getIntersectionNode(self, headA, headB): """ :type head1, head1: ListNode :rtype: ListNode """ lenA = lenB = 0 curA, curB = headA, headB while curA is not None: lenA += 1 curA = curA.next while curB is not None: lenB += 1 curB = curB.next if lenA&gt;lenB: for i in range(lenA-lenB): headA = headA.next else: for i in range(lenB-lenA): headB = headB.next while headA != headB: headA = headA.next headB = headB.next return headA]]></content>
       <categories>
         <category>leetcode</category>
       </categories>
@@ -193,9 +181,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Leetcode-Intersection of Two Linked Lists]]></title>
-    <url>%2F2018%2F09%2F12%2FLeetcode-Intersection%20of%20Two%20Linked%20Lists%2F</url>
-    <content type="text"><![CDATA[Intersection of Two Linked Lists寻找两个无环链表的交点。Description 解题思路： 如果两个链长度相同的话，那么对应的一个个比下去就能找到； 如果两个链长度不相同，分别计算出两个链表的长度，计算出长度差值，然后让长度更长的那个链表从头节点先遍历长度差的步数，这样以后两个链表按尾部对齐。接着长链表和短链表同步往下走，遇到的第一个相同的节点就是最早的公共节点。 123456789101112131415161718192021222324252627282930# Definition for singly-linked list.# class ListNode(object):# def __init__(self, x):# self.val = x# self.next = Noneclass Solution(object): def getIntersectionNode(self, headA, headB): """ :type head1, head1: ListNode :rtype: ListNode """ lenA = lenB = 0 curA, curB = headA, headB while curA is not None: lenA += 1 curA = curA.next while curB is not None: lenB += 1 curB = curB.next if lenA&gt;lenB: for i in range(lenA-lenB): headA = headA.next else: for i in range(lenB-lenA): headB = headB.next while headA != headB: headA = headA.next headB = headB.next return headA]]></content>
+    <title><![CDATA[Leetcode-Maximum Subarray]]></title>
+    <url>%2F2018%2F09%2F12%2FLeetcode-Maximum%20Subarray%2F</url>
+    <content type="text"><![CDATA[Maximum Subarray最大子串和问题：从一个数组中找出一个子串使其和最大。Description tips:子串是指数组中连续的若干个元素，而子序列只要求各元素的顺序与其在数组中一致，而没有连续的要求。 解题思路：自己没有想出来，直接借鉴了网上的动态规划思路，我觉得下面是一些解决的关键点： 对于array[1…n]，如果array[i…j]就是满足和最大的子串，那么对于任何k(i&lt;=k&lt;=j)，我们有array[i…k]的和大于0。具体证明 假设已知0, .., k的最大和sum[k]以后，则0, …, k+1的最大和sum[k+1]分为以下两种情况：1）若sum[k]&gt;=0，则sum[k+1]=sum[k]+A[k+1]。代码中即curSum = curSum+nums[i]。2）若sum[k]&lt;0，另起一个SubArray，令sum[k+1]=A[k+1]。代码中即curSum = nums[i]。 1234567891011121314def maxSubArray(self, nums): """ :type nums: List[int] :rtype: int """ if not nums: return 0 curSum = maxSum = nums[0] for i in range(1, len(nums)): curSum = max(nums[i], curSum+nums[i]) maxSum = max(maxSum, curSum) return maxSum]]></content>
       <categories>
         <category>leetcode</category>
       </categories>
@@ -205,9 +193,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Leetcode-House Robber]]></title>
-    <url>%2F2018%2F09%2F12%2FLeetcode-House%20Robber%2F</url>
-    <content type="text"><![CDATA[House Robber打家劫舍。问题本质就是从数组中找出一个或多个不相邻的数，使其和最大。 You are a professional robber planning to rob houses along a street. Each house has a certain amount of money stashed, the only constraint stopping you from robbing each of them is that adjacent houses have security system connected and it will automatically contact the police if two adjacent houses were broken into on the same night. Given a list of non-negative integers representing the amount of money of each house, determine the maximum amount of money you can rob tonight without alerting the police. Description 解题思路： 如果选择了抢劫上一个屋子，那么就不能抢劫当前的屋子，所以最大收益就是抢劫上一个屋子的收益； 如果选择抢劫当前屋子，就不能抢劫上一个屋子，所以最大收益是到上一个屋子的上一个屋子为止的最大收益，加上当前屋子里有的钱。 令dp[i]表示从[0, …, i]数组中能够得到的最大收益，显然，dp[0]=nums[0], dp[1]=max(dp[0],dp[1]), 现在计算dp[i+1]: dp[i+1]=max(dp[i], dp[i-1]+nums[i+1]) 其中，上式包含了如下隐含信息：若dp[i]不包含nums[i], 所以nums[i+1]可以和dp[i]相加，但此时dp[i]=dp[i-1],所以dp[i-1]+nums[i+1]与dp[i]+nums[i+1]的值相等；若dp[i]包含nums[i]，则nums[i+1]不可以和dp[i]相加，所以只存在nums[i+1]+dp[i-1]。 实际计算时只需要保存两个变量即可。 1234567891011121314151617class Solution(object): def rob(self, nums): """ :type nums: List[int] :rtype: int """ if len(nums)&lt;=1: return 0 if len(nums)==0 else nums[0] # 保存上一次的收益 last = nums[0] # 保存当前收益 cur = max(nums[0], nums[1]) for i in range(2, len(nums)) : tmp = cur cur = max(last+nums[i], cur) last = tmp return cur tip:python中的三目运算符不像其他语言, 其他的一般都是: 判定条件?为真时的结果:为假时的结果 而在python中的格式为: 为真时的结果 if 判定条件 else 为假时的结果]]></content>
+    <title><![CDATA[Leetcode-Linked List Cycle]]></title>
+    <url>%2F2018%2F09%2F12%2FLeetcode-Linked%20List%20Cycle%2F</url>
+    <content type="text"><![CDATA[Linked List Cycle判断单链表是否存在环。Description 解题思路：一个单链表如果不存在环，则最后一个元素的下一个节点必然为null.如果单链表存在环，则：设置两个指针，一个慢指针和一个快指针。将链表的环想象成是一个圆形操场，两个人在同一起跑线开始绕着操场无限循环跑，那么快的人必然会再一次和慢的人相遇，即快指针的元素和慢指针的元素相同时，即说明存在环。在代码中，慢指针设置为每次走一步，即slow=slow.next,快指针设置为每次走两步，即fast=fast.next.next。实际步数设置是可以任取的，只是循环次数不同，如可以设置fast=fast.next.next.next。 1234567891011121314151617181920212223# Definition for singly-linked list.# class ListNode(object):# def __init__(self, x):# self.val = x# self.next = Noneclass Solution(object): def hasCycle(self, head): """ :type head: ListNode :rtype: bool """ if head==None: return False slow = head fast = head while fast.next and fast.next.next: slow = slow.next fast = fast.next.next if slow==fast: return True return False 改进：由于每次循环都要判断是否到达最后一个节点，因此leetcode上提供了另一种思路，即采取异常的方式。 “Easier to ask for forgiveness than permission.”12345678910def hasCycle(self, head): try: slow = head fast = head.next while slow is not fast: slow = slow.next fast = fast.next.next return True except: return False]]></content>
       <categories>
         <category>leetcode</category>
       </categories>
@@ -241,9 +229,33 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[Leetcode-House Robber]]></title>
+    <url>%2F2018%2F09%2F12%2FLeetcode-House%20Robber%2F</url>
+    <content type="text"><![CDATA[House Robber打家劫舍。问题本质就是从数组中找出一个或多个不相邻的数，使其和最大。 You are a professional robber planning to rob houses along a street. Each house has a certain amount of money stashed, the only constraint stopping you from robbing each of them is that adjacent houses have security system connected and it will automatically contact the police if two adjacent houses were broken into on the same night. Given a list of non-negative integers representing the amount of money of each house, determine the maximum amount of money you can rob tonight without alerting the police. Description 解题思路： 如果选择了抢劫上一个屋子，那么就不能抢劫当前的屋子，所以最大收益就是抢劫上一个屋子的收益； 如果选择抢劫当前屋子，就不能抢劫上一个屋子，所以最大收益是到上一个屋子的上一个屋子为止的最大收益，加上当前屋子里有的钱。 令dp[i]表示从[0, …, i]数组中能够得到的最大收益，显然，dp[0]=nums[0], dp[1]=max(dp[0],dp[1]), 现在计算dp[i+1]: dp[i+1]=max(dp[i], dp[i-1]+nums[i+1]) 其中，上式包含了如下隐含信息：若dp[i]不包含nums[i], 所以nums[i+1]可以和dp[i]相加，但此时dp[i]=dp[i-1],所以dp[i-1]+nums[i+1]与dp[i]+nums[i+1]的值相等；若dp[i]包含nums[i]，则nums[i+1]不可以和dp[i]相加，所以只存在nums[i+1]+dp[i-1]。 实际计算时只需要保存两个变量即可。 1234567891011121314151617class Solution(object): def rob(self, nums): """ :type nums: List[int] :rtype: int """ if len(nums)&lt;=1: return 0 if len(nums)==0 else nums[0] # 保存上一次的收益 last = nums[0] # 保存当前收益 cur = max(nums[0], nums[1]) for i in range(2, len(nums)) : tmp = cur cur = max(last+nums[i], cur) last = tmp return cur tip:python中的三目运算符不像其他语言, 其他的一般都是: 判定条件?为真时的结果:为假时的结果 而在python中的格式为: 为真时的结果 if 判定条件 else 为假时的结果]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+        <tag>leetcode</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Leetcode-Count and Say]]></title>
     <url>%2F2018%2F09%2F12%2FLeetcode-Count%20and%20Say%2F</url>
     <content type="text"><![CDATA[Count and Sayleetcode关于这题的说明比较含糊：The count-and-say sequence is the sequence of integers with the first five terms as following: 1 11 21 1211 111221 1 is read off as “one 1” or 11.11 is read off as “two 1s” or 21.21 is read off as “one 2, then one 1” or 1211.Given an integer n, generate the nth term of the count-and-say sequence. 题意是n=1时输出字符串1；n=2时，数上次字符串中的数值个数，因为上次字符串有1个1，所以输出11；n=3时，由于上次字符是11，有2个1，所以输出21；n=4时，由于上次字符串是21，有1个2和1个1，所以输出1211。依次类推，写个countAndSay(n)函数返回字符串。 解题思路：采用动态规划的方式。当n=1时，直接返回‘1’。自底向上，然后根据n=index时返回的字符串计算出n=index+1时的字符串，并保存到数组curString中。1234567891011121314151617181920def countAndSay(self, n): if n==1: return '1' count = 1 index = 1 curString = ['', '1'] while index != n: result = '' cs = curString[index] + '*' # 加*是为了下面计算方便 for i in range(len(cs)-1): if cs[i]==cs[i+1]: count += 1 else: result += str(count) + cs[i] # 加*的目的是为了方便处理最后一个字符 count = 1 index += 1 curString.append(result) return curString[n] 采用正则表达：leetcode上提供的另一种解题思路，尽管运行比较慢。用作者的解释即: (.) captures one character and \1* covers its repetitions.其中\1代表后向引用，表示表达式中，从左往右数，第一个左括号对应的括号内的内容。以此类推，\2表示第二个，\0表示整个表达式。12345def countAndSay(self, n): s = '1' for _ in range(n - 1): s = re.sub(r'(.)\1*', lambda m: str(len(m.group(0))) + m.group(1), s) return s]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+        <tag>leetcode</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Leetcode-Best Time to Buy and Sell Stock]]></title>
+    <url>%2F2018%2F09%2F12%2FLeetcode-Best%20Time%20to%20Buy%20and%20Sell%20Stock%2F</url>
+    <content type="text"><![CDATA[Best Time to Buy and Sell Stock买卖股票的最佳时机，返回最大收益。Say you have an array for which the ith element is the price of a given stock on day i. If you were only permitted to complete at most one transaction (ie, buy one and sell one share of the stock), design an algorithm to find the maximum profit.Description 解题思路：依次遍历整个数组，利用minprice这个变量来保存每个元素之前的最低价格，并计算出在该元素卖出时能够带来的最大收益，最后将每个元素卖出时得到的最大收益进行比较即得到整个系统的最大收益。 12345678910111213class Solution(object): def maxProfit(self, prices): """ :type prices: List[int] :rtype: int """ maxprofit = 0 minprice = float('inf') for price in prices: minprice = min(minprice, price) profit = price - minprice maxprofit = max(maxprofit, profit) return maxprofit tip:Python中可以用如下方式表示正负无穷：float(“inf”), float(“-inf”)]]></content>
       <categories>
         <category>leetcode</category>
       </categories>
@@ -265,15 +277,16 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Leetcode-Best Time to Buy and Sell Stock]]></title>
-    <url>%2F2018%2F09%2F12%2FLeetcode-Best%20Time%20to%20Buy%20and%20Sell%20Stock%2F</url>
-    <content type="text"><![CDATA[Best Time to Buy and Sell Stock买卖股票的最佳时机，返回最大收益。Say you have an array for which the ith element is the price of a given stock on day i. If you were only permitted to complete at most one transaction (ie, buy one and sell one share of the stock), design an algorithm to find the maximum profit.Description 解题思路：依次遍历整个数组，利用minprice这个变量来保存每个元素之前的最低价格，并计算出在该元素卖出时能够带来的最大收益，最后将每个元素卖出时得到的最大收益进行比较即得到整个系统的最大收益。 12345678910111213class Solution(object): def maxProfit(self, prices): """ :type prices: List[int] :rtype: int """ maxprofit = 0 minprice = float('inf') for price in prices: minprice = min(minprice, price) profit = price - minprice maxprofit = max(maxprofit, profit) return maxprofit tip:Python中可以用如下方式表示正负无穷：float(“inf”), float(“-inf”)]]></content>
+    <title><![CDATA[Django搭建个人博客]]></title>
+    <url>%2F2018%2F09%2F12%2FDjango%20blog%2F</url>
+    <content type="text"><![CDATA[最近学着用Django搭建了个个人博客，目前域名正在备案中，现在把我这最近半个月的摸爬滚打经历记录下。 Django入门 Python核心编程 追梦人物的 Django博客教程 菜鸟Django教程 自强学堂Django教程 第一阶段：我首先看了Python核心编程中的Django章节，刚开始看的有些云里雾里。于是我去菜鸟教程那里按着Django教程的步骤搭建了下，菜鸟教程Django部分比较简单，之后对整体有了大致了解后再进一步看核心编程，发现能够比较容易理解了。 第二阶段：这里非常推荐追梦人物博主的博客教程，写的非常详细，按着博主的步骤就能够一步一步的把个人博客搭建起来，并且博主也提到了不少学习资料，对我们这些初学者能提供极大的帮助。另外自强学堂的内容我大致看了下，写的比较细，把个人博客搭建起来后再看可能效果会更好。 Django博客搭建我这里就放一些我在搭建博客时用到的一些不错的资源。 Bootstrap模板：https://html5up.net/这个网站提供了免费的响应式模板，我觉得很漂亮。 日历插件：http://www.jq22.com/yanshi11367这是我使用的日历插件，也可以在这个网站上找到一些别的datepicker的日历插件。 abowman:http://abowman.com/这个网站很有趣，可以在网页上显示一个有趣的动图，有需要的可以自己插入网页。 域名和云服务器我这里是在阿里云上学生优惠买的云服务器，域名也是直接在阿里云购买的。域名购买后记得要进行解析，还有备案（备案真的好麻烦）。 使用nginx后无法出现欢迎界面这个地方我摸索了好久，一直不知道怎么回事，在阿里云服务器上输入sudo service nginx start后，通过域名访问始终无法显示nginx的欢迎界面。后来发现原来是阿里云服务器的安全组设置中没有配置80端口。解决：进入阿里云ECS控制台-&gt;安全组-&gt;配置规则-&gt;公网入方向-&gt;快速配置规则-&gt;选中80端口和443端口，授权对象为0.0.0.0/0，确定即可。 在进展到用nginx和gunicorn步骤时始终出现欢迎界面。解决：进入/etc/nginx/sites-enabled删除default文件，原因是默认配置覆盖了我们的配置。 目前我还在慢慢学习中，待续… – 2018-09-12更新之前的django博客确实搭建成了，当时主要是为了成为一名网络开发工程师，摸索着完成了这一系列步骤。不过，现在转行成了一名算法工程师，也就没有心思继续维护之前的网站了。所以，为了简单，我采用了hexo+next+github的方式重新建立了新的博客，欢迎大家访问我的新的博客：hellodavid.top]]></content>
       <categories>
-        <category>leetcode</category>
+        <category>python</category>
       </categories>
       <tags>
+        <tag>Django</tag>
         <tag>python</tag>
-        <tag>leetcode</tag>
+        <tag>blog</tag>
       </tags>
   </entry>
   <entry>
@@ -298,19 +311,6 @@
       <tags>
         <tag>深度学习</tag>
         <tag>正则化</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Django搭建个人博客]]></title>
-    <url>%2F2018%2F09%2F12%2FDjango%20blog%2F</url>
-    <content type="text"><![CDATA[最近学着用Django搭建了个个人博客，目前域名正在备案中，现在把我这最近半个月的摸爬滚打经历记录下。 Django入门 Python核心编程 追梦人物的 Django博客教程 菜鸟Django教程 自强学堂Django教程 第一阶段：我首先看了Python核心编程中的Django章节，刚开始看的有些云里雾里。于是我去菜鸟教程那里按着Django教程的步骤搭建了下，菜鸟教程Django部分比较简单，之后对整体有了大致了解后再进一步看核心编程，发现能够比较容易理解了。 第二阶段：这里非常推荐追梦人物博主的博客教程，写的非常详细，按着博主的步骤就能够一步一步的把个人博客搭建起来，并且博主也提到了不少学习资料，对我们这些初学者能提供极大的帮助。另外自强学堂的内容我大致看了下，写的比较细，把个人博客搭建起来后再看可能效果会更好。 Django博客搭建我这里就放一些我在搭建博客时用到的一些不错的资源。 Bootstrap模板：https://html5up.net/这个网站提供了免费的响应式模板，我觉得很漂亮。 日历插件：http://www.jq22.com/yanshi11367这是我使用的日历插件，也可以在这个网站上找到一些别的datepicker的日历插件。 abowman:http://abowman.com/这个网站很有趣，可以在网页上显示一个有趣的动图，有需要的可以自己插入网页。 域名和云服务器我这里是在阿里云上学生优惠买的云服务器，域名也是直接在阿里云购买的。域名购买后记得要进行解析，还有备案（备案真的好麻烦）。 使用nginx后无法出现欢迎界面这个地方我摸索了好久，一直不知道怎么回事，在阿里云服务器上输入sudo service nginx start后，通过域名访问始终无法显示nginx的欢迎界面。后来发现原来是阿里云服务器的安全组设置中没有配置80端口。解决：进入阿里云ECS控制台-&gt;安全组-&gt;配置规则-&gt;公网入方向-&gt;快速配置规则-&gt;选中80端口和443端口，授权对象为0.0.0.0/0，确定即可。 在进展到用nginx和gunicorn步骤时始终出现欢迎界面。解决：进入/etc/nginx/sites-enabled删除default文件，原因是默认配置覆盖了我们的配置。 目前我还在慢慢学习中，待续… – 2018-09-12更新之前的django博客确实搭建成了，当时主要是为了成为一名网络开发工程师，摸索着完成了这一系列步骤。不过，现在转行成了一名算法工程师，也就没有心思继续维护之前的网站了。所以，为了简单，我采用了hexo+next+github的方式重新建立了新的博客，欢迎大家访问我的新的博客：hellodavid.top]]></content>
-      <categories>
-        <category>python</category>
-      </categories>
-      <tags>
-        <tag>Django</tag>
-        <tag>python</tag>
-        <tag>blog</tag>
       </tags>
   </entry>
   <entry>

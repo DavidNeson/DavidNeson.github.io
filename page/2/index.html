@@ -724,7 +724,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="hellodavid.top/2018/09/12/Leetcode-Linked List Cycle/">
+    <link itemprop="mainEntityOfPage" href="hellodavid.top/2018/09/12/Leetcode-Intersection of Two Linked Lists/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="David">
@@ -743,7 +743,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/09/12/Leetcode-Linked List Cycle/" itemprop="url">Leetcode-Linked List Cycle</a></h1>
+                <a class="post-title-link" href="/2018/09/12/Leetcode-Intersection of Two Linked Lists/" itemprop="url">Leetcode-Intersection of Two Linked Lists</a></h1>
         
 
         <div class="post-meta">
@@ -817,13 +817,157 @@
       
         
           
-            <h1 id="Linked-List-Cycle"><a href="#Linked-List-Cycle" class="headerlink" title="Linked List Cycle"></a>Linked List Cycle</h1><p>判断单链表是否存在环。<br><a href="https://leetcode.com/problems/linked-list-cycle/description/" target="_blank" rel="noopener">Description</a></p>
-<p><strong>解题思路</strong>：<br>一个单链表如果不存在环，则最后一个元素的下一个节点必然为null.<br>如果单链表存在环，则：<br>设置两个指针，一个慢指针和一个快指针。将链表的环想象成是一个圆形操场，两个人在同一起跑线开始绕着操场无限循环跑，那么快的人必然会再一次和慢的人相遇，即快指针的元素和慢指针的元素相同时，即说明存在环。<br>在代码中，慢指针设置为每次走一步，即slow=slow.next,快指针设置为每次走两步，即fast=fast.next.next。实际步数设置是可以任取的，只是循环次数不同，如可以设置fast=fast.next.next.next。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"># class ListNode(object):</span></span><br><span class="line"><span class="comment">#     def __init__(self, x):</span></span><br><span class="line"><span class="comment">#         self.val = x</span></span><br><span class="line"><span class="comment">#         self.next = None</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">hasCycle</span><span class="params">(self, head)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type head: ListNode</span></span><br><span class="line"><span class="string">        :rtype: bool</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="keyword">if</span> head==<span class="keyword">None</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">False</span></span><br><span class="line">        </span><br><span class="line">        slow = head</span><br><span class="line">        fast = head</span><br><span class="line">        <span class="keyword">while</span> fast.next <span class="keyword">and</span> fast.next.next:</span><br><span class="line">            slow = slow.next</span><br><span class="line">            fast = fast.next.next</span><br><span class="line">            <span class="keyword">if</span> slow==fast:</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">True</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">False</span></span><br></pre></td></tr></table></figure>
-<p><strong>改进</strong>：<br>由于每次循环都要判断是否到达最后一个节点，因此leetcode上提供了另一种思路，即采取异常的方式。</p>
-<blockquote>
-<p>“Easier to ask for forgiveness than permission.”<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hasCycle</span><span class="params">(self, head)</span>:</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        slow = head</span><br><span class="line">        fast = head.next</span><br><span class="line">        <span class="keyword">while</span> slow <span class="keyword">is</span> <span class="keyword">not</span> fast:</span><br><span class="line">            slow = slow.next</span><br><span class="line">            fast = fast.next.next</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">True</span></span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">False</span></span><br></pre></td></tr></table></figure></p>
-</blockquote>
+            <h1 id="Intersection-of-Two-Linked-Lists"><a href="#Intersection-of-Two-Linked-Lists" class="headerlink" title="Intersection of Two Linked Lists"></a>Intersection of Two Linked Lists</h1><p>寻找两个无环链表的交点。<br><a href="https://leetcode.com/problems/intersection-of-two-linked-lists/description/" target="_blank" rel="noopener">Description</a></p>
+<p><strong>解题思路</strong>：</p>
+<ol>
+<li>如果两个链长度相同的话，那么对应的一个个比下去就能找到；</li>
+<li>如果两个链长度不相同，分别计算出两个链表的长度，计算出长度差值，然后让长度更长的那个链表从头节点先遍历长度差的步数，这样以后两个链表按尾部对齐。接着长链表和短链表同步往下走，遇到的第一个相同的节点就是最早的公共节点。</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"># class ListNode(object):</span></span><br><span class="line"><span class="comment">#     def __init__(self, x):</span></span><br><span class="line"><span class="comment">#         self.val = x</span></span><br><span class="line"><span class="comment">#         self.next = None</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">getIntersectionNode</span><span class="params">(self, headA, headB)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type head1, head1: ListNode</span></span><br><span class="line"><span class="string">        :rtype: ListNode</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        lenA = lenB = <span class="number">0</span></span><br><span class="line">        curA, curB = headA, headB </span><br><span class="line">        <span class="keyword">while</span> curA <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span>:</span><br><span class="line">            lenA += <span class="number">1</span></span><br><span class="line">            curA = curA.next</span><br><span class="line">        <span class="keyword">while</span> curB <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span>:</span><br><span class="line">            lenB += <span class="number">1</span></span><br><span class="line">            curB = curB.next</span><br><span class="line">        <span class="keyword">if</span> lenA&gt;lenB:</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(lenA-lenB):</span><br><span class="line">                headA = headA.next</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(lenB-lenA):</span><br><span class="line">                headB = headB.next</span><br><span class="line">        <span class="keyword">while</span> headA != headB:</span><br><span class="line">            headA = headA.next</span><br><span class="line">            headB = headB.next</span><br><span class="line">        <span class="keyword">return</span> headA</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="hellodavid.top/2018/09/12/Leetcode-Longest Common Prefix/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="David">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/myavatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HelloDavid">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/12/Leetcode-Longest Common Prefix/" itemprop="url">Leetcode-Longest Common Prefix</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-12T22:22:58+08:00">
+                2018-09-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Longest-Common-Prefix"><a href="#Longest-Common-Prefix" class="headerlink" title="Longest Common Prefix"></a>Longest Common Prefix</h1><p>最长相同前缀：给定一个字符串数组，找出其中最长的共同前缀。这里leetcode并没有说明共同前缀是指两两之间的前缀还是所有字符串的前缀，实际题意是指采用所有字符串的共同前缀。<br><a href="https://leetcode.com/problems/longest-common-prefix/description/" target="_blank" rel="noopener">Description</a></p>
+<p><strong>解题思路</strong>：<br>若字符串数组为空则返回空字符串；<br>否则从所有字符串中找出最短的字符串，依次将最短字符串的每个元素和所有字符串对应位置上的元素进行比较，若不同则停止比较并返回；<br>若全部相同，则返回最短字符串。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> strs:</span><br><span class="line">    <span class="keyword">return</span> <span class="string">""</span></span><br><span class="line"></span><br><span class="line">shortest = min(strs, key=len)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(len(shortest)):</span><br><span class="line">    <span class="keyword">for</span> string <span class="keyword">in</span> strs:</span><br><span class="line">        <span class="keyword">if</span> shortest[i] != string[i]:</span><br><span class="line">            <span class="keyword">return</span> shortest[:i]</span><br><span class="line">        </span><br><span class="line"><span class="keyword">return</span> shortest</span><br></pre></td></tr></table></figure>
+<p><strong>改进</strong>：<br>将字符串数组进行排序(注意，这里是按照字母表顺序排序，而不是根据长度排序），排序后实际只要比较第一个和最后一个字符串的共同前缀即可，因此大大提升了运行时间。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> strs:</span><br><span class="line">          <span class="keyword">return</span> <span class="string">""</span></span><br><span class="line">      </span><br><span class="line">      strs.sort()</span><br><span class="line">      first = strs[<span class="number">0</span>]</span><br><span class="line">      last = strs[<span class="number">-1</span>]</span><br><span class="line">      minlen = min(len(first), len(last))</span><br><span class="line">                  </span><br><span class="line">      <span class="keyword">for</span> i <span class="keyword">in</span> range(minlen):</span><br><span class="line">          <span class="keyword">if</span> first[i]!=last[i]:</span><br><span class="line">              <span class="keyword">return</span> first[:i]</span><br><span class="line">              </span><br><span class="line">      <span class="keyword">return</span> first[:minlen]</span><br></pre></td></tr></table></figure></p>
 
           
         
@@ -1020,7 +1164,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="hellodavid.top/2018/09/12/Leetcode-Longest Common Prefix/">
+    <link itemprop="mainEntityOfPage" href="hellodavid.top/2018/09/12/Leetcode-Linked List Cycle/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="David">
@@ -1039,7 +1183,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/09/12/Leetcode-Longest Common Prefix/" itemprop="url">Leetcode-Longest Common Prefix</a></h1>
+                <a class="post-title-link" href="/2018/09/12/Leetcode-Linked List Cycle/" itemprop="url">Leetcode-Linked List Cycle</a></h1>
         
 
         <div class="post-meta">
@@ -1113,320 +1257,13 @@
       
         
           
-            <h1 id="Longest-Common-Prefix"><a href="#Longest-Common-Prefix" class="headerlink" title="Longest Common Prefix"></a>Longest Common Prefix</h1><p>最长相同前缀：给定一个字符串数组，找出其中最长的共同前缀。这里leetcode并没有说明共同前缀是指两两之间的前缀还是所有字符串的前缀，实际题意是指采用所有字符串的共同前缀。<br><a href="https://leetcode.com/problems/longest-common-prefix/description/" target="_blank" rel="noopener">Description</a></p>
-<p><strong>解题思路</strong>：<br>若字符串数组为空则返回空字符串；<br>否则从所有字符串中找出最短的字符串，依次将最短字符串的每个元素和所有字符串对应位置上的元素进行比较，若不同则停止比较并返回；<br>若全部相同，则返回最短字符串。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> strs:</span><br><span class="line">    <span class="keyword">return</span> <span class="string">""</span></span><br><span class="line"></span><br><span class="line">shortest = min(strs, key=len)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(len(shortest)):</span><br><span class="line">    <span class="keyword">for</span> string <span class="keyword">in</span> strs:</span><br><span class="line">        <span class="keyword">if</span> shortest[i] != string[i]:</span><br><span class="line">            <span class="keyword">return</span> shortest[:i]</span><br><span class="line">        </span><br><span class="line"><span class="keyword">return</span> shortest</span><br></pre></td></tr></table></figure>
-<p><strong>改进</strong>：<br>将字符串数组进行排序(注意，这里是按照字母表顺序排序，而不是根据长度排序），排序后实际只要比较第一个和最后一个字符串的共同前缀即可，因此大大提升了运行时间。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> strs:</span><br><span class="line">          <span class="keyword">return</span> <span class="string">""</span></span><br><span class="line">      </span><br><span class="line">      strs.sort()</span><br><span class="line">      first = strs[<span class="number">0</span>]</span><br><span class="line">      last = strs[<span class="number">-1</span>]</span><br><span class="line">      minlen = min(len(first), len(last))</span><br><span class="line">                  </span><br><span class="line">      <span class="keyword">for</span> i <span class="keyword">in</span> range(minlen):</span><br><span class="line">          <span class="keyword">if</span> first[i]!=last[i]:</span><br><span class="line">              <span class="keyword">return</span> first[:i]</span><br><span class="line">              </span><br><span class="line">      <span class="keyword">return</span> first[:minlen]</span><br></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="hellodavid.top/2018/09/12/Leetcode-Intersection of Two Linked Lists/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="David">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/myavatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="HelloDavid">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/12/Leetcode-Intersection of Two Linked Lists/" itemprop="url">Leetcode-Intersection of Two Linked Lists</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-12T22:22:58+08:00">
-                2018-09-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Intersection-of-Two-Linked-Lists"><a href="#Intersection-of-Two-Linked-Lists" class="headerlink" title="Intersection of Two Linked Lists"></a>Intersection of Two Linked Lists</h1><p>寻找两个无环链表的交点。<br><a href="https://leetcode.com/problems/intersection-of-two-linked-lists/description/" target="_blank" rel="noopener">Description</a></p>
-<p><strong>解题思路</strong>：</p>
-<ol>
-<li>如果两个链长度相同的话，那么对应的一个个比下去就能找到；</li>
-<li>如果两个链长度不相同，分别计算出两个链表的长度，计算出长度差值，然后让长度更长的那个链表从头节点先遍历长度差的步数，这样以后两个链表按尾部对齐。接着长链表和短链表同步往下走，遇到的第一个相同的节点就是最早的公共节点。</li>
-</ol>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"># class ListNode(object):</span></span><br><span class="line"><span class="comment">#     def __init__(self, x):</span></span><br><span class="line"><span class="comment">#         self.val = x</span></span><br><span class="line"><span class="comment">#         self.next = None</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">getIntersectionNode</span><span class="params">(self, headA, headB)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type head1, head1: ListNode</span></span><br><span class="line"><span class="string">        :rtype: ListNode</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        lenA = lenB = <span class="number">0</span></span><br><span class="line">        curA, curB = headA, headB </span><br><span class="line">        <span class="keyword">while</span> curA <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span>:</span><br><span class="line">            lenA += <span class="number">1</span></span><br><span class="line">            curA = curA.next</span><br><span class="line">        <span class="keyword">while</span> curB <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span>:</span><br><span class="line">            lenB += <span class="number">1</span></span><br><span class="line">            curB = curB.next</span><br><span class="line">        <span class="keyword">if</span> lenA&gt;lenB:</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(lenA-lenB):</span><br><span class="line">                headA = headA.next</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(lenB-lenA):</span><br><span class="line">                headB = headB.next</span><br><span class="line">        <span class="keyword">while</span> headA != headB:</span><br><span class="line">            headA = headA.next</span><br><span class="line">            headB = headB.next</span><br><span class="line">        <span class="keyword">return</span> headA</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="hellodavid.top/2018/09/12/Leetcode-House Robber/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="David">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/myavatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="HelloDavid">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/12/Leetcode-House Robber/" itemprop="url">Leetcode-House Robber</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-12T22:22:58+08:00">
-                2018-09-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="House-Robber"><a href="#House-Robber" class="headerlink" title="House Robber"></a>House Robber</h1><p>打家劫舍。问题本质就是从数组中找出一个或多个不相邻的数，使其和最大。</p>
+            <h1 id="Linked-List-Cycle"><a href="#Linked-List-Cycle" class="headerlink" title="Linked List Cycle"></a>Linked List Cycle</h1><p>判断单链表是否存在环。<br><a href="https://leetcode.com/problems/linked-list-cycle/description/" target="_blank" rel="noopener">Description</a></p>
+<p><strong>解题思路</strong>：<br>一个单链表如果不存在环，则最后一个元素的下一个节点必然为null.<br>如果单链表存在环，则：<br>设置两个指针，一个慢指针和一个快指针。将链表的环想象成是一个圆形操场，两个人在同一起跑线开始绕着操场无限循环跑，那么快的人必然会再一次和慢的人相遇，即快指针的元素和慢指针的元素相同时，即说明存在环。<br>在代码中，慢指针设置为每次走一步，即slow=slow.next,快指针设置为每次走两步，即fast=fast.next.next。实际步数设置是可以任取的，只是循环次数不同，如可以设置fast=fast.next.next.next。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"># class ListNode(object):</span></span><br><span class="line"><span class="comment">#     def __init__(self, x):</span></span><br><span class="line"><span class="comment">#         self.val = x</span></span><br><span class="line"><span class="comment">#         self.next = None</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">hasCycle</span><span class="params">(self, head)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type head: ListNode</span></span><br><span class="line"><span class="string">        :rtype: bool</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="keyword">if</span> head==<span class="keyword">None</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">False</span></span><br><span class="line">        </span><br><span class="line">        slow = head</span><br><span class="line">        fast = head</span><br><span class="line">        <span class="keyword">while</span> fast.next <span class="keyword">and</span> fast.next.next:</span><br><span class="line">            slow = slow.next</span><br><span class="line">            fast = fast.next.next</span><br><span class="line">            <span class="keyword">if</span> slow==fast:</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">True</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">False</span></span><br></pre></td></tr></table></figure>
+<p><strong>改进</strong>：<br>由于每次循环都要判断是否到达最后一个节点，因此leetcode上提供了另一种思路，即采取异常的方式。</p>
 <blockquote>
-<p>You are a professional robber planning to rob houses along a street. Each house has a certain amount of money stashed, the only constraint stopping you from robbing each of them is that adjacent houses have security system connected and it will automatically contact the police if two adjacent houses were broken into on the same night.</p>
+<p>“Easier to ask for forgiveness than permission.”<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hasCycle</span><span class="params">(self, head)</span>:</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        slow = head</span><br><span class="line">        fast = head.next</span><br><span class="line">        <span class="keyword">while</span> slow <span class="keyword">is</span> <span class="keyword">not</span> fast:</span><br><span class="line">            slow = slow.next</span><br><span class="line">            fast = fast.next.next</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">True</span></span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">False</span></span><br></pre></td></tr></table></figure></p>
 </blockquote>
-<blockquote>
-<p>Given a list of non-negative integers representing the amount of money of each house, determine the maximum amount of money you can rob tonight without alerting the police.</p>
-</blockquote>
-<p><a href="https://leetcode.com/problems/house-robber/description/" target="_blank" rel="noopener">Description</a></p>
-<p><strong>解题思路</strong>：</p>
-<ol>
-<li>如果选择了抢劫上一个屋子，那么就不能抢劫当前的屋子，所以最大收益就是抢劫上一个屋子的收益；</li>
-<li>如果选择抢劫当前屋子，就不能抢劫上一个屋子，所以最大收益是到上一个屋子的上一个屋子为止的最大收益，加上当前屋子里有的钱。</li>
-</ol>
-<p>令dp[i]表示从[0, …, i]数组中能够得到的最大收益，显然，dp[0]=nums[0], dp[1]=max(dp[0],dp[1]), 现在计算dp[i+1]:</p>
-<p>dp[i+1]=max(dp[i], dp[i-1]+nums[i+1])</p>
-<p>其中，上式包含了如下隐含信息：<br>若dp[i]不包含nums[i], 所以nums[i+1]可以和dp[i]相加，但此时dp[i]=dp[i-1],所以dp[i-1]+nums[i+1]与dp[i]+nums[i+1]的值相等；<br>若dp[i]包含nums[i]，则nums[i+1]不可以和dp[i]相加，所以只存在nums[i+1]+dp[i-1]。</p>
-<p>实际计算时只需要保存两个变量即可。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">rob</span><span class="params">(self, nums)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type nums: List[int]</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="keyword">if</span> len(nums)&lt;=<span class="number">1</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span> <span class="keyword">if</span> len(nums)==<span class="number">0</span> <span class="keyword">else</span> nums[<span class="number">0</span>]</span><br><span class="line">        <span class="comment"># 保存上一次的收益</span></span><br><span class="line">        last = nums[<span class="number">0</span>]</span><br><span class="line">        <span class="comment"># 保存当前收益</span></span><br><span class="line">        cur = max(nums[<span class="number">0</span>], nums[<span class="number">1</span>])</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">2</span>, len(nums)) :</span><br><span class="line">            tmp = cur</span><br><span class="line">            cur = max(last+nums[i], cur)</span><br><span class="line">            last = tmp</span><br><span class="line">        <span class="keyword">return</span> cur</span><br></pre></td></tr></table></figure>
-<p><strong>tip</strong>:<br>python中的三目运算符不像其他语言, 其他的一般都是: </p>
-<p>判定条件?为真时的结果:为假时的结果</p>
-<p>而在python中的格式为:</p>
-<p>为真时的结果 if 判定条件 else 为假时的结果 </p>
 
           
         
@@ -1717,6 +1554,169 @@
 <p><strong>解题思路</strong>：<br>用python解决这道题很简单，因为python字符串自带的find的方法可以直接实现。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">strStr</span><span class="params">(self, haystack, needle)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    :type haystack: str</span></span><br><span class="line"><span class="string">    :type needle: str</span></span><br><span class="line"><span class="string">    :rtype: int</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="keyword">return</span> haystack.find(needle)</span><br></pre></td></tr></table></figure></p>
 <p><strong>不采用find()方法的解题思路</strong>：<br>采用brute force方式，即依次从字符串的每个位置开始，截取和子字符串相同长度的字符串，与给定的子字符串进行比较。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">strStr</span><span class="params">(self, haystack, needle)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    :type haystack: str</span></span><br><span class="line"><span class="string">    :type needle: str</span></span><br><span class="line"><span class="string">    :rtype: int</span></span><br><span class="line"><span class="string">    """</span> </span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(haystack)-len(needle)+<span class="number">1</span>):</span><br><span class="line">        <span class="keyword">if</span> haystack[i:i+len(needle)] == needle:</span><br><span class="line">            <span class="keyword">return</span> i</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span></span><br></pre></td></tr></table></figure></p>
 <p>改进：<a href="http://blog.csdn.net/linhuanmars/article/details/20276833" target="_blank" rel="noopener">http://blog.csdn.net/linhuanmars/article/details/20276833</a><br>提出了一种rolling hash的方式。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="hellodavid.top/2018/09/12/Leetcode-House Robber/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="David">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/myavatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HelloDavid">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/12/Leetcode-House Robber/" itemprop="url">Leetcode-House Robber</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-12T22:22:58+08:00">
+                2018-09-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="House-Robber"><a href="#House-Robber" class="headerlink" title="House Robber"></a>House Robber</h1><p>打家劫舍。问题本质就是从数组中找出一个或多个不相邻的数，使其和最大。</p>
+<blockquote>
+<p>You are a professional robber planning to rob houses along a street. Each house has a certain amount of money stashed, the only constraint stopping you from robbing each of them is that adjacent houses have security system connected and it will automatically contact the police if two adjacent houses were broken into on the same night.</p>
+</blockquote>
+<blockquote>
+<p>Given a list of non-negative integers representing the amount of money of each house, determine the maximum amount of money you can rob tonight without alerting the police.</p>
+</blockquote>
+<p><a href="https://leetcode.com/problems/house-robber/description/" target="_blank" rel="noopener">Description</a></p>
+<p><strong>解题思路</strong>：</p>
+<ol>
+<li>如果选择了抢劫上一个屋子，那么就不能抢劫当前的屋子，所以最大收益就是抢劫上一个屋子的收益；</li>
+<li>如果选择抢劫当前屋子，就不能抢劫上一个屋子，所以最大收益是到上一个屋子的上一个屋子为止的最大收益，加上当前屋子里有的钱。</li>
+</ol>
+<p>令dp[i]表示从[0, …, i]数组中能够得到的最大收益，显然，dp[0]=nums[0], dp[1]=max(dp[0],dp[1]), 现在计算dp[i+1]:</p>
+<p>dp[i+1]=max(dp[i], dp[i-1]+nums[i+1])</p>
+<p>其中，上式包含了如下隐含信息：<br>若dp[i]不包含nums[i], 所以nums[i+1]可以和dp[i]相加，但此时dp[i]=dp[i-1],所以dp[i-1]+nums[i+1]与dp[i]+nums[i+1]的值相等；<br>若dp[i]包含nums[i]，则nums[i+1]不可以和dp[i]相加，所以只存在nums[i+1]+dp[i-1]。</p>
+<p>实际计算时只需要保存两个变量即可。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">rob</span><span class="params">(self, nums)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type nums: List[int]</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="keyword">if</span> len(nums)&lt;=<span class="number">1</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span> <span class="keyword">if</span> len(nums)==<span class="number">0</span> <span class="keyword">else</span> nums[<span class="number">0</span>]</span><br><span class="line">        <span class="comment"># 保存上一次的收益</span></span><br><span class="line">        last = nums[<span class="number">0</span>]</span><br><span class="line">        <span class="comment"># 保存当前收益</span></span><br><span class="line">        cur = max(nums[<span class="number">0</span>], nums[<span class="number">1</span>])</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">2</span>, len(nums)) :</span><br><span class="line">            tmp = cur</span><br><span class="line">            cur = max(last+nums[i], cur)</span><br><span class="line">            last = tmp</span><br><span class="line">        <span class="keyword">return</span> cur</span><br></pre></td></tr></table></figure>
+<p><strong>tip</strong>:<br>python中的三目运算符不像其他语言, 其他的一般都是: </p>
+<p>判定条件?为真时的结果:为假时的结果</p>
+<p>而在python中的格式为:</p>
+<p>为真时的结果 if 判定条件 else 为假时的结果 </p>
 
           
         
@@ -2419,5 +2419,5 @@
 
   
 
-<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":100,"height":200},"mobile":{"show":true,"scale":0.5},"pluginJsPath":"lib/","pluginRootPath":"live2dw/"});</script></body>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"scale":1,"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":100,"height":200,"hOffset":-20,"vOffset":-100},"mobile":{"show":true,"scale":0.5,"hOffset":-20,"vOffset":-60},"pluginJsPath":"lib/","pluginRootPath":"live2dw/"});</script></body>
 </html>
