@@ -169,9 +169,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Leetcode-Maximum Subarray]]></title>
-    <url>%2F2018%2F09%2F12%2FLeetcode-Maximum%20Subarray%2F</url>
-    <content type="text"><![CDATA[Maximum Subarray最大子串和问题：从一个数组中找出一个子串使其和最大。Description tips:子串是指数组中连续的若干个元素，而子序列只要求各元素的顺序与其在数组中一致，而没有连续的要求。 解题思路：自己没有想出来，直接借鉴了网上的动态规划思路，我觉得下面是一些解决的关键点： 对于array[1…n]，如果array[i…j]就是满足和最大的子串，那么对于任何k(i&lt;=k&lt;=j)，我们有array[i…k]的和大于0。具体证明 假设已知0, .., k的最大和sum[k]以后，则0, …, k+1的最大和sum[k+1]分为以下两种情况：1）若sum[k]&gt;=0，则sum[k+1]=sum[k]+A[k+1]。代码中即curSum = curSum+nums[i]。2）若sum[k]&lt;0，另起一个SubArray，令sum[k+1]=A[k+1]。代码中即curSum = nums[i]。 1234567891011121314def maxSubArray(self, nums): """ :type nums: List[int] :rtype: int """ if not nums: return 0 curSum = maxSum = nums[0] for i in range(1, len(nums)): curSum = max(nums[i], curSum+nums[i]) maxSum = max(maxSum, curSum) return maxSum]]></content>
+    <title><![CDATA[Leetcode-Longest Common Prefix]]></title>
+    <url>%2F2018%2F09%2F12%2FLeetcode-Longest%20Common%20Prefix%2F</url>
+    <content type="text"><![CDATA[Longest Common Prefix最长相同前缀：给定一个字符串数组，找出其中最长的共同前缀。这里leetcode并没有说明共同前缀是指两两之间的前缀还是所有字符串的前缀，实际题意是指采用所有字符串的共同前缀。Description 解题思路：若字符串数组为空则返回空字符串；否则从所有字符串中找出最短的字符串，依次将最短字符串的每个元素和所有字符串对应位置上的元素进行比较，若不同则停止比较并返回；若全部相同，则返回最短字符串。 1234567891011if not strs: return ""shortest = min(strs, key=len)for i in range(len(shortest)): for string in strs: if shortest[i] != string[i]: return shortest[:i] return shortest 改进：将字符串数组进行排序(注意，这里是按照字母表顺序排序，而不是根据长度排序），排序后实际只要比较第一个和最后一个字符串的共同前缀即可，因此大大提升了运行时间。12345678910111213if not strs: return "" strs.sort() first = strs[0] last = strs[-1] minlen = min(len(first), len(last)) for i in range(minlen): if first[i]!=last[i]: return first[:i] return first[:minlen]]]></content>
       <categories>
         <category>leetcode</category>
       </categories>
@@ -181,9 +181,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Leetcode-Longest Common Prefix]]></title>
-    <url>%2F2018%2F09%2F12%2FLeetcode-Longest%20Common%20Prefix%2F</url>
-    <content type="text"><![CDATA[Longest Common Prefix最长相同前缀：给定一个字符串数组，找出其中最长的共同前缀。这里leetcode并没有说明共同前缀是指两两之间的前缀还是所有字符串的前缀，实际题意是指采用所有字符串的共同前缀。Description 解题思路：若字符串数组为空则返回空字符串；否则从所有字符串中找出最短的字符串，依次将最短字符串的每个元素和所有字符串对应位置上的元素进行比较，若不同则停止比较并返回；若全部相同，则返回最短字符串。 1234567891011if not strs: return ""shortest = min(strs, key=len)for i in range(len(shortest)): for string in strs: if shortest[i] != string[i]: return shortest[:i] return shortest 改进：将字符串数组进行排序(注意，这里是按照字母表顺序排序，而不是根据长度排序），排序后实际只要比较第一个和最后一个字符串的共同前缀即可，因此大大提升了运行时间。12345678910111213if not strs: return "" strs.sort() first = strs[0] last = strs[-1] minlen = min(len(first), len(last)) for i in range(minlen): if first[i]!=last[i]: return first[:i] return first[:minlen]]]></content>
+    <title><![CDATA[Leetcode-Maximum Subarray]]></title>
+    <url>%2F2018%2F09%2F12%2FLeetcode-Maximum%20Subarray%2F</url>
+    <content type="text"><![CDATA[Maximum Subarray最大子串和问题：从一个数组中找出一个子串使其和最大。Description tips:子串是指数组中连续的若干个元素，而子序列只要求各元素的顺序与其在数组中一致，而没有连续的要求。 解题思路：自己没有想出来，直接借鉴了网上的动态规划思路，我觉得下面是一些解决的关键点： 对于array[1…n]，如果array[i…j]就是满足和最大的子串，那么对于任何k(i&lt;=k&lt;=j)，我们有array[i…k]的和大于0。具体证明 假设已知0, .., k的最大和sum[k]以后，则0, …, k+1的最大和sum[k+1]分为以下两种情况：1）若sum[k]&gt;=0，则sum[k+1]=sum[k]+A[k+1]。代码中即curSum = curSum+nums[i]。2）若sum[k]&lt;0，另起一个SubArray，令sum[k+1]=A[k+1]。代码中即curSum = nums[i]。 1234567891011121314def maxSubArray(self, nums): """ :type nums: List[int] :rtype: int """ if not nums: return 0 curSum = maxSum = nums[0] for i in range(1, len(nums)): curSum = max(nums[i], curSum+nums[i]) maxSum = max(maxSum, curSum) return maxSum]]></content>
       <categories>
         <category>leetcode</category>
       </categories>
