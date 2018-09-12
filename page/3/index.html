@@ -296,7 +296,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="hellodavid.top/2018/09/12/Leetcode-Climbing Stairs/">
+    <link itemprop="mainEntityOfPage" href="hellodavid.top/2018/09/12/Leetcode-Count and Say/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="David">
@@ -315,7 +315,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/09/12/Leetcode-Climbing Stairs/" itemprop="url">Leetcode-Climbing Stairs</a></h1>
+                <a class="post-title-link" href="/2018/09/12/Leetcode-Count and Say/" itemprop="url">Leetcode-Count and Say</a></h1>
         
 
         <div class="post-meta">
@@ -389,9 +389,19 @@
       
         
           
-            <h1 id="Climbing-Stairs"><a href="#Climbing-Stairs" class="headerlink" title="Climbing Stairs"></a>Climbing Stairs</h1><p>爬梯子问题。给定一个n级台阶，每次可以走一个台阶或者两个台阶，一共有多少种走法？<br><a href="https://leetcode.com/problems/climbing-stairs/description/" target="_blank" rel="noopener">Description</a></p>
-<p><strong>解题思路</strong>：<br>很常见的一种递推题型，要求n级台阶的走法，即可以分解为求n-1级台阶加上n-2级台阶的走法，climbNum[n]=climbNum[n-1]+climbNum[n-2]。所以问题实质上就是求解斐波那契数列。但由于采用递推方式会产生大量重复的计算，因此使用动态规划自底向上的进行计算，其中我们使用一个数组用于保存每步产生的结果。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">climbStairs</span><span class="params">(self, n)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type n: int</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="keyword">if</span> n&lt;=<span class="number">2</span>:</span><br><span class="line">            <span class="keyword">return</span> n</span><br><span class="line">        climbNum = [<span class="number">1</span>,<span class="number">1</span>,<span class="number">2</span>]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">3</span>,n+<span class="number">1</span>):</span><br><span class="line">            climbNum.append(climbNum[i<span class="number">-1</span>] + climbNum[i<span class="number">-2</span>])</span><br><span class="line">        <span class="keyword">return</span> climbNum[n]</span><br></pre></td></tr></table></figure>
+            <h1 id="Count-and-Say"><a href="#Count-and-Say" class="headerlink" title="Count and Say"></a>Count and Say</h1><p>leetcode关于这题的说明比较含糊：<br>The count-and-say sequence is the sequence of integers with the first five terms as following:</p>
+<ol>
+<li>1</li>
+<li>11</li>
+<li>21</li>
+<li>1211</li>
+<li>111221</li>
+</ol>
+<p>1 is read off as “one 1” or 11.<br>11 is read off as “two 1s” or 21.<br>21 is read off as “one 2, then one 1” or 1211.<br>Given an integer n, generate the nth term of the count-and-say sequence.</p>
+<p>题意是n=1时输出字符串1；n=2时，数上次字符串中的数值个数，因为上次字符串有1个1，所以输出11；n=3时，由于上次字符是11，有2个1，所以输出21；n=4时，由于上次字符串是21，有1个2和1个1，所以输出1211。依次类推，写个countAndSay(n)函数返回字符串。</p>
+<p><strong>解题思路</strong>：<br>采用动态规划的方式。当n=1时，直接返回‘1’。自底向上，然后根据n=index时返回的字符串计算出n=index+1时的字符串，并保存到数组curString中。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">countAndSay</span><span class="params">(self, n)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> n==<span class="number">1</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">'1'</span></span><br><span class="line">        </span><br><span class="line">        count = <span class="number">1</span></span><br><span class="line">        index = <span class="number">1</span></span><br><span class="line">        curString = [<span class="string">''</span>, <span class="string">'1'</span>]</span><br><span class="line">        <span class="keyword">while</span> index != n:</span><br><span class="line">            result = <span class="string">''</span></span><br><span class="line">            cs = curString[index] + <span class="string">'*'</span>             <span class="comment"># 加*是为了下面计算方便</span></span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(len(cs)<span class="number">-1</span>):</span><br><span class="line">                <span class="keyword">if</span> cs[i]==cs[i+<span class="number">1</span>]:</span><br><span class="line">                    count += <span class="number">1</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    result += str(count) + cs[i]    <span class="comment"># 加*的目的是为了方便处理最后一个字符</span></span><br><span class="line">                    count = <span class="number">1</span></span><br><span class="line">            index += <span class="number">1</span></span><br><span class="line">            curString.append(result)</span><br><span class="line">                </span><br><span class="line">        <span class="keyword">return</span> curString[n]</span><br></pre></td></tr></table></figure></p>
+<p><strong>采用正则表达</strong>：<br>leetcode上提供的另一种解题思路，尽管运行比较慢。<br>用作者的解释即: (.) captures one character and \1* covers its repetitions.<br>其中\1代表后向引用，表示表达式中，从左往右数，第一个左括号对应的括号内的内容。以此类推，\2表示第二个，\0表示整个表达式。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">countAndSay</span><span class="params">(self, n)</span>:</span></span><br><span class="line">	s = <span class="string">'1'</span></span><br><span class="line">	        <span class="keyword">for</span> _ <span class="keyword">in</span> range(n - <span class="number">1</span>):</span><br><span class="line">	            s = re.sub(<span class="string">r'(.)\1*'</span>, <span class="keyword">lambda</span> m: str(len(m.group(<span class="number">0</span>))) + m.group(<span class="number">1</span>), s)</span><br><span class="line">	        <span class="keyword">return</span> s</span><br></pre></td></tr></table></figure></p>
+
           
         
       
@@ -585,7 +595,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="hellodavid.top/2018/09/12/Leetcode-Count and Say/">
+    <link itemprop="mainEntityOfPage" href="hellodavid.top/2018/09/12/Leetcode-Climbing Stairs/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="David">
@@ -604,7 +614,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/09/12/Leetcode-Count and Say/" itemprop="url">Leetcode-Count and Say</a></h1>
+                <a class="post-title-link" href="/2018/09/12/Leetcode-Climbing Stairs/" itemprop="url">Leetcode-Climbing Stairs</a></h1>
         
 
         <div class="post-meta">
@@ -678,19 +688,9 @@
       
         
           
-            <h1 id="Count-and-Say"><a href="#Count-and-Say" class="headerlink" title="Count and Say"></a>Count and Say</h1><p>leetcode关于这题的说明比较含糊：<br>The count-and-say sequence is the sequence of integers with the first five terms as following:</p>
-<ol>
-<li>1</li>
-<li>11</li>
-<li>21</li>
-<li>1211</li>
-<li>111221</li>
-</ol>
-<p>1 is read off as “one 1” or 11.<br>11 is read off as “two 1s” or 21.<br>21 is read off as “one 2, then one 1” or 1211.<br>Given an integer n, generate the nth term of the count-and-say sequence.</p>
-<p>题意是n=1时输出字符串1；n=2时，数上次字符串中的数值个数，因为上次字符串有1个1，所以输出11；n=3时，由于上次字符是11，有2个1，所以输出21；n=4时，由于上次字符串是21，有1个2和1个1，所以输出1211。依次类推，写个countAndSay(n)函数返回字符串。</p>
-<p><strong>解题思路</strong>：<br>采用动态规划的方式。当n=1时，直接返回‘1’。自底向上，然后根据n=index时返回的字符串计算出n=index+1时的字符串，并保存到数组curString中。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">countAndSay</span><span class="params">(self, n)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> n==<span class="number">1</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">'1'</span></span><br><span class="line">        </span><br><span class="line">        count = <span class="number">1</span></span><br><span class="line">        index = <span class="number">1</span></span><br><span class="line">        curString = [<span class="string">''</span>, <span class="string">'1'</span>]</span><br><span class="line">        <span class="keyword">while</span> index != n:</span><br><span class="line">            result = <span class="string">''</span></span><br><span class="line">            cs = curString[index] + <span class="string">'*'</span>             <span class="comment"># 加*是为了下面计算方便</span></span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(len(cs)<span class="number">-1</span>):</span><br><span class="line">                <span class="keyword">if</span> cs[i]==cs[i+<span class="number">1</span>]:</span><br><span class="line">                    count += <span class="number">1</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    result += str(count) + cs[i]    <span class="comment"># 加*的目的是为了方便处理最后一个字符</span></span><br><span class="line">                    count = <span class="number">1</span></span><br><span class="line">            index += <span class="number">1</span></span><br><span class="line">            curString.append(result)</span><br><span class="line">                </span><br><span class="line">        <span class="keyword">return</span> curString[n]</span><br></pre></td></tr></table></figure></p>
-<p><strong>采用正则表达</strong>：<br>leetcode上提供的另一种解题思路，尽管运行比较慢。<br>用作者的解释即: (.) captures one character and \1* covers its repetitions.<br>其中\1代表后向引用，表示表达式中，从左往右数，第一个左括号对应的括号内的内容。以此类推，\2表示第二个，\0表示整个表达式。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">countAndSay</span><span class="params">(self, n)</span>:</span></span><br><span class="line">	s = <span class="string">'1'</span></span><br><span class="line">	        <span class="keyword">for</span> _ <span class="keyword">in</span> range(n - <span class="number">1</span>):</span><br><span class="line">	            s = re.sub(<span class="string">r'(.)\1*'</span>, <span class="keyword">lambda</span> m: str(len(m.group(<span class="number">0</span>))) + m.group(<span class="number">1</span>), s)</span><br><span class="line">	        <span class="keyword">return</span> s</span><br></pre></td></tr></table></figure></p>
-
+            <h1 id="Climbing-Stairs"><a href="#Climbing-Stairs" class="headerlink" title="Climbing Stairs"></a>Climbing Stairs</h1><p>爬梯子问题。给定一个n级台阶，每次可以走一个台阶或者两个台阶，一共有多少种走法？<br><a href="https://leetcode.com/problems/climbing-stairs/description/" target="_blank" rel="noopener">Description</a></p>
+<p><strong>解题思路</strong>：<br>很常见的一种递推题型，要求n级台阶的走法，即可以分解为求n-1级台阶加上n-2级台阶的走法，climbNum[n]=climbNum[n-1]+climbNum[n-2]。所以问题实质上就是求解斐波那契数列。但由于采用递推方式会产生大量重复的计算，因此使用动态规划自底向上的进行计算，其中我们使用一个数组用于保存每步产生的结果。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">climbStairs</span><span class="params">(self, n)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type n: int</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="keyword">if</span> n&lt;=<span class="number">2</span>:</span><br><span class="line">            <span class="keyword">return</span> n</span><br><span class="line">        climbNum = [<span class="number">1</span>,<span class="number">1</span>,<span class="number">2</span>]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">3</span>,n+<span class="number">1</span>):</span><br><span class="line">            climbNum.append(climbNum[i<span class="number">-1</span>] + climbNum[i<span class="number">-2</span>])</span><br><span class="line">        <span class="keyword">return</span> climbNum[n]</span><br></pre></td></tr></table></figure>
           
         
       
@@ -2437,5 +2437,5 @@
 
   
 
-</body>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true}});</script></body>
 </html>
