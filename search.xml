@@ -157,21 +157,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Leetcode-Linked List Cycle]]></title>
-    <url>%2F2018%2F09%2F12%2FLeetcode-Linked%20List%20Cycle%2F</url>
-    <content type="text"><![CDATA[Linked List Cycle判断单链表是否存在环。Description 解题思路：一个单链表如果不存在环，则最后一个元素的下一个节点必然为null.如果单链表存在环，则：设置两个指针，一个慢指针和一个快指针。将链表的环想象成是一个圆形操场，两个人在同一起跑线开始绕着操场无限循环跑，那么快的人必然会再一次和慢的人相遇，即快指针的元素和慢指针的元素相同时，即说明存在环。在代码中，慢指针设置为每次走一步，即slow=slow.next,快指针设置为每次走两步，即fast=fast.next.next。实际步数设置是可以任取的，只是循环次数不同，如可以设置fast=fast.next.next.next。 1234567891011121314151617181920212223# Definition for singly-linked list.# class ListNode(object):# def __init__(self, x):# self.val = x# self.next = Noneclass Solution(object): def hasCycle(self, head): """ :type head: ListNode :rtype: bool """ if head==None: return False slow = head fast = head while fast.next and fast.next.next: slow = slow.next fast = fast.next.next if slow==fast: return True return False 改进：由于每次循环都要判断是否到达最后一个节点，因此leetcode上提供了另一种思路，即采取异常的方式。 “Easier to ask for forgiveness than permission.”12345678910def hasCycle(self, head): try: slow = head fast = head.next while slow is not fast: slow = slow.next fast = fast.next.next return True except: return False]]></content>
-      <categories>
-        <category>leetcode</category>
-      </categories>
-      <tags>
-        <tag>python</tag>
-        <tag>leetcode</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Leetcode-Longest Common Prefix]]></title>
-    <url>%2F2018%2F09%2F12%2FLeetcode-Longest%20Common%20Prefix%2F</url>
-    <content type="text"><![CDATA[Longest Common Prefix最长相同前缀：给定一个字符串数组，找出其中最长的共同前缀。这里leetcode并没有说明共同前缀是指两两之间的前缀还是所有字符串的前缀，实际题意是指采用所有字符串的共同前缀。Description 解题思路：若字符串数组为空则返回空字符串；否则从所有字符串中找出最短的字符串，依次将最短字符串的每个元素和所有字符串对应位置上的元素进行比较，若不同则停止比较并返回；若全部相同，则返回最短字符串。 1234567891011if not strs: return ""shortest = min(strs, key=len)for i in range(len(shortest)): for string in strs: if shortest[i] != string[i]: return shortest[:i] return shortest 改进：将字符串数组进行排序(注意，这里是按照字母表顺序排序，而不是根据长度排序），排序后实际只要比较第一个和最后一个字符串的共同前缀即可，因此大大提升了运行时间。12345678910111213if not strs: return "" strs.sort() first = strs[0] last = strs[-1] minlen = min(len(first), len(last)) for i in range(minlen): if first[i]!=last[i]: return first[:i] return first[:minlen]]]></content>
+    <title><![CDATA[Leetcode-Intersection of Two Linked Lists]]></title>
+    <url>%2F2018%2F09%2F12%2FLeetcode-Intersection%20of%20Two%20Linked%20Lists%2F</url>
+    <content type="text"><![CDATA[Intersection of Two Linked Lists寻找两个无环链表的交点。Description 解题思路： 如果两个链长度相同的话，那么对应的一个个比下去就能找到； 如果两个链长度不相同，分别计算出两个链表的长度，计算出长度差值，然后让长度更长的那个链表从头节点先遍历长度差的步数，这样以后两个链表按尾部对齐。接着长链表和短链表同步往下走，遇到的第一个相同的节点就是最早的公共节点。 123456789101112131415161718192021222324252627282930# Definition for singly-linked list.# class ListNode(object):# def __init__(self, x):# self.val = x# self.next = Noneclass Solution(object): def getIntersectionNode(self, headA, headB): """ :type head1, head1: ListNode :rtype: ListNode """ lenA = lenB = 0 curA, curB = headA, headB while curA is not None: lenA += 1 curA = curA.next while curB is not None: lenB += 1 curB = curB.next if lenA&gt;lenB: for i in range(lenA-lenB): headA = headA.next else: for i in range(lenB-lenA): headB = headB.next while headA != headB: headA = headA.next headB = headB.next return headA]]></content>
       <categories>
         <category>leetcode</category>
       </categories>
@@ -193,9 +181,21 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Leetcode-Intersection of Two Linked Lists]]></title>
-    <url>%2F2018%2F09%2F12%2FLeetcode-Intersection%20of%20Two%20Linked%20Lists%2F</url>
-    <content type="text"><![CDATA[Intersection of Two Linked Lists寻找两个无环链表的交点。Description 解题思路： 如果两个链长度相同的话，那么对应的一个个比下去就能找到； 如果两个链长度不相同，分别计算出两个链表的长度，计算出长度差值，然后让长度更长的那个链表从头节点先遍历长度差的步数，这样以后两个链表按尾部对齐。接着长链表和短链表同步往下走，遇到的第一个相同的节点就是最早的公共节点。 123456789101112131415161718192021222324252627282930# Definition for singly-linked list.# class ListNode(object):# def __init__(self, x):# self.val = x# self.next = Noneclass Solution(object): def getIntersectionNode(self, headA, headB): """ :type head1, head1: ListNode :rtype: ListNode """ lenA = lenB = 0 curA, curB = headA, headB while curA is not None: lenA += 1 curA = curA.next while curB is not None: lenB += 1 curB = curB.next if lenA&gt;lenB: for i in range(lenA-lenB): headA = headA.next else: for i in range(lenB-lenA): headB = headB.next while headA != headB: headA = headA.next headB = headB.next return headA]]></content>
+    <title><![CDATA[Leetcode-Longest Common Prefix]]></title>
+    <url>%2F2018%2F09%2F12%2FLeetcode-Longest%20Common%20Prefix%2F</url>
+    <content type="text"><![CDATA[Longest Common Prefix最长相同前缀：给定一个字符串数组，找出其中最长的共同前缀。这里leetcode并没有说明共同前缀是指两两之间的前缀还是所有字符串的前缀，实际题意是指采用所有字符串的共同前缀。Description 解题思路：若字符串数组为空则返回空字符串；否则从所有字符串中找出最短的字符串，依次将最短字符串的每个元素和所有字符串对应位置上的元素进行比较，若不同则停止比较并返回；若全部相同，则返回最短字符串。 1234567891011if not strs: return ""shortest = min(strs, key=len)for i in range(len(shortest)): for string in strs: if shortest[i] != string[i]: return shortest[:i] return shortest 改进：将字符串数组进行排序(注意，这里是按照字母表顺序排序，而不是根据长度排序），排序后实际只要比较第一个和最后一个字符串的共同前缀即可，因此大大提升了运行时间。12345678910111213if not strs: return "" strs.sort() first = strs[0] last = strs[-1] minlen = min(len(first), len(last)) for i in range(minlen): if first[i]!=last[i]: return first[:i] return first[:minlen]]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+        <tag>leetcode</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Leetcode-Linked List Cycle]]></title>
+    <url>%2F2018%2F09%2F12%2FLeetcode-Linked%20List%20Cycle%2F</url>
+    <content type="text"><![CDATA[Linked List Cycle判断单链表是否存在环。Description 解题思路：一个单链表如果不存在环，则最后一个元素的下一个节点必然为null.如果单链表存在环，则：设置两个指针，一个慢指针和一个快指针。将链表的环想象成是一个圆形操场，两个人在同一起跑线开始绕着操场无限循环跑，那么快的人必然会再一次和慢的人相遇，即快指针的元素和慢指针的元素相同时，即说明存在环。在代码中，慢指针设置为每次走一步，即slow=slow.next,快指针设置为每次走两步，即fast=fast.next.next。实际步数设置是可以任取的，只是循环次数不同，如可以设置fast=fast.next.next.next。 1234567891011121314151617181920212223# Definition for singly-linked list.# class ListNode(object):# def __init__(self, x):# self.val = x# self.next = Noneclass Solution(object): def hasCycle(self, head): """ :type head: ListNode :rtype: bool """ if head==None: return False slow = head fast = head while fast.next and fast.next.next: slow = slow.next fast = fast.next.next if slow==fast: return True return False 改进：由于每次循环都要判断是否到达最后一个节点，因此leetcode上提供了另一种思路，即采取异常的方式。 “Easier to ask for forgiveness than permission.”12345678910def hasCycle(self, head): try: slow = head fast = head.next while slow is not fast: slow = slow.next fast = fast.next.next return True except: return False]]></content>
       <categories>
         <category>leetcode</category>
       </categories>
