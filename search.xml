@@ -38,6 +38,17 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[Python 正则表达式 匹配邮箱地址]]></title>
+    <url>%2F2018%2F09%2F12%2FPython%20%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%20%E5%8C%B9%E9%85%8D%E9%82%AE%E7%AE%B1%E5%9C%B0%E5%9D%80%2F</url>
+    <content type="text"><![CDATA[12345import repat = r'^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$' email_address = 'ddy_davie@aaa.com'matched_address = re.match(pat, email_address)print(matched_address.group()) pat = r’^(\w)+(.\w+)*@(\w)+((.\w+)+)$’ ， 这个正则表达式目前尝试了基本可以覆盖大部分邮箱类型。]]></content>
+      <categories>
+        <category>python</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[MongoDB 学习]]></title>
     <url>%2F2018%2F09%2F12%2FMongoDB%E5%AD%A6%E4%B9%A0%2F</url>
     <content type="text"><![CDATA[记录下我在学习mongoDB时遇到的一些问题与解决方案 问题：windows下启动mongoDB后显示等待连接端口，并且停止在这一步：123456782017-09-17T11:57:32.398+0800 I CONTROL [initandlisten]2017-09-17T11:57:32.398+0800 I CONTROL [initandlisten] ** WARNING: Access control is n2017-09-17T11:57:32.399+0800 I CONTROL [initandlisten] ** Read and write accenrestricted.2017-09-17T11:57:32.402+0800 I CONTROL [initandlisten]2017-09-17T11:57:32.966+0800 I FTDC [initandlisten] Initializing full-time diagnost:/data/db/diagnostic.data'2017-09-17T11:57:32.972+0800 I NETWORK [thread1] waiting for connections on port 27017 解决：其实，这不是卡住了，而是数据库已经启动，并且这个终端还不能关掉，关掉意味着数据库也关了。因此，保留这个终端，再开个终端，进入mongoDB\bin文件夹后输入.\mongo(注意，这里不是.\mongod)回车，就可以进入mongodb了 问题：ubuntu上出现无法连上mongodb的问题，显示已启用另一个终端：123mongod2017-09-20T04:07:41.308-0400 I STORAGE [initandlisten] exception in initAndListen: 98 Unable to create/open lock file: /data/db/mongod.lock errno:13 Permission denied Is a mongod instance already running?, terminating2017-09-20T04:07:41.308-0400 I CONTROL [initandlisten] dbexit: rc: 100 解决： 1sudo chown -R `id -u` /data/db 一句话解决，虽然我也不清楚原理。接下来同样是另起一个终端输入mongo即成功]]></content>
@@ -47,17 +58,6 @@
       <tags>
         <tag>数据库</tag>
         <tag>mongo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Python 正则表达式 匹配邮箱地址]]></title>
-    <url>%2F2018%2F09%2F12%2FPython%20%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%20%E5%8C%B9%E9%85%8D%E9%82%AE%E7%AE%B1%E5%9C%B0%E5%9D%80%2F</url>
-    <content type="text"><![CDATA[12345import repat = r'^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$' email_address = 'ddy_davie@aaa.com'matched_address = re.match(pat, email_address)print(matched_address.group()) pat = r’^(\w)+(.\w+)*@(\w)+((.\w+)+)$’ ， 这个正则表达式目前尝试了基本可以覆盖大部分邮箱类型。]]></content>
-      <categories>
-        <category>python</category>
-      </categories>
-      <tags>
-        <tag>python</tag>
       </tags>
   </entry>
   <entry>
@@ -73,9 +73,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Leetcode-Search Insert Position]]></title>
-    <url>%2F2018%2F09%2F12%2FLeetcode-Search%20Insert%20Position%2F</url>
-    <content type="text"><![CDATA[Search Insert Position给定一个有序的无重复元素的序列，和一个目标元素，求出该元素在数组中的下标，若数组中不存在该元素，则返回其在数组中的顺序下标。Description 解题思路：直接采用暴力查询。首先判断目标元素是否在数组中，若存在，则直接返回下标。若不存在，将目标元素与数组中的最大最小值比较；如果介于最大最小值之间，则与数组中的任意两个相邻元素进行比较。 1234567891011121314151617def searchInsert(self, nums, target): """ :type nums: List[int] :type target: int :rtype: int """ if target in nums: return nums.index(target) if target&lt;min(nums): return 0 elif target&gt;max(nums): return len(nums) else: for i in range(len(nums)): if nums[i]&lt;target and nums[i+1]&gt;target: return i+1 改进：采用二分查找的思路，leetcode上提供的另一种解法。 123456789101112131415161718192021222324252627def searchInsert(self, nums, key): if key &gt; nums[len(nums) - 1]: return len(nums) if key &lt; nums[0]: return 0 l, r = 0, len(nums) - 1 while l &lt;= r: m = (l + r)/2 if nums[m] &gt; key: r = m - 1 if r &gt;= 0: if nums[r] &lt; key: return r + 1 else: return 0 elif nums[m] &lt; key: l = m + 1 if l &lt; len(nums): if nums[l] &gt; key: return l else: return len(nums) else: return m]]></content>
+    <title><![CDATA[Leetcode-Valid Anagram]]></title>
+    <url>%2F2018%2F09%2F12%2FLeetcode-Valid%20Anagram%2F</url>
+    <content type="text"><![CDATA[Valid Anagram给定两个字符串，判断其中一个字符串是否是另一个字符串的异序组合。Given two strings s and t, write a function to determine if t is an anagram of s. For example,s = “anagram”, t = “nagaram”, return true.s = “rat”, t = “car”, return false. Description tip：anagram的意思是把单词的字母顺序打乱，重新排列后变成一个新单词。 解题思路1：将两个字符串排序后直接比较是否相同。 12345678class Solution(object): def isAnagram(self, s, t): """ :type s: str :type t: str :rtype: bool """ return sorted(s) == sorted(t) 解题思路2：采用字典的方式，分别记录两个字符串中每个字符的出现次数，比较字典是否相同。12345678910111213class Solution(object): def isAnagram(self, s, t): """ :type s: str :type t: str :rtype: bool """ dict1, dict2 = &#123;&#125;, &#123;&#125; for i in s: dict1[i] = dict1.get(i, 0) + 1 for j in t: dict2[j] = dict2.get(j, 0) + 1 return dict1 == dict2 tip:dict.get(key, default=None):对于键key返回其对应的值，或者若dict中不包含key则返回default(注意，default的默认值是None)。]]></content>
       <categories>
         <category>leetcode</category>
       </categories>
@@ -85,9 +85,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Leetcode-Valid Anagram]]></title>
-    <url>%2F2018%2F09%2F12%2FLeetcode-Valid%20Anagram%2F</url>
-    <content type="text"><![CDATA[Valid Anagram给定两个字符串，判断其中一个字符串是否是另一个字符串的异序组合。Given two strings s and t, write a function to determine if t is an anagram of s. For example,s = “anagram”, t = “nagaram”, return true.s = “rat”, t = “car”, return false. Description tip：anagram的意思是把单词的字母顺序打乱，重新排列后变成一个新单词。 解题思路1：将两个字符串排序后直接比较是否相同。 12345678class Solution(object): def isAnagram(self, s, t): """ :type s: str :type t: str :rtype: bool """ return sorted(s) == sorted(t) 解题思路2：采用字典的方式，分别记录两个字符串中每个字符的出现次数，比较字典是否相同。12345678910111213class Solution(object): def isAnagram(self, s, t): """ :type s: str :type t: str :rtype: bool """ dict1, dict2 = &#123;&#125;, &#123;&#125; for i in s: dict1[i] = dict1.get(i, 0) + 1 for j in t: dict2[j] = dict2.get(j, 0) + 1 return dict1 == dict2 tip:dict.get(key, default=None):对于键key返回其对应的值，或者若dict中不包含key则返回default(注意，default的默认值是None)。]]></content>
+    <title><![CDATA[Leetcode-Search Insert Position]]></title>
+    <url>%2F2018%2F09%2F12%2FLeetcode-Search%20Insert%20Position%2F</url>
+    <content type="text"><![CDATA[Search Insert Position给定一个有序的无重复元素的序列，和一个目标元素，求出该元素在数组中的下标，若数组中不存在该元素，则返回其在数组中的顺序下标。Description 解题思路：直接采用暴力查询。首先判断目标元素是否在数组中，若存在，则直接返回下标。若不存在，将目标元素与数组中的最大最小值比较；如果介于最大最小值之间，则与数组中的任意两个相邻元素进行比较。 1234567891011121314151617def searchInsert(self, nums, target): """ :type nums: List[int] :type target: int :rtype: int """ if target in nums: return nums.index(target) if target&lt;min(nums): return 0 elif target&gt;max(nums): return len(nums) else: for i in range(len(nums)): if nums[i]&lt;target and nums[i+1]&gt;target: return i+1 改进：采用二分查找的思路，leetcode上提供的另一种解法。 123456789101112131415161718192021222324252627def searchInsert(self, nums, key): if key &gt; nums[len(nums) - 1]: return len(nums) if key &lt; nums[0]: return 0 l, r = 0, len(nums) - 1 while l &lt;= r: m = (l + r)/2 if nums[m] &gt; key: r = m - 1 if r &gt;= 0: if nums[r] &lt; key: return r + 1 else: return 0 elif nums[m] &lt; key: l = m + 1 if l &lt; len(nums): if nums[l] &gt; key: return l else: return len(nums) else: return m]]></content>
       <categories>
         <category>leetcode</category>
       </categories>
@@ -133,18 +133,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Leetcode-Remove Duplicates from Sorted Array]]></title>
-    <url>%2F2018%2F09%2F12%2Fleetcode-Remove%20Duplicates%20from%20Sorted%20Array%2F</url>
-    <content type="text"><![CDATA[给定一个排序数组，将数组中的重复元素去除，并返回修改后的数组长度。Description解题思路：题目要求不能分配额外空间，由于python中列表是传引用，因此可以对传入的列表进行原地修改。由于数组已经排序，因此可以通过新建一个下标两两比较删除重复的元素。注意：题目中 It doesn’t matter what you leave beyond the new length，因此超出长度部分的重复元素不需要考虑。 123456789101112131415def removeDuplicates(self, nums): """ :type nums: List[int] :rtype: int """ if not nums: return 0 newIndex = 0 for i in range(1, len(nums)): if nums[i] != nums[newIndex]: newIndex += 1 nums[newIndex] = nums[i] return newIndex+1]]></content>
-      <categories>
-        <category>leetcode</category>
-      </categories>
-      <tags>
-        <tag>python</tag>
-        <tag>leetcode</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[Leetcode-Remove Duplicates from Sorted List]]></title>
     <url>%2F2018%2F09%2F12%2FLeetcode-Remove%20Duplicates%20from%20Sorted%20List%2F</url>
     <content type="text"><![CDATA[Remove Duplicates from Sorted List从排序链表中删除重复元素。Description 解题思路：依次比较相邻的两个链表元素，若值相等，则将前一个节点的next引用为后一个节点的后一个节点。使用cur来依次向下遍历元素，最后返回head。 12345678910111213141516171819# Definition for singly-linked list.# class ListNode(object):# def __init__(self, x):# self.val = x# self.next = Noneclass Solution(object): def deleteDuplicates(self, head): """ :type head: ListNode :rtype: ListNode """ cur = head while cur: while cur.next and cur.next.val==cur.val: cur.next = cur.next.next cur = cur.next return head]]></content>
@@ -157,9 +145,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Leetcode-Maximum Subarray]]></title>
-    <url>%2F2018%2F09%2F12%2FLeetcode-Maximum%20Subarray%2F</url>
-    <content type="text"><![CDATA[Maximum Subarray最大子串和问题：从一个数组中找出一个子串使其和最大。Description tips:子串是指数组中连续的若干个元素，而子序列只要求各元素的顺序与其在数组中一致，而没有连续的要求。 解题思路：自己没有想出来，直接借鉴了网上的动态规划思路，我觉得下面是一些解决的关键点： 对于array[1…n]，如果array[i…j]就是满足和最大的子串，那么对于任何k(i&lt;=k&lt;=j)，我们有array[i…k]的和大于0。具体证明 假设已知0, .., k的最大和sum[k]以后，则0, …, k+1的最大和sum[k+1]分为以下两种情况：1）若sum[k]&gt;=0，则sum[k+1]=sum[k]+A[k+1]。代码中即curSum = curSum+nums[i]。2）若sum[k]&lt;0，另起一个SubArray，令sum[k+1]=A[k+1]。代码中即curSum = nums[i]。 1234567891011121314def maxSubArray(self, nums): """ :type nums: List[int] :rtype: int """ if not nums: return 0 curSum = maxSum = nums[0] for i in range(1, len(nums)): curSum = max(nums[i], curSum+nums[i]) maxSum = max(maxSum, curSum) return maxSum]]></content>
+    <title><![CDATA[Leetcode-Remove Duplicates from Sorted Array]]></title>
+    <url>%2F2018%2F09%2F12%2Fleetcode-Remove%20Duplicates%20from%20Sorted%20Array%2F</url>
+    <content type="text"><![CDATA[给定一个排序数组，将数组中的重复元素去除，并返回修改后的数组长度。Description解题思路：题目要求不能分配额外空间，由于python中列表是传引用，因此可以对传入的列表进行原地修改。由于数组已经排序，因此可以通过新建一个下标两两比较删除重复的元素。注意：题目中 It doesn’t matter what you leave beyond the new length，因此超出长度部分的重复元素不需要考虑。 123456789101112131415def removeDuplicates(self, nums): """ :type nums: List[int] :rtype: int """ if not nums: return 0 newIndex = 0 for i in range(1, len(nums)): if nums[i] != nums[newIndex]: newIndex += 1 nums[newIndex] = nums[i] return newIndex+1]]></content>
       <categories>
         <category>leetcode</category>
       </categories>
@@ -181,9 +169,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Leetcode-Linked List Cycle]]></title>
-    <url>%2F2018%2F09%2F12%2FLeetcode-Linked%20List%20Cycle%2F</url>
-    <content type="text"><![CDATA[Linked List Cycle判断单链表是否存在环。Description 解题思路：一个单链表如果不存在环，则最后一个元素的下一个节点必然为null.如果单链表存在环，则：设置两个指针，一个慢指针和一个快指针。将链表的环想象成是一个圆形操场，两个人在同一起跑线开始绕着操场无限循环跑，那么快的人必然会再一次和慢的人相遇，即快指针的元素和慢指针的元素相同时，即说明存在环。在代码中，慢指针设置为每次走一步，即slow=slow.next,快指针设置为每次走两步，即fast=fast.next.next。实际步数设置是可以任取的，只是循环次数不同，如可以设置fast=fast.next.next.next。 1234567891011121314151617181920212223# Definition for singly-linked list.# class ListNode(object):# def __init__(self, x):# self.val = x# self.next = Noneclass Solution(object): def hasCycle(self, head): """ :type head: ListNode :rtype: bool """ if head==None: return False slow = head fast = head while fast.next and fast.next.next: slow = slow.next fast = fast.next.next if slow==fast: return True return False 改进：由于每次循环都要判断是否到达最后一个节点，因此leetcode上提供了另一种思路，即采取异常的方式。 “Easier to ask for forgiveness than permission.”12345678910def hasCycle(self, head): try: slow = head fast = head.next while slow is not fast: slow = slow.next fast = fast.next.next return True except: return False]]></content>
+    <title><![CDATA[Leetcode-Longest Common Prefix]]></title>
+    <url>%2F2018%2F09%2F12%2FLeetcode-Longest%20Common%20Prefix%2F</url>
+    <content type="text"><![CDATA[Longest Common Prefix最长相同前缀：给定一个字符串数组，找出其中最长的共同前缀。这里leetcode并没有说明共同前缀是指两两之间的前缀还是所有字符串的前缀，实际题意是指采用所有字符串的共同前缀。Description 解题思路：若字符串数组为空则返回空字符串；否则从所有字符串中找出最短的字符串，依次将最短字符串的每个元素和所有字符串对应位置上的元素进行比较，若不同则停止比较并返回；若全部相同，则返回最短字符串。 1234567891011if not strs: return ""shortest = min(strs, key=len)for i in range(len(shortest)): for string in strs: if shortest[i] != string[i]: return shortest[:i] return shortest 改进：将字符串数组进行排序(注意，这里是按照字母表顺序排序，而不是根据长度排序），排序后实际只要比较第一个和最后一个字符串的共同前缀即可，因此大大提升了运行时间。12345678910111213if not strs: return "" strs.sort() first = strs[0] last = strs[-1] minlen = min(len(first), len(last)) for i in range(minlen): if first[i]!=last[i]: return first[:i] return first[:minlen]]]></content>
       <categories>
         <category>leetcode</category>
       </categories>
@@ -193,9 +181,21 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Leetcode-Longest Common Prefix]]></title>
-    <url>%2F2018%2F09%2F12%2FLeetcode-Longest%20Common%20Prefix%2F</url>
-    <content type="text"><![CDATA[Longest Common Prefix最长相同前缀：给定一个字符串数组，找出其中最长的共同前缀。这里leetcode并没有说明共同前缀是指两两之间的前缀还是所有字符串的前缀，实际题意是指采用所有字符串的共同前缀。Description 解题思路：若字符串数组为空则返回空字符串；否则从所有字符串中找出最短的字符串，依次将最短字符串的每个元素和所有字符串对应位置上的元素进行比较，若不同则停止比较并返回；若全部相同，则返回最短字符串。 1234567891011if not strs: return ""shortest = min(strs, key=len)for i in range(len(shortest)): for string in strs: if shortest[i] != string[i]: return shortest[:i] return shortest 改进：将字符串数组进行排序(注意，这里是按照字母表顺序排序，而不是根据长度排序），排序后实际只要比较第一个和最后一个字符串的共同前缀即可，因此大大提升了运行时间。12345678910111213if not strs: return "" strs.sort() first = strs[0] last = strs[-1] minlen = min(len(first), len(last)) for i in range(minlen): if first[i]!=last[i]: return first[:i] return first[:minlen]]]></content>
+    <title><![CDATA[Leetcode-Maximum Subarray]]></title>
+    <url>%2F2018%2F09%2F12%2FLeetcode-Maximum%20Subarray%2F</url>
+    <content type="text"><![CDATA[Maximum Subarray最大子串和问题：从一个数组中找出一个子串使其和最大。Description tips:子串是指数组中连续的若干个元素，而子序列只要求各元素的顺序与其在数组中一致，而没有连续的要求。 解题思路：自己没有想出来，直接借鉴了网上的动态规划思路，我觉得下面是一些解决的关键点： 对于array[1…n]，如果array[i…j]就是满足和最大的子串，那么对于任何k(i&lt;=k&lt;=j)，我们有array[i…k]的和大于0。具体证明 假设已知0, .., k的最大和sum[k]以后，则0, …, k+1的最大和sum[k+1]分为以下两种情况：1）若sum[k]&gt;=0，则sum[k+1]=sum[k]+A[k+1]。代码中即curSum = curSum+nums[i]。2）若sum[k]&lt;0，另起一个SubArray，令sum[k+1]=A[k+1]。代码中即curSum = nums[i]。 1234567891011121314def maxSubArray(self, nums): """ :type nums: List[int] :rtype: int """ if not nums: return 0 curSum = maxSum = nums[0] for i in range(1, len(nums)): curSum = max(nums[i], curSum+nums[i]) maxSum = max(maxSum, curSum) return maxSum]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+        <tag>leetcode</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Leetcode-Linked List Cycle]]></title>
+    <url>%2F2018%2F09%2F12%2FLeetcode-Linked%20List%20Cycle%2F</url>
+    <content type="text"><![CDATA[Linked List Cycle判断单链表是否存在环。Description 解题思路：一个单链表如果不存在环，则最后一个元素的下一个节点必然为null.如果单链表存在环，则：设置两个指针，一个慢指针和一个快指针。将链表的环想象成是一个圆形操场，两个人在同一起跑线开始绕着操场无限循环跑，那么快的人必然会再一次和慢的人相遇，即快指针的元素和慢指针的元素相同时，即说明存在环。在代码中，慢指针设置为每次走一步，即slow=slow.next,快指针设置为每次走两步，即fast=fast.next.next。实际步数设置是可以任取的，只是循环次数不同，如可以设置fast=fast.next.next.next。 1234567891011121314151617181920212223# Definition for singly-linked list.# class ListNode(object):# def __init__(self, x):# self.val = x# self.next = Noneclass Solution(object): def hasCycle(self, head): """ :type head: ListNode :rtype: bool """ if head==None: return False slow = head fast = head while fast.next and fast.next.next: slow = slow.next fast = fast.next.next if slow==fast: return True return False 改进：由于每次循环都要判断是否到达最后一个节点，因此leetcode上提供了另一种思路，即采取异常的方式。 “Easier to ask for forgiveness than permission.”12345678910def hasCycle(self, head): try: slow = head fast = head.next while slow is not fast: slow = slow.next fast = fast.next.next return True except: return False]]></content>
       <categories>
         <category>leetcode</category>
       </categories>
@@ -241,18 +241,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Leetcode-Count and Say]]></title>
-    <url>%2F2018%2F09%2F12%2FLeetcode-Count%20and%20Say%2F</url>
-    <content type="text"><![CDATA[Count and Sayleetcode关于这题的说明比较含糊：The count-and-say sequence is the sequence of integers with the first five terms as following: 1 11 21 1211 111221 1 is read off as “one 1” or 11.11 is read off as “two 1s” or 21.21 is read off as “one 2, then one 1” or 1211.Given an integer n, generate the nth term of the count-and-say sequence. 题意是n=1时输出字符串1；n=2时，数上次字符串中的数值个数，因为上次字符串有1个1，所以输出11；n=3时，由于上次字符是11，有2个1，所以输出21；n=4时，由于上次字符串是21，有1个2和1个1，所以输出1211。依次类推，写个countAndSay(n)函数返回字符串。 解题思路：采用动态规划的方式。当n=1时，直接返回‘1’。自底向上，然后根据n=index时返回的字符串计算出n=index+1时的字符串，并保存到数组curString中。1234567891011121314151617181920def countAndSay(self, n): if n==1: return '1' count = 1 index = 1 curString = ['', '1'] while index != n: result = '' cs = curString[index] + '*' # 加*是为了下面计算方便 for i in range(len(cs)-1): if cs[i]==cs[i+1]: count += 1 else: result += str(count) + cs[i] # 加*的目的是为了方便处理最后一个字符 count = 1 index += 1 curString.append(result) return curString[n] 采用正则表达：leetcode上提供的另一种解题思路，尽管运行比较慢。用作者的解释即: (.) captures one character and \1* covers its repetitions.其中\1代表后向引用，表示表达式中，从左往右数，第一个左括号对应的括号内的内容。以此类推，\2表示第二个，\0表示整个表达式。12345def countAndSay(self, n): s = '1' for _ in range(n - 1): s = re.sub(r'(.)\1*', lambda m: str(len(m.group(0))) + m.group(1), s) return s]]></content>
-      <categories>
-        <category>leetcode</category>
-      </categories>
-      <tags>
-        <tag>python</tag>
-        <tag>leetcode</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[Leetcode-Best Time to Buy and Sell Stock]]></title>
     <url>%2F2018%2F09%2F12%2FLeetcode-Best%20Time%20to%20Buy%20and%20Sell%20Stock%2F</url>
     <content type="text"><![CDATA[Best Time to Buy and Sell Stock买卖股票的最佳时机，返回最大收益。Say you have an array for which the ith element is the price of a given stock on day i. If you were only permitted to complete at most one transaction (ie, buy one and sell one share of the stock), design an algorithm to find the maximum profit.Description 解题思路：依次遍历整个数组，利用minprice这个变量来保存每个元素之前的最低价格，并计算出在该元素卖出时能够带来的最大收益，最后将每个元素卖出时得到的最大收益进行比较即得到整个系统的最大收益。 12345678910111213class Solution(object): def maxProfit(self, prices): """ :type prices: List[int] :rtype: int """ maxprofit = 0 minprice = float('inf') for price in prices: minprice = min(minprice, price) profit = price - minprice maxprofit = max(maxprofit, profit) return maxprofit tip:Python中可以用如下方式表示正负无穷：float(“inf”), float(“-inf”)]]></content>
@@ -277,9 +265,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Leetcode-2sum-python]]></title>
-    <url>%2F2018%2F09%2F12%2Fleetcode-2sum%2F</url>
-    <content type="text"><![CDATA[Given nums = [2, 7, 11, 15], target = 9, Because nums[0] + nums[1] = 2 + 7 = 9, return [0, 1].Description 1234567891011class Solution: def twoSum(self, nums, target): """ :type nums: List[int] :type target: int :rtype: List[int] """ for i in range(0, len(nums)): for j in range(i+1, len(nums)): if nums[i]+nums[j]==target: return [i, j] 初始版本的思路：依次将两个数相加，由于题目中说明只存在一对答案，因此如果存在符合条件的两个下标，就是需要的答案。测试未通过：leetcode要求需要满足时间复杂度。 12345678910class Solution(object): def twoSum(self, nums, target): if len(nums) &lt;= 1: return False buff_dict = &#123;&#125; for i in range(len(nums)): if nums[i] in buff_dict: return [buff_dict[nums[i]], i] else: buff_dict[target - nums[i]] = i leetcode上提供的一种O(n)的python解法，使用字典, python字典采用hash方式。解题思路：建立一个字典，依次比较列表中的元素。如果字典的键中不存在该元素，就将target - nums[i]作为字典的键，并将对应的下标作为值；如果字典键中存在该元素，则说明字典中存在符合要求的对应元素，通过buff_dict[nums[i]]提取出另一个元素的下标。]]></content>
+    <title><![CDATA[Leetcode-Count and Say]]></title>
+    <url>%2F2018%2F09%2F12%2FLeetcode-Count%20and%20Say%2F</url>
+    <content type="text"><![CDATA[Count and Sayleetcode关于这题的说明比较含糊：The count-and-say sequence is the sequence of integers with the first five terms as following: 1 11 21 1211 111221 1 is read off as “one 1” or 11.11 is read off as “two 1s” or 21.21 is read off as “one 2, then one 1” or 1211.Given an integer n, generate the nth term of the count-and-say sequence. 题意是n=1时输出字符串1；n=2时，数上次字符串中的数值个数，因为上次字符串有1个1，所以输出11；n=3时，由于上次字符是11，有2个1，所以输出21；n=4时，由于上次字符串是21，有1个2和1个1，所以输出1211。依次类推，写个countAndSay(n)函数返回字符串。 解题思路：采用动态规划的方式。当n=1时，直接返回‘1’。自底向上，然后根据n=index时返回的字符串计算出n=index+1时的字符串，并保存到数组curString中。1234567891011121314151617181920def countAndSay(self, n): if n==1: return '1' count = 1 index = 1 curString = ['', '1'] while index != n: result = '' cs = curString[index] + '*' # 加*是为了下面计算方便 for i in range(len(cs)-1): if cs[i]==cs[i+1]: count += 1 else: result += str(count) + cs[i] # 加*的目的是为了方便处理最后一个字符 count = 1 index += 1 curString.append(result) return curString[n] 采用正则表达：leetcode上提供的另一种解题思路，尽管运行比较慢。用作者的解释即: (.) captures one character and \1* covers its repetitions.其中\1代表后向引用，表示表达式中，从左往右数，第一个左括号对应的括号内的内容。以此类推，\2表示第二个，\0表示整个表达式。12345def countAndSay(self, n): s = '1' for _ in range(n - 1): s = re.sub(r'(.)\1*', lambda m: str(len(m.group(0))) + m.group(1), s) return s]]></content>
       <categories>
         <category>leetcode</category>
       </categories>
@@ -299,6 +287,18 @@
         <tag>Django</tag>
         <tag>python</tag>
         <tag>blog</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Leetcode-2sum-python]]></title>
+    <url>%2F2018%2F09%2F12%2Fleetcode-2sum%2F</url>
+    <content type="text"><![CDATA[Given nums = [2, 7, 11, 15], target = 9, Because nums[0] + nums[1] = 2 + 7 = 9, return [0, 1].Description 1234567891011class Solution: def twoSum(self, nums, target): """ :type nums: List[int] :type target: int :rtype: List[int] """ for i in range(0, len(nums)): for j in range(i+1, len(nums)): if nums[i]+nums[j]==target: return [i, j] 初始版本的思路：依次将两个数相加，由于题目中说明只存在一对答案，因此如果存在符合条件的两个下标，就是需要的答案。测试未通过：leetcode要求需要满足时间复杂度。 12345678910class Solution(object): def twoSum(self, nums, target): if len(nums) &lt;= 1: return False buff_dict = &#123;&#125; for i in range(len(nums)): if nums[i] in buff_dict: return [buff_dict[nums[i]], i] else: buff_dict[target - nums[i]] = i leetcode上提供的一种O(n)的python解法，使用字典, python字典采用hash方式。解题思路：建立一个字典，依次比较列表中的元素。如果字典的键中不存在该元素，就将target - nums[i]作为字典的键，并将对应的下标作为值；如果字典键中存在该元素，则说明字典中存在符合要求的对应元素，通过buff_dict[nums[i]]提取出另一个元素的下标。]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+        <tag>leetcode</tag>
       </tags>
   </entry>
   <entry>
