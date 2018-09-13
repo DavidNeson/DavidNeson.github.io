@@ -38,6 +38,18 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[MongoDB 学习]]></title>
+    <url>%2F2018%2F09%2F12%2FMongoDB%E5%AD%A6%E4%B9%A0%2F</url>
+    <content type="text"><![CDATA[记录下我在学习mongoDB时遇到的一些问题与解决方案 问题：windows下启动mongoDB后显示等待连接端口，并且停止在这一步：123456782017-09-17T11:57:32.398+0800 I CONTROL [initandlisten]2017-09-17T11:57:32.398+0800 I CONTROL [initandlisten] ** WARNING: Access control is n2017-09-17T11:57:32.399+0800 I CONTROL [initandlisten] ** Read and write accenrestricted.2017-09-17T11:57:32.402+0800 I CONTROL [initandlisten]2017-09-17T11:57:32.966+0800 I FTDC [initandlisten] Initializing full-time diagnost:/data/db/diagnostic.data'2017-09-17T11:57:32.972+0800 I NETWORK [thread1] waiting for connections on port 27017 解决：其实，这不是卡住了，而是数据库已经启动，并且这个终端还不能关掉，关掉意味着数据库也关了。因此，保留这个终端，再开个终端，进入mongoDB\bin文件夹后输入.\mongo(注意，这里不是.\mongod)回车，就可以进入mongodb了 问题：ubuntu上出现无法连上mongodb的问题，显示已启用另一个终端：123mongod2017-09-20T04:07:41.308-0400 I STORAGE [initandlisten] exception in initAndListen: 98 Unable to create/open lock file: /data/db/mongod.lock errno:13 Permission denied Is a mongod instance already running?, terminating2017-09-20T04:07:41.308-0400 I CONTROL [initandlisten] dbexit: rc: 100 解决： 1sudo chown -R `id -u` /data/db 一句话解决，虽然我也不清楚原理。接下来同样是另起一个终端输入mongo即成功]]></content>
+      <categories>
+        <category>数据库</category>
+      </categories>
+      <tags>
+        <tag>数据库</tag>
+        <tag>mongo</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Python 正则表达式 匹配邮箱地址]]></title>
     <url>%2F2018%2F09%2F12%2FPython%20%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%20%E5%8C%B9%E9%85%8D%E9%82%AE%E7%AE%B1%E5%9C%B0%E5%9D%80%2F</url>
     <content type="text"><![CDATA[12345import repat = r'^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$' email_address = 'ddy_davie@aaa.com'matched_address = re.match(pat, email_address)print(matched_address.group()) pat = r’^(\w)+(.\w+)*@(\w)+((.\w+)+)$’ ， 这个正则表达式目前尝试了基本可以覆盖大部分邮箱类型。]]></content>
@@ -45,18 +57,6 @@
         <category>python</category>
       </categories>
       <tags>
-        <tag>python</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Leetcode-Valid Parentheses]]></title>
-    <url>%2F2018%2F09%2F12%2FLeetcode-Valid%20Parentheses%2F</url>
-    <content type="text"><![CDATA[Valid Parentheses验证有效括号对：给定一个只包含括号类型的字符串，判断该字符串的括号是否有效闭合。DescriptionGiven a string containing just the characters ‘(‘, ‘)’, ‘{‘, ‘}’, ‘[‘ and ‘]’, determine if the input string is valid.The brackets must close in the correct order, “()” and “()[]{}” are all valid but “(]” and “([)]” are not. 解题思路：采用栈来解决，依次检查给的characters，如果是左括号都入栈；如果是右括号，检查栈如果为空，证明不能匹配，如果栈不空，弹出top，与当前扫描的括号检查是否匹配。全部字符都检查完了以后，判断栈是否为空，空则正确都匹配，不空则证明有没匹配的。 代码中采用字典方式，将右括号作为键，将左括号作为值。123456789101112131415161718def isValid(self, s): """ :type s: str :rtype: bool """ stack = [] dict = &#123;')':'(', ']':'[', '&#125;':'&#123;'&#125; for char in s: if char in dict.values(): stack.append(char) elif char in dict.keys(): if stack==[] or stack.pop()!=dict[char]: return False else: return False return stack==[]]]></content>
-      <categories>
-        <category>leetcode</category>
-      </categories>
-      <tags>
-        <tag>leetcode</tag>
         <tag>python</tag>
       </tags>
   </entry>
@@ -73,27 +73,15 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[MongoDB 学习]]></title>
-    <url>%2F2018%2F09%2F12%2FMongoDB%E5%AD%A6%E4%B9%A0%2F</url>
-    <content type="text"><![CDATA[记录下我在学习mongoDB时遇到的一些问题与解决方案 问题：windows下启动mongoDB后显示等待连接端口，并且停止在这一步：123456782017-09-17T11:57:32.398+0800 I CONTROL [initandlisten]2017-09-17T11:57:32.398+0800 I CONTROL [initandlisten] ** WARNING: Access control is n2017-09-17T11:57:32.399+0800 I CONTROL [initandlisten] ** Read and write accenrestricted.2017-09-17T11:57:32.402+0800 I CONTROL [initandlisten]2017-09-17T11:57:32.966+0800 I FTDC [initandlisten] Initializing full-time diagnost:/data/db/diagnostic.data'2017-09-17T11:57:32.972+0800 I NETWORK [thread1] waiting for connections on port 27017 解决：其实，这不是卡住了，而是数据库已经启动，并且这个终端还不能关掉，关掉意味着数据库也关了。因此，保留这个终端，再开个终端，进入mongoDB\bin文件夹后输入.\mongo(注意，这里不是.\mongod)回车，就可以进入mongodb了 问题：ubuntu上出现无法连上mongodb的问题，显示已启用另一个终端：123mongod2017-09-20T04:07:41.308-0400 I STORAGE [initandlisten] exception in initAndListen: 98 Unable to create/open lock file: /data/db/mongod.lock errno:13 Permission denied Is a mongod instance already running?, terminating2017-09-20T04:07:41.308-0400 I CONTROL [initandlisten] dbexit: rc: 100 解决： 1sudo chown -R `id -u` /data/db 一句话解决，虽然我也不清楚原理。接下来同样是另起一个终端输入mongo即成功]]></content>
-      <categories>
-        <category>数据库</category>
-      </categories>
-      <tags>
-        <tag>数据库</tag>
-        <tag>mongo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Leetcode-Roman to Integer]]></title>
-    <url>%2F2018%2F09%2F12%2FLeetcode-Roman%20to%20Integer%2F</url>
-    <content type="text"><![CDATA[Roman to Integer将罗马数字转换为阿拉伯数字。Description leetcode没有说明具体的转换规则，我是按照罗马数字规则设置的。 解题思路：一个保存罗马数字映射的字典:1roman = &#123;&apos;M&apos;: 1000,&apos;D&apos;: 500 ,&apos;C&apos;: 100,&apos;L&apos;: 50,&apos;X&apos;: 10,&apos;V&apos;: 5,&apos;I&apos;: 1&#125; 规则： 如果一个元素值比右边元素大，则加上这个元素； 如果一个元素值比右边元素小，则减去这个元素； 始终加上末尾的元素； 123456789101112131415def romanToInt(self, s): """ :type s: str :rtype: int """ roman = &#123;'M': 1000,'D': 500 ,'C': 100,'L': 50,'X': 10,'V': 5,'I': 1&#125; num = 0 for i in range(len(s)-1): if roman[s[i]]&gt;=roman[s[i+1]]: num = num + roman[s[i]] else: num = num - roman[s[i]] return num+roman[s[-1]]]]></content>
+    <title><![CDATA[Leetcode-Valid Parentheses]]></title>
+    <url>%2F2018%2F09%2F12%2FLeetcode-Valid%20Parentheses%2F</url>
+    <content type="text"><![CDATA[Valid Parentheses验证有效括号对：给定一个只包含括号类型的字符串，判断该字符串的括号是否有效闭合。DescriptionGiven a string containing just the characters ‘(‘, ‘)’, ‘{‘, ‘}’, ‘[‘ and ‘]’, determine if the input string is valid.The brackets must close in the correct order, “()” and “()[]{}” are all valid but “(]” and “([)]” are not. 解题思路：采用栈来解决，依次检查给的characters，如果是左括号都入栈；如果是右括号，检查栈如果为空，证明不能匹配，如果栈不空，弹出top，与当前扫描的括号检查是否匹配。全部字符都检查完了以后，判断栈是否为空，空则正确都匹配，不空则证明有没匹配的。 代码中采用字典方式，将右括号作为键，将左括号作为值。123456789101112131415161718def isValid(self, s): """ :type s: str :rtype: bool """ stack = [] dict = &#123;')':'(', ']':'[', '&#125;':'&#123;'&#125; for char in s: if char in dict.values(): stack.append(char) elif char in dict.keys(): if stack==[] or stack.pop()!=dict[char]: return False else: return False return stack==[]]]></content>
       <categories>
         <category>leetcode</category>
       </categories>
       <tags>
-        <tag>leetcode</tag>
         <tag>python</tag>
+        <tag>leetcode</tag>
       </tags>
   </entry>
   <entry>
@@ -104,8 +92,8 @@
         <category>leetcode</category>
       </categories>
       <tags>
-        <tag>leetcode</tag>
         <tag>python</tag>
+        <tag>leetcode</tag>
       </tags>
   </entry>
   <entry>
@@ -116,8 +104,20 @@
         <category>leetcode</category>
       </categories>
       <tags>
-        <tag>leetcode</tag>
         <tag>python</tag>
+        <tag>leetcode</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Leetcode-Roman to Integer]]></title>
+    <url>%2F2018%2F09%2F12%2FLeetcode-Roman%20to%20Integer%2F</url>
+    <content type="text"><![CDATA[Roman to Integer将罗马数字转换为阿拉伯数字。Description leetcode没有说明具体的转换规则，我是按照罗马数字规则设置的。 解题思路：一个保存罗马数字映射的字典:1roman = &#123;&apos;M&apos;: 1000,&apos;D&apos;: 500 ,&apos;C&apos;: 100,&apos;L&apos;: 50,&apos;X&apos;: 10,&apos;V&apos;: 5,&apos;I&apos;: 1&#125; 规则： 如果一个元素值比右边元素大，则加上这个元素； 如果一个元素值比右边元素小，则减去这个元素； 始终加上末尾的元素； 123456789101112131415def romanToInt(self, s): """ :type s: str :rtype: int """ roman = &#123;'M': 1000,'D': 500 ,'C': 100,'L': 50,'X': 10,'V': 5,'I': 1&#125; num = 0 for i in range(len(s)-1): if roman[s[i]]&gt;=roman[s[i+1]]: num = num + roman[s[i]] else: num = num - roman[s[i]] return num+roman[s[-1]]]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+        <tag>leetcode</tag>
       </tags>
   </entry>
   <entry>
@@ -128,32 +128,8 @@
         <category>leetcode</category>
       </categories>
       <tags>
-        <tag>leetcode</tag>
         <tag>python</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Leetcode-Remove Duplicates from Sorted List]]></title>
-    <url>%2F2018%2F09%2F12%2FLeetcode-Remove%20Duplicates%20from%20Sorted%20List%2F</url>
-    <content type="text"><![CDATA[Remove Duplicates from Sorted List从排序链表中删除重复元素。Description 解题思路：依次比较相邻的两个链表元素，若值相等，则将前一个节点的next引用为后一个节点的后一个节点。使用cur来依次向下遍历元素，最后返回head。 12345678910111213141516171819# Definition for singly-linked list.# class ListNode(object):# def __init__(self, x):# self.val = x# self.next = Noneclass Solution(object): def deleteDuplicates(self, head): """ :type head: ListNode :rtype: ListNode """ cur = head while cur: while cur.next and cur.next.val==cur.val: cur.next = cur.next.next cur = cur.next return head]]></content>
-      <categories>
-        <category>leetcode</category>
-      </categories>
-      <tags>
         <tag>leetcode</tag>
-        <tag>python</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Leetcode-Merge Two Sorted Lists]]></title>
-    <url>%2F2018%2F09%2F12%2FLeetcode-Merge%20Two%20Sorted%20Lists%2F</url>
-    <content type="text"><![CDATA[Merge Two Sorted Lists合并两个有序链表。Description 解题思路：此题比较简单，采用迭代的方式。由于链表已经是有序的，所以依次比较两个链表当前元素的大小，然后将较小的元素加入到新的链表中。 123456789101112131415161718192021222324# Definition for singly-linked list.# class ListNode(object):# def __init__(self, x):# self.val = x# self.next = Noneclass Solution(object): def mergeTwoLists(self, l1, l2): """ :type l1: ListNode :type l2: ListNode :rtype: ListNode """ result = cur = ListNode(1) # 第一个节点可以任取 while l1 and l2: if l1.val &lt; l2.val: cur.next = l1 l1 = l1.next else: cur.next = l2 l2 = l2.next cur = cur.next cur.next = l1 or l2 return result.next]]></content>
-      <categories>
-        <category>leetcode</category>
-      </categories>
-      <tags>
-        <tag>leetcode</tag>
-        <tag>python</tag>
       </tags>
   </entry>
   <entry>
@@ -164,8 +140,32 @@
         <category>leetcode</category>
       </categories>
       <tags>
-        <tag>leetcode</tag>
         <tag>python</tag>
+        <tag>leetcode</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Leetcode-Merge Two Sorted Lists]]></title>
+    <url>%2F2018%2F09%2F12%2FLeetcode-Merge%20Two%20Sorted%20Lists%2F</url>
+    <content type="text"><![CDATA[Merge Two Sorted Lists合并两个有序链表。Description 解题思路：此题比较简单，采用迭代的方式。由于链表已经是有序的，所以依次比较两个链表当前元素的大小，然后将较小的元素加入到新的链表中。 123456789101112131415161718192021222324# Definition for singly-linked list.# class ListNode(object):# def __init__(self, x):# self.val = x# self.next = Noneclass Solution(object): def mergeTwoLists(self, l1, l2): """ :type l1: ListNode :type l2: ListNode :rtype: ListNode """ result = cur = ListNode(1) # 第一个节点可以任取 while l1 and l2: if l1.val &lt; l2.val: cur.next = l1 l1 = l1.next else: cur.next = l2 l2 = l2.next cur = cur.next cur.next = l1 or l2 return result.next]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+        <tag>leetcode</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Leetcode-Remove Duplicates from Sorted List]]></title>
+    <url>%2F2018%2F09%2F12%2FLeetcode-Remove%20Duplicates%20from%20Sorted%20List%2F</url>
+    <content type="text"><![CDATA[Remove Duplicates from Sorted List从排序链表中删除重复元素。Description 解题思路：依次比较相邻的两个链表元素，若值相等，则将前一个节点的next引用为后一个节点的后一个节点。使用cur来依次向下遍历元素，最后返回head。 12345678910111213141516171819# Definition for singly-linked list.# class ListNode(object):# def __init__(self, x):# self.val = x# self.next = Noneclass Solution(object): def deleteDuplicates(self, head): """ :type head: ListNode :rtype: ListNode """ cur = head while cur: while cur.next and cur.next.val==cur.val: cur.next = cur.next.next cur = cur.next return head]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+        <tag>leetcode</tag>
       </tags>
   </entry>
   <entry>
@@ -176,20 +176,8 @@
         <category>leetcode</category>
       </categories>
       <tags>
-        <tag>leetcode</tag>
         <tag>python</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Leetcode-Intersection of Two Linked Lists]]></title>
-    <url>%2F2018%2F09%2F12%2FLeetcode-Intersection%20of%20Two%20Linked%20Lists%2F</url>
-    <content type="text"><![CDATA[Intersection of Two Linked Lists寻找两个无环链表的交点。Description 解题思路： 如果两个链长度相同的话，那么对应的一个个比下去就能找到； 如果两个链长度不相同，分别计算出两个链表的长度，计算出长度差值，然后让长度更长的那个链表从头节点先遍历长度差的步数，这样以后两个链表按尾部对齐。接着长链表和短链表同步往下走，遇到的第一个相同的节点就是最早的公共节点。 123456789101112131415161718192021222324252627282930# Definition for singly-linked list.# class ListNode(object):# def __init__(self, x):# self.val = x# self.next = Noneclass Solution(object): def getIntersectionNode(self, headA, headB): """ :type head1, head1: ListNode :rtype: ListNode """ lenA = lenB = 0 curA, curB = headA, headB while curA is not None: lenA += 1 curA = curA.next while curB is not None: lenB += 1 curB = curB.next if lenA&gt;lenB: for i in range(lenA-lenB): headA = headA.next else: for i in range(lenB-lenA): headB = headB.next while headA != headB: headA = headA.next headB = headB.next return headA]]></content>
-      <categories>
-        <category>leetcode</category>
-      </categories>
-      <tags>
         <tag>leetcode</tag>
-        <tag>python</tag>
       </tags>
   </entry>
   <entry>
@@ -200,8 +188,20 @@
         <category>leetcode</category>
       </categories>
       <tags>
-        <tag>leetcode</tag>
         <tag>python</tag>
+        <tag>leetcode</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Leetcode-Intersection of Two Linked Lists]]></title>
+    <url>%2F2018%2F09%2F12%2FLeetcode-Intersection%20of%20Two%20Linked%20Lists%2F</url>
+    <content type="text"><![CDATA[Intersection of Two Linked Lists寻找两个无环链表的交点。Description 解题思路： 如果两个链长度相同的话，那么对应的一个个比下去就能找到； 如果两个链长度不相同，分别计算出两个链表的长度，计算出长度差值，然后让长度更长的那个链表从头节点先遍历长度差的步数，这样以后两个链表按尾部对齐。接着长链表和短链表同步往下走，遇到的第一个相同的节点就是最早的公共节点。 123456789101112131415161718192021222324252627282930# Definition for singly-linked list.# class ListNode(object):# def __init__(self, x):# self.val = x# self.next = Noneclass Solution(object): def getIntersectionNode(self, headA, headB): """ :type head1, head1: ListNode :rtype: ListNode """ lenA = lenB = 0 curA, curB = headA, headB while curA is not None: lenA += 1 curA = curA.next while curB is not None: lenB += 1 curB = curB.next if lenA&gt;lenB: for i in range(lenA-lenB): headA = headA.next else: for i in range(lenB-lenA): headB = headB.next while headA != headB: headA = headA.next headB = headB.next return headA]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+        <tag>leetcode</tag>
       </tags>
   </entry>
   <entry>
@@ -212,8 +212,8 @@
         <category>leetcode</category>
       </categories>
       <tags>
-        <tag>leetcode</tag>
         <tag>python</tag>
+        <tag>leetcode</tag>
       </tags>
   </entry>
   <entry>
@@ -224,8 +224,8 @@
         <category>leetcode</category>
       </categories>
       <tags>
-        <tag>leetcode</tag>
         <tag>python</tag>
+        <tag>leetcode</tag>
       </tags>
   </entry>
   <entry>
@@ -236,8 +236,8 @@
         <category>leetcode</category>
       </categories>
       <tags>
-        <tag>leetcode</tag>
         <tag>python</tag>
+        <tag>leetcode</tag>
       </tags>
   </entry>
   <entry>
@@ -248,32 +248,8 @@
         <category>leetcode</category>
       </categories>
       <tags>
-        <tag>leetcode</tag>
         <tag>python</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Leetcode-Climbing Stairs]]></title>
-    <url>%2F2018%2F09%2F12%2FLeetcode-Climbing%20Stairs%2F</url>
-    <content type="text"><![CDATA[Climbing Stairs爬梯子问题。给定一个n级台阶，每次可以走一个台阶或者两个台阶，一共有多少种走法？Description 解题思路：很常见的一种递推题型，要求n级台阶的走法，即可以分解为求n-1级台阶加上n-2级台阶的走法，climbNum[n]=climbNum[n-1]+climbNum[n-2]。所以问题实质上就是求解斐波那契数列。但由于采用递推方式会产生大量重复的计算，因此使用动态规划自底向上的进行计算，其中我们使用一个数组用于保存每步产生的结果。 123456789101112class Solution(object): def climbStairs(self, n): """ :type n: int :rtype: int """ if n&lt;=2: return n climbNum = [1,1,2] for i in range(3,n+1): climbNum.append(climbNum[i-1] + climbNum[i-2]) return climbNum[n]]]></content>
-      <categories>
-        <category>leetcode</category>
-      </categories>
-      <tags>
         <tag>leetcode</tag>
-        <tag>python</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Leetcode-Best Time to Buy and Sell Stock]]></title>
-    <url>%2F2018%2F09%2F12%2FLeetcode-Best%20Time%20to%20Buy%20and%20Sell%20Stock%2F</url>
-    <content type="text"><![CDATA[Best Time to Buy and Sell Stock买卖股票的最佳时机，返回最大收益。Say you have an array for which the ith element is the price of a given stock on day i. If you were only permitted to complete at most one transaction (ie, buy one and sell one share of the stock), design an algorithm to find the maximum profit.Description 解题思路：依次遍历整个数组，利用minprice这个变量来保存每个元素之前的最低价格，并计算出在该元素卖出时能够带来的最大收益，最后将每个元素卖出时得到的最大收益进行比较即得到整个系统的最大收益。 12345678910111213class Solution(object): def maxProfit(self, prices): """ :type prices: List[int] :rtype: int """ maxprofit = 0 minprice = float('inf') for price in prices: minprice = min(minprice, price) profit = price - minprice maxprofit = max(maxprofit, profit) return maxprofit tip:Python中可以用如下方式表示正负无穷：float(“inf”), float(“-inf”)]]></content>
-      <categories>
-        <category>leetcode</category>
-      </categories>
-      <tags>
-        <tag>leetcode</tag>
-        <tag>python</tag>
       </tags>
   </entry>
   <entry>
@@ -284,8 +260,32 @@
         <category>leetcode</category>
       </categories>
       <tags>
-        <tag>leetcode</tag>
         <tag>python</tag>
+        <tag>leetcode</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Leetcode-Best Time to Buy and Sell Stock]]></title>
+    <url>%2F2018%2F09%2F12%2FLeetcode-Best%20Time%20to%20Buy%20and%20Sell%20Stock%2F</url>
+    <content type="text"><![CDATA[Best Time to Buy and Sell Stock买卖股票的最佳时机，返回最大收益。Say you have an array for which the ith element is the price of a given stock on day i. If you were only permitted to complete at most one transaction (ie, buy one and sell one share of the stock), design an algorithm to find the maximum profit.Description 解题思路：依次遍历整个数组，利用minprice这个变量来保存每个元素之前的最低价格，并计算出在该元素卖出时能够带来的最大收益，最后将每个元素卖出时得到的最大收益进行比较即得到整个系统的最大收益。 12345678910111213class Solution(object): def maxProfit(self, prices): """ :type prices: List[int] :rtype: int """ maxprofit = 0 minprice = float('inf') for price in prices: minprice = min(minprice, price) profit = price - minprice maxprofit = max(maxprofit, profit) return maxprofit tip:Python中可以用如下方式表示正负无穷：float(“inf”), float(“-inf”)]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+        <tag>leetcode</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Leetcode-Climbing Stairs]]></title>
+    <url>%2F2018%2F09%2F12%2FLeetcode-Climbing%20Stairs%2F</url>
+    <content type="text"><![CDATA[Climbing Stairs爬梯子问题。给定一个n级台阶，每次可以走一个台阶或者两个台阶，一共有多少种走法？Description 解题思路：很常见的一种递推题型，要求n级台阶的走法，即可以分解为求n-1级台阶加上n-2级台阶的走法，climbNum[n]=climbNum[n-1]+climbNum[n-2]。所以问题实质上就是求解斐波那契数列。但由于采用递推方式会产生大量重复的计算，因此使用动态规划自底向上的进行计算，其中我们使用一个数组用于保存每步产生的结果。 123456789101112class Solution(object): def climbStairs(self, n): """ :type n: int :rtype: int """ if n&lt;=2: return n climbNum = [1,1,2] for i in range(3,n+1): climbNum.append(climbNum[i-1] + climbNum[i-2]) return climbNum[n]]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+        <tag>leetcode</tag>
       </tags>
   </entry>
   <entry>
@@ -296,21 +296,9 @@
         <category>python</category>
       </categories>
       <tags>
-        <tag>python</tag>
         <tag>Django</tag>
+        <tag>python</tag>
         <tag>blog</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Batch Normalization 批标准化]]></title>
-    <url>%2F2018%2F09%2F12%2FBatch%20Normalization%2F</url>
-    <content type="text"><![CDATA[批标准化，相当于深度学习中的数据归一化。 普通机器学习的归一化只针对输入层，而BN对中间每一层输入（激活函数处理前的数值，我称之为net值）进行归一化。 归一化的目的是使的数据的分布集中在激活函数的敏感区域（即中间线性区域）。 BN层就是对深度学习的中间层的输入数据（net值）进行归一化，解决在训练过程中，中间层数据分布发生改变的情况，使得每一层的分布相似(标准正态)，同时引入非线性, 保留原来每层训练得到的特征分布（通过变换重构）。 机器学习领域的重要假设：独立同分布假设，即假设训练集数据和测试集数据是满足相同分布的，这是通过训练数据获得的模型能够在测试集获得好的效果的一个基本保障。 BatchNorm就是在深度神经网络训练过程中使得每一层神经网络的输入保持相同分布的。 Mini-batch 相对于 SGD的两个优点：梯度更新方向更准确；并行计算速度快。 BatchNorm就是基于mini-batch的，这也是名称中Batch的由来。 随机梯度下降成了训练深度网络的主流方法。尽管随机梯度下降法对于训练深度网络简单高效，但是它有个毛病，就是需要我们人为的去选择参数，比如学习率、参数初始化、权重衰减系数、Drop out比例等。这些参数的选择对训练结果至关重要，以至于我们很多时间都浪费在这些的调参上。 采用Batch Normalization的好处提升了训练速度，收敛过程大大加快。 (1)你可以选择比较大的初始学习率，让你的训练速度飙涨。以前还需要慢慢调整学习率，甚至在网络训练到一半的时候，还需要想着学习率进一步调小的比例选择多少比较合适，现在我们可以采用初始很大的学习率，然后学习率的衰减速度也很大，因为这个算法收敛很快。当然这个算法即使你选择了较小的学习率，也比以前的收敛速度快，因为它具有快速训练收敛的特性； (2)你再也不用去理会过拟合中drop out、L2正则项参数的选择问题，采用BN算法后，你可以移除这两项了参数，或者可以选择更小的L2正则约束参数了，因为BN具有提高网络泛化能力的特性，避因为这是类似于dropout的一种防止过拟合的正则化方式； 原因：均值和方差是在mini-batch上计算的，而不是在整个训练集，因此均值和方差会存在噪声，所以和dropout类似，它往每个隐藏层的激活值上增加了噪音：dropout增加噪音的方式，使一个隐藏的单元，以一定的概率乘以0. 但因为添加噪音较小，因此正则化效果轻微，可以和dropout一起使用。 (3)再也不需要使用局部响应归一化层了（局部响应归一化是Alexnet网络用到的方法，搞视觉的估计比较熟悉），因为BN本身就是一个归一化网络层； (4)可以把训练数据彻底打乱（防止每批训练的时候，某一个样本都经常被挑选到）。 深度神经网络中的归一化问题 Internal Covariate Shift：原因在于神经网络学习过程本质就是为了学习数据分布，一旦训练数据与测试数据的分布不同，那么网络的泛化能力也大大降低；另外一方面，一旦每批训练数据的分布各不相同(batch 梯度下降)，那么网络就要在每次迭代都去学习适应不同的分布，这样将会大大降低网络的训练速度，这也正是为什么我们需要对数据都要做一个归一化预处理的原因。 我们知道网络一旦train起来，那么参数就要发生更新，除了输入层的数据外(因为输入层数据，我们已经人为的为每个样本归一化)，后面网络每一层的输入数据分布是一直在发生变化的，因为在训练的时候，前面层训练参数的更新将导致后面层输入数据分布的变化。以网络第二层为例：网络的第二层输入，是由第一层的参数和input计算得到的，而第一层的参数在整个训练过程中一直在变化，因此必然会引起后面每一层输入数据分布的改变。我们把网络中间层在训练过程中，数据分布的改变称之为：“Internal Covariate Shift”。 BN概述基本思想：深层神经网络在做非线性变换前的激活输入值net值随着网络深度加深或者在训练过程中，其分布逐渐发生偏移或者变动，之所以训练收敛慢，一般是整体分布逐渐往激活函数的取值区间的上下限两端靠近，导致反向传播时底层神经网络的梯度消失，这就是深层神经网络收敛越来越慢的原因。 BN就是通过规范化手段，把每层神经网络任意神经元输入值net值的分布强行拉回到均值为0方差为1的标准正态分布，使得激活输入值落在中间比较敏感的区域的概率较大，让梯度变大，避免梯度消失问题，梯度变大意味着学习收敛速度快，加快训练速度。 如图，转换为标准正态分布后，数据落在-4，4的概率变大，而在这个区间范围内，对应的激活函数的梯度较大。 但是：由于数据都落在了激活函数的线性区域，相当于做了线性变换，那么整个网络就会变成多层线性网络，表达能力下降。为了解决这个问题，BN为了保证非线性的获得，对变换后满足均值为0方差为1的x又进行了scale加上shift操作（y=sclae*x + shift)，而这两个参数是通过训练学习得到的，意思是通过scale和shift把这个值从标准正态分布进行一些移动和变形，使得数据的散落区域从正中心向非线性区间进行部分移动。 训练 就像激活函数层、卷积层、全连接层、池化层一样，BN(Batch Normalization)也属于网络的一层。 BN层是对每个隐层的net值进行变换。经过BN变换以后的值再进过激活函数得到out值。 对于mini-batch来说，一次训练包含m个训练样本，因此对于隐层的每个神经元的激活值来说包括： 预处理： 注意：这里t层第k个神经元的并不是指原始输入，而是该神经元隐层的net值的第k维数据。 变换的意思是：某个神经元对应的net值减去mini-batch内m个样本在该层对应维度神经元的m个net值的均值并除以方差。也就是说，这个变换和标准归一化一样，对每个样本的每个维度的归一化需要所有样本该维度的数据。 某个神经元的net值在经过变换后就会形成服从均值为0，方差为1的正态分布。 为了避免数据始终落在激活函数的线性区域，导致网络的表达能力下降，因此引入两个调节参数scale和shift,对变换后的net值进行变换的反操作 引入了两个可学习参数γ和β： 每一个神经元$x^k$都会有一对这样的参数γ、β。这样其实当： 是可以恢复出原始的某一层所学到的特征的。因此我们引入了这个可学习重构参数γ、β，让我们的网络可以学习恢复出原始网络所要学习的特征分布。最后Batch Normalization网络层的前向传导过程公式就是： 上面的公式中m指的是mini-batch size。 预测阶段训练阶段可以根据mini-batch的若干个样本进行变换。 但是测试阶段我们一般只输入一个测试样本。我们可以采用所有训练实例中获得的统计量来代替mini-batch中m个训练实例的均值和方差统计量。 计算全局统计量时只需利用每次mini-batch计算的均值和方差统计量，不需要重新计算, 这里方差采用的是无偏方差估计。 有了均值和方差，并且每个隐层scaling和shift参数已经计算好，在预测时就可以采用： 这个公式其实和： 等价,就是代入而已，不过实际计算时可以减少计算量。 参考： BN详细笔记：https://www.cnblogs.com/guoyaohua/p/8724433.html Batch normalization 学习笔记：https://blog.csdn.net/hjimce/article/details/50866313 批标准化过程：https://blog.csdn.net/whitesilence/article/details/75667002]]></content>
-      <categories>
-        <category>深度学习</category>
-      </categories>
-      <tags>
-        <tag>正则化</tag>
-        <tag>深度学习</tag>
       </tags>
   </entry>
   <entry>
@@ -321,8 +309,20 @@
         <category>leetcode</category>
       </categories>
       <tags>
-        <tag>leetcode</tag>
         <tag>python</tag>
+        <tag>leetcode</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Batch Normalization 批标准化]]></title>
+    <url>%2F2018%2F09%2F12%2FBatch%20Normalization%2F</url>
+    <content type="text"><![CDATA[批标准化，相当于深度学习中的数据归一化。 普通机器学习的归一化只针对输入层，而BN对中间每一层输入（激活函数处理前的数值，我称之为net值）进行归一化。 归一化的目的是使的数据的分布集中在激活函数的敏感区域（即中间线性区域）。 BN层就是对深度学习的中间层的输入数据（net值）进行归一化，解决在训练过程中，中间层数据分布发生改变的情况，使得每一层的分布相似(标准正态)，同时引入非线性, 保留原来每层训练得到的特征分布（通过变换重构）。 机器学习领域的重要假设：独立同分布假设，即假设训练集数据和测试集数据是满足相同分布的，这是通过训练数据获得的模型能够在测试集获得好的效果的一个基本保障。 BatchNorm就是在深度神经网络训练过程中使得每一层神经网络的输入保持相同分布的。 Mini-batch 相对于 SGD的两个优点：梯度更新方向更准确；并行计算速度快。 BatchNorm就是基于mini-batch的，这也是名称中Batch的由来。 随机梯度下降成了训练深度网络的主流方法。尽管随机梯度下降法对于训练深度网络简单高效，但是它有个毛病，就是需要我们人为的去选择参数，比如学习率、参数初始化、权重衰减系数、Drop out比例等。这些参数的选择对训练结果至关重要，以至于我们很多时间都浪费在这些的调参上。 采用Batch Normalization的好处提升了训练速度，收敛过程大大加快。 (1)你可以选择比较大的初始学习率，让你的训练速度飙涨。以前还需要慢慢调整学习率，甚至在网络训练到一半的时候，还需要想着学习率进一步调小的比例选择多少比较合适，现在我们可以采用初始很大的学习率，然后学习率的衰减速度也很大，因为这个算法收敛很快。当然这个算法即使你选择了较小的学习率，也比以前的收敛速度快，因为它具有快速训练收敛的特性； (2)你再也不用去理会过拟合中drop out、L2正则项参数的选择问题，采用BN算法后，你可以移除这两项了参数，或者可以选择更小的L2正则约束参数了，因为BN具有提高网络泛化能力的特性，避因为这是类似于dropout的一种防止过拟合的正则化方式； 原因：均值和方差是在mini-batch上计算的，而不是在整个训练集，因此均值和方差会存在噪声，所以和dropout类似，它往每个隐藏层的激活值上增加了噪音：dropout增加噪音的方式，使一个隐藏的单元，以一定的概率乘以0. 但因为添加噪音较小，因此正则化效果轻微，可以和dropout一起使用。 (3)再也不需要使用局部响应归一化层了（局部响应归一化是Alexnet网络用到的方法，搞视觉的估计比较熟悉），因为BN本身就是一个归一化网络层； (4)可以把训练数据彻底打乱（防止每批训练的时候，某一个样本都经常被挑选到）。 深度神经网络中的归一化问题 Internal Covariate Shift：原因在于神经网络学习过程本质就是为了学习数据分布，一旦训练数据与测试数据的分布不同，那么网络的泛化能力也大大降低；另外一方面，一旦每批训练数据的分布各不相同(batch 梯度下降)，那么网络就要在每次迭代都去学习适应不同的分布，这样将会大大降低网络的训练速度，这也正是为什么我们需要对数据都要做一个归一化预处理的原因。 我们知道网络一旦train起来，那么参数就要发生更新，除了输入层的数据外(因为输入层数据，我们已经人为的为每个样本归一化)，后面网络每一层的输入数据分布是一直在发生变化的，因为在训练的时候，前面层训练参数的更新将导致后面层输入数据分布的变化。以网络第二层为例：网络的第二层输入，是由第一层的参数和input计算得到的，而第一层的参数在整个训练过程中一直在变化，因此必然会引起后面每一层输入数据分布的改变。我们把网络中间层在训练过程中，数据分布的改变称之为：“Internal Covariate Shift”。 BN概述基本思想：深层神经网络在做非线性变换前的激活输入值net值随着网络深度加深或者在训练过程中，其分布逐渐发生偏移或者变动，之所以训练收敛慢，一般是整体分布逐渐往激活函数的取值区间的上下限两端靠近，导致反向传播时底层神经网络的梯度消失，这就是深层神经网络收敛越来越慢的原因。 BN就是通过规范化手段，把每层神经网络任意神经元输入值net值的分布强行拉回到均值为0方差为1的标准正态分布，使得激活输入值落在中间比较敏感的区域的概率较大，让梯度变大，避免梯度消失问题，梯度变大意味着学习收敛速度快，加快训练速度。 如图，转换为标准正态分布后，数据落在-4，4的概率变大，而在这个区间范围内，对应的激活函数的梯度较大。 但是：由于数据都落在了激活函数的线性区域，相当于做了线性变换，那么整个网络就会变成多层线性网络，表达能力下降。为了解决这个问题，BN为了保证非线性的获得，对变换后满足均值为0方差为1的x又进行了scale加上shift操作（y=sclae*x + shift)，而这两个参数是通过训练学习得到的，意思是通过scale和shift把这个值从标准正态分布进行一些移动和变形，使得数据的散落区域从正中心向非线性区间进行部分移动。 训练 就像激活函数层、卷积层、全连接层、池化层一样，BN(Batch Normalization)也属于网络的一层。 BN层是对每个隐层的net值进行变换。经过BN变换以后的值再进过激活函数得到out值。 对于mini-batch来说，一次训练包含m个训练样本，因此对于隐层的每个神经元的激活值来说包括： 预处理： 注意：这里t层第k个神经元的并不是指原始输入，而是该神经元隐层的net值的第k维数据。 变换的意思是：某个神经元对应的net值减去mini-batch内m个样本在该层对应维度神经元的m个net值的均值并除以方差。也就是说，这个变换和标准归一化一样，对每个样本的每个维度的归一化需要所有样本该维度的数据。 某个神经元的net值在经过变换后就会形成服从均值为0，方差为1的正态分布。 为了避免数据始终落在激活函数的线性区域，导致网络的表达能力下降，因此引入两个调节参数scale和shift,对变换后的net值进行变换的反操作 引入了两个可学习参数γ和β： 每一个神经元$x^k$都会有一对这样的参数γ、β。这样其实当： 是可以恢复出原始的某一层所学到的特征的。因此我们引入了这个可学习重构参数γ、β，让我们的网络可以学习恢复出原始网络所要学习的特征分布。最后Batch Normalization网络层的前向传导过程公式就是： 上面的公式中m指的是mini-batch size。 预测阶段训练阶段可以根据mini-batch的若干个样本进行变换。 但是测试阶段我们一般只输入一个测试样本。我们可以采用所有训练实例中获得的统计量来代替mini-batch中m个训练实例的均值和方差统计量。 计算全局统计量时只需利用每次mini-batch计算的均值和方差统计量，不需要重新计算, 这里方差采用的是无偏方差估计。 有了均值和方差，并且每个隐层scaling和shift参数已经计算好，在预测时就可以采用： 这个公式其实和： 等价,就是代入而已，不过实际计算时可以减少计算量。 参考： BN详细笔记：https://www.cnblogs.com/guoyaohua/p/8724433.html Batch normalization 学习笔记：https://blog.csdn.net/hjimce/article/details/50866313 批标准化过程：https://blog.csdn.net/whitesilence/article/details/75667002]]></content>
+      <categories>
+        <category>深度学习</category>
+      </categories>
+      <tags>
+        <tag>深度学习</tag>
+        <tag>正则化</tag>
       </tags>
   </entry>
   <entry>
@@ -345,9 +345,9 @@
         <category>机器学习</category>
       </categories>
       <tags>
+        <tag>正则化</tag>
         <tag>机器学习</tag>
         <tag>过拟合</tag>
-        <tag>正则化</tag>
       </tags>
   </entry>
   <entry>
@@ -370,8 +370,8 @@
         <category>python</category>
       </categories>
       <tags>
-        <tag>leetcode</tag>
         <tag>python</tag>
+        <tag>leetcode</tag>
       </tags>
   </entry>
   <entry>

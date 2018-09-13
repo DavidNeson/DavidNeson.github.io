@@ -94,7 +94,7 @@
 <meta property="og:site_name" content="HelloDavid">
 <meta property="og:description" content="决策树本质是一颗由多个判断节点组成的树。决策树算法的核心是通过对数据的学习，选定判断节点，构造一颗合适的决策树。 树模型不需要做归一化：  归一化的目的是为了加快梯度下降法的收敛速度，但是决策树模型不需要计算梯度 树模型只考虑特征的划分界限，而不需要考虑特征的值范围  决策树的关键是选择最优划分属性。 一个属性会有多个取值，根据这个属性的不同取值将输入的数据划分为多个样本集合，一个取值对应一个分支">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-09-13T06:21:42.873Z">
+<meta property="og:updated_time" content="2018-09-13T08:04:17.064Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="随机森林和决策树">
 <meta name="twitter:description" content="决策树本质是一颗由多个判断节点组成的树。决策树算法的核心是通过对数据的学习，选定判断节点，构造一颗合适的决策树。 树模型不需要做归一化：  归一化的目的是为了加快梯度下降法的收敛速度，但是决策树模型不需要计算梯度 树模型只考虑特征的划分界限，而不需要考虑特征的值范围  决策树的关键是选择最优划分属性。 一个属性会有多个取值，根据这个属性的不同取值将输入的数据划分为多个样本集合，一个取值对应一个分支">
@@ -409,6 +409,7 @@
 <p><strong>(注意，CART树只选取一个取值，因此是划分为二叉树）</strong></p>
 <p><strong>使得每个取值分支集合中的样本尽可能属于同一类别，即分支集合的纯度越高。</strong></p>
 <p><strong>三种选择方式</strong>：</p>
+<a id="more"></a>
 <h2 id="信息增益-ID3"><a href="#信息增益-ID3" class="headerlink" title="信息增益 ID3"></a>信息增益 ID3</h2><p><strong>信息熵</strong>：度量样本集合纯度的常用指标。令$p_k, k=1,2,…,m$代表第k类样本在输入样本集合D中所占的比例，假设一共有m个类别，则该集合D的信息熵为：</p>
 <p>$$Ent(D)=-\sum_{k=1}^{m}p_klog_2p_k$$</p>
 <p>信息熵Ent(D)的值越小，则代表D的纯度越高。</p>
@@ -1249,5 +1250,5 @@
 
   
 
-<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"scale":1,"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":100,"height":200,"hOffset":0,"vOffset":-100},"mobile":{"show":true,"scale":0.5,"hOffset":-20,"vOffset":-100},"pluginJsPath":"lib/","pluginRootPath":"live2dw/"});</script></body>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"scale":1,"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":100,"height":200,"hOffset":-10,"vOffset":-100},"mobile":{"show":true,"scale":0.5,"hOffset":-20,"vOffset":-100},"pluginJsPath":"lib/","pluginRootPath":"live2dw/"});</script></body>
 </html>
