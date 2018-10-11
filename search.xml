@@ -64,18 +64,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Splunk-SDK-Python学习]]></title>
-    <url>%2F2018%2F09%2F12%2FSplunk-SDK-Python%E5%AD%A6%E4%B9%A0%2F</url>
-    <content type="text"><![CDATA[Splunk最近在公司实习用到了splunk,需要调用splunk sdk进行一些简单的开发，目前把我这个星期的一些体会记录下。 什么是splunk简单来说，Splunk是一个托管的日志文件管理工具，它的主要功能包括：· 日志聚合功能· 搜索功能· 提取意义· 对结果进行分组，联合，拆分和格式化· 可视化功能· 电子邮件提醒功能而目前我通过splunk sdk主要实现的功能就是搜索功能，即搜索到我想要的日志。 Splunk SDK for Python通过Splunk SDK我们可以和Splunk引擎进行交互。Splunk SDK是基于REST API的，因此通过简短的代码实现我们想要的功能。官方文档：http://dev.splunk.com/python 安装！ 注意， splunk SDK 目前只支持python2，不支持python3.Ubuntu下安装步骤：1234567sudo apt-get install python-pip //第一步：安装pip工具pip freeze //查看是否已安装splunk sdkpip install splunk-sdk //第二步：下载splunk sdkexport PYTHONPATH=~/splunk-sdk-python //添加到python环境变量 模块介绍主要有4个模块： binding: 基于HTTP的抽象层 client: 基于REST API的抽象层，其中Service类是其最重要的类，并且client模块比binding模块有更多的好处。 results: 对splunk返回的数据进行处理 data: 将Atom Feed data转换为python格式目前我主要用到的模块是client和results模块。 与Splunk enterprise建立连接python21234567891011121314151617import splunklib.client as clientHOST = "localhost"PORT = 8089USERNAME = "admin"PASSWORD = "changeme"# Create a Service instance and log in service = client.connect( host=HOST, port=PORT, username=USERNAME, password=PASSWORD)# Print installed apps to the console to verify loginfor app in service.apps: print app.name 存在的问题：splunk服务器的8089没有打开，因此连接不上解决：splunk的服务器是在一个虚拟网络下的，8089端口不对公网开放，因此可以在该网络下另起一个ubuntu虚拟机，然后ubuntu虚拟机通过22端口与请求相连接，收到请求后，由于ubuntu和splunk server是在一个内网中，因此ubuntu虚拟机可以与splunk server的8089端口通信，获得数据后再返回给请求端。 Search的一些术语 search query:即查询命令的集合，例如：* | head 10```12345678910111213141516171819202122* saved search: 被保存的可以被再次使用的搜索查询。* search job：即一次搜索操作的具体实例。* Normal search: 异步搜索，能够立刻返回serach job而不用等到结果都搜索完。* Blocking search:同步搜索，只有所有搜索全都完成后才返回job.* Oneshot: blocking serach，直接返回搜索结果而不是返回job ...### 创建一个blocking serach与normal search的不同点是blocking search是堵塞的，也就是创建job后不会立刻返回，而是等待所有结果搜索结束后才返回，此时job包含了所有的搜索结果。```python# Get the collection of jobsjobs = service.jobs# Run a blocking search--search everything, return 1st 100 eventskwargs_blockingsearch = &#123;&quot;exec_mode&quot;: &quot;blocking&quot;&#125;searchquery_blocking = &quot;search * | head 100&quot;print &quot;Wait for the search to finish...&quot;# A blocking search returns the job&apos;s SID when the search is donejob = jobs.create(searchquery_blocking, **kwargs_blockingsearch)print &quot;...done!\n&quot; 创建一个normal searchnormal search 是异步的，即立刻返回job, 但是实际结果并没有返回，因此会存在操作job时没有event返回的情况，我目前的做法是，如果知道大致的搜索时间，则设置一定时间等待后再对job进行操作。123456789101112131415import splunklib.results as results# Initialize your service like so# import splunklib.client as client# service = client.connect(username="admin", password="changeme")searchquery_normal = "search * | head 10"kwargs_normalsearch = &#123;"exec_mode": "normal"&#125;job = service.jobs.create(searchquery_normal, **kwargs_normalsearch)# Get the results and display themfor result in results.ResultsReader(job.results()): print resultjob.cancel() 创建一个oneshot search1234567891011121314151617import splunklib.results as results# Run a one-shot search and display the results using the results reader# Set the parameters for the search:# - Search everything in a 24-hour time range starting June 19, 12:00pm# - Display the first 10 resultskwargs_oneshot = &#123;"earliest_time": "2014-06-19T12:00:00.000-07:00", "latest_time": "2014-06-20T12:00:00.000-07:00"&#125;searchquery_oneshot = "search * | head 10"oneshotsearch_results = service.jobs.oneshot(searchquery_oneshot, **kwargs_oneshot)# Get the results and display them using the ResultsReaderreader = results.ResultsReader(oneshotsearch_results)for item in reader: print(item) …待续]]></content>
-      <categories>
-        <category>python</category>
-      </categories>
-      <tags>
-        <tag>python</tag>
-        <tag>splunk</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[Ubuntu Tmux 启用鼠标滚动]]></title>
     <url>%2F2018%2F09%2F12%2FUbuntu%20Tmux%20%E5%90%AF%E7%94%A8%E9%BC%A0%E6%A0%87%E6%BB%9A%E5%8A%A8%2F</url>
     <content type="text"><![CDATA[Ubuntu Tmux 启用鼠标滚动在Ubuntu上使用Tmux是一件非常舒服的事，但有时使用鼠标滚轮时，和平时使用终端的习惯不怎么一致，因此可以设置启用鼠标滚轮。具体方式：按完前缀ctrl+B后，再按分号：进入命令行模式，输入以下命令：1set -g mouse on 就启用了鼠标滚轮，可以通过鼠标直接选择不同的窗口，也可以上下直接翻页。 Tip但在以上设置下，会发现无法用中键向 tmux 中复制文本，也无法将 tmux 中选择好的文本中键复制到系统其他应用程序中。这里有一个 trick，那就是在 tmux 中不论选择还是复制时，都按住 Shift 键，你会发现熟悉的中键又回来了 :-) 此外，还可以使用 Shift+Insert 快捷键将系统剪切板中的内容输入 tmux 中。 相对于 tmux 原生的选择模式（不加 shift 键），使用系统选择有个缺陷，即当一行内存在多个面板时，无法选择单个面板中的内容，这时就必须使用 tmux 自带的复制粘贴系统了。 参考：https://superuser.com/questions/210125/scroll-shell-output-with-mouse-in-tmux,http://mindonmind.github.io/notes/linux/tmux_copy_paste_by_mouse.html里面有人说输入setw -g mouse on,但我没有成功，我的ubuntu版本为14.04。]]></content>
@@ -89,15 +77,15 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Leetcode-Valid Parentheses]]></title>
-    <url>%2F2018%2F09%2F12%2FLeetcode-Valid%20Parentheses%2F</url>
-    <content type="text"><![CDATA[Valid Parentheses验证有效括号对：给定一个只包含括号类型的字符串，判断该字符串的括号是否有效闭合。DescriptionGiven a string containing just the characters ‘(‘, ‘)’, ‘{‘, ‘}’, ‘[‘ and ‘]’, determine if the input string is valid.The brackets must close in the correct order, “()” and “()[]{}” are all valid but “(]” and “([)]” are not. 解题思路：采用栈来解决，依次检查给的characters，如果是左括号都入栈；如果是右括号，检查栈如果为空，证明不能匹配，如果栈不空，弹出top，与当前扫描的括号检查是否匹配。全部字符都检查完了以后，判断栈是否为空，空则正确都匹配，不空则证明有没匹配的。 代码中采用字典方式，将右括号作为键，将左括号作为值。123456789101112131415161718def isValid(self, s): """ :type s: str :rtype: bool """ stack = [] dict = &#123;')':'(', ']':'[', '&#125;':'&#123;'&#125; for char in s: if char in dict.values(): stack.append(char) elif char in dict.keys(): if stack==[] or stack.pop()!=dict[char]: return False else: return False return stack==[]]]></content>
+    <title><![CDATA[Splunk-SDK-Python学习]]></title>
+    <url>%2F2018%2F09%2F12%2FSplunk-SDK-Python%E5%AD%A6%E4%B9%A0%2F</url>
+    <content type="text"><![CDATA[Splunk最近在公司实习用到了splunk,需要调用splunk sdk进行一些简单的开发，目前把我这个星期的一些体会记录下。 什么是splunk简单来说，Splunk是一个托管的日志文件管理工具，它的主要功能包括：· 日志聚合功能· 搜索功能· 提取意义· 对结果进行分组，联合，拆分和格式化· 可视化功能· 电子邮件提醒功能而目前我通过splunk sdk主要实现的功能就是搜索功能，即搜索到我想要的日志。 Splunk SDK for Python通过Splunk SDK我们可以和Splunk引擎进行交互。Splunk SDK是基于REST API的，因此通过简短的代码实现我们想要的功能。官方文档：http://dev.splunk.com/python 安装！ 注意， splunk SDK 目前只支持python2，不支持python3.Ubuntu下安装步骤：1234567sudo apt-get install python-pip //第一步：安装pip工具pip freeze //查看是否已安装splunk sdkpip install splunk-sdk //第二步：下载splunk sdkexport PYTHONPATH=~/splunk-sdk-python //添加到python环境变量 模块介绍主要有4个模块： binding: 基于HTTP的抽象层 client: 基于REST API的抽象层，其中Service类是其最重要的类，并且client模块比binding模块有更多的好处。 results: 对splunk返回的数据进行处理 data: 将Atom Feed data转换为python格式目前我主要用到的模块是client和results模块。 与Splunk enterprise建立连接python21234567891011121314151617import splunklib.client as clientHOST = "localhost"PORT = 8089USERNAME = "admin"PASSWORD = "changeme"# Create a Service instance and log in service = client.connect( host=HOST, port=PORT, username=USERNAME, password=PASSWORD)# Print installed apps to the console to verify loginfor app in service.apps: print app.name 存在的问题：splunk服务器的8089没有打开，因此连接不上解决：splunk的服务器是在一个虚拟网络下的，8089端口不对公网开放，因此可以在该网络下另起一个ubuntu虚拟机，然后ubuntu虚拟机通过22端口与请求相连接，收到请求后，由于ubuntu和splunk server是在一个内网中，因此ubuntu虚拟机可以与splunk server的8089端口通信，获得数据后再返回给请求端。 Search的一些术语 search query:即查询命令的集合，例如：* | head 10```12345678910111213141516171819202122* saved search: 被保存的可以被再次使用的搜索查询。* search job：即一次搜索操作的具体实例。* Normal search: 异步搜索，能够立刻返回serach job而不用等到结果都搜索完。* Blocking search:同步搜索，只有所有搜索全都完成后才返回job.* Oneshot: blocking serach，直接返回搜索结果而不是返回job ...### 创建一个blocking serach与normal search的不同点是blocking search是堵塞的，也就是创建job后不会立刻返回，而是等待所有结果搜索结束后才返回，此时job包含了所有的搜索结果。```python# Get the collection of jobsjobs = service.jobs# Run a blocking search--search everything, return 1st 100 eventskwargs_blockingsearch = &#123;&quot;exec_mode&quot;: &quot;blocking&quot;&#125;searchquery_blocking = &quot;search * | head 100&quot;print &quot;Wait for the search to finish...&quot;# A blocking search returns the job&apos;s SID when the search is donejob = jobs.create(searchquery_blocking, **kwargs_blockingsearch)print &quot;...done!\n&quot; 创建一个normal searchnormal search 是异步的，即立刻返回job, 但是实际结果并没有返回，因此会存在操作job时没有event返回的情况，我目前的做法是，如果知道大致的搜索时间，则设置一定时间等待后再对job进行操作。123456789101112131415import splunklib.results as results# Initialize your service like so# import splunklib.client as client# service = client.connect(username="admin", password="changeme")searchquery_normal = "search * | head 10"kwargs_normalsearch = &#123;"exec_mode": "normal"&#125;job = service.jobs.create(searchquery_normal, **kwargs_normalsearch)# Get the results and display themfor result in results.ResultsReader(job.results()): print resultjob.cancel() 创建一个oneshot search1234567891011121314151617import splunklib.results as results# Run a one-shot search and display the results using the results reader# Set the parameters for the search:# - Search everything in a 24-hour time range starting June 19, 12:00pm# - Display the first 10 resultskwargs_oneshot = &#123;"earliest_time": "2014-06-19T12:00:00.000-07:00", "latest_time": "2014-06-20T12:00:00.000-07:00"&#125;searchquery_oneshot = "search * | head 10"oneshotsearch_results = service.jobs.oneshot(searchquery_oneshot, **kwargs_oneshot)# Get the results and display them using the ResultsReaderreader = results.ResultsReader(oneshotsearch_results)for item in reader: print(item) …待续]]></content>
       <categories>
-        <category>leetcode</category>
+        <category>python</category>
       </categories>
       <tags>
         <tag>python</tag>
-        <tag>leetcode</tag>
+        <tag>splunk</tag>
       </tags>
   </entry>
   <entry>
@@ -113,6 +101,17 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[Python 正则表达式 匹配邮箱地址]]></title>
+    <url>%2F2018%2F09%2F12%2FPython%20%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%20%E5%8C%B9%E9%85%8D%E9%82%AE%E7%AE%B1%E5%9C%B0%E5%9D%80%2F</url>
+    <content type="text"><![CDATA[12345import repat = r'^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$' email_address = 'ddy_davie@aaa.com'matched_address = re.match(pat, email_address)print(matched_address.group()) pat = r’^(\w)+(.\w+)*@(\w)+((.\w+)+)$’ ， 这个正则表达式目前尝试了基本可以覆盖大部分邮箱类型。]]></content>
+      <categories>
+        <category>python</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[MongoDB 学习]]></title>
     <url>%2F2018%2F09%2F12%2FMongoDB%E5%AD%A6%E4%B9%A0%2F</url>
     <content type="text"><![CDATA[记录下我在学习mongoDB时遇到的一些问题与解决方案 问题：windows下启动mongoDB后显示等待连接端口，并且停止在这一步：123456782017-09-17T11:57:32.398+0800 I CONTROL [initandlisten]2017-09-17T11:57:32.398+0800 I CONTROL [initandlisten] ** WARNING: Access control is n2017-09-17T11:57:32.399+0800 I CONTROL [initandlisten] ** Read and write accenrestricted.2017-09-17T11:57:32.402+0800 I CONTROL [initandlisten]2017-09-17T11:57:32.966+0800 I FTDC [initandlisten] Initializing full-time diagnost:/data/db/diagnostic.data'2017-09-17T11:57:32.972+0800 I NETWORK [thread1] waiting for connections on port 27017 解决：其实，这不是卡住了，而是数据库已经启动，并且这个终端还不能关掉，关掉意味着数据库也关了。因此，保留这个终端，再开个终端，进入mongoDB\bin文件夹后输入.\mongo(注意，这里不是.\mongod)回车，就可以进入mongodb了 问题：ubuntu上出现无法连上mongodb的问题，显示已启用另一个终端：123mongod2017-09-20T04:07:41.308-0400 I STORAGE [initandlisten] exception in initAndListen: 98 Unable to create/open lock file: /data/db/mongod.lock errno:13 Permission denied Is a mongod instance already running?, terminating2017-09-20T04:07:41.308-0400 I CONTROL [initandlisten] dbexit: rc: 100 解决： 1sudo chown -R `id -u` /data/db 一句话解决，虽然我也不清楚原理。接下来同样是另起一个终端输入mongo即成功]]></content>
@@ -125,14 +124,27 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Python 正则表达式 匹配邮箱地址]]></title>
-    <url>%2F2018%2F09%2F12%2FPython%20%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%20%E5%8C%B9%E9%85%8D%E9%82%AE%E7%AE%B1%E5%9C%B0%E5%9D%80%2F</url>
-    <content type="text"><![CDATA[12345import repat = r'^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$' email_address = 'ddy_davie@aaa.com'matched_address = re.match(pat, email_address)print(matched_address.group()) pat = r’^(\w)+(.\w+)*@(\w)+((.\w+)+)$’ ， 这个正则表达式目前尝试了基本可以覆盖大部分邮箱类型。]]></content>
+    <title><![CDATA[Leetcode-Valid Parentheses]]></title>
+    <url>%2F2018%2F09%2F12%2FLeetcode-Valid%20Parentheses%2F</url>
+    <content type="text"><![CDATA[Valid Parentheses验证有效括号对：给定一个只包含括号类型的字符串，判断该字符串的括号是否有效闭合。DescriptionGiven a string containing just the characters ‘(‘, ‘)’, ‘{‘, ‘}’, ‘[‘ and ‘]’, determine if the input string is valid.The brackets must close in the correct order, “()” and “()[]{}” are all valid but “(]” and “([)]” are not. 解题思路：采用栈来解决，依次检查给的characters，如果是左括号都入栈；如果是右括号，检查栈如果为空，证明不能匹配，如果栈不空，弹出top，与当前扫描的括号检查是否匹配。全部字符都检查完了以后，判断栈是否为空，空则正确都匹配，不空则证明有没匹配的。 代码中采用字典方式，将右括号作为键，将左括号作为值。123456789101112131415161718def isValid(self, s): """ :type s: str :rtype: bool """ stack = [] dict = &#123;')':'(', ']':'[', '&#125;':'&#123;'&#125; for char in s: if char in dict.values(): stack.append(char) elif char in dict.keys(): if stack==[] or stack.pop()!=dict[char]: return False else: return False return stack==[]]]></content>
       <categories>
-        <category>python</category>
+        <category>leetcode</category>
       </categories>
       <tags>
         <tag>python</tag>
+        <tag>leetcode</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Leetcode-Search Insert Position]]></title>
+    <url>%2F2018%2F09%2F12%2FLeetcode-Search%20Insert%20Position%2F</url>
+    <content type="text"><![CDATA[Search Insert Position给定一个有序的无重复元素的序列，和一个目标元素，求出该元素在数组中的下标，若数组中不存在该元素，则返回其在数组中的顺序下标。Description 解题思路：直接采用暴力查询。首先判断目标元素是否在数组中，若存在，则直接返回下标。若不存在，将目标元素与数组中的最大最小值比较；如果介于最大最小值之间，则与数组中的任意两个相邻元素进行比较。 1234567891011121314151617def searchInsert(self, nums, target): """ :type nums: List[int] :type target: int :rtype: int """ if target in nums: return nums.index(target) if target&lt;min(nums): return 0 elif target&gt;max(nums): return len(nums) else: for i in range(len(nums)): if nums[i]&lt;target and nums[i+1]&gt;target: return i+1 改进：采用二分查找的思路，leetcode上提供的另一种解法。 123456789101112131415161718192021222324252627def searchInsert(self, nums, key): if key &gt; nums[len(nums) - 1]: return len(nums) if key &lt; nums[0]: return 0 l, r = 0, len(nums) - 1 while l &lt;= r: m = (l + r)/2 if nums[m] &gt; key: r = m - 1 if r &gt;= 0: if nums[r] &lt; key: return r + 1 else: return 0 elif nums[m] &lt; key: l = m + 1 if l &lt; len(nums): if nums[l] &gt; key: return l else: return len(nums) else: return m]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+        <tag>leetcode</tag>
       </tags>
   </entry>
   <entry>
@@ -160,33 +172,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Leetcode-Search Insert Position]]></title>
-    <url>%2F2018%2F09%2F12%2FLeetcode-Search%20Insert%20Position%2F</url>
-    <content type="text"><![CDATA[Search Insert Position给定一个有序的无重复元素的序列，和一个目标元素，求出该元素在数组中的下标，若数组中不存在该元素，则返回其在数组中的顺序下标。Description 解题思路：直接采用暴力查询。首先判断目标元素是否在数组中，若存在，则直接返回下标。若不存在，将目标元素与数组中的最大最小值比较；如果介于最大最小值之间，则与数组中的任意两个相邻元素进行比较。 1234567891011121314151617def searchInsert(self, nums, target): """ :type nums: List[int] :type target: int :rtype: int """ if target in nums: return nums.index(target) if target&lt;min(nums): return 0 elif target&gt;max(nums): return len(nums) else: for i in range(len(nums)): if nums[i]&lt;target and nums[i+1]&gt;target: return i+1 改进：采用二分查找的思路，leetcode上提供的另一种解法。 123456789101112131415161718192021222324252627def searchInsert(self, nums, key): if key &gt; nums[len(nums) - 1]: return len(nums) if key &lt; nums[0]: return 0 l, r = 0, len(nums) - 1 while l &lt;= r: m = (l + r)/2 if nums[m] &gt; key: r = m - 1 if r &gt;= 0: if nums[r] &lt; key: return r + 1 else: return 0 elif nums[m] &lt; key: l = m + 1 if l &lt; len(nums): if nums[l] &gt; key: return l else: return len(nums) else: return m]]></content>
-      <categories>
-        <category>leetcode</category>
-      </categories>
-      <tags>
-        <tag>python</tag>
-        <tag>leetcode</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[Leetcode-Remove element]]></title>
     <url>%2F2018%2F09%2F12%2FLeetcode-Remove%20element%2F</url>
     <content type="text"><![CDATA[在我看来是remove duplicated elements from sorted array的姊妹题。 给定一个数组（未排序）和一个元素，要求从数组中去除这个元素并返回数组长度。超出数组长度的部分不在考虑范围内。Description 解题思路：利用两个指针，一个用来遍历整个数组，如果与给定的元素不相同，则利用另一个index下标将该元素加入到nums数组中。12345678910111213141516def removeElement(self, nums, val): """ :type nums: List[int] :type val: int :rtype: int """ if not nums: return 0 index = 0 for i in range(len(nums)): if nums[i] != val: nums[index] = nums[i] index += 1 return index 另外看见一个比较特别的解法：123456def removeElement(self, nums, val): try: while True: nums.remove(val) except: return len(nums)]]></content>
-      <categories>
-        <category>leetcode</category>
-      </categories>
-      <tags>
-        <tag>python</tag>
-        <tag>leetcode</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Leetcode-Remove Duplicates from Sorted List]]></title>
-    <url>%2F2018%2F09%2F12%2FLeetcode-Remove%20Duplicates%20from%20Sorted%20List%2F</url>
-    <content type="text"><![CDATA[Remove Duplicates from Sorted List从排序链表中删除重复元素。Description 解题思路：依次比较相邻的两个链表元素，若值相等，则将前一个节点的next引用为后一个节点的后一个节点。使用cur来依次向下遍历元素，最后返回head。 12345678910111213141516171819# Definition for singly-linked list.# class ListNode(object):# def __init__(self, x):# self.val = x# self.next = Noneclass Solution(object): def deleteDuplicates(self, head): """ :type head: ListNode :rtype: ListNode """ cur = head while cur: while cur.next and cur.next.val==cur.val: cur.next = cur.next.next cur = cur.next return head]]></content>
       <categories>
         <category>leetcode</category>
       </categories>
@@ -220,9 +208,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Leetcode-Maximum Subarray]]></title>
-    <url>%2F2018%2F09%2F12%2FLeetcode-Maximum%20Subarray%2F</url>
-    <content type="text"><![CDATA[Maximum Subarray最大子串和问题：从一个数组中找出一个子串使其和最大。Description tips:子串是指数组中连续的若干个元素，而子序列只要求各元素的顺序与其在数组中一致，而没有连续的要求。 解题思路：自己没有想出来，直接借鉴了网上的动态规划思路，我觉得下面是一些解决的关键点： 对于array[1…n]，如果array[i…j]就是满足和最大的子串，那么对于任何k(i&lt;=k&lt;=j)，我们有array[i…k]的和大于0。具体证明 假设已知0, .., k的最大和sum[k]以后，则0, …, k+1的最大和sum[k+1]分为以下两种情况：1）若sum[k]&gt;=0，则sum[k+1]=sum[k]+A[k+1]。代码中即curSum = curSum+nums[i]。2）若sum[k]&lt;0，另起一个SubArray，令sum[k+1]=A[k+1]。代码中即curSum = nums[i]。 1234567891011121314def maxSubArray(self, nums): """ :type nums: List[int] :rtype: int """ if not nums: return 0 curSum = maxSum = nums[0] for i in range(1, len(nums)): curSum = max(nums[i], curSum+nums[i]) maxSum = max(maxSum, curSum) return maxSum]]></content>
+    <title><![CDATA[Leetcode-Remove Duplicates from Sorted List]]></title>
+    <url>%2F2018%2F09%2F12%2FLeetcode-Remove%20Duplicates%20from%20Sorted%20List%2F</url>
+    <content type="text"><![CDATA[Remove Duplicates from Sorted List从排序链表中删除重复元素。Description 解题思路：依次比较相邻的两个链表元素，若值相等，则将前一个节点的next引用为后一个节点的后一个节点。使用cur来依次向下遍历元素，最后返回head。 12345678910111213141516171819# Definition for singly-linked list.# class ListNode(object):# def __init__(self, x):# self.val = x# self.next = Noneclass Solution(object): def deleteDuplicates(self, head): """ :type head: ListNode :rtype: ListNode """ cur = head while cur: while cur.next and cur.next.val==cur.val: cur.next = cur.next.next cur = cur.next return head]]></content>
       <categories>
         <category>leetcode</category>
       </categories>
@@ -232,9 +220,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Leetcode-Intersection of Two Linked Lists]]></title>
-    <url>%2F2018%2F09%2F12%2FLeetcode-Intersection%20of%20Two%20Linked%20Lists%2F</url>
-    <content type="text"><![CDATA[Intersection of Two Linked Lists寻找两个无环链表的交点。Description 解题思路： 如果两个链长度相同的话，那么对应的一个个比下去就能找到； 如果两个链长度不相同，分别计算出两个链表的长度，计算出长度差值，然后让长度更长的那个链表从头节点先遍历长度差的步数，这样以后两个链表按尾部对齐。接着长链表和短链表同步往下走，遇到的第一个相同的节点就是最早的公共节点。 123456789101112131415161718192021222324252627282930# Definition for singly-linked list.# class ListNode(object):# def __init__(self, x):# self.val = x# self.next = Noneclass Solution(object): def getIntersectionNode(self, headA, headB): """ :type head1, head1: ListNode :rtype: ListNode """ lenA = lenB = 0 curA, curB = headA, headB while curA is not None: lenA += 1 curA = curA.next while curB is not None: lenB += 1 curB = curB.next if lenA&gt;lenB: for i in range(lenA-lenB): headA = headA.next else: for i in range(lenB-lenA): headB = headB.next while headA != headB: headA = headA.next headB = headB.next return headA]]></content>
+    <title><![CDATA[Leetcode-Maximum Subarray]]></title>
+    <url>%2F2018%2F09%2F12%2FLeetcode-Maximum%20Subarray%2F</url>
+    <content type="text"><![CDATA[Maximum Subarray最大子串和问题：从一个数组中找出一个子串使其和最大。Description tips:子串是指数组中连续的若干个元素，而子序列只要求各元素的顺序与其在数组中一致，而没有连续的要求。 解题思路：自己没有想出来，直接借鉴了网上的动态规划思路，我觉得下面是一些解决的关键点： 对于array[1…n]，如果array[i…j]就是满足和最大的子串，那么对于任何k(i&lt;=k&lt;=j)，我们有array[i…k]的和大于0。具体证明 假设已知0, .., k的最大和sum[k]以后，则0, …, k+1的最大和sum[k+1]分为以下两种情况：1）若sum[k]&gt;=0，则sum[k+1]=sum[k]+A[k+1]。代码中即curSum = curSum+nums[i]。2）若sum[k]&lt;0，另起一个SubArray，令sum[k+1]=A[k+1]。代码中即curSum = nums[i]。 1234567891011121314def maxSubArray(self, nums): """ :type nums: List[int] :rtype: int """ if not nums: return 0 curSum = maxSum = nums[0] for i in range(1, len(nums)): curSum = max(nums[i], curSum+nums[i]) maxSum = max(maxSum, curSum) return maxSum]]></content>
       <categories>
         <category>leetcode</category>
       </categories>
@@ -268,6 +256,30 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[Leetcode-Intersection of Two Linked Lists]]></title>
+    <url>%2F2018%2F09%2F12%2FLeetcode-Intersection%20of%20Two%20Linked%20Lists%2F</url>
+    <content type="text"><![CDATA[Intersection of Two Linked Lists寻找两个无环链表的交点。Description 解题思路： 如果两个链长度相同的话，那么对应的一个个比下去就能找到； 如果两个链长度不相同，分别计算出两个链表的长度，计算出长度差值，然后让长度更长的那个链表从头节点先遍历长度差的步数，这样以后两个链表按尾部对齐。接着长链表和短链表同步往下走，遇到的第一个相同的节点就是最早的公共节点。 123456789101112131415161718192021222324252627282930# Definition for singly-linked list.# class ListNode(object):# def __init__(self, x):# self.val = x# self.next = Noneclass Solution(object): def getIntersectionNode(self, headA, headB): """ :type head1, head1: ListNode :rtype: ListNode """ lenA = lenB = 0 curA, curB = headA, headB while curA is not None: lenA += 1 curA = curA.next while curB is not None: lenB += 1 curB = curB.next if lenA&gt;lenB: for i in range(lenA-lenB): headA = headA.next else: for i in range(lenB-lenA): headB = headB.next while headA != headB: headA = headA.next headB = headB.next return headA]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+        <tag>leetcode</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Leetcode-House Robber]]></title>
+    <url>%2F2018%2F09%2F12%2FLeetcode-House%20Robber%2F</url>
+    <content type="text"><![CDATA[House Robber打家劫舍。问题本质就是从数组中找出一个或多个不相邻的数，使其和最大。 You are a professional robber planning to rob houses along a street. Each house has a certain amount of money stashed, the only constraint stopping you from robbing each of them is that adjacent houses have security system connected and it will automatically contact the police if two adjacent houses were broken into on the same night. Given a list of non-negative integers representing the amount of money of each house, determine the maximum amount of money you can rob tonight without alerting the police. Description 解题思路： 如果选择了抢劫上一个屋子，那么就不能抢劫当前的屋子，所以最大收益就是抢劫上一个屋子的收益； 如果选择抢劫当前屋子，就不能抢劫上一个屋子，所以最大收益是到上一个屋子的上一个屋子为止的最大收益，加上当前屋子里有的钱。 令dp[i]表示从[0, …, i]数组中能够得到的最大收益，显然，dp[0]=nums[0], dp[1]=max(dp[0],dp[1]), 现在计算dp[i+1]: dp[i+1]=max(dp[i], dp[i-1]+nums[i+1]) 其中，上式包含了如下隐含信息：若dp[i]不包含nums[i], 所以nums[i+1]可以和dp[i]相加，但此时dp[i]=dp[i-1],所以dp[i-1]+nums[i+1]与dp[i]+nums[i+1]的值相等；若dp[i]包含nums[i]，则nums[i+1]不可以和dp[i]相加，所以只存在nums[i+1]+dp[i-1]。 实际计算时只需要保存两个变量即可。 1234567891011121314151617class Solution(object): def rob(self, nums): """ :type nums: List[int] :rtype: int """ if len(nums)&lt;=1: return 0 if len(nums)==0 else nums[0] # 保存上一次的收益 last = nums[0] # 保存当前收益 cur = max(nums[0], nums[1]) for i in range(2, len(nums)) : tmp = cur cur = max(last+nums[i], cur) last = tmp return cur tip:python中的三目运算符不像其他语言, 其他的一般都是: 判定条件?为真时的结果:为假时的结果 而在python中的格式为: 为真时的结果 if 判定条件 else 为假时的结果]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+        <tag>leetcode</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Leetcode-Intersection of Two Arrays]]></title>
     <url>%2F2018%2F09%2F12%2FLeetcode-Intersection%20of%20Two%20Arrays%2F</url>
     <content type="text"><![CDATA[Intersection of Two Arrays查找两个数组的共有元素。Given two arrays, write a function to compute their intersection.Example:Given nums1 = [1, 2, 2, 1], nums2 = [2, 2], return [2].Description 解题思路：本来是想做关于排序的题目的，然后这道题的标签中就是含sort的，但我觉得用集合的方式会更简明些。 12345678910class Solution(object): def intersection(self, nums1, nums2): """ :type nums1: List[int] :type nums2: List[int] :rtype: List[int] """ set1 = set(nums1) set2 = set(nums2) return list(set1.intersection(set2)) tip：set求交集函数返回的是set,因此需要通过list进行转换。]]></content>
@@ -292,9 +304,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Leetcode-House Robber]]></title>
-    <url>%2F2018%2F09%2F12%2FLeetcode-House%20Robber%2F</url>
-    <content type="text"><![CDATA[House Robber打家劫舍。问题本质就是从数组中找出一个或多个不相邻的数，使其和最大。 You are a professional robber planning to rob houses along a street. Each house has a certain amount of money stashed, the only constraint stopping you from robbing each of them is that adjacent houses have security system connected and it will automatically contact the police if two adjacent houses were broken into on the same night. Given a list of non-negative integers representing the amount of money of each house, determine the maximum amount of money you can rob tonight without alerting the police. Description 解题思路： 如果选择了抢劫上一个屋子，那么就不能抢劫当前的屋子，所以最大收益就是抢劫上一个屋子的收益； 如果选择抢劫当前屋子，就不能抢劫上一个屋子，所以最大收益是到上一个屋子的上一个屋子为止的最大收益，加上当前屋子里有的钱。 令dp[i]表示从[0, …, i]数组中能够得到的最大收益，显然，dp[0]=nums[0], dp[1]=max(dp[0],dp[1]), 现在计算dp[i+1]: dp[i+1]=max(dp[i], dp[i-1]+nums[i+1]) 其中，上式包含了如下隐含信息：若dp[i]不包含nums[i], 所以nums[i+1]可以和dp[i]相加，但此时dp[i]=dp[i-1],所以dp[i-1]+nums[i+1]与dp[i]+nums[i+1]的值相等；若dp[i]包含nums[i]，则nums[i+1]不可以和dp[i]相加，所以只存在nums[i+1]+dp[i-1]。 实际计算时只需要保存两个变量即可。 1234567891011121314151617class Solution(object): def rob(self, nums): """ :type nums: List[int] :rtype: int """ if len(nums)&lt;=1: return 0 if len(nums)==0 else nums[0] # 保存上一次的收益 last = nums[0] # 保存当前收益 cur = max(nums[0], nums[1]) for i in range(2, len(nums)) : tmp = cur cur = max(last+nums[i], cur) last = tmp return cur tip:python中的三目运算符不像其他语言, 其他的一般都是: 判定条件?为真时的结果:为假时的结果 而在python中的格式为: 为真时的结果 if 判定条件 else 为假时的结果]]></content>
+    <title><![CDATA[Leetcode-Best Time to Buy and Sell Stock]]></title>
+    <url>%2F2018%2F09%2F12%2FLeetcode-Best%20Time%20to%20Buy%20and%20Sell%20Stock%2F</url>
+    <content type="text"><![CDATA[Best Time to Buy and Sell Stock买卖股票的最佳时机，返回最大收益。Say you have an array for which the ith element is the price of a given stock on day i. If you were only permitted to complete at most one transaction (ie, buy one and sell one share of the stock), design an algorithm to find the maximum profit.Description 解题思路：依次遍历整个数组，利用minprice这个变量来保存每个元素之前的最低价格，并计算出在该元素卖出时能够带来的最大收益，最后将每个元素卖出时得到的最大收益进行比较即得到整个系统的最大收益。 12345678910111213class Solution(object): def maxProfit(self, prices): """ :type prices: List[int] :rtype: int """ maxprofit = 0 minprice = float('inf') for price in prices: minprice = min(minprice, price) profit = price - minprice maxprofit = max(maxprofit, profit) return maxprofit tip:Python中可以用如下方式表示正负无穷：float(“inf”), float(“-inf”)]]></content>
       <categories>
         <category>leetcode</category>
       </categories>
@@ -328,30 +340,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Leetcode-Best Time to Buy and Sell Stock]]></title>
-    <url>%2F2018%2F09%2F12%2FLeetcode-Best%20Time%20to%20Buy%20and%20Sell%20Stock%2F</url>
-    <content type="text"><![CDATA[Best Time to Buy and Sell Stock买卖股票的最佳时机，返回最大收益。Say you have an array for which the ith element is the price of a given stock on day i. If you were only permitted to complete at most one transaction (ie, buy one and sell one share of the stock), design an algorithm to find the maximum profit.Description 解题思路：依次遍历整个数组，利用minprice这个变量来保存每个元素之前的最低价格，并计算出在该元素卖出时能够带来的最大收益，最后将每个元素卖出时得到的最大收益进行比较即得到整个系统的最大收益。 12345678910111213class Solution(object): def maxProfit(self, prices): """ :type prices: List[int] :rtype: int """ maxprofit = 0 minprice = float('inf') for price in prices: minprice = min(minprice, price) profit = price - minprice maxprofit = max(maxprofit, profit) return maxprofit tip:Python中可以用如下方式表示正负无穷：float(“inf”), float(“-inf”)]]></content>
-      <categories>
-        <category>leetcode</category>
-      </categories>
-      <tags>
-        <tag>python</tag>
-        <tag>leetcode</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Batch Normalization 批标准化]]></title>
-    <url>%2F2018%2F09%2F12%2FBatch%20Normalization%2F</url>
-    <content type="text"><![CDATA[批标准化，相当于深度学习中的数据归一化。 普通机器学习的归一化只针对输入层，而BN对中间每一层输入（激活函数处理前的数值，我称之为net值）进行归一化。 归一化的目的是使的数据的分布集中在激活函数的敏感区域（即中间线性区域）。 BN层就是对深度学习的中间层的输入数据（net值）进行归一化，解决在训练过程中，中间层数据分布发生改变的情况，使得每一层的分布相似(标准正态)，同时引入非线性, 保留原来每层训练得到的特征分布（通过变换重构）。 机器学习领域的重要假设：独立同分布假设，即假设训练集数据和测试集数据是满足相同分布的，这是通过训练数据获得的模型能够在测试集获得好的效果的一个基本保障。 BatchNorm就是在深度神经网络训练过程中使得每一层神经网络的输入保持相同分布的。 Mini-batch 相对于 SGD的两个优点：梯度更新方向更准确；并行计算速度快。 BatchNorm就是基于mini-batch的，这也是名称中Batch的由来。 随机梯度下降成了训练深度网络的主流方法。尽管随机梯度下降法对于训练深度网络简单高效，但是它有个毛病，就是需要我们人为的去选择参数，比如学习率、参数初始化、权重衰减系数、Drop out比例等。这些参数的选择对训练结果至关重要，以至于我们很多时间都浪费在这些的调参上。 采用Batch Normalization的好处提升了训练速度，收敛过程大大加快。 (1)你可以选择比较大的初始学习率，让你的训练速度飙涨。以前还需要慢慢调整学习率，甚至在网络训练到一半的时候，还需要想着学习率进一步调小的比例选择多少比较合适，现在我们可以采用初始很大的学习率，然后学习率的衰减速度也很大，因为这个算法收敛很快。当然这个算法即使你选择了较小的学习率，也比以前的收敛速度快，因为它具有快速训练收敛的特性； (2)你再也不用去理会过拟合中drop out、L2正则项参数的选择问题，采用BN算法后，你可以移除这两项了参数，或者可以选择更小的L2正则约束参数了，因为BN具有提高网络泛化能力的特性，避因为这是类似于dropout的一种防止过拟合的正则化方式； 原因：均值和方差是在mini-batch上计算的，而不是在整个训练集，因此均值和方差会存在噪声，所以和dropout类似，它往每个隐藏层的激活值上增加了噪音：dropout增加噪音的方式，使一个隐藏的单元，以一定的概率乘以0. 但因为添加噪音较小，因此正则化效果轻微，可以和dropout一起使用。 (3)再也不需要使用局部响应归一化层了（局部响应归一化是Alexnet网络用到的方法，搞视觉的估计比较熟悉），因为BN本身就是一个归一化网络层； (4)可以把训练数据彻底打乱（防止每批训练的时候，某一个样本都经常被挑选到）。 深度神经网络中的归一化问题 Internal Covariate Shift：原因在于神经网络学习过程本质就是为了学习数据分布，一旦训练数据与测试数据的分布不同，那么网络的泛化能力也大大降低；另外一方面，一旦每批训练数据的分布各不相同(batch 梯度下降)，那么网络就要在每次迭代都去学习适应不同的分布，这样将会大大降低网络的训练速度，这也正是为什么我们需要对数据都要做一个归一化预处理的原因。 我们知道网络一旦train起来，那么参数就要发生更新，除了输入层的数据外(因为输入层数据，我们已经人为的为每个样本归一化)，后面网络每一层的输入数据分布是一直在发生变化的，因为在训练的时候，前面层训练参数的更新将导致后面层输入数据分布的变化。以网络第二层为例：网络的第二层输入，是由第一层的参数和input计算得到的，而第一层的参数在整个训练过程中一直在变化，因此必然会引起后面每一层输入数据分布的改变。我们把网络中间层在训练过程中，数据分布的改变称之为：“Internal Covariate Shift”。 BN概述基本思想：深层神经网络在做非线性变换前的激活输入值net值随着网络深度加深或者在训练过程中，其分布逐渐发生偏移或者变动，之所以训练收敛慢，一般是整体分布逐渐往激活函数的取值区间的上下限两端靠近，导致反向传播时底层神经网络的梯度消失，这就是深层神经网络收敛越来越慢的原因。 BN就是通过规范化手段，把每层神经网络任意神经元输入值net值的分布强行拉回到均值为0方差为1的标准正态分布，使得激活输入值落在中间比较敏感的区域的概率较大，让梯度变大，避免梯度消失问题，梯度变大意味着学习收敛速度快，加快训练速度。 如图，转换为标准正态分布后，数据落在-4，4的概率变大，而在这个区间范围内，对应的激活函数的梯度较大。 但是：由于数据都落在了激活函数的线性区域，相当于做了线性变换，那么整个网络就会变成多层线性网络，表达能力下降。为了解决这个问题，BN为了保证非线性的获得，对变换后满足均值为0方差为1的x又进行了scale加上shift操作（y=sclae*x + shift)，而这两个参数是通过训练学习得到的，意思是通过scale和shift把这个值从标准正态分布进行一些移动和变形，使得数据的散落区域从正中心向非线性区间进行部分移动。 训练 就像激活函数层、卷积层、全连接层、池化层一样，BN(Batch Normalization)也属于网络的一层。 BN层是对每个隐层的net值进行变换。经过BN变换以后的值再进过激活函数得到out值。 对于mini-batch来说，一次训练包含m个训练样本，因此对于隐层的每个神经元的激活值来说包括： 预处理： 注意：这里t层第k个神经元的并不是指原始输入，而是该神经元隐层的net值的第k维数据。 变换的意思是：某个神经元对应的net值减去mini-batch内m个样本在该层对应维度神经元的m个net值的均值并除以方差。也就是说，这个变换和标准归一化一样，对每个样本的每个维度的归一化需要所有样本该维度的数据。 某个神经元的net值在经过变换后就会形成服从均值为0，方差为1的正态分布。 为了避免数据始终落在激活函数的线性区域，导致网络的表达能力下降，因此引入两个调节参数scale和shift,对变换后的net值进行变换的反操作 引入了两个可学习参数γ和β： 每一个神经元$x^k$都会有一对这样的参数γ、β。这样其实当： 是可以恢复出原始的某一层所学到的特征的。因此我们引入了这个可学习重构参数γ、β，让我们的网络可以学习恢复出原始网络所要学习的特征分布。最后Batch Normalization网络层的前向传导过程公式就是： 上面的公式中m指的是mini-batch size。 预测阶段训练阶段可以根据mini-batch的若干个样本进行变换。 但是测试阶段我们一般只输入一个测试样本。我们可以采用所有训练实例中获得的统计量来代替mini-batch中m个训练实例的均值和方差统计量。 计算全局统计量时只需利用每次mini-batch计算的均值和方差统计量，不需要重新计算, 这里方差采用的是无偏方差估计。 有了均值和方差，并且每个隐层scaling和shift参数已经计算好，在预测时就可以采用： 这个公式其实和： 等价,就是代入而已，不过实际计算时可以减少计算量。 参考： BN详细笔记：https://www.cnblogs.com/guoyaohua/p/8724433.html Batch normalization 学习笔记：https://blog.csdn.net/hjimce/article/details/50866313 批标准化过程：https://blog.csdn.net/whitesilence/article/details/75667002]]></content>
-      <categories>
-        <category>深度学习</category>
-      </categories>
-      <tags>
-        <tag>深度学习</tag>
-        <tag>正则化</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[Django搭建个人博客]]></title>
     <url>%2F2018%2F09%2F12%2FDjango%20blog%2F</url>
     <content type="text"><![CDATA[最近学着用Django搭建了个个人博客，目前域名正在备案中，现在把我这最近半个月的摸爬滚打经历记录下。 Django入门 Python核心编程 追梦人物的 Django博客教程 菜鸟Django教程 自强学堂Django教程 第一阶段：我首先看了Python核心编程中的Django章节，刚开始看的有些云里雾里。于是我去菜鸟教程那里按着Django教程的步骤搭建了下，菜鸟教程Django部分比较简单，之后对整体有了大致了解后再进一步看核心编程，发现能够比较容易理解了。 第二阶段：这里非常推荐追梦人物博主的博客教程，写的非常详细，按着博主的步骤就能够一步一步的把个人博客搭建起来，并且博主也提到了不少学习资料，对我们这些初学者能提供极大的帮助。另外自强学堂的内容我大致看了下，写的比较细，把个人博客搭建起来后再看可能效果会更好。 Django博客搭建我这里就放一些我在搭建博客时用到的一些不错的资源。 Bootstrap模板：https://html5up.net/这个网站提供了免费的响应式模板，我觉得很漂亮。 日历插件：http://www.jq22.com/yanshi11367这是我使用的日历插件，也可以在这个网站上找到一些别的datepicker的日历插件。 abowman:http://abowman.com/这个网站很有趣，可以在网页上显示一个有趣的动图，有需要的可以自己插入网页。 域名和云服务器我这里是在阿里云上学生优惠买的云服务器，域名也是直接在阿里云购买的。域名购买后记得要进行解析，还有备案（备案真的好麻烦）。 使用nginx后无法出现欢迎界面这个地方我摸索了好久，一直不知道怎么回事，在阿里云服务器上输入sudo service nginx start后，通过域名访问始终无法显示nginx的欢迎界面。后来发现原来是阿里云服务器的安全组设置中没有配置80端口。解决：进入阿里云ECS控制台-&gt;安全组-&gt;配置规则-&gt;公网入方向-&gt;快速配置规则-&gt;选中80端口和443端口，授权对象为0.0.0.0/0，确定即可。 在进展到用nginx和gunicorn步骤时始终出现欢迎界面。解决：进入/etc/nginx/sites-enabled删除default文件，原因是默认配置覆盖了我们的配置。 目前我还在慢慢学习中，待续… – 2018-09-12更新之前的django博客确实搭建成了，当时主要是为了成为一名网络开发工程师，摸索着完成了这一系列步骤。不过，现在转行成了一名算法工程师，也就没有心思继续维护之前的网站了。所以，为了简单，我采用了hexo+next+github的方式重新建立了新的博客，欢迎大家访问我的新的博客：hellodavid.top]]></content>
@@ -374,6 +362,18 @@
       <tags>
         <tag>python</tag>
         <tag>leetcode</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Batch Normalization 批标准化]]></title>
+    <url>%2F2018%2F09%2F12%2FBatch%20Normalization%2F</url>
+    <content type="text"><![CDATA[批标准化，相当于深度学习中的数据归一化。 普通机器学习的归一化只针对输入层，而BN对中间每一层输入（激活函数处理前的数值，我称之为net值）进行归一化。 归一化的目的是使的数据的分布集中在激活函数的敏感区域（即中间线性区域）。 BN层就是对深度学习的中间层的输入数据（net值）进行归一化，解决在训练过程中，中间层数据分布发生改变的情况，使得每一层的分布相似(标准正态)，同时引入非线性, 保留原来每层训练得到的特征分布（通过变换重构）。 机器学习领域的重要假设：独立同分布假设，即假设训练集数据和测试集数据是满足相同分布的，这是通过训练数据获得的模型能够在测试集获得好的效果的一个基本保障。 BatchNorm就是在深度神经网络训练过程中使得每一层神经网络的输入保持相同分布的。 Mini-batch 相对于 SGD的两个优点：梯度更新方向更准确；并行计算速度快。 BatchNorm就是基于mini-batch的，这也是名称中Batch的由来。 随机梯度下降成了训练深度网络的主流方法。尽管随机梯度下降法对于训练深度网络简单高效，但是它有个毛病，就是需要我们人为的去选择参数，比如学习率、参数初始化、权重衰减系数、Drop out比例等。这些参数的选择对训练结果至关重要，以至于我们很多时间都浪费在这些的调参上。 采用Batch Normalization的好处提升了训练速度，收敛过程大大加快。 (1)你可以选择比较大的初始学习率，让你的训练速度飙涨。以前还需要慢慢调整学习率，甚至在网络训练到一半的时候，还需要想着学习率进一步调小的比例选择多少比较合适，现在我们可以采用初始很大的学习率，然后学习率的衰减速度也很大，因为这个算法收敛很快。当然这个算法即使你选择了较小的学习率，也比以前的收敛速度快，因为它具有快速训练收敛的特性； (2)你再也不用去理会过拟合中drop out、L2正则项参数的选择问题，采用BN算法后，你可以移除这两项了参数，或者可以选择更小的L2正则约束参数了，因为BN具有提高网络泛化能力的特性，避因为这是类似于dropout的一种防止过拟合的正则化方式； 原因：均值和方差是在mini-batch上计算的，而不是在整个训练集，因此均值和方差会存在噪声，所以和dropout类似，它往每个隐藏层的激活值上增加了噪音：dropout增加噪音的方式，使一个隐藏的单元，以一定的概率乘以0. 但因为添加噪音较小，因此正则化效果轻微，可以和dropout一起使用。 (3)再也不需要使用局部响应归一化层了（局部响应归一化是Alexnet网络用到的方法，搞视觉的估计比较熟悉），因为BN本身就是一个归一化网络层； (4)可以把训练数据彻底打乱（防止每批训练的时候，某一个样本都经常被挑选到）。 深度神经网络中的归一化问题 Internal Covariate Shift：原因在于神经网络学习过程本质就是为了学习数据分布，一旦训练数据与测试数据的分布不同，那么网络的泛化能力也大大降低；另外一方面，一旦每批训练数据的分布各不相同(batch 梯度下降)，那么网络就要在每次迭代都去学习适应不同的分布，这样将会大大降低网络的训练速度，这也正是为什么我们需要对数据都要做一个归一化预处理的原因。 我们知道网络一旦train起来，那么参数就要发生更新，除了输入层的数据外(因为输入层数据，我们已经人为的为每个样本归一化)，后面网络每一层的输入数据分布是一直在发生变化的，因为在训练的时候，前面层训练参数的更新将导致后面层输入数据分布的变化。以网络第二层为例：网络的第二层输入，是由第一层的参数和input计算得到的，而第一层的参数在整个训练过程中一直在变化，因此必然会引起后面每一层输入数据分布的改变。我们把网络中间层在训练过程中，数据分布的改变称之为：“Internal Covariate Shift”。 BN概述基本思想：深层神经网络在做非线性变换前的激活输入值net值随着网络深度加深或者在训练过程中，其分布逐渐发生偏移或者变动，之所以训练收敛慢，一般是整体分布逐渐往激活函数的取值区间的上下限两端靠近，导致反向传播时底层神经网络的梯度消失，这就是深层神经网络收敛越来越慢的原因。 BN就是通过规范化手段，把每层神经网络任意神经元输入值net值的分布强行拉回到均值为0方差为1的标准正态分布，使得激活输入值落在中间比较敏感的区域的概率较大，让梯度变大，避免梯度消失问题，梯度变大意味着学习收敛速度快，加快训练速度。 如图，转换为标准正态分布后，数据落在-4，4的概率变大，而在这个区间范围内，对应的激活函数的梯度较大。 但是：由于数据都落在了激活函数的线性区域，相当于做了线性变换，那么整个网络就会变成多层线性网络，表达能力下降。为了解决这个问题，BN为了保证非线性的获得，对变换后满足均值为0方差为1的x又进行了scale加上shift操作（y=sclae*x + shift)，而这两个参数是通过训练学习得到的，意思是通过scale和shift把这个值从标准正态分布进行一些移动和变形，使得数据的散落区域从正中心向非线性区间进行部分移动。 训练 就像激活函数层、卷积层、全连接层、池化层一样，BN(Batch Normalization)也属于网络的一层。 BN层是对每个隐层的net值进行变换。经过BN变换以后的值再进过激活函数得到out值。 对于mini-batch来说，一次训练包含m个训练样本，因此对于隐层的每个神经元的激活值来说包括： 预处理： 注意：这里t层第k个神经元的并不是指原始输入，而是该神经元隐层的net值的第k维数据。 变换的意思是：某个神经元对应的net值减去mini-batch内m个样本在该层对应维度神经元的m个net值的均值并除以方差。也就是说，这个变换和标准归一化一样，对每个样本的每个维度的归一化需要所有样本该维度的数据。 某个神经元的net值在经过变换后就会形成服从均值为0，方差为1的正态分布。 为了避免数据始终落在激活函数的线性区域，导致网络的表达能力下降，因此引入两个调节参数scale和shift,对变换后的net值进行变换的反操作 引入了两个可学习参数γ和β： 每一个神经元$x^k$都会有一对这样的参数γ、β。这样其实当： 是可以恢复出原始的某一层所学到的特征的。因此我们引入了这个可学习重构参数γ、β，让我们的网络可以学习恢复出原始网络所要学习的特征分布。最后Batch Normalization网络层的前向传导过程公式就是： 上面的公式中m指的是mini-batch size。 预测阶段训练阶段可以根据mini-batch的若干个样本进行变换。 但是测试阶段我们一般只输入一个测试样本。我们可以采用所有训练实例中获得的统计量来代替mini-batch中m个训练实例的均值和方差统计量。 计算全局统计量时只需利用每次mini-batch计算的均值和方差统计量，不需要重新计算, 这里方差采用的是无偏方差估计。 有了均值和方差，并且每个隐层scaling和shift参数已经计算好，在预测时就可以采用： 这个公式其实和： 等价,就是代入而已，不过实际计算时可以减少计算量。 参考： BN详细笔记：https://www.cnblogs.com/guoyaohua/p/8724433.html Batch normalization 学习笔记：https://blog.csdn.net/hjimce/article/details/50866313 批标准化过程：https://blog.csdn.net/whitesilence/article/details/75667002]]></content>
+      <categories>
+        <category>深度学习</category>
+      </categories>
+      <tags>
+        <tag>深度学习</tag>
+        <tag>正则化</tag>
       </tags>
   </entry>
   <entry>
