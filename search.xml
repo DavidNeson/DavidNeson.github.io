@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[Hexo Next 解决 Busuanzi 统计浏览失效]]></title>
     <url>%2F2018%2F10%2F11%2FHexo%2Bnext%2Bbusuanzi%2F</url>
-    <content type="text"><![CDATA[由于busuanzi(不蒜子)的网址更新,导致了使用Hexo Next主题时统计浏览数失效. 不蒜子官网:http://ibruce.info/2015/04/04/busuanzi/ 解决方法: 到hexo的themes文件夹下, 进入 \themes\next\layout_third-party\analytics 打开: busuanzi-counter.swig 将\\ 修改为\\. 即可.]]></content>
+    <content type="text"><![CDATA[由于busuanzi(不蒜子)的网址更新,导致了使用Hexo Next主题时统计浏览数失效. 不蒜子官网:http://ibruce.info/2015/04/04/busuanzi/ 解决方法: 到hexo的themes文件夹下, 进入 \themes\next\layout_third-party\analytics 打开: busuanzi-counter.swig 将src=”https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js&quot; 修改为src=”https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js&quot; 即可.]]></content>
       <categories>
         <category>blog</category>
       </categories>
