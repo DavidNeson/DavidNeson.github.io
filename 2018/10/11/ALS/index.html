@@ -103,7 +103,7 @@
 <meta property="og:image" content="/typora-images/1538021322942.png">
 <meta property="og:image" content="/typora-images/1538021355541.png">
 <meta property="og:image" content="/typora-images/1538021531707.png">
-<meta property="og:updated_time" content="2018-09-27T08:47:38.200Z">
+<meta property="og:updated_time" content="2018-10-11T15:01:37.690Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ALS 交替最小二乘">
 <meta name="twitter:description" content="ALS算法是矩阵分解的一种，用于评分预测。 矩阵分解假设我们有一批用户数据，其中包含m个User和n个Item, 用户和物品的关系是一个三元组，&amp;lt;user, item, rating&amp;gt;, 即用户对物品的评分，因此我们得到矩阵$R_{m\times n}$, 其中的元素$r_{ui}$表示第u个用户对第i个item的评分。  评分矩阵通常规模很大，并且通常是稀疏矩阵，因为一个用户不可能给">
@@ -415,6 +415,7 @@
 <p>接下来将这个矩阵分解为两个子矩阵，使得两个子矩阵能近似得到原矩阵：</p>
 <p><img src="/../typora-images/1538020213031.png" alt="1538020213031"></p>
 <p>如下图所示，左边X矩阵实际代表用户的隐矩阵，即每个用户用一个k维向量表示，而右边的矩阵代表物品的隐矩阵，即每个物品用一个k维向量表示。k的值通常远小于n和m.</p>
+<a id="more"></a>
 <p><img src="/../typora-images/1538020466589.png" alt="1538020466589"></p>
 <p>为了使低秩矩阵XY的乘积接近于R, 得到了我们的目标函数：</p>
 <p><img src="/../typora-images/1538020553627.png" alt="1538020553627"></p>
