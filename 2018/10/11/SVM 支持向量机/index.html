@@ -95,7 +95,7 @@
 <meta property="og:description" content="通俗来讲，它是一种二分类模型，其基本模型定义为特征空间上的间隔最大的线性分类器，其学习策略便是间隔最大化，最终可转化为一个凸二次规划问题的求解。 SVMSVM的目标函数基本型$$min \frac{1}{2}w^2$$ $$s.t. y_i(w^Tx_i+b)\ge1, i=1,2,…,m$$ 函数间隔和几何间隔，假设超平面为$w^Tx+b=0$: 函数间隔： 用$|w^Tx+b|$衡量点x到超平">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="/typora-images/clip_image001-1538110377108-1538110378544.png">
-<meta property="og:updated_time" content="2018-10-11T15:01:05.330Z">
+<meta property="og:updated_time" content="2018-10-11T15:10:55.971Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SVM 支持向量机">
 <meta name="twitter:description" content="通俗来讲，它是一种二分类模型，其基本模型定义为特征空间上的间隔最大的线性分类器，其学习策略便是间隔最大化，最终可转化为一个凸二次规划问题的求解。 SVMSVM的目标函数基本型$$min \frac{1}{2}w^2$$ $$s.t. y_i(w^Tx_i+b)\ge1, i=1,2,…,m$$ 函数间隔和几何间隔，假设超平面为$w^Tx+b=0$: 函数间隔： 用$|w^Tx+b|$衡量点x到超平">
@@ -412,7 +412,7 @@
 <p>点到超平面的距离为$\frac{|w^Tx+b|}{||w||}$</p>
 <p>定义<strong>几何间隔</strong>为$r=\frac{y(w^Tx+b)}{||w||}$</p>
 <p>因此，几何间隔实际上相当于函数间隔初上$||w||$</p>
-<p>**基本型中函数间隔取1，目标函数的最大化几何间隔$2/||w||$, 约束中要满足每个样本的函数间隔大于1.</p>
+<p><strong>基本型中函数间隔取1</strong>，目标函数的最大化几何间隔$2/||w||$, 约束中要满足每个样本的函数间隔大于1.</p>
 <a id="more"></a>
 <h2 id="预测函数模型"><a href="#预测函数模型" class="headerlink" title="预测函数模型"></a>预测函数模型</h2><p>$$f(x)=w^Tx+b$$</p>
 <h2 id="对偶问题"><a href="#对偶问题" class="headerlink" title="对偶问题"></a>对偶问题</h2><p>拉格朗日函数，即对每条约束添加拉格朗日乘子$\alpha_i\ge0$</p>
@@ -591,7 +591,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">38</span>
+                  <span class="site-state-item-count">39</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -602,7 +602,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -613,7 +613,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-count">29</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
