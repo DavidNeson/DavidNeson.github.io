@@ -1,0 +1,1238 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-medium.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-small.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="推荐系统,贝叶斯,矩阵分解," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="显式反馈：用户对物品的评分，如电影评分隐式反馈：用户对物品的交互行为，如浏览，购买等，现实中绝大部分数据属于隐式反馈，可以从日志中获取。BPR是基于用户的隐式反馈，为用户提供物品的推荐，并且是直接对排序进行优化。 定义$U$代表所有的用户user集合； $I$代表所有的物品item集合； $S$代表所有用户的隐式反馈，$S  \subseteq U \times I$. 如下图所示，只要用户对某个">
+<meta name="keywords" content="推荐系统,贝叶斯,矩阵分解">
+<meta property="og:type" content="article">
+<meta property="og:title" content="BPR 贝叶斯个性化排序">
+<meta property="og:url" content="hellodavid.top/2018/11/21/BPR/index.html">
+<meta property="og:site_name" content="HelloDavid">
+<meta property="og:description" content="显式反馈：用户对物品的评分，如电影评分隐式反馈：用户对物品的交互行为，如浏览，购买等，现实中绝大部分数据属于隐式反馈，可以从日志中获取。BPR是基于用户的隐式反馈，为用户提供物品的推荐，并且是直接对排序进行优化。 定义$U$代表所有的用户user集合； $I$代表所有的物品item集合； $S$代表所有用户的隐式反馈，$S  \subseteq U \times I$. 如下图所示，只要用户对某个">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="/typora-images/1542680747292.png">
+<meta property="og:image" content="/typora-images/1542682051420.png">
+<meta property="og:image" content="/typora-images/1542704322044.png">
+<meta property="og:image" content="/typora-images/1542719676423.png">
+<meta property="og:image" content="/typora-images/1542719861418.png">
+<meta property="og:image" content="/typora-images/1542719926063.png">
+<meta property="og:image" content="/typora-images/1542778789080.png">
+<meta property="og:updated_time" content="2018-11-21T10:15:50.961Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="BPR 贝叶斯个性化排序">
+<meta name="twitter:description" content="显式反馈：用户对物品的评分，如电影评分隐式反馈：用户对物品的交互行为，如浏览，购买等，现实中绝大部分数据属于隐式反馈，可以从日志中获取。BPR是基于用户的隐式反馈，为用户提供物品的推荐，并且是直接对排序进行优化。 定义$U$代表所有的用户user集合； $I$代表所有的物品item集合； $S$代表所有用户的隐式反馈，$S  \subseteq U \times I$. 如下图所示，只要用户对某个">
+<meta name="twitter:image" content="/typora-images/1542680747292.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="hellodavid.top/2018/11/21/BPR/"/>
+
+
+
+
+
+  <title>BPR 贝叶斯个性化排序 | HelloDavid</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">HelloDavid</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="hellodavid.top/2018/11/21/BPR/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="David">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/myavatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HelloDavid">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">BPR 贝叶斯个性化排序</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-21T18:12:39+08:00">
+                2018-11-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/推荐系统/" itemprop="url" rel="index">
+                    <span itemprop="name">推荐系统</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>显式反馈：用户对物品的评分，如电影评分<br>隐式反馈：用户对物品的交互行为，如浏览，购买等，现实中绝大部分数据属于隐式反馈，可以从日志中获取。<br>BPR是基于用户的隐式反馈，为用户提供物品的推荐，并且是直接对排序进行优化。</p>
+<h1 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h1><p>$U$代表所有的用户user集合；</p>
+<p>$I$代表所有的物品item集合；</p>
+<p>$S$代表所有用户的隐式反馈，$S  \subseteq U \times I$. 如下图所示，只要用户对某个物品产生过行为，就标记为$+$, 所有$+$样本构成了$S$。那些未观察到的数据（即用户没有产生行为的数据）标记为$?$.</p>
+<a id="more"></a>
+<p><img src="/../typora-images/1542680747292.png" alt="1542680747292"></p>
+<p>$i&gt;_uj$表示用户u在物品i和物品j之间更偏向于物品i</p>
+<p>$I_u^+={i \in I: (u,i) \in S}$ 代表了用户u产生过行为的物品集合</p>
+<p>$U_i^+={u \in U: (u,i) \in S}$ 代表了对物品i产生过行为的用户集合</p>
+<h1 id="传统解决方式"><a href="#传统解决方式" class="headerlink" title="传统解决方式"></a>传统解决方式</h1><p>在使用隐式反馈的情况下，我们会发现观察到的数据均为正例（因为用户对物品交互过才会被观察到），而那些没有被观察到的数据（即用户还没有产生行为的物品），分为两种情况，一种是用户确实对该物品没有兴趣（负类），另一种则是缺失值（即用户以后可能会产生行为的物品）。</p>
+<p>传统的个性化推荐通常是计算出用户u对物品i的个性化分数$\hat{x}_{ui}$,然后根据个性化分数进行排序。为了得到训练数据，通常是将所有观察到的隐式反馈$(u,i) \in S$作为正类，其余所有数据作为负类，如下图所示，左图为观察到的数据，右图为填充后的训练数据：</p>
+<p><img src="/../typora-images/1542682051420.png" alt="1542682051420"></p>
+<p>在填零的情况下，我们的优化目标变成了希望在预测时观测到的数据预测为1，其余的均为0. 于是产生的问题是，我们希望模型在以后预测的缺失值，在训练时却都被认为是负类数据。因此，如果这个模型训练的足够好，那么最终得到的结果就是这些未观察的样本最后的预测值都是0。</p>
+<h1 id="BPR的解决方式"><a href="#BPR的解决方式" class="headerlink" title="BPR的解决方式"></a>BPR的解决方式</h1><p>BPR采用了pairwise的方式。</p>
+<p>如 下图，基于观察到的数据S构建数据集$D_S$:  对用户u来说，如果对物品i产生过行为（即$(u,i) \in S$), 而没有对物品j产生过行为，则得到了一个偏好对$(u,i,j)$。如对用户$u_1$来说，对物品$i_2$产生过行为，而没有对物品$i_1$产生过行为，则得到了用户$u_1$的一个偏好对$(u_1, i_2, i_1)$, 或者表示为$i_2&gt;_{u1}i_1$. <strong>如果一个用户对两个物品同时产生过行为，或者同时没有产生过行为，则无法构建偏好对。</strong>接着，对每个用户，就可以构建$I \times I$的偏好矩阵。所有用户的偏好对构成了训练集$D_S: U \times I \times I$</p>
+<p>$$D_S={(u,i,j)|i \in I_u^+ \and j \in I \backslash I_u^+}$$</p>
+<p>注意，对每个三元组样本$(u,i,j)$, i必然是产生过行为的物品，j必然是未被产生过行为的物品，因此$D_S$只包括下图右边分解后为$+$的数据，不包含$-$的数据。</p>
+<p><img src="/../typora-images/1542704322044.png" alt="1542704322044"></p>
+<h1 id="BPR-OPT"><a href="#BPR-OPT" class="headerlink" title="BPR-OPT"></a>BPR-OPT</h1><p>BPR基于最大后验概率, 对每一个用户u而言，后验概率正比于似然概率乘上先验概率：</p>
+<p>$$p(\theta|&gt;_u) \propto p(&gt;_u|\theta)p(\theta)$$ </p>
+<p>其中，$&gt;_u$表示了用户u对所有物品的偏好关系。下面从分解后的似然概率和先验概率做出解释。</p>
+<h2 id="似然概率"><a href="#似然概率" class="headerlink" title="似然概率"></a>似然概率</h2><p>独立性假设：</p>
+<ol>
+<li>所有用户之间的行为相互独立</li>
+<li>同一用户任意一对物品的偏序关系相互独立</li>
+</ol>
+<p>于是可以将似然概率表示为（这里跳过了包含负例部分的分解，原论文这部分关于负例的表示让我有些疑惑，有兴趣的可以参见下<a href="https://www.cnblogs.com/pinard/p/9128682.html#commentform" target="_blank" rel="noopener">这篇博客</a>的讨论部分）：</p>
+<p>$$\Pi_{u\in U}p(&gt;<em>u|\theta)=\Pi</em>{(u,i,j) \in D_S}p(i&gt;_uj|\theta)$$</p>
+<p>即分解为每一个正样本的概率之积，即我们希望对每一个正样本$(u,i,j) \in D_S$, $p(i&gt;_uj|\theta)$最大。这里不考虑负样本。</p>
+<p>这里定义：</p>
+<p>$$p(i&gt;<em>uj|\theta):=\sigma(\hat{x}</em>{uij}(\theta))$$</p>
+<p>其中$\sigma$是sigmoid函数，$\sigma(x)=\frac{1}{1+e^{-x}}$</p>
+<p>$\hat{x}_{uij}(\theta)$是个实值函数，返回的是用户u, 物品i, 物品j之间的关系。<strong>这个函数可以通过矩阵分解或者KNN等方法实现。</strong></p>
+<h2 id="先验概率"><a href="#先验概率" class="headerlink" title="先验概率"></a>先验概率</h2><p>这里假设了参数的先验概率服从正态分布</p>
+<p>$$p(\theta) \sim N(0, \lambda_\theta I)$$</p>
+<p>对于正态分布，其对数和$||\theta||^2$成正比。因此计算$lnp(\theta)$时，得到：</p>
+<p>$$lnp(\theta)=\lambda||\theta||^2$$</p>
+<h2 id="后验概率"><a href="#后验概率" class="headerlink" title="后验概率"></a>后验概率</h2><p>得到似然概率和先验概率后，最终得到后验概率。取对数得到优化目标。</p>
+<p><img src="/../typora-images/1542719676423.png" alt="1542719676423"></p>
+<p>先验概率相当于正则项，由于假设了高斯分布，因此变为L2正则。</p>
+<h2 id="梯度下降"><a href="#梯度下降" class="headerlink" title="梯度下降"></a>梯度下降</h2><p>由于优化函数可微，因此采用梯度下降法。</p>
+<p><img src="/../typora-images/1542719861418.png" alt="1542719861418"></p>
+<p>采用随机梯度下降：</p>
+<p><img src="/../typora-images/1542719926063.png" alt="1542719926063"></p>
+<h1 id="基于矩阵分解的BPR"><a href="#基于矩阵分解的BPR" class="headerlink" title="基于矩阵分解的BPR"></a>基于矩阵分解的BPR</h1><p>矩阵分解的作用主要就是为了得到上述的实值函数$\hat{x}_{uij}(\theta)$.</p>
+<p>对于用户集$U$和物品集$I$对应的$U \times I$的预测的排序矩阵$\hat{X}$, 我们期望分解得到用户矩阵$W (|U|\times k)$和物品矩阵$H (|I| \times k)$, 满足：</p>
+<p>$$\hat{X}=WH^T$$</p>
+<p>这里的k是自己定义的，对于用户矩阵W, 我们实际上就是为每一个用户u学出一个k维向量$w_u$作为该用户的隐向量，同理，对于物品矩阵H, 我们实际上就是为每一个物品i学出一个k维向量$h_i$作为该物品的隐向量。</p>
+<p>因此，这里的$(W, H)$实际上就是我们需要求出的参数$\theta$. 为方便，下面式子不再写$\theta$</p>
+<p>当得到W和H矩阵后，对于任意一个用户u，对应的任意一个物品i, 得到的实值向量即为两个隐向量之积：</p>
+<p>$$\hat{x}_{ui}=w_u \cdot h_i=\sum_{f=1}^kw_{uf}h_{if}$$</p>
+<p>$\hat{x}_{ui}$的物理意义可以理解为是预测出的用户u对物品i的评分。</p>
+<p>但是BPR中是三元组形式的$\hat{x}_{uij}$,因此BPR将三元组形式分解为二元组的形式，定义为：</p>
+<p>$$\hat{x}<em>{uij}=\hat{x}</em>{ui}-\hat{x}_{uj}$$</p>
+<p>同时，上面这个式子满足了：当$i&gt;<em>uj$时，$\hat{x}</em>{uij}&gt;0$;当$j&gt;<em>ui$时，$\hat{x}</em>{uij}&lt;0$.</p>
+<p>代入后验概率模型，得到：</p>
+<p>$$lnp(\theta|&gt;<em>u)=\sum</em>{(u,i,j)\in D_S}ln\sigma(\hat{x}<em>{ui}-\hat{x}</em>{uj})+\lambda||\theta||^2$$</p>
+<p>根据上节梯度下降更新梯度，得到：</p>
+<p>$$\theta \leftarrow \theta + \alpha(\frac{1}{1+e^{\hat{x}<em>{ui}-\hat{x}</em>{uj}}} \cdot \frac{\partial}{\partial \theta}(\hat{x}<em>{ui}-\hat{x}</em>{uj})+\lambda\theta)$$</p>
+<p>其中：</p>
+<p>$\hat{x}<em>{ui}-\hat{x}</em>{uj}=\sum_{f=1}^kw_{uf}h_{if}-\sum_{f=1}^kw_{uf}h_{jf}$</p>
+<p>于是，可以得到：</p>
+<p><img src="/../typora-images/1542778789080.png" alt="1542778789080"></p>
+<p>接下来就可以更新参数了。</p>
+<p>当然，除了采用矩阵分解的方式实现，也可以使用KNN的方式去实现$\hat{x}_{uij}$, 具体可参见论文。</p>
+<p>尽管BPR采用的仍然是矩阵分解的方式，但传统的矩阵分解主要是去尝试拟合$\hat{x}<em>{ui}$, BPR的优化角度是直接对排序进行优化，相当于对差值$\hat{x}</em>{ui}-\hat{x}_{uj}$进行分类，因此更加有效。</p>
+<p>参考：</p>
+<p>Rendle, et.al., BPR: Bayesian Personalized Ranking from Implicit Feedback</p>
+<p>刘建平博客：<a href="https://www.cnblogs.com/pinard/p/9128682.html#commentform" target="_blank" rel="noopener">https://www.cnblogs.com/pinard/p/9128682.html#commentform</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/推荐系统/" rel="tag"># 推荐系统</a>
+          
+            <a href="/tags/贝叶斯/" rel="tag"># 贝叶斯</a>
+          
+            <a href="/tags/矩阵分解/" rel="tag"># 矩阵分解</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/11/12/spark-shell winutil/" rel="next" title="windows下搭建spark环境出现ChangeFileModeByMask error">
+                <i class="fa fa-chevron-left"></i> windows下搭建spark环境出现ChangeFileModeByMask error
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/11/21/推荐系统36式（一）/" rel="prev" title="推荐系统36式笔记（一）">
+                推荐系统36式笔记（一） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/myavatar.jpg"
+                alt="David" />
+            
+              <p class="site-author-name" itemprop="name">David</p>
+              <p class="site-description motion-element" itemprop="description">From Zero to One</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">42</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">37</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#定义"><span class="nav-number">1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#传统解决方式"><span class="nav-number">2.</span> <span class="nav-text">传统解决方式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#BPR的解决方式"><span class="nav-number">3.</span> <span class="nav-text">BPR的解决方式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#BPR-OPT"><span class="nav-number">4.</span> <span class="nav-text">BPR-OPT</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#似然概率"><span class="nav-number">4.1.</span> <span class="nav-text">似然概率</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#先验概率"><span class="nav-number">4.2.</span> <span class="nav-text">先验概率</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#后验概率"><span class="nav-number">4.3.</span> <span class="nav-text">后验概率</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#梯度下降"><span class="nav-number">4.4.</span> <span class="nav-text">梯度下降</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#基于矩阵分解的BPR"><span class="nav-number">5.</span> <span class="nav-text">基于矩阵分解的BPR</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">David</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+   <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.staticfile.org/MathJax/MathJax-2.6-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"scale":1,"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":100,"height":200,"hOffset":-10,"vOffset":-100},"mobile":{"show":true,"scale":0.5,"hOffset":-20,"vOffset":-100},"pluginJsPath":"lib/","pluginRootPath":"live2dw/"});</script></body>
+</html>
