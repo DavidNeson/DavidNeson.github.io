@@ -86,13 +86,13 @@
 
 
 
-<meta name="description" content="ALS算法是矩阵分解的一种，用于评分预测。 矩阵分解假设我们有一批用户数据，其中包含m个User和n个Item, 用户和物品的关系是一个三元组，, 即用户对物品的评分，因此我们得到矩阵$R{m\times n}$, 其中的元素$r{ui}$表示第u个用户对第i个item的评分。  评分矩阵通常规模很大，并且通常是稀疏矩阵，因为一个用户不可能给所有商品评分。矩阵中缺失的评分，称为missing it">
+<meta name="description" content="ALS算法是矩阵分解的一种，用于评分预测。 矩阵分解假设我们有一批用户数据，其中包含m个User和n个Item, 用户和物品的关系是一个三元组，, 即用户对物品的评分，因此我们得到矩阵$R_{m\times n}$, 其中的元素$r_{ui}$表示第u个用户对第i个item的评分。  评分矩阵通常规模很大，并且通常是稀疏矩阵，因为一个用户不可能给所有商品评分。矩阵中缺失的评分，称为missing">
 <meta name="keywords" content="推荐系统,矩阵分解,协调过滤,ALS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ALS 交替最小二乘">
 <meta property="og:url" content="hellodavid.top/2018/10/11/ALS/index.html">
 <meta property="og:site_name" content="HelloDavid">
-<meta property="og:description" content="ALS算法是矩阵分解的一种，用于评分预测。 矩阵分解假设我们有一批用户数据，其中包含m个User和n个Item, 用户和物品的关系是一个三元组，, 即用户对物品的评分，因此我们得到矩阵$R{m\times n}$, 其中的元素$r{ui}$表示第u个用户对第i个item的评分。  评分矩阵通常规模很大，并且通常是稀疏矩阵，因为一个用户不可能给所有商品评分。矩阵中缺失的评分，称为missing it">
+<meta property="og:description" content="ALS算法是矩阵分解的一种，用于评分预测。 矩阵分解假设我们有一批用户数据，其中包含m个User和n个Item, 用户和物品的关系是一个三元组，, 即用户对物品的评分，因此我们得到矩阵$R_{m\times n}$, 其中的元素$r_{ui}$表示第u个用户对第i个item的评分。  评分矩阵通常规模很大，并且通常是稀疏矩阵，因为一个用户不可能给所有商品评分。矩阵中缺失的评分，称为missing">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="/typora-images/1538020000484.png">
 <meta property="og:image" content="/typora-images/1538020213031.png">
@@ -106,7 +106,7 @@
 <meta property="og:updated_time" content="2018-10-11T15:01:37.690Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ALS 交替最小二乘">
-<meta name="twitter:description" content="ALS算法是矩阵分解的一种，用于评分预测。 矩阵分解假设我们有一批用户数据，其中包含m个User和n个Item, 用户和物品的关系是一个三元组，, 即用户对物品的评分，因此我们得到矩阵$R{m\times n}$, 其中的元素$r{ui}$表示第u个用户对第i个item的评分。  评分矩阵通常规模很大，并且通常是稀疏矩阵，因为一个用户不可能给所有商品评分。矩阵中缺失的评分，称为missing it">
+<meta name="twitter:description" content="ALS算法是矩阵分解的一种，用于评分预测。 矩阵分解假设我们有一批用户数据，其中包含m个User和n个Item, 用户和物品的关系是一个三元组，, 即用户对物品的评分，因此我们得到矩阵$R_{m\times n}$, 其中的元素$r_{ui}$表示第u个用户对第i个item的评分。  评分矩阵通常规模很大，并且通常是稀疏矩阵，因为一个用户不可能给所有商品评分。矩阵中缺失的评分，称为missing">
 <meta name="twitter:image" content="/typora-images/1538020000484.png">
 
 
@@ -409,7 +409,7 @@
 
       
         <p>ALS算法是矩阵分解的一种，用于评分预测。</p>
-<h1 id="矩阵分解"><a href="#矩阵分解" class="headerlink" title="矩阵分解"></a>矩阵分解</h1><p>假设我们有一批用户数据，其中包含m个User和n个Item, 用户和物品的关系是一个三元组，<user, item,="" rating="">, 即用户对物品的评分，因此我们得到矩阵$R<em>{m\times n}$, 其中的元素$r</em>{ui}$表示第u个用户对第i个item的评分。</user,></p>
+<h1 id="矩阵分解"><a href="#矩阵分解" class="headerlink" title="矩阵分解"></a>矩阵分解</h1><p>假设我们有一批用户数据，其中包含m个User和n个Item, 用户和物品的关系是一个三元组，<user, item,="" rating="">, 即用户对物品的评分，因此我们得到矩阵$R_{m\times n}$, 其中的元素$r_{ui}$表示第u个用户对第i个item的评分。</user,></p>
 <p><img src="/../typora-images/1538020000484.png" alt="1538020000484"></p>
 <p>评分矩阵通常规模很大，并且通常是稀疏矩阵，因为一个用户不可能给所有商品评分。矩阵中缺失的评分，称为missing item.</p>
 <p>接下来将这个矩阵分解为两个子矩阵，使得两个子矩阵能近似得到原矩阵：</p>
