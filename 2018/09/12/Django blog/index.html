@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="Django,python,blog," />
+  <meta name="keywords" content="python,Django,blog," />
 
 
 
@@ -87,7 +87,7 @@
 
 
 <meta name="description" content="最近学着用Django搭建了个个人博客，目前域名正在备案中，现在把我这最近半个月的摸爬滚打经历记录下。 Django入门 Python核心编程 追梦人物的 Django博客教程 菜鸟Django教程 自强学堂Django教程  第一阶段：我首先看了Python核心编程中的Django章节，刚开始看的有些云里雾里。于是我去菜鸟教程那里按着Django教程的步骤搭建了下，菜鸟教程Django部分比较简">
-<meta name="keywords" content="Django,python,blog">
+<meta name="keywords" content="python,Django,blog">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Django搭建个人博客">
 <meta property="og:url" content="hellodavid.top/2018/09/12/Django blog/index.html">
@@ -415,7 +415,7 @@
 <p><strong>使用nginx后无法出现欢迎界面</strong><br>这个地方我摸索了好久，一直不知道怎么回事，在阿里云服务器上输入sudo service nginx start后，通过域名访问始终无法显示nginx的欢迎界面。后来发现原来是阿里云服务器的安全组设置中没有配置80端口。<br><em>解决</em>：<br>进入阿里云ECS控制台-&gt;安全组-&gt;配置规则-&gt;公网入方向-&gt;快速配置规则-&gt;选中80端口和443端口，授权对象为0.0.0.0/0，确定即可。</p>
 <p>在进展到用nginx和gunicorn步骤时始终出现欢迎界面。<br><em>解决</em>：<br>进入/etc/nginx/sites-enabled删除default文件，原因是默认配置覆盖了我们的配置。</p>
 <p>目前我还在慢慢学习中，<br>待续…</p>
-<p>– 2018-09-12更新<br>之前的django博客确实搭建成了，当时主要是为了成为一名网络开发工程师，摸索着完成了这一系列步骤。不过，现在转行成了一名算法工程师，也就没有心思继续维护之前的网站了。所以，为了简单，我采用了hexo+next+github的方式重新建立了新的博客，欢迎大家访问我的新的博客：<br><a href="http://hellodavid.top">hellodavid.top</a></p>
+<p>— 2018-09-12更新<br>之前的django博客确实搭建成了，当时主要是为了成为一名网络开发工程师，摸索着完成了这一系列步骤。不过，现在转行成了一名算法工程师，也就没有心思继续维护之前的网站了。所以，为了简单，我采用了hexo+next+github的方式重新建立了新的博客，欢迎大家访问我的新的博客：<br><a href="http://hellodavid.top">hellodavid.top</a></p>
 
       
     </div>
@@ -433,9 +433,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Django/" rel="tag"># Django</a>
-          
             <a href="/tags/python/" rel="tag"># python</a>
+          
+            <a href="/tags/Django/" rel="tag"># Django</a>
           
             <a href="/tags/blog/" rel="tag"># blog</a>
           
@@ -450,8 +450,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/09/12/Batch Normalization/" rel="next" title="Batch Normalization 批标准化">
-                <i class="fa fa-chevron-left"></i> Batch Normalization 批标准化
+              <a href="/2018/09/12/leetcode-2sum/" rel="next" title="Leetcode-2sum-python">
+                <i class="fa fa-chevron-left"></i> Leetcode-2sum-python
               </a>
             
           </div>

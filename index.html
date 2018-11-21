@@ -856,8 +856,6 @@
 <blockquote>
 <p>厦门大学 （凭身份证进入, 西门或西北门）</p>
 <p>开放时间：周一至周五 12.00-14.00 晚间：17.00-24.00 周末全天开放</p>
-</blockquote>
-<blockquote>
 <p>钟灵美广场，群贤楼，颂恩楼，芙蓉湖，情人谷，芙蓉隧道，</p>
 <p>建南大礼堂，上弦场，白城校门</p>
 </blockquote>
@@ -869,6 +867,7 @@
 </blockquote>
 <p>17.30 曾厝垵 (网红美食，晚饭 18.00左右)</p>
 <p>闽台肠粉，五兰沙茶面，三年二班，八婆婆烧仙草，黄则和花生汤</p>
+<p>&gt;</p>
 <blockquote>
 <p>音乐广场，</p>
 <p>白石炮台，</p>
@@ -1027,8 +1026,8 @@
 <p>到hexo的themes文件夹下, 进入</p>
 <p>\themes\next\layout_third-party\analytics</p>
 <p>打开: busuanzi-counter.swig</p>
-<p>将src=”<a href="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js&quot;" target="_blank" rel="noopener">https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js&quot;</a></p>
-<p>修改为src=”<a href="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js&quot;" target="_blank" rel="noopener">https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js&quot;</a></p>
+<p>将src=”<a href="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js" target="_blank" rel="noopener">https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js</a>“</p>
+<p>修改为src=”<a href="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" target="_blank" rel="noopener">https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js</a>“</p>
 <p>即可.</p>
 
           
@@ -1171,7 +1170,7 @@
       
         
           <p>ALS算法是矩阵分解的一种，用于评分预测。</p>
-<h1 id="矩阵分解"><a href="#矩阵分解" class="headerlink" title="矩阵分解"></a>矩阵分解</h1><p>假设我们有一批用户数据，其中包含m个User和n个Item, 用户和物品的关系是一个三元组，&lt;user, item, rating&gt;, 即用户对物品的评分，因此我们得到矩阵$R_{m\times n}$, 其中的元素$r_{ui}$表示第u个用户对第i个item的评分。</p>
+<h1 id="矩阵分解"><a href="#矩阵分解" class="headerlink" title="矩阵分解"></a>矩阵分解</h1><p>假设我们有一批用户数据，其中包含m个User和n个Item, 用户和物品的关系是一个三元组，<user, item,="" rating="">, 即用户对物品的评分，因此我们得到矩阵$R<em>{m\times n}$, 其中的元素$r</em>{ui}$表示第u个用户对第i个item的评分。</user,></p>
 <p><img src="/../typora-images/1538020000484.png" alt="1538020000484"></p>
 <p>评分矩阵通常规模很大，并且通常是稀疏矩阵，因为一个用户不可能给所有商品评分。矩阵中缺失的评分，称为missing item.</p>
 <p>接下来将这个矩阵分解为两个子矩阵，使得两个子矩阵能近似得到原矩阵：</p>
@@ -1323,9 +1322,7 @@
       
         
           <p>通俗来讲，它是一种<strong>二分类</strong>模型，其基本模型定义为特征空间上的间隔最大的线性分类器，其学习策略便是<strong>间隔最大化</strong>，最终可转化为一个凸二次规划问题的求解。</p>
-<h1 id="SVM"><a href="#SVM" class="headerlink" title="SVM"></a>SVM</h1><h2 id="SVM的目标函数基本型"><a href="#SVM的目标函数基本型" class="headerlink" title="SVM的目标函数基本型"></a>SVM的目标函数基本型</h2><p>$$min \frac{1}{2}w^2$$</p>
-<p>$$s.t. y_i(w^Tx_i+b)\ge1, i=1,2,…,m$$</p>
-<p>函数间隔和几何间隔，假设超平面为$w^Tx+b=0$:</p>
+<h1 id="SVM"><a href="#SVM" class="headerlink" title="SVM"></a>SVM</h1><h2 id="SVM的目标函数基本型"><a href="#SVM的目标函数基本型" class="headerlink" title="SVM的目标函数基本型"></a>SVM的目标函数基本型</h2><script type="math/tex; mode=display">min \frac{1}{2}w^2</script><script type="math/tex; mode=display">s.t. y_i(w^Tx_i+b)\ge1, i=1,2,...,m</script><p>函数间隔和几何间隔，假设超平面为$w^Tx+b=0$:</p>
 <p><strong>函数间隔</strong>：</p>
 <p>用$|w^Tx+b|$衡量点x到超平面的远近，若$w^Tx+b$的符号与类标记符号y一致，则分类正确。</p>
 <p>因此可以用$y(w^Tx+b)$的正负性判断分类正确性。</p>
@@ -1494,7 +1491,7 @@
 </li>
 </ol>
 <p>然后按Ctrl+S 完成编译加保存功能。</p>
-<ol start="5">
+<ol>
 <li><p>查看PDF</p>
 <p><img src="/../typora-images/1539261843199.png" alt="1539261843199"></p>
 <p>左侧工具栏选择 <em>TEX</em>-View LaTex PDF-View in VScode Tab后，右侧就会出现PDF,</p>

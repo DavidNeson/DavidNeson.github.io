@@ -411,19 +411,16 @@
 <p><strong>三种选择方式</strong>：</p>
 <a id="more"></a>
 <h2 id="信息增益-ID3"><a href="#信息增益-ID3" class="headerlink" title="信息增益 ID3"></a>信息增益 ID3</h2><p><strong>信息熵</strong>：度量样本集合纯度的常用指标。令$p_k, k=1,2,…,m$代表第k类样本在输入样本集合D中所占的比例，假设一共有m个类别，则该集合D的信息熵为：</p>
-<p>$$Ent(D)=-\sum_{k=1}^{m}p_klog_2p_k$$</p>
-<p>信息熵Ent(D)的值越小，则代表D的纯度越高。</p>
+<script type="math/tex; mode=display">Ent(D)=-\sum_{k=1}^{m}p_klog_2p_k</script><p>信息熵Ent(D)的值越小，则代表D的纯度越高。</p>
 <p>假定属性a有V种取值，因此输入数据集合D, 根据属性a可以将D划分为V个分支集合，那么根据属性a划分得到的信息增益为：</p>
-<p>$$Gain(D,a)=Ent(D)-\sum_{v=1}^{V}\frac{|D^v|}{|D|}Ent(D^v)$$</p>
-<p>其中，$D^v$代表根据属性a的某个取值$a^v$得到的分支集合。</p>
+<script type="math/tex; mode=display">Gain(D,a)=Ent(D)-\sum_{v=1}^{V}\frac{|D^v|}{|D|}Ent(D^v)</script><p>其中，$D^v$代表根据属性a的某个取值$a^v$得到的分支集合。</p>
 <p>信息增益<strong>越大</strong>，则意味着使用属性a进行划分带来的纯度提升越大，因此可以根据信息增益选择属性。</p>
 <p>(因为划分后的纯度越高, 那么信息熵越小, 即第二项越小, 因此增益越大)</p>
 <h2 id="增益率-C4-5"><a href="#增益率-C4-5" class="headerlink" title="增益率 C4.5"></a>增益率 C4.5</h2><p><strong>为了避免ID3算法偏向于选择可取值数目较多的属性</strong>。</p>
 <p>定义每个属性的增益率，先从候选划分属性中找出信息增益高于平均水平的属性，再从中选择增益率最高的属性。</p>
 <p>相当于对信息增益进行了标准化。</p>
 <p>定义属性a的固有值为, 属性a的可能取值越多，则固有值通常会越大，因此</p>
-<p>$$增益率=信息增益/IV(a)$$</p>
-<p>增益率对可取值较少的属性有所偏好。</p>
+<script type="math/tex; mode=display">增益率=信息增益/IV(a)</script><p>增益率对可取值较少的属性有所偏好。</p>
 <h2 id="基尼指数-CART树"><a href="#基尼指数-CART树" class="headerlink" title="基尼指数 CART树"></a>基尼指数 CART树</h2><p>ID3和C4.5都使用了大量的对数运算，计算量大。</p>
 <p>CART树是二叉树，因此每次选择最优属性后，再选择该属性的一个取值进行划分。</p>
 <p><strong>对回归树用最小化平方误差</strong>：</p>
@@ -434,11 +431,9 @@
 <p><strong>对于分类树采用基尼指数最小化准则</strong>：</p>
 <p>用基尼指数选择最优特征，同时决定该特征的最优二值切分点。</p>
 <p><strong>基尼值</strong>：数据集D的纯度用基尼值表示，</p>
-<p>$$Gini(D)=1-\sum_{k=1}^{m}p_k^2$$</p>
-<p>Gini(D)越小，代表数据纯度越高。</p>
+<script type="math/tex; mode=display">Gini(D)=1-\sum_{k=1}^{m}p_k^2</script><p>Gini(D)越小，代表数据纯度越高。</p>
 <p><strong>基尼指数</strong>：属性a的基尼指数表示为：</p>
-<p>$$GiniIndex(D,a)=\sum_{v=1}^{V}\frac{|D^v|}{|D|}Gini(D^v)$$</p>
-<p>根据使基尼指数<strong>最小</strong>的属性进行选择。</p>
+<script type="math/tex; mode=display">GiniIndex(D,a)=\sum_{v=1}^{V}\frac{|D^v|}{|D|}Gini(D^v)</script><p>根据使基尼指数<strong>最小</strong>的属性进行选择。</p>
 <p>最后根据叶节点中样本的标签数量, 取多数类别作为该叶子节点的类别. </p>
 <p>Xgboost是根据split gain计算得到增益, 得到最优划分. 与CART树存在区别。</p>
 <h2 id="决策树剪枝"><a href="#决策树剪枝" class="headerlink" title="决策树剪枝"></a>决策树剪枝</h2><p>训练出得决策树存在过度拟合现象——决策树过于针对训练的数据，专门针对训练集创建出来的分支，其熵值可能会比真实情况有所降低。</p>
@@ -528,8 +523,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/09/12/Ubuntu Tmux 启用鼠标滚动/" rel="next" title="Ubuntu Tmux 启用鼠标滚动">
-                <i class="fa fa-chevron-left"></i> Ubuntu Tmux 启用鼠标滚动
+              <a href="/2018/09/12/Splunk-SDK-Python学习/" rel="next" title="Splunk-SDK-Python学习">
+                <i class="fa fa-chevron-left"></i> Splunk-SDK-Python学习
               </a>
             
           </div>

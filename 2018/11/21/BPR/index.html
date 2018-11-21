@@ -420,30 +420,24 @@
 <p><img src="/../typora-images/1542682051420.png" alt="1542682051420"></p>
 <p>在填零的情况下，我们的优化目标变成了希望在预测时观测到的数据预测为1，其余的均为0. 于是产生的问题是，我们希望模型在以后预测的缺失值，在训练时却都被认为是负类数据。因此，如果这个模型训练的足够好，那么最终得到的结果就是这些未观察的样本最后的预测值都是0。</p>
 <h1 id="BPR的解决方式"><a href="#BPR的解决方式" class="headerlink" title="BPR的解决方式"></a>BPR的解决方式</h1><p>BPR采用了pairwise的方式。</p>
-<p>如 下图，基于观察到的数据S构建数据集$D_S$:  对用户u来说，如果对物品i产生过行为（即$(u,i) \in S$), 而没有对物品j产生过行为，则得到了一个偏好对$(u,i,j)$。如对用户$u_1$来说，对物品$i_2$产生过行为，而没有对物品$i_1$产生过行为，则得到了用户$u_1$的一个偏好对$(u_1, i_2, i_1)$, 或者表示为$i_2&gt;_{u1}i_1$. <strong>如果一个用户对两个物品同时产生过行为，或者同时没有产生过行为，则无法构建偏好对。</strong>接着，对每个用户，就可以构建$I \times I$的偏好矩阵。所有用户的偏好对构成了训练集$D_S: U \times I \times I$</p>
-<p>$$D_S={(u,i,j)|i \in I_u^+ \and j \in I \backslash I_u^+}$$</p>
-<p>注意，对每个三元组样本$(u,i,j)$, i必然是产生过行为的物品，j必然是未被产生过行为的物品，因此$D_S$只包括下图右边分解后为$+$的数据，不包含$-$的数据。</p>
+<p>如 下图，基于观察到的数据S构建数据集$D<em>S$:  对用户u来说，如果对物品i产生过行为（即$(u,i) \in S$), 而没有对物品j产生过行为，则得到了一个偏好对$(u,i,j)$。如对用户$u_1$来说，对物品$i_2$产生过行为，而没有对物品$i_1$产生过行为，则得到了用户$u_1$的一个偏好对$(u_1, i_2, i_1)$, 或者表示为$i_2&gt;</em>{u1}i_1$. <strong>如果一个用户对两个物品同时产生过行为，或者同时没有产生过行为，则无法构建偏好对。</strong>接着，对每个用户，就可以构建$I \times I$的偏好矩阵。所有用户的偏好对构成了训练集$D_S: U \times I \times I$</p>
+<script type="math/tex; mode=display">D_S=\{(u,i,j)|i \in I_u^+ \and j \in I \backslash I_u^+\}</script><p>注意，对每个三元组样本$(u,i,j)$, i必然是产生过行为的物品，j必然是未被产生过行为的物品，因此$D_S$只包括下图右边分解后为$+$的数据，不包含$-$的数据。</p>
 <p><img src="/../typora-images/1542704322044.png" alt="1542704322044"></p>
 <h1 id="BPR-OPT"><a href="#BPR-OPT" class="headerlink" title="BPR-OPT"></a>BPR-OPT</h1><p>BPR基于最大后验概率, 对每一个用户u而言，后验概率正比于似然概率乘上先验概率：</p>
-<p>$$p(\theta|&gt;_u) \propto p(&gt;_u|\theta)p(\theta)$$ </p>
-<p>其中，$&gt;_u$表示了用户u对所有物品的偏好关系。下面从分解后的似然概率和先验概率做出解释。</p>
+<script type="math/tex; mode=display">p(\theta|>_u) \propto p(>_u|\theta)p(\theta)</script><p>其中，$&gt;_u$表示了用户u对所有物品的偏好关系。下面从分解后的似然概率和先验概率做出解释。</p>
 <h2 id="似然概率"><a href="#似然概率" class="headerlink" title="似然概率"></a>似然概率</h2><p>独立性假设：</p>
 <ol>
 <li>所有用户之间的行为相互独立</li>
 <li>同一用户任意一对物品的偏序关系相互独立</li>
 </ol>
 <p>于是可以将似然概率表示为（这里跳过了包含负例部分的分解，原论文这部分关于负例的表示让我有些疑惑，有兴趣的可以参见下<a href="https://www.cnblogs.com/pinard/p/9128682.html#commentform" target="_blank" rel="noopener">这篇博客</a>的讨论部分）：</p>
-<p>$$\Pi_{u\in U}p(&gt;<em>u|\theta)=\Pi</em>{(u,i,j) \in D_S}p(i&gt;_uj|\theta)$$</p>
-<p>即分解为每一个正样本的概率之积，即我们希望对每一个正样本$(u,i,j) \in D_S$, $p(i&gt;_uj|\theta)$最大。这里不考虑负样本。</p>
+<script type="math/tex; mode=display">\Pi_{u\in U}p(>_u|\theta)=\Pi_{(u,i,j) \in D_S}p(i>_uj|\theta)</script><p>即分解为每一个正样本的概率之积，即我们希望对每一个正样本$(u,i,j) \in D_S$, $p(i&gt;_uj|\theta)$最大。这里不考虑负样本。</p>
 <p>这里定义：</p>
-<p>$$p(i&gt;<em>uj|\theta):=\sigma(\hat{x}</em>{uij}(\theta))$$</p>
-<p>其中$\sigma$是sigmoid函数，$\sigma(x)=\frac{1}{1+e^{-x}}$</p>
+<script type="math/tex; mode=display">p(i>_uj|\theta):=\sigma(\hat{x}_{uij}(\theta))</script><p>其中$\sigma$是sigmoid函数，$\sigma(x)=\frac{1}{1+e^{-x}}$</p>
 <p>$\hat{x}_{uij}(\theta)$是个实值函数，返回的是用户u, 物品i, 物品j之间的关系。<strong>这个函数可以通过矩阵分解或者KNN等方法实现。</strong></p>
 <h2 id="先验概率"><a href="#先验概率" class="headerlink" title="先验概率"></a>先验概率</h2><p>这里假设了参数的先验概率服从正态分布</p>
-<p>$$p(\theta) \sim N(0, \lambda_\theta I)$$</p>
-<p>对于正态分布，其对数和$||\theta||^2$成正比。因此计算$lnp(\theta)$时，得到：</p>
-<p>$$lnp(\theta)=\lambda||\theta||^2$$</p>
-<h2 id="后验概率"><a href="#后验概率" class="headerlink" title="后验概率"></a>后验概率</h2><p>得到似然概率和先验概率后，最终得到后验概率。取对数得到优化目标。</p>
+<script type="math/tex; mode=display">p(\theta) \sim N(0, \lambda_\theta I)</script><p>对于正态分布，其对数和$||\theta||^2$成正比。因此计算$lnp(\theta)$时，得到：</p>
+<script type="math/tex; mode=display">lnp(\theta)=\lambda||\theta||^2</script><h2 id="后验概率"><a href="#后验概率" class="headerlink" title="后验概率"></a>后验概率</h2><p>得到似然概率和先验概率后，最终得到后验概率。取对数得到优化目标。</p>
 <p><img src="/../typora-images/1542719676423.png" alt="1542719676423"></p>
 <p>先验概率相当于正则项，由于假设了高斯分布，因此变为L2正则。</p>
 <h2 id="梯度下降"><a href="#梯度下降" class="headerlink" title="梯度下降"></a>梯度下降</h2><p>由于优化函数可微，因此采用梯度下降法。</p>
@@ -452,21 +446,16 @@
 <p><img src="/../typora-images/1542719926063.png" alt="1542719926063"></p>
 <h1 id="基于矩阵分解的BPR"><a href="#基于矩阵分解的BPR" class="headerlink" title="基于矩阵分解的BPR"></a>基于矩阵分解的BPR</h1><p>矩阵分解的作用主要就是为了得到上述的实值函数$\hat{x}_{uij}(\theta)$.</p>
 <p>对于用户集$U$和物品集$I$对应的$U \times I$的预测的排序矩阵$\hat{X}$, 我们期望分解得到用户矩阵$W (|U|\times k)$和物品矩阵$H (|I| \times k)$, 满足：</p>
-<p>$$\hat{X}=WH^T$$</p>
-<p>这里的k是自己定义的，对于用户矩阵W, 我们实际上就是为每一个用户u学出一个k维向量$w_u$作为该用户的隐向量，同理，对于物品矩阵H, 我们实际上就是为每一个物品i学出一个k维向量$h_i$作为该物品的隐向量。</p>
+<script type="math/tex; mode=display">\hat{X}=WH^T</script><p>这里的k是自己定义的，对于用户矩阵W, 我们实际上就是为每一个用户u学出一个k维向量$w_u$作为该用户的隐向量，同理，对于物品矩阵H, 我们实际上就是为每一个物品i学出一个k维向量$h_i$作为该物品的隐向量。</p>
 <p>因此，这里的$(W, H)$实际上就是我们需要求出的参数$\theta$. 为方便，下面式子不再写$\theta$</p>
 <p>当得到W和H矩阵后，对于任意一个用户u，对应的任意一个物品i, 得到的实值向量即为两个隐向量之积：</p>
-<p>$$\hat{x}_{ui}=w_u \cdot h_i=\sum_{f=1}^kw_{uf}h_{if}$$</p>
-<p>$\hat{x}_{ui}$的物理意义可以理解为是预测出的用户u对物品i的评分。</p>
+<script type="math/tex; mode=display">\hat{x}_{ui}=w_u \cdot h_i=\sum_{f=1}^kw_{uf}h_{if}</script><p>$\hat{x}_{ui}$的物理意义可以理解为是预测出的用户u对物品i的评分。</p>
 <p>但是BPR中是三元组形式的$\hat{x}_{uij}$,因此BPR将三元组形式分解为二元组的形式，定义为：</p>
-<p>$$\hat{x}<em>{uij}=\hat{x}</em>{ui}-\hat{x}_{uj}$$</p>
-<p>同时，上面这个式子满足了：当$i&gt;<em>uj$时，$\hat{x}</em>{uij}&gt;0$;当$j&gt;<em>ui$时，$\hat{x}</em>{uij}&lt;0$.</p>
+<script type="math/tex; mode=display">\hat{x}_{uij}=\hat{x}_{ui}-\hat{x}_{uj}</script><p>同时，上面这个式子满足了：当$i&gt;<em>uj$时，$\hat{x}</em>{uij}&gt;0$;当$j&gt;<em>ui$时，$\hat{x}</em>{uij}&lt;0$.</p>
 <p>代入后验概率模型，得到：</p>
-<p>$$lnp(\theta|&gt;<em>u)=\sum</em>{(u,i,j)\in D_S}ln\sigma(\hat{x}<em>{ui}-\hat{x}</em>{uj})+\lambda||\theta||^2$$</p>
-<p>根据上节梯度下降更新梯度，得到：</p>
-<p>$$\theta \leftarrow \theta + \alpha(\frac{1}{1+e^{\hat{x}<em>{ui}-\hat{x}</em>{uj}}} \cdot \frac{\partial}{\partial \theta}(\hat{x}<em>{ui}-\hat{x}</em>{uj})+\lambda\theta)$$</p>
-<p>其中：</p>
-<p>$\hat{x}<em>{ui}-\hat{x}</em>{uj}=\sum_{f=1}^kw_{uf}h_{if}-\sum_{f=1}^kw_{uf}h_{jf}$</p>
+<script type="math/tex; mode=display">lnp(\theta|>_u)=\sum_{(u,i,j)\in D_S}ln\sigma(\hat{x}_{ui}-\hat{x}_{uj})+\lambda||\theta||^2</script><p>根据上节梯度下降更新梯度，得到：</p>
+<script type="math/tex; mode=display">\theta \leftarrow \theta + \alpha(\frac{1}{1+e^{\hat{x}_{ui}-\hat{x}_{uj}}} \cdot \frac{\partial}{\partial \theta}(\hat{x}_{ui}-\hat{x}_{uj})+\lambda\theta)</script><p>其中：</p>
+<p>$\hat{x}<em>{ui}-\hat{x}</em>{uj}=\sum<em>{f=1}^kw</em>{uf}h<em>{if}-\sum</em>{f=1}^kw<em>{uf}h</em>{jf}$</p>
 <p>于是，可以得到：</p>
 <p><img src="/../typora-images/1542778789080.png" alt="1542778789080"></p>
 <p>接下来就可以更新参数了。</p>

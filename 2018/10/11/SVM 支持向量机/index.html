@@ -86,19 +86,19 @@
 
 
 
-<meta name="description" content="通俗来讲，它是一种二分类模型，其基本模型定义为特征空间上的间隔最大的线性分类器，其学习策略便是间隔最大化，最终可转化为一个凸二次规划问题的求解。 SVMSVM的目标函数基本型$$min \frac{1}{2}w^2$$ $$s.t. y_i(w^Tx_i+b)\ge1, i=1,2,…,m$$ 函数间隔和几何间隔，假设超平面为$w^Tx+b=0$: 函数间隔： 用$|w^Tx+b|$衡量点x到超平">
+<meta name="description" content="通俗来讲，它是一种二分类模型，其基本模型定义为特征空间上的间隔最大的线性分类器，其学习策略便是间隔最大化，最终可转化为一个凸二次规划问题的求解。 SVMSVM的目标函数基本型min \frac{1}{2}w^2s.t. y_i(w^Tx_i+b)\ge1, i=1,2,...,m函数间隔和几何间隔，假设超平面为$w^Tx+b=0$: 函数间隔： 用$|w^Tx+b|$衡量点x到超平面的远近，若$w">
 <meta name="keywords" content="机器学习,分类,监督学习">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SVM 支持向量机">
 <meta property="og:url" content="hellodavid.top/2018/10/11/SVM 支持向量机/index.html">
 <meta property="og:site_name" content="HelloDavid">
-<meta property="og:description" content="通俗来讲，它是一种二分类模型，其基本模型定义为特征空间上的间隔最大的线性分类器，其学习策略便是间隔最大化，最终可转化为一个凸二次规划问题的求解。 SVMSVM的目标函数基本型$$min \frac{1}{2}w^2$$ $$s.t. y_i(w^Tx_i+b)\ge1, i=1,2,…,m$$ 函数间隔和几何间隔，假设超平面为$w^Tx+b=0$: 函数间隔： 用$|w^Tx+b|$衡量点x到超平">
+<meta property="og:description" content="通俗来讲，它是一种二分类模型，其基本模型定义为特征空间上的间隔最大的线性分类器，其学习策略便是间隔最大化，最终可转化为一个凸二次规划问题的求解。 SVMSVM的目标函数基本型min \frac{1}{2}w^2s.t. y_i(w^Tx_i+b)\ge1, i=1,2,...,m函数间隔和几何间隔，假设超平面为$w^Tx+b=0$: 函数间隔： 用$|w^Tx+b|$衡量点x到超平面的远近，若$w">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="/typora-images/clip_image001-1538110377108-1538110378544.png">
 <meta property="og:updated_time" content="2018-10-11T15:10:55.971Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SVM 支持向量机">
-<meta name="twitter:description" content="通俗来讲，它是一种二分类模型，其基本模型定义为特征空间上的间隔最大的线性分类器，其学习策略便是间隔最大化，最终可转化为一个凸二次规划问题的求解。 SVMSVM的目标函数基本型$$min \frac{1}{2}w^2$$ $$s.t. y_i(w^Tx_i+b)\ge1, i=1,2,…,m$$ 函数间隔和几何间隔，假设超平面为$w^Tx+b=0$: 函数间隔： 用$|w^Tx+b|$衡量点x到超平">
+<meta name="twitter:description" content="通俗来讲，它是一种二分类模型，其基本模型定义为特征空间上的间隔最大的线性分类器，其学习策略便是间隔最大化，最终可转化为一个凸二次规划问题的求解。 SVMSVM的目标函数基本型min \frac{1}{2}w^2s.t. y_i(w^Tx_i+b)\ge1, i=1,2,...,m函数间隔和几何间隔，假设超平面为$w^Tx+b=0$: 函数间隔： 用$|w^Tx+b|$衡量点x到超平面的远近，若$w">
 <meta name="twitter:image" content="/typora-images/clip_image001-1538110377108-1538110378544.png">
 
 
@@ -401,9 +401,7 @@
 
       
         <p>通俗来讲，它是一种<strong>二分类</strong>模型，其基本模型定义为特征空间上的间隔最大的线性分类器，其学习策略便是<strong>间隔最大化</strong>，最终可转化为一个凸二次规划问题的求解。</p>
-<h1 id="SVM"><a href="#SVM" class="headerlink" title="SVM"></a>SVM</h1><h2 id="SVM的目标函数基本型"><a href="#SVM的目标函数基本型" class="headerlink" title="SVM的目标函数基本型"></a>SVM的目标函数基本型</h2><p>$$min \frac{1}{2}w^2$$</p>
-<p>$$s.t. y_i(w^Tx_i+b)\ge1, i=1,2,…,m$$</p>
-<p>函数间隔和几何间隔，假设超平面为$w^Tx+b=0$:</p>
+<h1 id="SVM"><a href="#SVM" class="headerlink" title="SVM"></a>SVM</h1><h2 id="SVM的目标函数基本型"><a href="#SVM的目标函数基本型" class="headerlink" title="SVM的目标函数基本型"></a>SVM的目标函数基本型</h2><script type="math/tex; mode=display">min \frac{1}{2}w^2</script><script type="math/tex; mode=display">s.t. y_i(w^Tx_i+b)\ge1, i=1,2,...,m</script><p>函数间隔和几何间隔，假设超平面为$w^Tx+b=0$:</p>
 <p><strong>函数间隔</strong>：</p>
 <p>用$|w^Tx+b|$衡量点x到超平面的远近，若$w^Tx+b$的符号与类标记符号y一致，则分类正确。</p>
 <p>因此可以用$y(w^Tx+b)$的正负性判断分类正确性。</p>
@@ -414,28 +412,19 @@
 <p>因此，几何间隔实际上相当于函数间隔初上$||w||$</p>
 <p><strong>基本型中函数间隔取1</strong>，目标函数的最大化几何间隔$2/||w||$, 约束中要满足每个样本的函数间隔大于1.</p>
 <a id="more"></a>
-<h2 id="预测函数模型"><a href="#预测函数模型" class="headerlink" title="预测函数模型"></a>预测函数模型</h2><p>$$f(x)=w^Tx+b$$</p>
-<h2 id="对偶问题"><a href="#对偶问题" class="headerlink" title="对偶问题"></a>对偶问题</h2><p>拉格朗日函数，即对每条约束添加拉格朗日乘子$\alpha_i\ge0$</p>
-<p>$$L(w, b, a)=\frac{1}{2}w^2+\sum_{i=1}^{m}{\alpha_i(1-y_i(w^Tx_i+b))}$$</p>
-<p>对w和b求偏导为0后的结果代入基本型消除w和b, 就得到对偶问题。</p>
+<h2 id="预测函数模型"><a href="#预测函数模型" class="headerlink" title="预测函数模型"></a>预测函数模型</h2><script type="math/tex; mode=display">f(x)=w^Tx+b</script><h2 id="对偶问题"><a href="#对偶问题" class="headerlink" title="对偶问题"></a>对偶问题</h2><p>拉格朗日函数，即对每条约束添加拉格朗日乘子$\alpha_i\ge0$</p>
+<script type="math/tex; mode=display">L(w, b, a)=\frac{1}{2}w^2+\sum_{i=1}^{m}{\alpha_i(1-y_i(w^Tx_i+b))}</script><p>对w和b求偏导为0后的结果代入基本型消除w和b, 就得到对偶问题。</p>
 <p>max</p>
 <p>根据对偶问题max求解$\alpha$</p>
 <p>求解时要满足<strong>KKT</strong>条件：</p>
-<p>$$\alpha_i\ge0$$</p>
-<p>$$y_i(w^Tx+b)-1\ge0$$</p>
-<p>$$\alpha_i(y_i(w^Tx_i+b)-1)=0$$</p>
-<h2 id="支持向量"><a href="#支持向量" class="headerlink" title="支持向量"></a>支持向量</h2><p>根据对偶问题求出$\alpha_i$,若$\alpha_i&gt;0$, 则对应的样本为支持向量。训练完成后，大部分的样本不需要保留，模型只和支持向量有关。<strong>虚线间隔边界上的点就是支持向量。</strong></p>
+<script type="math/tex; mode=display">\alpha_i\ge0</script><script type="math/tex; mode=display">y_i(w^Tx+b)-1\ge0</script><script type="math/tex; mode=display">\alpha_i(y_i(w^Tx_i+b)-1)=0</script><h2 id="支持向量"><a href="#支持向量" class="headerlink" title="支持向量"></a>支持向量</h2><p>根据对偶问题求出$\alpha_i$,若$\alpha_i&gt;0$, 则对应的样本为支持向量。训练完成后，大部分的样本不需要保留，模型只和支持向量有关。<strong>虚线间隔边界上的点就是支持向量。</strong></p>
 <p><img src="/../typora-images/clip_image001-1538110377108-1538110378544.png" alt="img"></p>
 <h1 id="非线性情况"><a href="#非线性情况" class="headerlink" title="非线性情况"></a>非线性情况</h1><p>解决非线性问题时，需要将原始样本映射到高维空间中，使得样本在高维空间中线性可分。</p>
 <p>令映射函数为$\varphi$,则样本x映射后的向量变为$\varphi(x)$</p>
 <p>同上：</p>
-<h2 id="基本型"><a href="#基本型" class="headerlink" title="基本型"></a>基本型</h2><p>$$min \frac{1}{2}w^2$$</p>
-<p>$$s.t. y_i(w^T\varphi(x_i)+b)\ge1, i=1,2,…,m$$</p>
-<p>然后根据基本型得到对偶问题并求解</p>
-<h2 id="预测函数模型-1"><a href="#预测函数模型-1" class="headerlink" title="预测函数模型"></a>预测函数模型</h2><p>$$f(x)=w^T\varphi(x)+b$$</p>
-<h2 id="核函数"><a href="#核函数" class="headerlink" title="核函数"></a>核函数</h2><p>求解对偶问题时需要计算$\varphi(x_i)^T\varphi(x_j)$, 即样本$x_i, x_j$映射到高维空间后的内积，计算困难。因此可以设想一个函数，满足：</p>
-<p>$$\kappa(x_i, x_j)=\varphi(x_i)^T\varphi(x_j)$$</p>
-<p>这个函数$\kappa()$即核函数，使得$x_i, x_j$的内积变换后等价于高维空间的内积，减少了计算量。</p>
+<h2 id="基本型"><a href="#基本型" class="headerlink" title="基本型"></a>基本型</h2><script type="math/tex; mode=display">min \frac{1}{2}w^2</script><script type="math/tex; mode=display">s.t. y_i(w^T\varphi(x_i)+b)\ge1, i=1,2,...,m</script><p>然后根据基本型得到对偶问题并求解</p>
+<h2 id="预测函数模型-1"><a href="#预测函数模型-1" class="headerlink" title="预测函数模型"></a>预测函数模型</h2><script type="math/tex; mode=display">f(x)=w^T\varphi(x)+b</script><h2 id="核函数"><a href="#核函数" class="headerlink" title="核函数"></a>核函数</h2><p>求解对偶问题时需要计算$\varphi(x_i)^T\varphi(x_j)$, 即样本$x_i, x_j$映射到高维空间后的内积，计算困难。因此可以设想一个函数，满足：</p>
+<script type="math/tex; mode=display">\kappa(x_i, x_j)=\varphi(x_i)^T\varphi(x_j)</script><p>这个函数$\kappa()$即核函数，使得$x_i, x_j$的内积变换后等价于高维空间的内积，减少了计算量。</p>
 <p>要求：只要一个对称函数所对应的核矩阵半正定，就能作为核函数。</p>
 <h2 id="软间隔"><a href="#软间隔" class="headerlink" title="软间隔"></a>软间隔</h2><p>在基本型中要求所有样本满足约束条件(函数间隔大于1）称为<strong>硬间隔</strong>；</p>
 <p>在软间隔中允许部分样本不满足约束条件；</p>
@@ -444,14 +433,11 @@
 <p>若采用hinge损失，目标函数基本型变为（其中C为无穷大时则相当于硬间隔）：</p>
 <p>$min\frac{1}{2}w^2+C\sum_{i=1}^{m}max(0, (1-y_i(w^Tx_i+b))$</p>
 <p>引入松弛变量$\xi_i=max(0, (1-y_i(w^Tx_i+b))$, 因此约束中$\xi_i\ge(1-y_i(w^Tx_i+b))$, 得到:</p>
-<p>$$min\frac{1}{2}w^2+C\sum_{i=1}^{m}\xi_i$$</p>
-<p>$s.t. y_i(w^Tx_i+b)\ge1-\xi_i, i=1,2,…,m$</p>
+<script type="math/tex; mode=display">min\frac{1}{2}w^2+C\sum_{i=1}^{m}\xi_i</script><p>$s.t. y_i(w^Tx_i+b)\ge1-\xi_i, i=1,2,…,m$</p>
 <p>​        $\xi_i\ge0$</p>
-<h1 id="SVR支持向量回归"><a href="#SVR支持向量回归" class="headerlink" title="SVR支持向量回归"></a>SVR支持向量回归</h1><h1 id="目标回归模型"><a href="#目标回归模型" class="headerlink" title="目标回归模型"></a>目标回归模型</h1><p>$$f(x)=w^Tx+b$$</p>
-<p>传统回归模型计算损失：计算模型输出f(x)和真实输出y之间的差别作为损失，当且仅当f(x)和y相同时损失为0；</p>
+<h1 id="SVR支持向量回归"><a href="#SVR支持向量回归" class="headerlink" title="SVR支持向量回归"></a>SVR支持向量回归</h1><h1 id="目标回归模型"><a href="#目标回归模型" class="headerlink" title="目标回归模型"></a>目标回归模型</h1><script type="math/tex; mode=display">f(x)=w^Tx+b</script><p>传统回归模型计算损失：计算模型输出f(x)和真实输出y之间的差别作为损失，当且仅当f(x)和y相同时损失为0；</p>
 <p>SVR计算损失：允许存在偏差$\epsilon$, 仅当f(x)和y之间的差别大于偏差时才开始计算损失，即以f(x)为中心，构建了宽度为2ε的间隔带，当训练样本落入此间隔带，则认为预测正确。</p>
-<h2 id="基本型-1"><a href="#基本型-1" class="headerlink" title="基本型"></a>基本型</h2><p>$$min\frac{1}{2}w^2+C\sum_{i=1}^{m}{l_\epsilon(f(x_i)-y_i)}$$</p>
-<p>其中$l_\epsilon(z)$函数即为了满足间隔带要求，当$|z|&lt;\epsilon$时损失为0， 否则损失为$|z|-\epsilon$</p>
+<h2 id="基本型-1"><a href="#基本型-1" class="headerlink" title="基本型"></a>基本型</h2><script type="math/tex; mode=display">min\frac{1}{2}w^2+C\sum_{i=1}^{m}{l_\epsilon(f(x_i)-y_i)}</script><p>其中$l_\epsilon(z)$函数即为了满足间隔带要求，当$|z|&lt;\epsilon$时损失为0， 否则损失为$|z|-\epsilon$</p>
 <p>类似于加正则项的线性回归，只不过计算损失函数的方式不同。</p>
 <p>为什么要把原问题转换为对偶问题？</p>
 <p>因为原问题是凸二次规划问题，转换为对偶问题更加高效。</p>
