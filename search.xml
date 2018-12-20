@@ -1,6 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[EST，EDT和GMT时区转换]]></title>
+    <url>%2F2018%2F12%2F20%2FEST%E5%92%8CEDT%20GMT%E6%97%B6%E5%8C%BA%E8%BD%AC%E6%8D%A2%2F</url>
+    <content type="text"><![CDATA[最近在清洗数据时需要转换时区，将EST和EDT时区的时间转换为GMT时间。 EST: Eastern Standard Time 东部（美国）标准时间 EDT: Eastern Daylight Time 东部（美国）夏令时时间 ET: Eastern Time 东部（美国）时间 GMT: Greenwich Mean Time 格林尼治标准时间 其中，EST和EDT是ET在不同时间段的两种说法。 简单来说，ET在夏季月份（summer months) 采用EDT, 在其他月份采用EST时区，因此EDT和EST是不会同时存在的。 举个例子： 在美国，EST时区的采用时间段： 开始时间：当年11月份的第一个星期天凌晨2.00（如2018.11.4， 周日， 2.00） 结束时间：次年3月份的第二个星期天凌晨2.00（如2019.3.10，周日， 2.00） 其余时间采用EDT时区。 时区转换EDT 比GMT时间慢5个小时，即EDT=GMT-5 EST 比GMT时间慢4个小时，即EST=GMT-4 北京时区比GMT快8个小时，即北京时区=GMT+8 因此，可以得到： EDT比北京时间慢13个小时，即EDT=北京时间-13 EST比北京时间慢12个小时，即EST=北京时间-12 参考： 格林尼治时间官网：https://greenwichmeantime.com/time-zone/usa/eastern-time/]]></content>
+      <categories>
+        <category>python</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[tf.concat中axis的含义与使用]]></title>
+    <url>%2F2018%2F12%2F20%2Ftf_concat%20axis%20meanning%2F</url>
+    <content type="text"><![CDATA[tensorflow中tf.concat的axis的使用我一直理解的比较模糊，这次做个笔记理下自己的思路。 123import tensorflow as tftf.enable_eager_execution()import numpy as np 先生成两个矩阵m1, 和m2, 大小为两行三列 12345678m1 = np.random.rand(2,3) # m1.shape (2,3)m1&gt;&gt;array([[0.44529968, 0.42451167, 0.07463199], [0.35787143, 0.22926186, 0.34583839]])m2 = np.random.rand(2,3) # m2.shape (2,3)m2&gt;&gt;array([[0.92811531, 0.6180391 , 0.71969461], [0.00564108, 0.55381637, 0.17155987]]) 接下来采用tf.concat进行连接，简单来说，axis=0实际就是按行拼接，axis=1就是按列拼接 12345678910111213141516171819# axis = 0m3 = tf.concat([m1,m2],axis=0)m3&gt;&gt; array([[0.44529968, 0.42451167, 0.07463199], [0.35787143, 0.22926186, 0.34583839], [0.92811531, 0.6180391 , 0.71969461], [0.00564108, 0.55381637, 0.17155987]])m3.shape&gt;&gt; (4,3)# axis = 1m4 = tf.concat([m1,m2],axis=1)m4&gt;&gt;array([[0.44529968, 0.42451167, 0.07463199, 0.92811531, 0.6180391 , 0.71969461], [0.35787143, 0.22926186, 0.34583839, 0.00564108, 0.55381637, 0.17155987]])m4.shape&gt;&gt;(2,6) 但这实际上这只有在我们的输入是二维矩阵时才可以这样理解。axis的实际含义是根据axis指定的维度进行连接，如矩阵m1的维度为(2,3), 那么axis=0就代表了第一个维度‘2’，因此，将m1和m2按照第一个维度进行连接，得到的新的矩阵就是将第一维度进行相加，其余维度不变，即维度变成了(4,3). 同理，axis=1时就是将矩阵的第二维度进行合并，其余维度不变，即维度变成了（2,6）。 接下来处理三个维度的数据，这也是我们在神经网络数据中经常要用到的，增加的一个维度通常代表了batch_size. 如下面的m5, batch_size=5, 可以理解为每个样本是个2*3的矩阵，一次将5个样本放在一起。 1234567891011121314151617181920212223242526272829303132m5 = np.random.rand(5,2,3)m6 = np.random.rand(5,2,3)m5&gt;&gt;array([[[0.04347217, 0.03368232, 0.36017024], [0.74223151, 0.06609717, 0.38155531]], [[0.50602728, 0.355745 , 0.93379797], [0.97572621, 0.53745311, 0.66461841]], [[0.92832972, 0.02441683, 0.48436203], [0.69651043, 0.24194495, 0.64623769]], [[0.66667596, 0.60053027, 0.2970753 ], [0.13281764, 0.29326326, 0.32393028]], [[0.40892782, 0.48516547, 0.02298178], [0.51239083, 0.40151008, 0.29913204]]])m6&gt;&gt;array([[[0.58001909, 0.56925704, 0.09798246], [0.20841893, 0.62683633, 0.17923217]], [[0.91216164, 0.0200782 , 0.3986682 ], [0.86687006, 0.83730576, 0.48443545]], [[0.65641654, 0.59786311, 0.2055584 ], [0.65391822, 0.74093133, 0.02416627]], [[0.80778861, 0.22644312, 0.91610686], [0.0789411 , 0.86955002, 0.41437046]], [[0.97821668, 0.97118328, 0.97714882], [0.21543173, 0.06964724, 0.35360077]]]) 在这种情况下，axis=0代表的第一个维度的含义就不再是之前认为的行的概念了，现在m5的第一维度的值是5，代表的是batch_size。仍然按照之前的理解，如果设置axis=0, axis=0就是将第一维度进行相加，其余维度不变，因此我们可以得到新的维度为（10,2,3）。 123456789101112131415161718192021222324252627282930313233m7 = tf.concat([m5, m6],axis=0)m7&gt;&gt; array([[[0.04347217, 0.03368232, 0.36017024], [0.74223151, 0.06609717, 0.38155531]], [[0.50602728, 0.355745 , 0.93379797], [0.97572621, 0.53745311, 0.66461841]], [[0.92832972, 0.02441683, 0.48436203], [0.69651043, 0.24194495, 0.64623769]], [[0.66667596, 0.60053027, 0.2970753 ], [0.13281764, 0.29326326, 0.32393028]], [[0.40892782, 0.48516547, 0.02298178], [0.51239083, 0.40151008, 0.29913204]], [[0.58001909, 0.56925704, 0.09798246], [0.20841893, 0.62683633, 0.17923217]], [[0.91216164, 0.0200782 , 0.3986682 ], [0.86687006, 0.83730576, 0.48443545]], [[0.65641654, 0.59786311, 0.2055584 ], [0.65391822, 0.74093133, 0.02416627]], [[0.80778861, 0.22644312, 0.91610686], [0.0789411 , 0.86955002, 0.41437046]], [[0.97821668, 0.97118328, 0.97714882], [0.21543173, 0.06964724, 0.35360077]]])m7.shape&gt;&gt;(10,2,3) 同理，也可以进行axis=1, axis=2的concat操作。 此外，axis的值也可以设置为负数，如axis=-1实际上就是指倒数第一个维度，如m5的倒数第一个维度的值就是‘3’。因此，axis=2的操作和axis=-1的操作是等价的。]]></content>
+      <categories>
+        <category>tensorflow</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+        <tag>tensorflow</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[推荐系统36式笔记（一）]]></title>
     <url>%2F2018%2F11%2F21%2F%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F36%E5%BC%8F%EF%BC%88%E4%B8%80%EF%BC%89%2F</url>
     <content type="text"><![CDATA[为知识付费：https://time.geekbang.org/column/intro/74 本文仅为个人学习笔记。 推荐系统：是一种信息过滤系统，预测用户（User）对物品（Item）的评分和偏好。 推荐系统的问题模式分为评分预测和行为预测。 评分预测假如用户消费完一个物品之后会给出一个打分，比如通常是 1~5分，那么我们要做的就是建立一个模型，利用用户历史上打过分的物品，预测用户对一个没有见过的物品的打分。 显示反馈：用户对物品的明确评分，直接表达了用户对物品的态度。 隐式反馈：与显示反馈相对，实际中用户的物品的评分这类数据不易收集，我们需要利用隐式反馈，即用户的各种行为（如点击，浏览，收藏等），去找到用户对物品的态度。即行为预测。 行为预测行为预测包括：直接预测行为本身发生的概率，和预测物品的相对排序。 其中直接预测行为本身发生的概率，也称为点击率预估（Click through rate, CTR)。即计算用户是否会点击某一物品的概率。当然，这个行为也可以换成别的行为，如收藏。 因此行为预测就是指利用隐式反馈数据预测某种行为发生的概率。 隐式反馈的一些好处： 隐式反馈数据比显示反馈数据更加稠密。 隐式反馈更加符合用户内心的真实想法。 隐式反馈和模型的目标函数关联更加密切。 推荐系统存在的顽疾冷启动问题，探索与利用问题，安全问题。 冷启动问题 如何解决新用户，或者新物品的推荐。 探索与利用问题 （EE问题，Explore &amp; Exploit) 假设我们已经知道了用户的喜好，那么最合理的推荐方式是： 大部分推荐他感兴趣的（Exploit对用户身上已经探明的兴趣加以利用），小部分试探新的兴趣(Explore探明用户还不知道的兴趣）。 如何平衡这里的大部分和小部分构成了EE问题。 安全问题 给出的推荐结果不靠谱，或者收集了不靠谱的脏数据对产品产生了影响。 推荐系统的关键元素 四个关键因素：1. UI和UE 2. 数据 3.领域知识 4.算法 重要性依次递减。 内容推荐推荐系统初始阶段，由于用户行为数据较少，通常采用基于内容的推荐。 用户画像 User Profile构建方法： 直接利用原始数据，如注册资料，用户购买历史，阅读历史等 统计数据，从用户历史行为中挖掘出标签，如兴趣标签，然后在标签维度做数据统计 词向量，利用机器学习的方式将用户特征以向量的形式表示 利用文本信息构建用户画像 用户端： 注册资料中的姓名，个人签名 发表的评论，动态，日记等； 聊天记录 物品端： 物品的标题、描述 物品本身的内容（如新闻资讯） 物品的其他属性的文本 结构化文本将非结构化的数据结构化。 关键词提取：TF-IDF，TextRank 实体识别: NER, Named-Entity Recognition, 采用HMM隐马模型和CRF条件随机场 内容分类: 将文本按照分类体系分类，用分类来表达较粗粒度的结构化信息。工具：FastText 文本：聚类 主题模型:LDA, 工具：gensim, PLDA 嵌入embedding：Word2Vec 近邻推荐协同过滤：基于记忆的协同过滤，基于模型的协同过滤。 基于记忆：基于历史行为，推荐相似的消费过的东西，或者推荐相似的人消费的东西 基于模型：从用户物品关系矩阵中学习模型 基于用户的协同过滤属于基于记忆的协同过滤的一种。根据用户的历史消费行为找到和该用户相似的用户，然后将这类用户消费的新物品作为推荐。 构建用户物品矩阵，每一行数据代表是用户的向量 计算用户之间的相似度 为每个用户产生推荐结果 产出结果： 相似用户推荐 基于相似用户的物品推荐基于物品的协同过滤 通常用于“看了又看“和”买了又买“。 计算物品相似度 计算推荐结果：TopK推荐，相关推荐， Slope One Slope one算法经典的基于物品的相似度计算无法实时更新。Slope One算法可以进行在线更新。 针对评分矩阵，而不是行为矩阵。计算的是物品之间的距离，而不是相似度。下图是用户物品评分矩阵。 通过两两计算物品之间的差距得到，注意现在是物品物品矩阵： 括号里的数量代表两个物品的共同用户数量，如物品A和物品B有两个共有用户，因此数值为2，同理，物品B和物品A的共有用户数仍为2。 括号外边的数代表两个物品间的距离。如物品A和物品B, 有两个共有用户，则计算两个共有用户在两个物品评分的差值的均值：$\frac{(5-3)+(3-4)}{2}=0.5$,注意，这个是有序的，因此物品B到A的距离为-0.5. 计算出物品间的距离的作用：如果只知道用户3给物品B的评分是2，并且知道了物品B到物品A的差距是0.5，则可以预测用户3对物品A的评分为2.5. 但实际上用户3也给物品C进行了评分，如果只根据用户3对物品C的评分5进行预测，我们可以计算出物品A的分数为8，现在就根据共有用户数作为加权得出最后的结果： \frac{8*1+2.5*2}{1+2}=4.33相似度机器学习和相似度是推荐算法中常用的两种方式。 近邻推荐的核心就是相似度的选择。 相似度的计算对象是向量。 欧氏距离 欧式距离度量的是两个点之间的距离，但相似度计算度量结果希望是在[-1,1]或者[0,1]之间，因此还要对欧氏距离进行转换。 余弦相似度 余弦相似度与向量的长度无关，因为会对向量长度进行归一化。因此，在利用余弦相似度情况下的两个向量，只要方向相似，而不用考虑大小，就可以认为是相似的。 皮尔逊相关度 改进版的余弦相似度，先对向量进行了中心化，然后再计算余弦相似度。 杰卡德相似度 计算两个集合中的交集元素个数在并集元素中所占的比例，适合布尔类型向量。 在社交网络中计算好友的相似度？ 采用如下特征：帖子发布数量，月均发帖数量，平均帖子字数，头像，一些标签数据，例如是否大V，是否营销号，是否网红，职业等标签数据。另外还可以统计发文Top关键词向量及词频。标签数据可计算杰卡德相似度，Top关键词可计算余弦相似度，发布量，字数等可计算欧氏距离，然后再融合这几种相似度得到总和相似度。 近邻推荐存在的问题 物品之间存在相关性，信息量并不随着向量维度增加而线性增加； 矩阵元素稀疏，计算结果不稳定，增减一个向量维度，导致近邻结果差异很大的情况存在。 矩阵分解Netflix Prize解决的是评分预测问题。 矩阵分解可以解决近邻推荐存在的问题，简单来说，矩阵分解就是把原来的大矩阵近似分解为两个小矩阵的乘积。矩阵分解的物理意义，就是把用户和物品都映射到一个k维空间，这样每一个用户得到一个向量p, 每一个物品得到一个向量q，两个向量的点积即为预测出的用户对物品的预测评分。 矩阵分解可以看作是因子分解机（FM）的特例。 SVD 基础的SVD 目标损失函数： 第一部分：控制着模型的偏差，第二部分：正则项，控制着模型的方差 增加偏置信息 存在情况：有些用户习惯给出偏高的评分；有些物品通常会收到偏高的评分。 因此改进SVD后得到带偏置信息的SVD. 一个用户给一个物品的评分会有4部分构成： 分别代表：全局平均分，物品的评分偏置，用户的评分偏置，用户和物品之间的兴趣偏好。 增加了偏置项的SVD目标函数变为： 增加历史行为 存在情况：有的用户评分少。即，显示反馈比隐式反馈少，因此可以利用隐式反馈来弥补。 SVD++结合用户的隐式反馈行为和属性。 假设评分矩阵中的物品有一个隐因子向量（维度为k)，因此用户有过行为的每个物品就有一个隐因子向量，把该用户操作过的物品隐因子加起来，用来表示用户的兴趣偏好。 类似的，用户属性进行onehot后，对每个特征也存在一种隐因子向量表示，将该用户的所有属性的对应的隐因子向量相加，也代表了一些偏好。 SVD++的目标函数，只要在用户向量p的基础上进行扩展增加隐式反馈向量x和用户属性向量y), 因此在学习时对隐向量也进行了学习: 时间因素 a. 对评分按照时间加权，让久远的评分趋近平均值； b. 对评分时间划分区间，不同区间学习出不同的隐因子向量； c. 对特殊时间点单独进行训练 ALS 交替最小二乘原理在有了目标函数以后，优化方法通常有两种：随机梯度下降，交替最小二乘（ALS），ALS在实际中应用较多。 ALS的核心概念就是交替。我们的任务是，找到两个矩阵P和Q, 让她们相乘后约等于原矩阵： 但是P和Q是未知的 ，因此无法直接求得。假设Q现在是已知的，那么P就可以根据R和Q计算： 反之，假设知道了P, 那么就可以求出Q. 交替的思路就是不断假设某一个子矩阵是已知的。 具体步骤： 初始化随机矩阵Q 将Q当作已知，根据R计算初矩阵P 得到矩阵P后，将P当作已知，重新去计算矩阵Q 两个过程交替进行，直到误差可以接受 ALS实际上就是对目标函数进行优化的方法，通过先固定其他维度，在单独对某一维度进行更新。 ALS-WR 隐式反馈+ALS隐式反馈关注的是用户的行为，而不是用户的评分。 One-Class问题： 如果把预测用户行为看为二分类问题，猜测用户会不会做某件事，但实际上收集到的数据只有一种：用户干了某件事，而用户明确”不干“某件事的数据没有明确数据。 在ALS引入隐式反馈，得到加权的ALS. 加权的概念：查看商品的次数越多，代表喜欢程度越高，因此行为次数可以作为加权。 加权交替最小二乘： 如果用户对物品无隐式反馈则认为评分为0 如果用户对物品有至少一次隐式反馈则认为评分是1，次数作为该评分的置信度。 因此，现在目标函数变为： 其中多出来的$c_{ui}$就是置信度，因此目标函数变成了带权重的函数，次数越多，就越可信。实际上，置信度通常不直接用次数表示，而是如下表示： 其中α是超参数，C就是实际次数。 存在问题： 对于没有反馈的缺失值，在设定下，取值为0的评分非常多，因此我们不能直接把所有的缺失值作为负类别。 原因： 本身隐式反馈只有正类别是确定的，而负类别是假设的 导致正负样本不平衡，负样本多于正样本 因此需要对负样本进行采样, 挑选一部分缺失值作为负样本即可: 随机均匀采样和正类别一样多(不靠谱) 按照物品的热门程度采样(实践中采用): 一个越热门的物品, 用户越可能直到他的存在.如果这种情况下, 用户对他还没有反馈就表明这真的是负样本. 推荐计算当我们得到用户和物品的隐向量后，直接点积就可以得到预测结果了。 但实际应用中，由于维度依然很大，直接计算点积复杂度很高。 FaceBook给出了两种方案： 利用专门设计的数据结构存储所有物品的隐因子向量，从而实现通过一个用户向量可以返回最相似的k个物品。工具：Faiss 先将物品的隐因子做聚类，然后在逐一计算用户和每个聚类中心的推荐分数，给用户推荐物品就变成了给用户推荐物品聚类。得到推荐的聚类后，再从聚类中挑选出物品作为推荐结果。 贝叶斯个性化排序 BPR矩阵分解的本质上是预测用户对一个物品的偏好程度，然后根据偏好程度进行排序。这是一种point wise的排序，很难得到最优排序。 接下来利用pair-wise的方式看待矩阵分解。 评价指标 AUC的计算步骤： 用模型给样本计算推荐分数 得到打过分的样本，每条样本保留两个信息，第一个是分数，第二个代表用户有没有消费过，1代表消费，0代表未消费 按照分数对样本重新排序，降序排列 给每一个样本赋一个排序值，第一位r1=n, r2=n-1, …; 如果几个样本分数一样， 需要将排序值调整为平均值； 最终按照如下公式计算出AUC AUC的值越接近1越好，接近0.5是最差的。 BPR模型主要分为：样本构造，目标函数，学习框架 样本构造： 在矩阵分解中，样本形式为：&lt;用户，物品，反馈&gt;。其中反馈又包含真实反馈和缺失值，缺失值充当的是负样本职责。 BPR中关注的是物品之间对于用户的相对排序，因此构造的样本是：&lt;用户，物品1，物品2，两个物品相对顺序&gt;. 其中，两个物品的相对顺序是指： 如果物品1是消费过的，而物品2不是， 那么相对顺序值为1，正样本；否则负样本 如果物品1和物品2同时消费或未消费过，则不构成样本 具体贝叶斯个性化排序参见我的另一篇博客.]]></content>
@@ -155,30 +178,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[MongoDB 学习]]></title>
-    <url>%2F2018%2F09%2F12%2FMongoDB%E5%AD%A6%E4%B9%A0%2F</url>
-    <content type="text"><![CDATA[记录下我在学习mongoDB时遇到的一些问题与解决方案 问题：windows下启动mongoDB后显示等待连接端口，并且停止在这一步：123456782017-09-17T11:57:32.398+0800 I CONTROL [initandlisten]2017-09-17T11:57:32.398+0800 I CONTROL [initandlisten] ** WARNING: Access control is n2017-09-17T11:57:32.399+0800 I CONTROL [initandlisten] ** Read and write accenrestricted.2017-09-17T11:57:32.402+0800 I CONTROL [initandlisten]2017-09-17T11:57:32.966+0800 I FTDC [initandlisten] Initializing full-time diagnost:/data/db/diagnostic.data'2017-09-17T11:57:32.972+0800 I NETWORK [thread1] waiting for connections on port 27017 解决：其实，这不是卡住了，而是数据库已经启动，并且这个终端还不能关掉，关掉意味着数据库也关了。因此，保留这个终端，再开个终端，进入mongoDB\bin文件夹后输入.\mongo(注意，这里不是.\mongod)回车，就可以进入mongodb了 问题：ubuntu上出现无法连上mongodb的问题，显示已启用另一个终端：123mongod2017-09-20T04:07:41.308-0400 I STORAGE [initandlisten] exception in initAndListen: 98 Unable to create/open lock file: /data/db/mongod.lock errno:13 Permission denied Is a mongod instance already running?, terminating2017-09-20T04:07:41.308-0400 I CONTROL [initandlisten] dbexit: rc: 100 解决： 1sudo chown -R `id -u` /data/db 一句话解决，虽然我也不清楚原理。接下来同样是另起一个终端输入mongo即成功]]></content>
-      <categories>
-        <category>数据库</category>
-      </categories>
-      <tags>
-        <tag>数据库</tag>
-        <tag>mongo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[mongo输入带'.'的字典]]></title>
-    <url>%2F2018%2F09%2F12%2Fmongo%E8%BE%93%E5%85%A5%E5%B8%A6'.'%E7%9A%84%E5%AD%97%E5%85%B8%2F</url>
-    <content type="text"><![CDATA[mongodb默认是不允许存储键中带’.’的字典，pymongo中实现的两种解决方案： 将字典键中的’.’用’_’等其他符号替代； 但是当字典包含多层嵌套字典，我觉得通过替换过于麻烦，所以我使用了另一种方案：collection.insert(docs, check_keys=False)即通过设置check_keys来使得mongo不检查’.’， 但是这个方案只限于临时解决方案，因为这个方案只适合于pymongo2.7版本，并且在后续版本中insert这个方法是被废弃的，而新增的insert_one和insert_many并没有checks_keys的属性。]]></content>
-      <categories>
-        <category>mongo</category>
-      </categories>
-      <tags>
-        <tag>数据库</tag>
-        <tag>mongo</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[Python 正则表达式 匹配邮箱地址]]></title>
     <url>%2F2018%2F09%2F12%2FPython%20%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%20%E5%8C%B9%E9%85%8D%E9%82%AE%E7%AE%B1%E5%9C%B0%E5%9D%80%2F</url>
     <content type="text"><![CDATA[12345import repat = r'^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$' email_address = 'ddy_davie@aaa.com'matched_address = re.match(pat, email_address)print(matched_address.group()) pat = r’^(\w)+(.\w+)*@(\w)+((.\w+)+)$’ ， 这个正则表达式目前尝试了基本可以覆盖大部分邮箱类型。]]></content>
@@ -199,6 +198,30 @@
       <tags>
         <tag>python</tag>
         <tag>leetcode</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[mongo输入带'.'的字典]]></title>
+    <url>%2F2018%2F09%2F12%2Fmongo%E8%BE%93%E5%85%A5%E5%B8%A6'.'%E7%9A%84%E5%AD%97%E5%85%B8%2F</url>
+    <content type="text"><![CDATA[mongodb默认是不允许存储键中带’.’的字典，pymongo中实现的两种解决方案： 将字典键中的’.’用’_’等其他符号替代； 但是当字典包含多层嵌套字典，我觉得通过替换过于麻烦，所以我使用了另一种方案：collection.insert(docs, check_keys=False)即通过设置check_keys来使得mongo不检查’.’， 但是这个方案只限于临时解决方案，因为这个方案只适合于pymongo2.7版本，并且在后续版本中insert这个方法是被废弃的，而新增的insert_one和insert_many并没有checks_keys的属性。]]></content>
+      <categories>
+        <category>mongo</category>
+      </categories>
+      <tags>
+        <tag>数据库</tag>
+        <tag>mongo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[MongoDB 学习]]></title>
+    <url>%2F2018%2F09%2F12%2FMongoDB%E5%AD%A6%E4%B9%A0%2F</url>
+    <content type="text"><![CDATA[记录下我在学习mongoDB时遇到的一些问题与解决方案 问题：windows下启动mongoDB后显示等待连接端口，并且停止在这一步：123456782017-09-17T11:57:32.398+0800 I CONTROL [initandlisten]2017-09-17T11:57:32.398+0800 I CONTROL [initandlisten] ** WARNING: Access control is n2017-09-17T11:57:32.399+0800 I CONTROL [initandlisten] ** Read and write accenrestricted.2017-09-17T11:57:32.402+0800 I CONTROL [initandlisten]2017-09-17T11:57:32.966+0800 I FTDC [initandlisten] Initializing full-time diagnost:/data/db/diagnostic.data'2017-09-17T11:57:32.972+0800 I NETWORK [thread1] waiting for connections on port 27017 解决：其实，这不是卡住了，而是数据库已经启动，并且这个终端还不能关掉，关掉意味着数据库也关了。因此，保留这个终端，再开个终端，进入mongoDB\bin文件夹后输入.\mongo(注意，这里不是.\mongod)回车，就可以进入mongodb了 问题：ubuntu上出现无法连上mongodb的问题，显示已启用另一个终端：123mongod2017-09-20T04:07:41.308-0400 I STORAGE [initandlisten] exception in initAndListen: 98 Unable to create/open lock file: /data/db/mongod.lock errno:13 Permission denied Is a mongod instance already running?, terminating2017-09-20T04:07:41.308-0400 I CONTROL [initandlisten] dbexit: rc: 100 解决： 1sudo chown -R `id -u` /data/db 一句话解决，虽然我也不清楚原理。接下来同样是另起一个终端输入mongo即成功]]></content>
+      <categories>
+        <category>数据库</category>
+      </categories>
+      <tags>
+        <tag>数据库</tag>
+        <tag>mongo</tag>
       </tags>
   </entry>
   <entry>
@@ -250,6 +273,18 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[Leetcode-Merge Two Sorted Lists]]></title>
+    <url>%2F2018%2F09%2F12%2FLeetcode-Merge%20Two%20Sorted%20Lists%2F</url>
+    <content type="text"><![CDATA[Merge Two Sorted Lists合并两个有序链表。Description 解题思路：此题比较简单，采用迭代的方式。由于链表已经是有序的，所以依次比较两个链表当前元素的大小，然后将较小的元素加入到新的链表中。 123456789101112131415161718192021222324# Definition for singly-linked list.# class ListNode(object):# def __init__(self, x):# self.val = x# self.next = Noneclass Solution(object): def mergeTwoLists(self, l1, l2): """ :type l1: ListNode :type l2: ListNode :rtype: ListNode """ result = cur = ListNode(1) # 第一个节点可以任取 while l1 and l2: if l1.val &lt; l2.val: cur.next = l1 l1 = l1.next else: cur.next = l2 l2 = l2.next cur = cur.next cur.next = l1 or l2 return result.next]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+        <tag>leetcode</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Leetcode-Remove Duplicates from Sorted Array]]></title>
     <url>%2F2018%2F09%2F12%2Fleetcode-Remove%20Duplicates%20from%20Sorted%20Array%2F</url>
     <content type="text"><![CDATA[给定一个排序数组，将数组中的重复元素去除，并返回修改后的数组长度。Description解题思路：题目要求不能分配额外空间，由于python中列表是传引用，因此可以对传入的列表进行原地修改。由于数组已经排序，因此可以通过新建一个下标两两比较删除重复的元素。注意：题目中 It doesn’t matter what you leave beyond the new length，因此超出长度部分的重复元素不需要考虑。 123456789101112131415def removeDuplicates(self, nums): """ :type nums: List[int] :rtype: int """ if not nums: return 0 newIndex = 0 for i in range(1, len(nums)): if nums[i] != nums[newIndex]: newIndex += 1 nums[newIndex] = nums[i] return newIndex+1]]></content>
@@ -274,21 +309,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Leetcode-Merge Two Sorted Lists]]></title>
-    <url>%2F2018%2F09%2F12%2FLeetcode-Merge%20Two%20Sorted%20Lists%2F</url>
-    <content type="text"><![CDATA[Merge Two Sorted Lists合并两个有序链表。Description 解题思路：此题比较简单，采用迭代的方式。由于链表已经是有序的，所以依次比较两个链表当前元素的大小，然后将较小的元素加入到新的链表中。 123456789101112131415161718192021222324# Definition for singly-linked list.# class ListNode(object):# def __init__(self, x):# self.val = x# self.next = Noneclass Solution(object): def mergeTwoLists(self, l1, l2): """ :type l1: ListNode :type l2: ListNode :rtype: ListNode """ result = cur = ListNode(1) # 第一个节点可以任取 while l1 and l2: if l1.val &lt; l2.val: cur.next = l1 l1 = l1.next else: cur.next = l2 l2 = l2.next cur = cur.next cur.next = l1 or l2 return result.next]]></content>
-      <categories>
-        <category>leetcode</category>
-      </categories>
-      <tags>
-        <tag>python</tag>
-        <tag>leetcode</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Leetcode-Maximum Subarray]]></title>
-    <url>%2F2018%2F09%2F12%2FLeetcode-Maximum%20Subarray%2F</url>
-    <content type="text"><![CDATA[Maximum Subarray最大子串和问题：从一个数组中找出一个子串使其和最大。Description tips:子串是指数组中连续的若干个元素，而子序列只要求各元素的顺序与其在数组中一致，而没有连续的要求。 解题思路：自己没有想出来，直接借鉴了网上的动态规划思路，我觉得下面是一些解决的关键点： 对于array[1…n]，如果array[i…j]就是满足和最大的子串，那么对于任何k(i&lt;=k&lt;=j)，我们有array[i…k]的和大于0。具体证明 假设已知0, .., k的最大和sum[k]以后，则0, …, k+1的最大和sum[k+1]分为以下两种情况：1）若sum[k]&gt;=0，则sum[k+1]=sum[k]+A[k+1]。代码中即curSum = curSum+nums[i]。2）若sum[k]&lt;0，另起一个SubArray，令sum[k+1]=A[k+1]。代码中即curSum = nums[i]。 1234567891011121314def maxSubArray(self, nums): """ :type nums: List[int] :rtype: int """ if not nums: return 0 curSum = maxSum = nums[0] for i in range(1, len(nums)): curSum = max(nums[i], curSum+nums[i]) maxSum = max(maxSum, curSum) return maxSum]]></content>
+    <title><![CDATA[Leetcode-Intersection of Two Linked Lists]]></title>
+    <url>%2F2018%2F09%2F12%2FLeetcode-Intersection%20of%20Two%20Linked%20Lists%2F</url>
+    <content type="text"><![CDATA[Intersection of Two Linked Lists寻找两个无环链表的交点。Description 解题思路： 如果两个链长度相同的话，那么对应的一个个比下去就能找到； 如果两个链长度不相同，分别计算出两个链表的长度，计算出长度差值，然后让长度更长的那个链表从头节点先遍历长度差的步数，这样以后两个链表按尾部对齐。接着长链表和短链表同步往下走，遇到的第一个相同的节点就是最早的公共节点。 123456789101112131415161718192021222324252627282930# Definition for singly-linked list.# class ListNode(object):# def __init__(self, x):# self.val = x# self.next = Noneclass Solution(object): def getIntersectionNode(self, headA, headB): """ :type head1, head1: ListNode :rtype: ListNode """ lenA = lenB = 0 curA, curB = headA, headB while curA is not None: lenA += 1 curA = curA.next while curB is not None: lenB += 1 curB = curB.next if lenA&gt;lenB: for i in range(lenA-lenB): headA = headA.next else: for i in range(lenB-lenA): headB = headB.next while headA != headB: headA = headA.next headB = headB.next return headA]]></content>
       <categories>
         <category>leetcode</category>
       </categories>
@@ -322,21 +345,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Leetcode-Intersection of Two Linked Lists]]></title>
-    <url>%2F2018%2F09%2F12%2FLeetcode-Intersection%20of%20Two%20Linked%20Lists%2F</url>
-    <content type="text"><![CDATA[Intersection of Two Linked Lists寻找两个无环链表的交点。Description 解题思路： 如果两个链长度相同的话，那么对应的一个个比下去就能找到； 如果两个链长度不相同，分别计算出两个链表的长度，计算出长度差值，然后让长度更长的那个链表从头节点先遍历长度差的步数，这样以后两个链表按尾部对齐。接着长链表和短链表同步往下走，遇到的第一个相同的节点就是最早的公共节点。 123456789101112131415161718192021222324252627282930# Definition for singly-linked list.# class ListNode(object):# def __init__(self, x):# self.val = x# self.next = Noneclass Solution(object): def getIntersectionNode(self, headA, headB): """ :type head1, head1: ListNode :rtype: ListNode """ lenA = lenB = 0 curA, curB = headA, headB while curA is not None: lenA += 1 curA = curA.next while curB is not None: lenB += 1 curB = curB.next if lenA&gt;lenB: for i in range(lenA-lenB): headA = headA.next else: for i in range(lenB-lenA): headB = headB.next while headA != headB: headA = headA.next headB = headB.next return headA]]></content>
-      <categories>
-        <category>leetcode</category>
-      </categories>
-      <tags>
-        <tag>python</tag>
-        <tag>leetcode</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Leetcode-Implement strStr()]]></title>
-    <url>%2F2018%2F09%2F12%2FLeetcode-Implement%20strStr()%2F</url>
-    <content type="text"><![CDATA[Implement strStr()从字符串中找出给定子字符串的索引，若不存在则返回-1。Description 解题思路：用python解决这道题很简单，因为python字符串自带的find的方法可以直接实现。1234567def strStr(self, haystack, needle): """ :type haystack: str :type needle: str :rtype: int """ return haystack.find(needle) 不采用find()方法的解题思路：采用brute force方式，即依次从字符串的每个位置开始，截取和子字符串相同长度的字符串，与给定的子字符串进行比较。12345678910def strStr(self, haystack, needle): """ :type haystack: str :type needle: str :rtype: int """ for i in range(len(haystack)-len(needle)+1): if haystack[i:i+len(needle)] == needle: return i return -1 改进：http://blog.csdn.net/linhuanmars/article/details/20276833提出了一种rolling hash的方式。]]></content>
+    <title><![CDATA[Leetcode-Maximum Subarray]]></title>
+    <url>%2F2018%2F09%2F12%2FLeetcode-Maximum%20Subarray%2F</url>
+    <content type="text"><![CDATA[Maximum Subarray最大子串和问题：从一个数组中找出一个子串使其和最大。Description tips:子串是指数组中连续的若干个元素，而子序列只要求各元素的顺序与其在数组中一致，而没有连续的要求。 解题思路：自己没有想出来，直接借鉴了网上的动态规划思路，我觉得下面是一些解决的关键点： 对于array[1…n]，如果array[i…j]就是满足和最大的子串，那么对于任何k(i&lt;=k&lt;=j)，我们有array[i…k]的和大于0。具体证明 假设已知0, .., k的最大和sum[k]以后，则0, …, k+1的最大和sum[k+1]分为以下两种情况：1）若sum[k]&gt;=0，则sum[k+1]=sum[k]+A[k+1]。代码中即curSum = curSum+nums[i]。2）若sum[k]&lt;0，另起一个SubArray，令sum[k+1]=A[k+1]。代码中即curSum = nums[i]。 1234567891011121314def maxSubArray(self, nums): """ :type nums: List[int] :rtype: int """ if not nums: return 0 curSum = maxSum = nums[0] for i in range(1, len(nums)): curSum = max(nums[i], curSum+nums[i]) maxSum = max(maxSum, curSum) return maxSum]]></content>
       <categories>
         <category>leetcode</category>
       </categories>
@@ -370,9 +381,33 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[Leetcode-Implement strStr()]]></title>
+    <url>%2F2018%2F09%2F12%2FLeetcode-Implement%20strStr()%2F</url>
+    <content type="text"><![CDATA[Implement strStr()从字符串中找出给定子字符串的索引，若不存在则返回-1。Description 解题思路：用python解决这道题很简单，因为python字符串自带的find的方法可以直接实现。1234567def strStr(self, haystack, needle): """ :type haystack: str :type needle: str :rtype: int """ return haystack.find(needle) 不采用find()方法的解题思路：采用brute force方式，即依次从字符串的每个位置开始，截取和子字符串相同长度的字符串，与给定的子字符串进行比较。12345678910def strStr(self, haystack, needle): """ :type haystack: str :type needle: str :rtype: int """ for i in range(len(haystack)-len(needle)+1): if haystack[i:i+len(needle)] == needle: return i return -1 改进：http://blog.csdn.net/linhuanmars/article/details/20276833提出了一种rolling hash的方式。]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+        <tag>leetcode</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Leetcode-Climbing Stairs]]></title>
     <url>%2F2018%2F09%2F12%2FLeetcode-Climbing%20Stairs%2F</url>
     <content type="text"><![CDATA[Climbing Stairs爬梯子问题。给定一个n级台阶，每次可以走一个台阶或者两个台阶，一共有多少种走法？Description 解题思路：很常见的一种递推题型，要求n级台阶的走法，即可以分解为求n-1级台阶加上n-2级台阶的走法，climbNum[n]=climbNum[n-1]+climbNum[n-2]。所以问题实质上就是求解斐波那契数列。但由于采用递推方式会产生大量重复的计算，因此使用动态规划自底向上的进行计算，其中我们使用一个数组用于保存每步产生的结果。 123456789101112class Solution(object): def climbStairs(self, n): """ :type n: int :rtype: int """ if n&lt;=2: return n climbNum = [1,1,2] for i in range(3,n+1): climbNum.append(climbNum[i-1] + climbNum[i-2]) return climbNum[n]]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+        <tag>leetcode</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Leetcode-Count and Say]]></title>
+    <url>%2F2018%2F09%2F12%2FLeetcode-Count%20and%20Say%2F</url>
+    <content type="text"><![CDATA[Count and Sayleetcode关于这题的说明比较含糊：The count-and-say sequence is the sequence of integers with the first five terms as following: 1 11 21 1211 111221 1 is read off as “one 1” or 11.11 is read off as “two 1s” or 21.21 is read off as “one 2, then one 1” or 1211.Given an integer n, generate the nth term of the count-and-say sequence. 题意是n=1时输出字符串1；n=2时，数上次字符串中的数值个数，因为上次字符串有1个1，所以输出11；n=3时，由于上次字符是11，有2个1，所以输出21；n=4时，由于上次字符串是21，有1个2和1个1，所以输出1211。依次类推，写个countAndSay(n)函数返回字符串。 解题思路：采用动态规划的方式。当n=1时，直接返回‘1’。自底向上，然后根据n=index时返回的字符串计算出n=index+1时的字符串，并保存到数组curString中。1234567891011121314151617181920def countAndSay(self, n): if n==1: return '1' count = 1 index = 1 curString = ['', '1'] while index != n: result = '' cs = curString[index] + '*' # 加*是为了下面计算方便 for i in range(len(cs)-1): if cs[i]==cs[i+1]: count += 1 else: result += str(count) + cs[i] # 加*的目的是为了方便处理最后一个字符 count = 1 index += 1 curString.append(result) return curString[n] 采用正则表达：leetcode上提供的另一种解题思路，尽管运行比较慢。用作者的解释即: (.) captures one character and \1* covers its repetitions.其中\1代表后向引用，表示表达式中，从左往右数，第一个左括号对应的括号内的内容。以此类推，\2表示第二个，\0表示整个表达式。12345def countAndSay(self, n): s = '1' for _ in range(n - 1): s = re.sub(r'(.)\1*', lambda m: str(len(m.group(0))) + m.group(1), s) return s]]></content>
       <categories>
         <category>leetcode</category>
       </categories>
@@ -394,15 +429,15 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Leetcode-Count and Say]]></title>
-    <url>%2F2018%2F09%2F12%2FLeetcode-Count%20and%20Say%2F</url>
-    <content type="text"><![CDATA[Count and Sayleetcode关于这题的说明比较含糊：The count-and-say sequence is the sequence of integers with the first five terms as following: 1 11 21 1211 111221 1 is read off as “one 1” or 11.11 is read off as “two 1s” or 21.21 is read off as “one 2, then one 1” or 1211.Given an integer n, generate the nth term of the count-and-say sequence. 题意是n=1时输出字符串1；n=2时，数上次字符串中的数值个数，因为上次字符串有1个1，所以输出11；n=3时，由于上次字符是11，有2个1，所以输出21；n=4时，由于上次字符串是21，有1个2和1个1，所以输出1211。依次类推，写个countAndSay(n)函数返回字符串。 解题思路：采用动态规划的方式。当n=1时，直接返回‘1’。自底向上，然后根据n=index时返回的字符串计算出n=index+1时的字符串，并保存到数组curString中。1234567891011121314151617181920def countAndSay(self, n): if n==1: return '1' count = 1 index = 1 curString = ['', '1'] while index != n: result = '' cs = curString[index] + '*' # 加*是为了下面计算方便 for i in range(len(cs)-1): if cs[i]==cs[i+1]: count += 1 else: result += str(count) + cs[i] # 加*的目的是为了方便处理最后一个字符 count = 1 index += 1 curString.append(result) return curString[n] 采用正则表达：leetcode上提供的另一种解题思路，尽管运行比较慢。用作者的解释即: (.) captures one character and \1* covers its repetitions.其中\1代表后向引用，表示表达式中，从左往右数，第一个左括号对应的括号内的内容。以此类推，\2表示第二个，\0表示整个表达式。12345def countAndSay(self, n): s = '1' for _ in range(n - 1): s = re.sub(r'(.)\1*', lambda m: str(len(m.group(0))) + m.group(1), s) return s]]></content>
+    <title><![CDATA[Batch Normalization 批标准化]]></title>
+    <url>%2F2018%2F09%2F12%2FBatch%20Normalization%2F</url>
+    <content type="text"><![CDATA[批标准化，相当于深度学习中的数据归一化。 普通机器学习的归一化只针对输入层，而BN对中间每一层输入（激活函数处理前的数值，我称之为net值）进行归一化。 归一化的目的是使的数据的分布集中在激活函数的敏感区域（即中间线性区域）。 BN层就是对深度学习的中间层的输入数据（net值）进行归一化，解决在训练过程中，中间层数据分布发生改变的情况，使得每一层的分布相似(标准正态)，同时引入非线性, 保留原来每层训练得到的特征分布（通过变换重构）。 机器学习领域的重要假设：独立同分布假设，即假设训练集数据和测试集数据是满足相同分布的，这是通过训练数据获得的模型能够在测试集获得好的效果的一个基本保障。 BatchNorm就是在深度神经网络训练过程中使得每一层神经网络的输入保持相同分布的。 Mini-batch 相对于 SGD的两个优点：梯度更新方向更准确；并行计算速度快。 BatchNorm就是基于mini-batch的，这也是名称中Batch的由来。 随机梯度下降成了训练深度网络的主流方法。尽管随机梯度下降法对于训练深度网络简单高效，但是它有个毛病，就是需要我们人为的去选择参数，比如学习率、参数初始化、权重衰减系数、Drop out比例等。这些参数的选择对训练结果至关重要，以至于我们很多时间都浪费在这些的调参上。 采用Batch Normalization的好处提升了训练速度，收敛过程大大加快。 (1)你可以选择比较大的初始学习率，让你的训练速度飙涨。以前还需要慢慢调整学习率，甚至在网络训练到一半的时候，还需要想着学习率进一步调小的比例选择多少比较合适，现在我们可以采用初始很大的学习率，然后学习率的衰减速度也很大，因为这个算法收敛很快。当然这个算法即使你选择了较小的学习率，也比以前的收敛速度快，因为它具有快速训练收敛的特性； (2)你再也不用去理会过拟合中drop out、L2正则项参数的选择问题，采用BN算法后，你可以移除这两项了参数，或者可以选择更小的L2正则约束参数了，因为BN具有提高网络泛化能力的特性，避因为这是类似于dropout的一种防止过拟合的正则化方式； 原因：均值和方差是在mini-batch上计算的，而不是在整个训练集，因此均值和方差会存在噪声，所以和dropout类似，它往每个隐藏层的激活值上增加了噪音：dropout增加噪音的方式，使一个隐藏的单元，以一定的概率乘以0. 但因为添加噪音较小，因此正则化效果轻微，可以和dropout一起使用。 (3)再也不需要使用局部响应归一化层了（局部响应归一化是Alexnet网络用到的方法，搞视觉的估计比较熟悉），因为BN本身就是一个归一化网络层； (4)可以把训练数据彻底打乱（防止每批训练的时候，某一个样本都经常被挑选到）。 深度神经网络中的归一化问题 Internal Covariate Shift：原因在于神经网络学习过程本质就是为了学习数据分布，一旦训练数据与测试数据的分布不同，那么网络的泛化能力也大大降低；另外一方面，一旦每批训练数据的分布各不相同(batch 梯度下降)，那么网络就要在每次迭代都去学习适应不同的分布，这样将会大大降低网络的训练速度，这也正是为什么我们需要对数据都要做一个归一化预处理的原因。 我们知道网络一旦train起来，那么参数就要发生更新，除了输入层的数据外(因为输入层数据，我们已经人为的为每个样本归一化)，后面网络每一层的输入数据分布是一直在发生变化的，因为在训练的时候，前面层训练参数的更新将导致后面层输入数据分布的变化。以网络第二层为例：网络的第二层输入，是由第一层的参数和input计算得到的，而第一层的参数在整个训练过程中一直在变化，因此必然会引起后面每一层输入数据分布的改变。我们把网络中间层在训练过程中，数据分布的改变称之为：“Internal Covariate Shift”。 BN概述基本思想：深层神经网络在做非线性变换前的激活输入值net值随着网络深度加深或者在训练过程中，其分布逐渐发生偏移或者变动，之所以训练收敛慢，一般是整体分布逐渐往激活函数的取值区间的上下限两端靠近，导致反向传播时底层神经网络的梯度消失，这就是深层神经网络收敛越来越慢的原因。 BN就是通过规范化手段，把每层神经网络任意神经元输入值net值的分布强行拉回到均值为0方差为1的标准正态分布，使得激活输入值落在中间比较敏感的区域的概率较大，让梯度变大，避免梯度消失问题，梯度变大意味着学习收敛速度快，加快训练速度。 如图，转换为标准正态分布后，数据落在-4，4的概率变大，而在这个区间范围内，对应的激活函数的梯度较大。 但是：由于数据都落在了激活函数的线性区域，相当于做了线性变换，那么整个网络就会变成多层线性网络，表达能力下降。为了解决这个问题，BN为了保证非线性的获得，对变换后满足均值为0方差为1的x又进行了scale加上shift操作（y=sclae*x + shift)，而这两个参数是通过训练学习得到的，意思是通过scale和shift把这个值从标准正态分布进行一些移动和变形，使得数据的散落区域从正中心向非线性区间进行部分移动。 训练 就像激活函数层、卷积层、全连接层、池化层一样，BN(Batch Normalization)也属于网络的一层。 BN层是对每个隐层的net值进行变换。经过BN变换以后的值再进过激活函数得到out值。 对于mini-batch来说，一次训练包含m个训练样本，因此对于隐层的每个神经元的激活值来说包括： 预处理： 注意：这里t层第k个神经元的并不是指原始输入，而是该神经元隐层的net值的第k维数据。 变换的意思是：某个神经元对应的net值减去mini-batch内m个样本在该层对应维度神经元的m个net值的均值并除以方差。也就是说，这个变换和标准归一化一样，对每个样本的每个维度的归一化需要所有样本该维度的数据。 某个神经元的net值在经过变换后就会形成服从均值为0，方差为1的正态分布。 为了避免数据始终落在激活函数的线性区域，导致网络的表达能力下降，因此引入两个调节参数scale和shift,对变换后的net值进行变换的反操作 引入了两个可学习参数γ和β： 每一个神经元$x^k$都会有一对这样的参数γ、β。这样其实当： 是可以恢复出原始的某一层所学到的特征的。因此我们引入了这个可学习重构参数γ、β，让我们的网络可以学习恢复出原始网络所要学习的特征分布。最后Batch Normalization网络层的前向传导过程公式就是： 上面的公式中m指的是mini-batch size。 预测阶段训练阶段可以根据mini-batch的若干个样本进行变换。 但是测试阶段我们一般只输入一个测试样本。我们可以采用所有训练实例中获得的统计量来代替mini-batch中m个训练实例的均值和方差统计量。 计算全局统计量时只需利用每次mini-batch计算的均值和方差统计量，不需要重新计算, 这里方差采用的是无偏方差估计。 有了均值和方差，并且每个隐层scaling和shift参数已经计算好，在预测时就可以采用： 这个公式其实和： 等价,就是代入而已，不过实际计算时可以减少计算量。 参考： BN详细笔记：https://www.cnblogs.com/guoyaohua/p/8724433.html Batch normalization 学习笔记：https://blog.csdn.net/hjimce/article/details/50866313 批标准化过程：https://blog.csdn.net/whitesilence/article/details/75667002]]></content>
       <categories>
-        <category>leetcode</category>
+        <category>深度学习</category>
       </categories>
       <tags>
-        <tag>python</tag>
-        <tag>leetcode</tag>
+        <tag>正则化</tag>
+        <tag>深度学习</tag>
       </tags>
   </entry>
   <entry>
@@ -425,21 +460,9 @@
         <category>python</category>
       </categories>
       <tags>
-        <tag>Django</tag>
         <tag>python</tag>
+        <tag>Django</tag>
         <tag>blog</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Batch Normalization 批标准化]]></title>
-    <url>%2F2018%2F09%2F12%2FBatch%20Normalization%2F</url>
-    <content type="text"><![CDATA[批标准化，相当于深度学习中的数据归一化。 普通机器学习的归一化只针对输入层，而BN对中间每一层输入（激活函数处理前的数值，我称之为net值）进行归一化。 归一化的目的是使的数据的分布集中在激活函数的敏感区域（即中间线性区域）。 BN层就是对深度学习的中间层的输入数据（net值）进行归一化，解决在训练过程中，中间层数据分布发生改变的情况，使得每一层的分布相似(标准正态)，同时引入非线性, 保留原来每层训练得到的特征分布（通过变换重构）。 机器学习领域的重要假设：独立同分布假设，即假设训练集数据和测试集数据是满足相同分布的，这是通过训练数据获得的模型能够在测试集获得好的效果的一个基本保障。 BatchNorm就是在深度神经网络训练过程中使得每一层神经网络的输入保持相同分布的。 Mini-batch 相对于 SGD的两个优点：梯度更新方向更准确；并行计算速度快。 BatchNorm就是基于mini-batch的，这也是名称中Batch的由来。 随机梯度下降成了训练深度网络的主流方法。尽管随机梯度下降法对于训练深度网络简单高效，但是它有个毛病，就是需要我们人为的去选择参数，比如学习率、参数初始化、权重衰减系数、Drop out比例等。这些参数的选择对训练结果至关重要，以至于我们很多时间都浪费在这些的调参上。 采用Batch Normalization的好处提升了训练速度，收敛过程大大加快。 (1)你可以选择比较大的初始学习率，让你的训练速度飙涨。以前还需要慢慢调整学习率，甚至在网络训练到一半的时候，还需要想着学习率进一步调小的比例选择多少比较合适，现在我们可以采用初始很大的学习率，然后学习率的衰减速度也很大，因为这个算法收敛很快。当然这个算法即使你选择了较小的学习率，也比以前的收敛速度快，因为它具有快速训练收敛的特性； (2)你再也不用去理会过拟合中drop out、L2正则项参数的选择问题，采用BN算法后，你可以移除这两项了参数，或者可以选择更小的L2正则约束参数了，因为BN具有提高网络泛化能力的特性，避因为这是类似于dropout的一种防止过拟合的正则化方式； 原因：均值和方差是在mini-batch上计算的，而不是在整个训练集，因此均值和方差会存在噪声，所以和dropout类似，它往每个隐藏层的激活值上增加了噪音：dropout增加噪音的方式，使一个隐藏的单元，以一定的概率乘以0. 但因为添加噪音较小，因此正则化效果轻微，可以和dropout一起使用。 (3)再也不需要使用局部响应归一化层了（局部响应归一化是Alexnet网络用到的方法，搞视觉的估计比较熟悉），因为BN本身就是一个归一化网络层； (4)可以把训练数据彻底打乱（防止每批训练的时候，某一个样本都经常被挑选到）。 深度神经网络中的归一化问题 Internal Covariate Shift：原因在于神经网络学习过程本质就是为了学习数据分布，一旦训练数据与测试数据的分布不同，那么网络的泛化能力也大大降低；另外一方面，一旦每批训练数据的分布各不相同(batch 梯度下降)，那么网络就要在每次迭代都去学习适应不同的分布，这样将会大大降低网络的训练速度，这也正是为什么我们需要对数据都要做一个归一化预处理的原因。 我们知道网络一旦train起来，那么参数就要发生更新，除了输入层的数据外(因为输入层数据，我们已经人为的为每个样本归一化)，后面网络每一层的输入数据分布是一直在发生变化的，因为在训练的时候，前面层训练参数的更新将导致后面层输入数据分布的变化。以网络第二层为例：网络的第二层输入，是由第一层的参数和input计算得到的，而第一层的参数在整个训练过程中一直在变化，因此必然会引起后面每一层输入数据分布的改变。我们把网络中间层在训练过程中，数据分布的改变称之为：“Internal Covariate Shift”。 BN概述基本思想：深层神经网络在做非线性变换前的激活输入值net值随着网络深度加深或者在训练过程中，其分布逐渐发生偏移或者变动，之所以训练收敛慢，一般是整体分布逐渐往激活函数的取值区间的上下限两端靠近，导致反向传播时底层神经网络的梯度消失，这就是深层神经网络收敛越来越慢的原因。 BN就是通过规范化手段，把每层神经网络任意神经元输入值net值的分布强行拉回到均值为0方差为1的标准正态分布，使得激活输入值落在中间比较敏感的区域的概率较大，让梯度变大，避免梯度消失问题，梯度变大意味着学习收敛速度快，加快训练速度。 如图，转换为标准正态分布后，数据落在-4，4的概率变大，而在这个区间范围内，对应的激活函数的梯度较大。 但是：由于数据都落在了激活函数的线性区域，相当于做了线性变换，那么整个网络就会变成多层线性网络，表达能力下降。为了解决这个问题，BN为了保证非线性的获得，对变换后满足均值为0方差为1的x又进行了scale加上shift操作（y=sclae*x + shift)，而这两个参数是通过训练学习得到的，意思是通过scale和shift把这个值从标准正态分布进行一些移动和变形，使得数据的散落区域从正中心向非线性区间进行部分移动。 训练 就像激活函数层、卷积层、全连接层、池化层一样，BN(Batch Normalization)也属于网络的一层。 BN层是对每个隐层的net值进行变换。经过BN变换以后的值再进过激活函数得到out值。 对于mini-batch来说，一次训练包含m个训练样本，因此对于隐层的每个神经元的激活值来说包括： 预处理： 注意：这里t层第k个神经元的并不是指原始输入，而是该神经元隐层的net值的第k维数据。 变换的意思是：某个神经元对应的net值减去mini-batch内m个样本在该层对应维度神经元的m个net值的均值并除以方差。也就是说，这个变换和标准归一化一样，对每个样本的每个维度的归一化需要所有样本该维度的数据。 某个神经元的net值在经过变换后就会形成服从均值为0，方差为1的正态分布。 为了避免数据始终落在激活函数的线性区域，导致网络的表达能力下降，因此引入两个调节参数scale和shift,对变换后的net值进行变换的反操作 引入了两个可学习参数γ和β： 每一个神经元$x^k$都会有一对这样的参数γ、β。这样其实当： 是可以恢复出原始的某一层所学到的特征的。因此我们引入了这个可学习重构参数γ、β，让我们的网络可以学习恢复出原始网络所要学习的特征分布。最后Batch Normalization网络层的前向传导过程公式就是： 上面的公式中m指的是mini-batch size。 预测阶段训练阶段可以根据mini-batch的若干个样本进行变换。 但是测试阶段我们一般只输入一个测试样本。我们可以采用所有训练实例中获得的统计量来代替mini-batch中m个训练实例的均值和方差统计量。 计算全局统计量时只需利用每次mini-batch计算的均值和方差统计量，不需要重新计算, 这里方差采用的是无偏方差估计。 有了均值和方差，并且每个隐层scaling和shift参数已经计算好，在预测时就可以采用： 这个公式其实和： 等价,就是代入而已，不过实际计算时可以减少计算量。 参考： BN详细笔记：https://www.cnblogs.com/guoyaohua/p/8724433.html Batch normalization 学习笔记：https://blog.csdn.net/hjimce/article/details/50866313 批标准化过程：https://blog.csdn.net/whitesilence/article/details/75667002]]></content>
-      <categories>
-        <category>深度学习</category>
-      </categories>
-      <tags>
-        <tag>深度学习</tag>
-        <tag>正则化</tag>
       </tags>
   </entry>
   <entry>
@@ -462,9 +485,9 @@
         <category>机器学习</category>
       </categories>
       <tags>
-        <tag>正则化</tag>
         <tag>机器学习</tag>
         <tag>过拟合</tag>
+        <tag>正则化</tag>
       </tags>
   </entry>
   <entry>
