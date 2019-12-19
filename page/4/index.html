@@ -303,7 +303,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="hellodavid.top/2018/09/12/Leetcode-Intersection of Two Arrays/">
+    <link itemprop="mainEntityOfPage" href="hellodavid.top/2019/06/07/Leetcode-Count and Say/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="David">
@@ -322,7 +322,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/09/12/Leetcode-Intersection of Two Arrays/" itemprop="url">Leetcode-Intersection of Two Arrays</a></h1>
+                <a class="post-title-link" href="/2019/06/07/Leetcode-Count and Say/" itemprop="url">Leetcode-Count and Say</a></h1>
         
 
         <div class="post-meta">
@@ -334,605 +334,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-12T22:22:58+08:00">
-                2018-09-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Intersection-of-Two-Arrays"><a href="#Intersection-of-Two-Arrays" class="headerlink" title="Intersection of Two Arrays"></a>Intersection of Two Arrays</h1><p>查找两个数组的共有元素。<br>Given two arrays, write a function to compute their intersection.<br>Example:<br>Given nums1 = [1, 2, 2, 1], nums2 = [2, 2], return [2].<br><a href="https://leetcode.com/problems/intersection-of-two-arrays/description/" target="_blank" rel="noopener">Description</a></p>
-<p><strong>解题思路</strong>：<br>本来是想做关于排序的题目的，然后这道题的标签中就是含sort的，但我觉得用集合的方式会更简明些。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">intersection</span><span class="params">(self, nums1, nums2)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type nums1: List[int]</span></span><br><span class="line"><span class="string">        :type nums2: List[int]</span></span><br><span class="line"><span class="string">        :rtype: List[int]</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        set1 = set(nums1)</span><br><span class="line">        set2 = set(nums2)</span><br><span class="line">        <span class="keyword">return</span> list(set1.intersection(set2))</span><br></pre></td></tr></table></figure>
-<p><strong>tip</strong>：<br>set求交集函数返回的是set,因此需要通过list进行转换。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="hellodavid.top/2018/09/12/Leetcode-Implement strStr()/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="David">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/myavatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="HelloDavid">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/12/Leetcode-Implement strStr()/" itemprop="url">Leetcode-Implement strStr()</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-12T22:22:58+08:00">
-                2018-09-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Implement-strStr"><a href="#Implement-strStr" class="headerlink" title="Implement strStr()"></a>Implement strStr()</h1><p>从字符串中找出给定子字符串的索引，若不存在则返回-1。<br><a href="https://leetcode.com/problems/implement-strstr/description/" target="_blank" rel="noopener">Description</a></p>
-<p><strong>解题思路</strong>：<br>用python解决这道题很简单，因为python字符串自带的find的方法可以直接实现。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">strStr</span><span class="params">(self, haystack, needle)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    :type haystack: str</span></span><br><span class="line"><span class="string">    :type needle: str</span></span><br><span class="line"><span class="string">    :rtype: int</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="keyword">return</span> haystack.find(needle)</span><br></pre></td></tr></table></figure></p>
-<p><strong>不采用find()方法的解题思路</strong>：<br>采用brute force方式，即依次从字符串的每个位置开始，截取和子字符串相同长度的字符串，与给定的子字符串进行比较。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">strStr</span><span class="params">(self, haystack, needle)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    :type haystack: str</span></span><br><span class="line"><span class="string">    :type needle: str</span></span><br><span class="line"><span class="string">    :rtype: int</span></span><br><span class="line"><span class="string">    """</span> </span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(haystack)-len(needle)+<span class="number">1</span>):</span><br><span class="line">        <span class="keyword">if</span> haystack[i:i+len(needle)] == needle:</span><br><span class="line">            <span class="keyword">return</span> i</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span></span><br></pre></td></tr></table></figure></p>
-<p>改进：<a href="http://blog.csdn.net/linhuanmars/article/details/20276833" target="_blank" rel="noopener">http://blog.csdn.net/linhuanmars/article/details/20276833</a><br>提出了一种rolling hash的方式。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="hellodavid.top/2018/09/12/Leetcode-House Robber/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="David">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/myavatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="HelloDavid">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/12/Leetcode-House Robber/" itemprop="url">Leetcode-House Robber</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-12T22:22:58+08:00">
-                2018-09-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="House-Robber"><a href="#House-Robber" class="headerlink" title="House Robber"></a>House Robber</h1><p>打家劫舍。问题本质就是从数组中找出一个或多个不相邻的数，使其和最大。</p>
-<blockquote>
-<p>You are a professional robber planning to rob houses along a street. Each house has a certain amount of money stashed, the only constraint stopping you from robbing each of them is that adjacent houses have security system connected and it will automatically contact the police if two adjacent houses were broken into on the same night.</p>
-<p>Given a list of non-negative integers representing the amount of money of each house, determine the maximum amount of money you can rob tonight without alerting the police.</p>
-</blockquote>
-<p><a href="https://leetcode.com/problems/house-robber/description/" target="_blank" rel="noopener">Description</a></p>
-<p><strong>解题思路</strong>：</p>
-<ol>
-<li>如果选择了抢劫上一个屋子，那么就不能抢劫当前的屋子，所以最大收益就是抢劫上一个屋子的收益；</li>
-<li>如果选择抢劫当前屋子，就不能抢劫上一个屋子，所以最大收益是到上一个屋子的上一个屋子为止的最大收益，加上当前屋子里有的钱。</li>
-</ol>
-<p>令dp[i]表示从[0, …, i]数组中能够得到的最大收益，显然，dp[0]=nums[0], dp[1]=max(dp[0],dp[1]), 现在计算dp[i+1]:</p>
-<p>dp[i+1]=max(dp[i], dp[i-1]+nums[i+1])</p>
-<p>其中，上式包含了如下隐含信息：<br>若dp[i]不包含nums[i], 所以nums[i+1]可以和dp[i]相加，但此时dp[i]=dp[i-1],所以dp[i-1]+nums[i+1]与dp[i]+nums[i+1]的值相等；<br>若dp[i]包含nums[i]，则nums[i+1]不可以和dp[i]相加，所以只存在nums[i+1]+dp[i-1]。</p>
-<p>实际计算时只需要保存两个变量即可。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">rob</span><span class="params">(self, nums)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type nums: List[int]</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="keyword">if</span> len(nums)&lt;=<span class="number">1</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span> <span class="keyword">if</span> len(nums)==<span class="number">0</span> <span class="keyword">else</span> nums[<span class="number">0</span>]</span><br><span class="line">        <span class="comment"># 保存上一次的收益</span></span><br><span class="line">        last = nums[<span class="number">0</span>]</span><br><span class="line">        <span class="comment"># 保存当前收益</span></span><br><span class="line">        cur = max(nums[<span class="number">0</span>], nums[<span class="number">1</span>])</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">2</span>, len(nums)) :</span><br><span class="line">            tmp = cur</span><br><span class="line">            cur = max(last+nums[i], cur)</span><br><span class="line">            last = tmp</span><br><span class="line">        <span class="keyword">return</span> cur</span><br></pre></td></tr></table></figure>
-<p><strong>tip</strong>:<br>python中的三目运算符不像其他语言, 其他的一般都是: </p>
-<p>判定条件?为真时的结果:为假时的结果</p>
-<p>而在python中的格式为:</p>
-<p>为真时的结果 if 判定条件 else 为假时的结果 </p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="hellodavid.top/2018/09/12/Leetcode-Best Time to Buy and Sell Stock/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="David">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/myavatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="HelloDavid">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/12/Leetcode-Best Time to Buy and Sell Stock/" itemprop="url">Leetcode-Best Time to Buy and Sell Stock</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-12T22:22:58+08:00">
-                2018-09-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Best-Time-to-Buy-and-Sell-Stock"><a href="#Best-Time-to-Buy-and-Sell-Stock" class="headerlink" title="Best Time to Buy and Sell Stock"></a>Best Time to Buy and Sell Stock</h1><p>买卖股票的最佳时机，返回最大收益。<br>Say you have an array for which the ith element is the price of a given stock on day i.</p>
-<p>If you were only permitted to complete at most one transaction (ie, buy one and sell one share of the stock), design an algorithm to find the maximum profit.<br><a href="https://leetcode.com/problems/best-time-to-buy-and-sell-stock/description/" target="_blank" rel="noopener">Description</a></p>
-<p><strong>解题思路</strong>：<br>依次遍历整个数组，利用minprice这个变量来保存每个元素之前的最低价格，并计算出在该元素卖出时能够带来的最大收益，最后将每个元素卖出时得到的最大收益进行比较即得到整个系统的最大收益。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">maxProfit</span><span class="params">(self, prices)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type prices: List[int]</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        maxprofit = <span class="number">0</span></span><br><span class="line">        minprice = float(<span class="string">'inf'</span>)</span><br><span class="line">        <span class="keyword">for</span> price <span class="keyword">in</span> prices:</span><br><span class="line">            minprice = min(minprice, price)</span><br><span class="line">            profit = price - minprice</span><br><span class="line">            maxprofit = max(maxprofit, profit)</span><br><span class="line">        <span class="keyword">return</span> maxprofit</span><br></pre></td></tr></table></figure>
-<p><strong>tip</strong>:<br>Python中可以用如下方式表示正负无穷：float(“inf”), float(“-inf”)</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="hellodavid.top/2018/09/12/Leetcode-Count and Say/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="David">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/myavatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="HelloDavid">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/12/Leetcode-Count and Say/" itemprop="url">Leetcode-Count and Say</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-12T22:22:58+08:00">
-                2018-09-12
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-07T18:39:01+08:00">
+                2019-06-07
               </time>
             
 
@@ -1053,7 +456,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="hellodavid.top/2018/09/12/Leetcode-Climbing Stairs/">
+    <link itemprop="mainEntityOfPage" href="hellodavid.top/2019/06/07/Leetcode-Climbing Stairs/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="David">
@@ -1072,7 +475,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/09/12/Leetcode-Climbing Stairs/" itemprop="url">Leetcode-Climbing Stairs</a></h1>
+                <a class="post-title-link" href="/2019/06/07/Leetcode-Climbing Stairs/" itemprop="url">Leetcode-Climbing Stairs</a></h1>
         
 
         <div class="post-meta">
@@ -1084,8 +487,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-12T22:22:58+08:00">
-                2018-09-12
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-07T18:39:01+08:00">
+                2019-06-07
               </time>
             
 
@@ -1196,7 +599,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="hellodavid.top/2018/09/12/Batch Normalization/">
+    <link itemprop="mainEntityOfPage" href="hellodavid.top/2019/06/07/Leetcode-Best Time to Buy and Sell Stock/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="David">
@@ -1215,7 +618,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/09/12/Batch Normalization/" itemprop="url">Batch Normalization 批标准化</a></h1>
+                <a class="post-title-link" href="/2019/06/07/Leetcode-Best Time to Buy and Sell Stock/" itemprop="url">Leetcode-Best Time to Buy and Sell Stock</a></h1>
         
 
         <div class="post-meta">
@@ -1227,8 +630,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-12T22:22:58+08:00">
-                2018-09-12
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-07T18:39:01+08:00">
+                2019-06-07
               </time>
             
 
@@ -1250,157 +653,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/深度学习/" itemprop="url" rel="index">
-                    <span itemprop="name">深度学习</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>批标准化，相当于深度学习中的数据归一化。</p>
-<p>普通机器学习的归一化只针对输入层，而BN对中间每一层输入（激活函数处理前的数值，我称之为net值）进行归一化。</p>
-<p>归一化的目的是使的数据的分布集中在激活函数的敏感区域（即中间线性区域）。</p>
-<p><strong>BN层就是对深度学习的中间层的输入数据（net值）进行归一化，解决在训练过程中，中间层数据分布发生改变的情况，使得每一层的分布相似(标准正态)，同时引入非线性, 保留原来每层训练得到的特征分布（通过变换重构）</strong>。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/09/12/Batch Normalization/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="hellodavid.top/2018/09/12/Django blog/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="David">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/myavatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="HelloDavid">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/12/Django blog/" itemprop="url">Django搭建个人博客</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-12T22:22:58+08:00">
-                2018-09-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/python/" itemprop="url" rel="index">
-                    <span itemprop="name">python</span>
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
                   </a>
                 </span>
 
@@ -1438,24 +692,11 @@
       
         
           
-            <p>最近学着用Django搭建了个个人博客，目前域名正在备案中，现在把我这最近半个月的摸爬滚打经历记录下。</p>
-<h3 id="Django入门"><a href="#Django入门" class="headerlink" title="Django入门"></a>Django入门</h3><ol>
-<li>Python核心编程</li>
-<li><strong>追梦人物的 <a href="http://zmrenwu.com/" target="_blank" rel="noopener">Django博客教程</a></strong></li>
-<li><a href="http://www.runoob.com/django/django-tutorial.html" target="_blank" rel="noopener">菜鸟Django教程</a></li>
-<li><a href="http://code.ziqiangxuetang.com/django/django-tutorial.html" target="_blank" rel="noopener">自强学堂Django教程</a></li>
-</ol>
-<p>第一阶段：我首先看了Python核心编程中的Django章节，刚开始看的有些云里雾里。于是我去菜鸟教程那里按着Django教程的步骤搭建了下，菜鸟教程Django部分比较简单，之后对整体有了大致了解后再进一步看核心编程，发现能够比较容易理解了。</p>
-<p>第二阶段：这里非常推荐追梦人物博主的博客教程，写的非常详细，按着博主的步骤就能够一步一步的把个人博客搭建起来，并且博主也提到了不少学习资料，对我们这些初学者能提供极大的帮助。另外自强学堂的内容我大致看了下，写的比较细，把个人博客搭建起来后再看可能效果会更好。</p>
-<h3 id="Django博客搭建"><a href="#Django博客搭建" class="headerlink" title="Django博客搭建"></a>Django博客搭建</h3><p>我这里就放一些我在搭建博客时用到的一些不错的资源。</p>
-<p>Bootstrap模板：<a href="https://html5up.net/" target="_blank" rel="noopener">https://html5up.net/</a><br>这个网站提供了免费的响应式模板，我觉得很漂亮。</p>
-<p>日历插件：<a href="http://www.jq22.com/yanshi11367" target="_blank" rel="noopener">http://www.jq22.com/yanshi11367</a><br>这是我使用的日历插件，也可以在这个网站上找到一些别的datepicker的日历插件。</p>
-<p>abowman:<a href="http://abowman.com/" target="_blank" rel="noopener">http://abowman.com/</a><br>这个网站很有趣，可以在网页上显示一个有趣的动图，有需要的可以自己插入网页。</p>
-<h3 id="域名和云服务器"><a href="#域名和云服务器" class="headerlink" title="域名和云服务器"></a>域名和云服务器</h3><p>我这里是在阿里云上学生优惠买的云服务器，域名也是直接在阿里云购买的。域名购买后记得要进行解析，还有备案（备案真的好麻烦）。</p>
-<p><strong>使用nginx后无法出现欢迎界面</strong><br>这个地方我摸索了好久，一直不知道怎么回事，在阿里云服务器上输入sudo service nginx start后，通过域名访问始终无法显示nginx的欢迎界面。后来发现原来是阿里云服务器的安全组设置中没有配置80端口。<br><em>解决</em>：<br>进入阿里云ECS控制台-&gt;安全组-&gt;配置规则-&gt;公网入方向-&gt;快速配置规则-&gt;选中80端口和443端口，授权对象为0.0.0.0/0，确定即可。</p>
-<p>在进展到用nginx和gunicorn步骤时始终出现欢迎界面。<br><em>解决</em>：<br>进入/etc/nginx/sites-enabled删除default文件，原因是默认配置覆盖了我们的配置。</p>
-<p>目前我还在慢慢学习中，<br>待续…</p>
-<p>— 2018-09-12更新<br>之前的django博客确实搭建成了，当时主要是为了成为一名网络开发工程师，摸索着完成了这一系列步骤。不过，现在转行成了一名算法工程师，也就没有心思继续维护之前的网站了。所以，为了简单，我采用了hexo+next+github的方式重新建立了新的博客，欢迎大家访问我的新的博客：<br><a href="http://hellodavid.top">hellodavid.top</a></p>
+            <h1 id="Best-Time-to-Buy-and-Sell-Stock"><a href="#Best-Time-to-Buy-and-Sell-Stock" class="headerlink" title="Best Time to Buy and Sell Stock"></a>Best Time to Buy and Sell Stock</h1><p>买卖股票的最佳时机，返回最大收益。<br>Say you have an array for which the ith element is the price of a given stock on day i.</p>
+<p>If you were only permitted to complete at most one transaction (ie, buy one and sell one share of the stock), design an algorithm to find the maximum profit.<br><a href="https://leetcode.com/problems/best-time-to-buy-and-sell-stock/description/" target="_blank" rel="noopener">Description</a></p>
+<p><strong>解题思路</strong>：<br>依次遍历整个数组，利用minprice这个变量来保存每个元素之前的最低价格，并计算出在该元素卖出时能够带来的最大收益，最后将每个元素卖出时得到的最大收益进行比较即得到整个系统的最大收益。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">maxProfit</span><span class="params">(self, prices)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type prices: List[int]</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        maxprofit = <span class="number">0</span></span><br><span class="line">        minprice = float(<span class="string">'inf'</span>)</span><br><span class="line">        <span class="keyword">for</span> price <span class="keyword">in</span> prices:</span><br><span class="line">            minprice = min(minprice, price)</span><br><span class="line">            profit = price - minprice</span><br><span class="line">            maxprofit = max(maxprofit, profit)</span><br><span class="line">        <span class="keyword">return</span> maxprofit</span><br></pre></td></tr></table></figure>
+<p><strong>tip</strong>:<br>Python中可以用如下方式表示正负无穷：float(“inf”), float(“-inf”)</p>
 
           
         
@@ -1504,7 +745,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="hellodavid.top/2018/09/12/leetcode-2sum/">
+    <link itemprop="mainEntityOfPage" href="hellodavid.top/2019/06/07/leetcode-2sum/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="David">
@@ -1523,7 +764,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/09/12/leetcode-2sum/" itemprop="url">Leetcode-2sum-python</a></h1>
+                <a class="post-title-link" href="/2019/06/07/leetcode-2sum/" itemprop="url">Leetcode-2sum-python</a></h1>
         
 
         <div class="post-meta">
@@ -1535,8 +776,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-12T22:22:58+08:00">
-                2018-09-12
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-07T18:39:01+08:00">
+                2019-06-07
               </time>
             
 
@@ -1650,7 +891,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="hellodavid.top/2018/09/11/linear and logistic learning/">
+    <link itemprop="mainEntityOfPage" href="hellodavid.top/2019/06/07/Latex+VScode/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="David">
@@ -1669,7 +910,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/09/11/linear and logistic learning/" itemprop="url">线性回归和逻辑回归的比较</a></h1>
+                <a class="post-title-link" href="/2019/06/07/Latex+VScode/" itemprop="url">VScode + LaTex + TexLive 搭建</a></h1>
         
 
         <div class="post-meta">
@@ -1681,8 +922,171 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-11T17:56:10+08:00">
-                2018-09-11
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-07T18:39:01+08:00">
+                2019-06-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/latex/" itemprop="url" rel="index">
+                    <span itemprop="name">latex</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>分别下载并安装VScode, TexLive</p>
+<ol>
+<li><p>VScode下载与安装：<a href="https://code.visualstudio.com/" target="_blank" rel="noopener">https://code.visualstudio.com/</a></p>
+</li>
+<li><p>TexLive下载（清华大学镜像）：<a href="https://mirrors.tuna.tsinghua.edu.cn/CTAN/systems/texlive/Images/" target="_blank" rel="noopener">https://mirrors.tuna.tsinghua.edu.cn/CTAN/systems/texlive/Images/</a></p>
+<p>TexLive安装教程：<a href="https://blog.csdn.net/so_geili/article/details/72636466" target="_blank" rel="noopener">https://blog.csdn.net/so_geili/article/details/72636466</a></p>
+</li>
+<li><p>VScode安装插件：LaTex language support, LaTex Workshop</p>
+</li>
+<li>安装完毕后开始使用，创建临时文件temp.tex, 输入以下内容：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">\documentclass[UTF8]&#123;ctexart&#125;</span><br><span class="line">    \title&#123;文章标题&#125;</span><br><span class="line">    \author&#123;David&#125;</span><br><span class="line">    \date&#123;\today&#125;</span><br><span class="line">    \begin&#123;document&#125;</span><br><span class="line">    \maketitle</span><br><span class="line">    This is the context of the article.</span><br><span class="line">\end&#123;document&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>然后按Ctrl+S 完成编译加保存功能。</p>
+<ol>
+<li><p>查看PDF</p>
+<p><img src="/../typora-images/1539261843199.png" alt="1539261843199"></p>
+<p>左侧工具栏选择 <em>TEX</em>-View LaTex PDF-View in VScode Tab后，右侧就会出现PDF,</p>
+<p><img src="/../typora-images/1539261941744.png" alt="1539261941744"></p>
+<p>每次修改后，按Ctrl+S, 右边PDF会进行实时编译。</p>
+</li>
+<li>常用的Latex数学符号：<a href="http://www.mohu.org/info/symbols/symbols.htm" target="_blank" rel="noopener">http://www.mohu.org/info/symbols/symbols.htm</a></li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="hellodavid.top/2019/06/07/L1 and L2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="David">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/myavatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HelloDavid">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/06/07/L1 and L2/" itemprop="url">L1和L2正则化</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-07T18:39:00+08:00">
+                2019-06-07
               </time>
             
 
@@ -1742,16 +1146,607 @@
 
       
         
-          <h1 id="线性回归"><a href="#线性回归" class="headerlink" title="线性回归"></a>线性回归</h1><p><img src="/../typora-images/1536368052441.png" alt="1536368052441"></p>
-<p>用一组变量的（特征）的线性组合，来建立与结果之间的关系。</p>
-<p>模型表达：$y(x, w)=w_0+w_1x_1+…+w_nx_n$</p>
-<h1 id="逻辑回归"><a href="#逻辑回归" class="headerlink" title="逻辑回归"></a>逻辑回归</h1><p>逻辑回归用于<strong>分类</strong>，而不是回归。</p>
-<p>在线性回归模型中，输出一般是连续的， 对于每一个输入的x，都有一个对应的输出y。因此模型的定义域和值域都可以是无穷。</p>
-<p>但是对于逻辑回归，输入可以是连续的[-∞, +∞]，但输出一般是离散的，通常只有两个值{0, 1}。</p>
-<p>这两个值可以表示对样本的某种分类，高/低、患病/ 健康、阴性/阳性等，这就是最常见的二分类逻辑回归。因此，从整体上来说，通过逻辑回归模型，我们将在整个实数范围上的x映射到了有限个点上，这样就实现了对x的分类。因为每次拿过来一个x，经过逻辑回归分析，就可以将它归入某一类y中。</p>
+          <h1 id="L0范数，L1范数，L2范数"><a href="#L0范数，L1范数，L2范数" class="headerlink" title="L0范数，L1范数，L2范数"></a>L0范数，L1范数，L2范数</h1><p><strong>L0范数</strong>是指向量中非0元素的个数。</p>
+<p>如果我们用L0范数来规则化一个参数矩阵W的话（正则项），就是希望W的大部分元素都是0。换句话说，让参数W是稀疏的。</p>
+<p><strong>L1范数</strong>是指向量中各个元素绝对值之和，也有个美称叫“稀疏规则算子”（Lasso regularization）。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/09/11/linear and logistic learning/#more" rel="contents">
+            <a class="btn" href="/2019/06/07/L1 and L2/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="hellodavid.top/2019/06/07/Hexo+next+busuanzi/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="David">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/myavatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HelloDavid">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/06/07/Hexo+next+busuanzi/" itemprop="url">Hexo Next 解决 Busuanzi 统计浏览失效</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-07T18:39:00+08:00">
+                2019-06-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/blog/" itemprop="url" rel="index">
+                    <span itemprop="name">blog</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>由于busuanzi(不蒜子)的网址更新,导致了使用Hexo Next主题时统计浏览数失效.</p>
+<p>不蒜子官网:<a href="http://ibruce.info/2015/04/04/busuanzi/" target="_blank" rel="noopener">http://ibruce.info/2015/04/04/busuanzi/</a></p>
+<p>解决方法:</p>
+<p>到hexo的themes文件夹下, 进入</p>
+<p>\themes\next\layout_third-party\analytics</p>
+<p>打开: busuanzi-counter.swig</p>
+<p>将src=”<a href="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js" target="_blank" rel="noopener">https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js</a>“</p>
+<p>修改为src=”<a href="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" target="_blank" rel="noopener">https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js</a>“</p>
+<p>即可.</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="hellodavid.top/2019/06/07/hello-world/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="David">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/myavatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HelloDavid">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/06/07/hello-world/" itemprop="url">Hello World</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-07T18:39:00+08:00">
+                2019-06-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/test/" itemprop="url" rel="index">
+                    <span itemprop="name">test</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="hexo-更新"><a href="#hexo-更新" class="headerlink" title="hexo 更新"></a>hexo 更新</h2><p>hexo clean</p>
+<p>hexo g -d</p>
+<p><img src="/../typora-images/myavatar.jpg" alt="David"> </p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="hellodavid.top/2019/06/07/git 常见操作/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="David">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/myavatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HelloDavid">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/06/07/git 常见操作/" itemprop="url">git 常用操作</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-07T18:39:00+08:00">
+                2019-06-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/git/" itemprop="url" rel="index">
+                    <span itemprop="name">git</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>以下操作均在gitbash里完成。<br>在使用Git提交前，必须配置用户名和邮箱，这些信息会永久保存到历史记录中。<br>git config —global user.name “Test”<br>git config —global user.email Test@test.com</p>
+<p><strong>初始操作</strong> </p>
+<ol>
+<li><p>生成密钥<br>ssh-keygen -t rsa -C “your_email@example.com”<br>这里会有设置密码的地方，指的是访问私钥的密码。<br>公钥和私钥一般都会存放在C盘对应的用户名下<br>生成了公钥后记得把公钥放在github的SSH设置里。</p>
+</li>
+<li><p>git init 创建仓库<br>首先在E:创建一个gittest文件夹，即我们的项目<br>cd E:<br>mkdir gittest<br>cd gittest (!记住一定要进入这个文件）<br>然后将当前目录进行初始化。<br>git init</p>
+</li>
+<li><p>git add 增加文件到暂存区<br>首先在目录下创建一个文件a.txt<br>内容为12345<br>这个时候操作git status, 会提示Untracked files, 需要将a.txt加入暂存区 , 因此<br>git add a.txt<br>完成将a.txt加入到暂存区的操作。<br>这个时候操作git status, 会提示changes to be commited, 需要将a.txt加入到版本库<br>注： git add . 可以将所有修改的文件加入到暂存区</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/06/07/git 常见操作/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="hellodavid.top/2019/06/07/FM & FFM/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="David">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/myavatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HelloDavid">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/06/07/FM & FFM/" itemprop="url">因子分解机 FM和FFM</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-07T18:39:00+08:00">
+                2019-06-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/推荐系统/" itemprop="url" rel="index">
+                    <span itemprop="name">推荐系统</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="因子分解机-Factorization-Machine"><a href="#因子分解机-Factorization-Machine" class="headerlink" title="因子分解机 Factorization Machine"></a>因子分解机 Factorization Machine</h1><p>因子分解机主要是考虑了特征之间的关联。</p>
+<p>FM主要是为了解决数据稀疏的情况下，（而SVM无法解决稀疏问题），特征怎样组合的问题。</p>
+<p><strong>数据稀疏</strong>是指数据的维度很大，但是其中为0的维度很多。推荐系统是常见应用场景，原因是推荐系统中类别属性（如商品id）比较多，每一种类别属性经过onehot处理后会产生大量值为0的特征，导致样本变得稀疏，而FM就可以解决这种样本稀疏的问题。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/06/07/FM & FFM/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1918,7 +1913,7 @@
 
   <span class="post-meta-divider">|</span>
 
-
+<a href="http://www.miitbeian.gov.cn/">苏ICP备17049163号-2</a> 
 
   <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
 

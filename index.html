@@ -303,7 +303,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="hellodavid.top/2019/05/19/git 常见操作/">
+    <link itemprop="mainEntityOfPage" href="hellodavid.top/2019/06/07/随机森林和决策树/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="David">
@@ -322,7 +322,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/05/19/git 常见操作/" itemprop="url">git 常用操作</a></h1>
+                <a class="post-title-link" href="/2019/06/07/随机森林和决策树/" itemprop="url">随机森林和决策树</a></h1>
         
 
         <div class="post-meta">
@@ -334,8 +334,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-19T22:32:24+08:00">
-                2019-05-19
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-07T18:39:02+08:00">
+                2019-06-07
               </time>
             
 
@@ -357,8 +357,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/git/" itemprop="url" rel="index">
-                    <span itemprop="name">git</span>
+                  <a href="/categories/机器学习/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
                   </a>
                 </span>
 
@@ -395,17 +395,20 @@
 
       
         
-          <p>以下操作均在gitbash里完成。<br>在使用Git提交前，必须配置用户名和邮箱，这些信息会永久保存到历史记录中。<br>git config —global user.name “Test”<br>git config —global user.email Test@test.com</p>
-<p><strong>初始操作</strong> </p>
+          <h1 id="决策树"><a href="#决策树" class="headerlink" title="决策树"></a>决策树</h1><p>本质是一颗由多个判断节点组成的树。决策树算法的核心是通过对数据的学习，选定判断节点，构造一颗合适的决策树。</p>
+<p>树模型不需要做归一化：</p>
 <ol>
-<li><p>生成密钥<br>ssh-keygen -t rsa -C “your_email@example.com”<br>这里会有设置密码的地方，指的是访问私钥的密码。<br>公钥和私钥一般都会存放在C盘对应的用户名下<br>生成了公钥后记得把公钥放在github的SSH设置里。</p>
-</li>
-<li><p>git init 创建仓库<br>首先在E:创建一个gittest文件夹，即我们的项目<br>cd E:<br>mkdir gittest<br>cd gittest (!记住一定要进入这个文件）<br>然后将当前目录进行初始化。<br>git init</p>
-</li>
-<li><p>git add 增加文件到暂存区<br>首先在目录下创建一个文件a.txt<br>内容为12345<br>这个时候操作git status, 会提示Untracked files, 需要将a.txt加入暂存区 , 因此<br>git add a.txt<br>完成将a.txt加入到暂存区的操作。<br>这个时候操作git status, 会提示changes to be commited, 需要将a.txt加入到版本库<br>注： git add . 可以将所有修改的文件加入到暂存区</p>
+<li>归一化的目的是为了加快梯度下降法的收敛速度，但是决策树模型不需要计算梯度</li>
+<li>树模型只考虑特征的划分界限，而不需要考虑特征的值范围</li>
+</ol>
+<p><strong>决策树的关键是选择最优划分属性。</strong></p>
+<p><strong>一个属性会有多个取值，根据这个属性的不同取值将输入的数据划分为多个样本集合，一个取值对应一个分支集合，</strong></p>
+<p><strong>(注意，CART树只选取一个取值，因此是划分为二叉树）</strong></p>
+<p><strong>使得每个取值分支集合中的样本尽可能属于同一类别，即分支集合的纯度越高。</strong></p>
+<p><strong>三种选择方式</strong>：</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/05/19/git 常见操作/#more" rel="contents">
+            <a class="btn" href="/2019/06/07/随机森林和决策树/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -456,7 +459,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="hellodavid.top/2018/12/20/EST和EDT GMT时区转换/">
+    <link itemprop="mainEntityOfPage" href="hellodavid.top/2019/06/07/推荐系统36式（一）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="David">
@@ -475,7 +478,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/12/20/EST和EDT GMT时区转换/" itemprop="url">EST，EDT和GMT时区转换</a></h1>
+                <a class="post-title-link" href="/2019/06/07/推荐系统36式（一）/" itemprop="url">推荐系统36式笔记（一）</a></h1>
         
 
         <div class="post-meta">
@@ -487,8 +490,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-20T10:40:16+08:00">
-                2018-12-20
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-07T18:39:02+08:00">
+                2019-06-07
               </time>
             
 
@@ -510,8 +513,162 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/python/" itemprop="url" rel="index">
-                    <span itemprop="name">python</span>
+                  <a href="/categories/推荐系统/" itemprop="url" rel="index">
+                    <span itemprop="name">推荐系统</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <blockquote>
+<p>为知识付费：<a href="https://time.geekbang.org/column/intro/74" target="_blank" rel="noopener">https://time.geekbang.org/column/intro/74</a></p>
+<p>本文仅为个人学习笔记。</p>
+</blockquote>
+<p>推荐系统：是一种信息过滤系统，预测用户（User）对物品（Item）的评分和偏好。</p>
+<h1 id="推荐系统的问题模式"><a href="#推荐系统的问题模式" class="headerlink" title="推荐系统的问题模式"></a>推荐系统的问题模式</h1><p>分为评分预测和行为预测。</p>
+<h2 id="评分预测"><a href="#评分预测" class="headerlink" title="评分预测"></a>评分预测</h2><p>假如用户消费完一个物品之后会给出一个打分，比如通常是 1~5分，那么我们要做的就是建立一个模型，利用用户历史上打过分的物品，预测用户对一个没有见过的物品的打分。</p>
+<p>显示反馈：用户对物品的明确评分，直接表达了用户对物品的态度。</p>
+<p>隐式反馈：与显示反馈相对，实际中用户的物品的评分这类数据不易收集，我们需要利用隐式反馈，即用户的各种行为（如点击，浏览，收藏等），去找到用户对物品的态度。即行为预测。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/06/07/推荐系统36式（一）/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="hellodavid.top/2019/06/07/Ubuntu Tmux 启用鼠标滚动/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="David">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/myavatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HelloDavid">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/06/07/Ubuntu Tmux 启用鼠标滚动/" itemprop="url">Ubuntu Tmux 启用鼠标滚动</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-07T18:39:02+08:00">
+                2019-06-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
                   </a>
                 </span>
 
@@ -549,26 +706,10 @@
       
         
           
-            <p>最近在清洗数据时需要转换时区，将EST和EDT时区的时间转换为GMT时间。</p>
-<p>EST: Eastern Standard Time 东部（美国）标准时间</p>
-<p>EDT: Eastern Daylight Time  东部（美国）夏令时时间</p>
-<p>ET: Eastern Time 东部（美国）时间</p>
-<p>GMT: Greenwich Mean Time 格林尼治标准时间</p>
-<p>其中，EST和EDT是ET在不同时间段的两种说法。</p>
-<p>简单来说，ET在夏季月份（summer months) 采用EDT, 在其他月份采用EST时区，因此EDT和EST是不会同时存在的。</p>
-<p>举个例子：</p>
-<p>在美国，EST时区的采用时间段：</p>
-<p>开始时间：当年11月份的第一个星期天凌晨2.00（如2018.11.4， 周日， 2.00）</p>
-<p>结束时间：次年3月份的第二个星期天凌晨2.00（如2019.3.10，周日， 2.00）</p>
-<p>其余时间采用EDT时区。</p>
-<h1 id="时区转换"><a href="#时区转换" class="headerlink" title="时区转换"></a>时区转换</h1><p>EDT 比GMT时间慢5个小时，即EDT=GMT-5</p>
-<p>EST 比GMT时间慢4个小时，即EST=GMT-4</p>
-<p>北京时区比GMT快8个小时，即北京时区=GMT+8</p>
-<p>因此，可以得到：</p>
-<p>EDT比北京时间慢13个小时，即EDT=北京时间-13</p>
-<p>EST比北京时间慢12个小时，即EST=北京时间-12</p>
-<p>参考：</p>
-<p>格林尼治时间官网：<a href="https://greenwichmeantime.com/time-zone/usa/eastern-time/" target="_blank" rel="noopener">https://greenwichmeantime.com/time-zone/usa/eastern-time/</a></p>
+            <h1 id="Ubuntu-Tmux-启用鼠标滚动"><a href="#Ubuntu-Tmux-启用鼠标滚动" class="headerlink" title="Ubuntu Tmux 启用鼠标滚动"></a>Ubuntu Tmux 启用鼠标滚动</h1><p>在Ubuntu上使用Tmux是一件非常舒服的事，但有时使用鼠标滚轮时，和平时使用终端的习惯不怎么一致，因此可以设置启用鼠标滚轮。<br>具体方式：<br>按完前缀ctrl+B后，再按分号：进入命令行模式，<br>输入以下命令：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set -g mouse on</span><br></pre></td></tr></table></figure></p>
+<p>就启用了鼠标滚轮，可以通过鼠标直接选择不同的窗口，也可以上下直接翻页。</p>
+<p><strong>Tip</strong><br>但在以上设置下，会发现无法用中键向 tmux 中复制文本，也无法将 tmux 中选择好的文本中键复制到系统其他应用程序中。<br>这里有一个 trick，那就是在 tmux 中不论选择还是复制时，<strong>都按住 Shift 键</strong>，你会发现熟悉的中键又回来了 :-) 此外，还可以使用 Shift+Insert 快捷键将系统剪切板中的内容输入 tmux 中。 相对于 tmux 原生的选择模式（不加 shift 键），使用系统选择有个缺陷，即当一行内存在多个面板时，无法选择单个面板中的内容，这时就必须使用 tmux 自带的复制粘贴系统了。</p>
+<p>参考：<a href="https://superuser.com/questions/210125/scroll-shell-output-with-mouse-in-tmux" target="_blank" rel="noopener">https://superuser.com/questions/210125/scroll-shell-output-with-mouse-in-tmux</a>,<br><a href="http://mindonmind.github.io/notes/linux/tmux_copy_paste_by_mouse.html" target="_blank" rel="noopener">http://mindonmind.github.io/notes/linux/tmux_copy_paste_by_mouse.html</a><br>里面有人说输入<code>setw -g mouse on</code>,但我没有成功，我的ubuntu版本为14.04。</p>
 
           
         
@@ -617,7 +758,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="hellodavid.top/2018/12/20/tf_concat axis meanning/">
+    <link itemprop="mainEntityOfPage" href="hellodavid.top/2019/06/07/trip to xiamen/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="David">
@@ -636,7 +777,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/12/20/tf_concat axis meanning/" itemprop="url">tf.concat中axis的含义与使用</a></h1>
+                <a class="post-title-link" href="/2019/06/07/trip to xiamen/" itemprop="url">A Trip to XiaMen</a></h1>
         
 
         <div class="post-meta">
@@ -648,8 +789,181 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-20T10:40:16+08:00">
-                2018-12-20
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-07T18:39:02+08:00">
+                2019-06-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/travel/" itemprop="url" rel="index">
+                    <span itemprop="name">travel</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="Day1"><a href="#Day1" class="headerlink" title="Day1"></a>Day1</h2><p>南普陀寺（2.5h) - 厦门大学（3h) - 厦大白城沙滩 （2h) - 环岛路 （2h)</p>
+<p>8.20 出发，宾馆-南普陀寺 公交 30min </p>
+<p>9.00 南普陀寺 （免费）</p>
+<blockquote>
+<p>寺庙上五老峰 1h</p>
+</blockquote>
+<p>12.00 厦门大学</p>
+<blockquote>
+<p>厦门大学 （凭身份证进入, 西门或西北门）</p>
+<p>开放时间：周一至周五 12.00-14.00 晚间：17.00-24.00 周末全天开放</p>
+<p>钟灵美广场，群贤楼，颂恩楼，芙蓉湖，情人谷，芙蓉隧道，</p>
+<p>建南大礼堂，上弦场，白城校门</p>
+</blockquote>
+<p>15.00 白城沙滩 （1h)</p>
+<p>16.00 环岛路 （租自行车）</p>
+<blockquote>
+<p>胡里山炮台（1h)，</p>
+<p>书法广场，</p>
+</blockquote>
+<p>17.30 曾厝垵 (网红美食，晚饭 18.00左右)</p>
+<p>闽台肠粉，五兰沙茶面，三年二班，八婆婆烧仙草，黄则和花生汤</p>
+<p>&gt;</p>
+<blockquote>
+<p>音乐广场，</p>
+<p>白石炮台，</p>
+<p>黄厝沙滩，椰风寨 (可选)</p>
+</blockquote>
+<p>21.30 左右返回宾馆 滴滴打车半小时 (40元)</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/06/07/trip to xiamen/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="hellodavid.top/2019/06/07/tf_concat axis meanning/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="David">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/myavatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HelloDavid">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/06/07/tf_concat axis meanning/" itemprop="url">tf.concat中axis的含义与使用</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-07T18:39:02+08:00">
+                2019-06-07
               </time>
             
 
@@ -772,7 +1086,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="hellodavid.top/2018/11/21/推荐系统36式（一）/">
+    <link itemprop="mainEntityOfPage" href="hellodavid.top/2019/06/07/SVM 支持向量机/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="David">
@@ -791,7 +1105,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/11/21/推荐系统36式（一）/" itemprop="url">推荐系统36式笔记（一）</a></h1>
+                <a class="post-title-link" href="/2019/06/07/SVM 支持向量机/" itemprop="url">SVM 支持向量机</a></h1>
         
 
         <div class="post-meta">
@@ -803,8 +1117,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-21T18:12:39+08:00">
-                2018-11-21
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-07T18:39:02+08:00">
+                2019-06-07
               </time>
             
 
@@ -826,8 +1140,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/推荐系统/" itemprop="url" rel="index">
-                    <span itemprop="name">推荐系统</span>
+                  <a href="/categories/机器学习/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
                   </a>
                 </span>
 
@@ -864,18 +1178,20 @@
 
       
         
-          <blockquote>
-<p>为知识付费：<a href="https://time.geekbang.org/column/intro/74" target="_blank" rel="noopener">https://time.geekbang.org/column/intro/74</a></p>
-<p>本文仅为个人学习笔记。</p>
-</blockquote>
-<p>推荐系统：是一种信息过滤系统，预测用户（User）对物品（Item）的评分和偏好。</p>
-<h1 id="推荐系统的问题模式"><a href="#推荐系统的问题模式" class="headerlink" title="推荐系统的问题模式"></a>推荐系统的问题模式</h1><p>分为评分预测和行为预测。</p>
-<h2 id="评分预测"><a href="#评分预测" class="headerlink" title="评分预测"></a>评分预测</h2><p>假如用户消费完一个物品之后会给出一个打分，比如通常是 1~5分，那么我们要做的就是建立一个模型，利用用户历史上打过分的物品，预测用户对一个没有见过的物品的打分。</p>
-<p>显示反馈：用户对物品的明确评分，直接表达了用户对物品的态度。</p>
-<p>隐式反馈：与显示反馈相对，实际中用户的物品的评分这类数据不易收集，我们需要利用隐式反馈，即用户的各种行为（如点击，浏览，收藏等），去找到用户对物品的态度。即行为预测。</p>
+          <p>通俗来讲，它是一种<strong>二分类</strong>模型，其基本模型定义为特征空间上的间隔最大的线性分类器，其学习策略便是<strong>间隔最大化</strong>，最终可转化为一个凸二次规划问题的求解。</p>
+<h1 id="SVM"><a href="#SVM" class="headerlink" title="SVM"></a>SVM</h1><h2 id="SVM的目标函数基本型"><a href="#SVM的目标函数基本型" class="headerlink" title="SVM的目标函数基本型"></a>SVM的目标函数基本型</h2><script type="math/tex; mode=display">min \frac{1}{2}w^2</script><script type="math/tex; mode=display">s.t. y_i(w^Tx_i+b)\ge1, i=1,2,...,m</script><p>函数间隔和几何间隔，假设超平面为$w^Tx+b=0$:</p>
+<p><strong>函数间隔</strong>：</p>
+<p>用$|w^Tx+b|$衡量点x到超平面的远近，若$w^Tx+b$的符号与类标记符号y一致，则分类正确。</p>
+<p>因此可以用$y(w^Tx+b)$的正负性判断分类正确性。</p>
+<p>定义<strong>函数间隔</strong>为$r=y(W^Tx+b)$</p>
+<p><strong>几何间隔</strong>：</p>
+<p>点到超平面的距离为$\frac{|w^Tx+b|}{||w||}$</p>
+<p>定义<strong>几何间隔</strong>为$r=\frac{y(w^Tx+b)}{||w||}$</p>
+<p>因此，几何间隔实际上相当于函数间隔初上$||w||$</p>
+<p><strong>基本型中函数间隔取1</strong>，目标函数的最大化几何间隔$2/||w||$, 约束中要满足每个样本的函数间隔大于1.</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/11/21/推荐系统36式（一）/#more" rel="contents">
+            <a class="btn" href="/2019/06/07/SVM 支持向量机/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -926,7 +1242,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="hellodavid.top/2018/11/21/BPR/">
+    <link itemprop="mainEntityOfPage" href="hellodavid.top/2019/06/07/Splunk-SDK-Python学习/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="David">
@@ -945,7 +1261,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/11/21/BPR/" itemprop="url">BPR 贝叶斯个性化排序</a></h1>
+                <a class="post-title-link" href="/2019/06/07/Splunk-SDK-Python学习/" itemprop="url">Splunk-SDK-Python学习</a></h1>
         
 
         <div class="post-meta">
@@ -957,8 +1273,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-21T18:12:39+08:00">
-                2018-11-21
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-07T18:39:02+08:00">
+                2019-06-07
               </time>
             
 
@@ -980,8 +1296,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/推荐系统/" itemprop="url" rel="index">
-                    <span itemprop="name">推荐系统</span>
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
                   </a>
                 </span>
 
@@ -1018,17 +1334,28 @@
 
       
         
-          <p>显式反馈：用户对物品的评分，如电影评分<br>隐式反馈：用户对物品的交互行为，如浏览，购买等，现实中绝大部分数据属于隐式反馈，可以从日志中获取。<br>BPR是基于用户的隐式反馈，为用户提供物品的推荐，并且是直接对排序进行优化。</p>
-<h1 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h1><p>$U$代表所有的用户user集合；</p>
-<p>$I$代表所有的物品item集合；</p>
-<p>$S$代表所有用户的隐式反馈，$S  \subseteq U \times I$. 如下图所示，只要用户对某个物品产生过行为，就标记为$+$, 所有$+$样本构成了$S$。那些未观察到的数据（即用户没有产生行为的数据）标记为$?$.</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/11/21/BPR/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+          
+            <h1 id="Splunk"><a href="#Splunk" class="headerlink" title="Splunk"></a>Splunk</h1><p>最近在公司实习用到了splunk,需要调用splunk sdk进行一些简单的开发，目前把我这个星期的一些体会记录下。</p>
+<h2 id="什么是splunk"><a href="#什么是splunk" class="headerlink" title="什么是splunk"></a>什么是splunk</h2><p>简单来说，Splunk是一个托管的日志文件管理工具，它的主要功能包括：<br>· 日志聚合功能<br>· 搜索功能<br>· 提取意义<br>· 对结果进行分组，联合，拆分和格式化<br>· 可视化功能<br>· 电子邮件提醒功能<br>而目前我通过splunk sdk主要实现的功能就是搜索功能，即搜索到我想要的日志。</p>
+<h2 id="Splunk-SDK-for-Python"><a href="#Splunk-SDK-for-Python" class="headerlink" title="Splunk SDK for Python"></a>Splunk SDK for Python</h2><p>通过Splunk SDK我们可以和Splunk引擎进行交互。Splunk SDK是基于REST API的，因此通过简短的代码实现我们想要的功能。<br>官方文档：<a href="http://dev.splunk.com/python" target="_blank" rel="noopener">http://dev.splunk.com/python</a></p>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>！ 注意， splunk SDK 目前只支持python2，不支持python3.<br>Ubuntu下安装步骤：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install python-pip //第一步：安装pip工具</span><br><span class="line"></span><br><span class="line">pip freeze                      //查看是否已安装splunk sdk</span><br><span class="line"></span><br><span class="line">pip install splunk-sdk          //第二步：下载splunk sdk</span><br><span class="line"></span><br><span class="line">export PYTHONPATH=~/splunk-sdk-python //添加到python环境变量</span><br></pre></td></tr></table></figure></p>
+<h3 id="模块介绍"><a href="#模块介绍" class="headerlink" title="模块介绍"></a>模块介绍</h3><p>主要有4个模块：</p>
+<ul>
+<li>binding: 基于HTTP的抽象层</li>
+<li>client: 基于REST API的抽象层，其中Service类是其最重要的类，并且client模块比binding模块有更多的好处。</li>
+<li>results: 对splunk返回的数据进行处理</li>
+<li>data: 将Atom Feed data转换为python格式<br>目前我主要用到的模块是client和results模块。</li>
+</ul>
+<h3 id="与Splunk-enterprise建立连接"><a href="#与Splunk-enterprise建立连接" class="headerlink" title="与Splunk enterprise建立连接"></a>与Splunk enterprise建立连接</h3><p>python2<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> splunklib.client <span class="keyword">as</span> client</span><br><span class="line"></span><br><span class="line">HOST = <span class="string">"localhost"</span></span><br><span class="line">PORT = <span class="number">8089</span></span><br><span class="line">USERNAME = <span class="string">"admin"</span></span><br><span class="line">PASSWORD = <span class="string">"changeme"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Create a Service instance and log in </span></span><br><span class="line">service = client.connect(</span><br><span class="line">    host=HOST,</span><br><span class="line">    port=PORT,</span><br><span class="line">    username=USERNAME,</span><br><span class="line">    password=PASSWORD)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Print installed apps to the console to verify login</span></span><br><span class="line"><span class="keyword">for</span> app <span class="keyword">in</span> service.apps:</span><br><span class="line">    <span class="keyword">print</span> app.name</span><br></pre></td></tr></table></figure></p>
+<p>存在的问题：splunk服务器的8089没有打开，因此连接不上<br>解决：<br>splunk的服务器是在一个虚拟网络下的，8089端口不对公网开放，因此可以在该网络下另起一个ubuntu虚拟机，然后ubuntu虚拟机通过22端口与请求相连接，收到请求后，由于ubuntu和splunk server是在一个内网中，因此ubuntu虚拟机可以与splunk server的8089端口通信，获得数据后再返回给请求端。</p>
+<h3 id="Search的一些术语"><a href="#Search的一些术语" class="headerlink" title="Search的一些术语"></a>Search的一些术语</h3><ul>
+<li>search query:即查询命令的集合，例如：<figure class="highlight plain"><figcaption><span>* | head 10```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">* saved search: 被保存的可以被再次使用的搜索查询。</span><br><span class="line">* search job：即一次搜索操作的具体实例。</span><br><span class="line">* Normal search: 异步搜索，能够立刻返回serach job而不用等到结果都搜索完。</span><br><span class="line">* Blocking search:同步搜索，只有所有搜索全都完成后才返回job.</span><br><span class="line">* Oneshot: blocking serach，直接返回搜索结果而不是返回job</span><br><span class="line">  ...</span><br><span class="line"></span><br><span class="line">### 创建一个blocking serach</span><br><span class="line">与normal search的不同点是blocking search是堵塞的，也就是创建job后不会立刻返回，而是等待所有结果搜索结束后才返回，此时job包含了所有的搜索结果。</span><br><span class="line">```python</span><br><span class="line"># Get the collection of jobs</span><br><span class="line">jobs = service.jobs</span><br><span class="line"></span><br><span class="line"># Run a blocking search--search everything, return 1st 100 events</span><br><span class="line">kwargs_blockingsearch = &#123;&quot;exec_mode&quot;: &quot;blocking&quot;&#125;</span><br><span class="line">searchquery_blocking = &quot;search * | head 100&quot;</span><br><span class="line"></span><br><span class="line">print &quot;Wait for the search to finish...&quot;</span><br><span class="line"></span><br><span class="line"># A blocking search returns the job&apos;s SID when the search is done</span><br><span class="line">job = jobs.create(searchquery_blocking, **kwargs_blockingsearch)</span><br><span class="line">print &quot;...done!\n&quot;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="创建一个normal-search"><a href="#创建一个normal-search" class="headerlink" title="创建一个normal search"></a>创建一个normal search</h3><p>normal search 是异步的，即立刻返回job, 但是实际结果并没有返回，因此会存在操作job时没有event返回的情况，我目前的做法是，如果知道大致的搜索时间，则设置一定时间等待后再对job进行操作。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> splunklib.results <span class="keyword">as</span> results</span><br><span class="line"></span><br><span class="line"><span class="comment"># Initialize your service like so</span></span><br><span class="line"><span class="comment"># import splunklib.client as client</span></span><br><span class="line"><span class="comment"># service = client.connect(username="admin", password="changeme")</span></span><br><span class="line"></span><br><span class="line">searchquery_normal = <span class="string">"search * | head 10"</span></span><br><span class="line">kwargs_normalsearch = &#123;<span class="string">"exec_mode"</span>: <span class="string">"normal"</span>&#125;</span><br><span class="line">job = service.jobs.create(searchquery_normal, **kwargs_normalsearch)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Get the results and display them</span></span><br><span class="line"><span class="keyword">for</span> result <span class="keyword">in</span> results.ResultsReader(job.results()):</span><br><span class="line">    <span class="keyword">print</span> result</span><br><span class="line"></span><br><span class="line">job.cancel()</span><br></pre></td></tr></table></figure></p>
+<h3 id="创建一个oneshot-search"><a href="#创建一个oneshot-search" class="headerlink" title="创建一个oneshot search"></a>创建一个oneshot search</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> splunklib.results <span class="keyword">as</span> results</span><br><span class="line"></span><br><span class="line"><span class="comment"># Run a one-shot search and display the results using the results reader</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Set the parameters for the search:</span></span><br><span class="line"><span class="comment"># - Search everything in a 24-hour time range starting June 19, 12:00pm</span></span><br><span class="line"><span class="comment"># - Display the first 10 results</span></span><br><span class="line">kwargs_oneshot = &#123;<span class="string">"earliest_time"</span>: <span class="string">"2014-06-19T12:00:00.000-07:00"</span>,</span><br><span class="line">                  <span class="string">"latest_time"</span>: <span class="string">"2014-06-20T12:00:00.000-07:00"</span>&#125;</span><br><span class="line">searchquery_oneshot = <span class="string">"search * | head 10"</span></span><br><span class="line"></span><br><span class="line">oneshotsearch_results = service.jobs.oneshot(searchquery_oneshot, **kwargs_oneshot)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Get the results and display them using the ResultsReader</span></span><br><span class="line">reader = results.ResultsReader(oneshotsearch_results)</span><br><span class="line"><span class="keyword">for</span> item <span class="keyword">in</span> reader:</span><br><span class="line">    print(item)</span><br></pre></td></tr></table></figure>
+<p>…待续</p>
+
+          
         
       
     </div>
@@ -1075,7 +1402,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="hellodavid.top/2018/11/12/spark-shell winutil/">
+    <link itemprop="mainEntityOfPage" href="hellodavid.top/2019/06/07/spark-shell winutil/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="David">
@@ -1094,7 +1421,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/11/12/spark-shell winutil/" itemprop="url">windows下搭建spark环境出现ChangeFileModeByMask error</a></h1>
+                <a class="post-title-link" href="/2019/06/07/spark-shell winutil/" itemprop="url">windows下搭建spark环境出现ChangeFileModeByMask error</a></h1>
         
 
         <div class="post-meta">
@@ -1106,8 +1433,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-12T21:21:49+08:00">
-                2018-11-12
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-07T18:39:02+08:00">
+                2019-06-07
               </time>
             
 
@@ -1223,7 +1550,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="hellodavid.top/2018/10/16/trip to xiamen/">
+    <link itemprop="mainEntityOfPage" href="hellodavid.top/2019/06/07/Python 正则表达式 匹配邮箱地址/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="David">
@@ -1242,7 +1569,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/10/16/trip to xiamen/" itemprop="url">A Trip to XiaMen</a></h1>
+                <a class="post-title-link" href="/2019/06/07/Python 正则表达式 匹配邮箱地址/" itemprop="url">Python 正则表达式 匹配邮箱地址</a></h1>
         
 
         <div class="post-meta">
@@ -1254,8 +1581,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-16T21:38:23+08:00">
-                2018-10-16
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-07T18:39:02+08:00">
+                2019-06-07
               </time>
             
 
@@ -1277,181 +1604,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/travel/" itemprop="url" rel="index">
-                    <span itemprop="name">travel</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="Day1"><a href="#Day1" class="headerlink" title="Day1"></a>Day1</h2><p>南普陀寺（2.5h) - 厦门大学（3h) - 厦大白城沙滩 （2h) - 环岛路 （2h)</p>
-<p>8.20 出发，宾馆-南普陀寺 公交 30min </p>
-<p>9.00 南普陀寺 （免费）</p>
-<blockquote>
-<p>寺庙上五老峰 1h</p>
-</blockquote>
-<p>12.00 厦门大学</p>
-<blockquote>
-<p>厦门大学 （凭身份证进入, 西门或西北门）</p>
-<p>开放时间：周一至周五 12.00-14.00 晚间：17.00-24.00 周末全天开放</p>
-<p>钟灵美广场，群贤楼，颂恩楼，芙蓉湖，情人谷，芙蓉隧道，</p>
-<p>建南大礼堂，上弦场，白城校门</p>
-</blockquote>
-<p>15.00 白城沙滩 （1h)</p>
-<p>16.00 环岛路 （租自行车）</p>
-<blockquote>
-<p>胡里山炮台（1h)，</p>
-<p>书法广场，</p>
-</blockquote>
-<p>17.30 曾厝垵 (网红美食，晚饭 18.00左右)</p>
-<p>闽台肠粉，五兰沙茶面，三年二班，八婆婆烧仙草，黄则和花生汤</p>
-<p>&gt;</p>
-<blockquote>
-<p>音乐广场，</p>
-<p>白石炮台，</p>
-<p>黄厝沙滩，椰风寨 (可选)</p>
-</blockquote>
-<p>21.30 左右返回宾馆 滴滴打车半小时 (40元)</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/10/16/trip to xiamen/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="hellodavid.top/2018/10/11/Hexo+next+busuanzi/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="David">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/myavatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="HelloDavid">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/10/11/Hexo+next+busuanzi/" itemprop="url">Hexo Next 解决 Busuanzi 统计浏览失效</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-11T22:29:44+08:00">
-                2018-10-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/blog/" itemprop="url" rel="index">
-                    <span itemprop="name">blog</span>
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
                   </a>
                 </span>
 
@@ -1489,15 +1643,9 @@
       
         
           
-            <p>由于busuanzi(不蒜子)的网址更新,导致了使用Hexo Next主题时统计浏览数失效.</p>
-<p>不蒜子官网:<a href="http://ibruce.info/2015/04/04/busuanzi/" target="_blank" rel="noopener">http://ibruce.info/2015/04/04/busuanzi/</a></p>
-<p>解决方法:</p>
-<p>到hexo的themes文件夹下, 进入</p>
-<p>\themes\next\layout_third-party\analytics</p>
-<p>打开: busuanzi-counter.swig</p>
-<p>将src=”<a href="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js" target="_blank" rel="noopener">https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js</a>“</p>
-<p>修改为src=”<a href="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" target="_blank" rel="noopener">https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js</a>“</p>
-<p>即可.</p>
+            <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line">pat = <span class="string">r'^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$'</span> </span><br><span class="line">email_address = <span class="string">'ddy_davie@aaa.com'</span></span><br><span class="line">matched_address = re.match(pat, email_address)</span><br><span class="line">print(matched_address.group())</span><br></pre></td></tr></table></figure>
+<p>pat = r’^(\w)+(.\w+)*@(\w)+((.\w+)+)$’ ，</p>
+<p>这个正则表达式目前尝试了基本可以覆盖大部分邮箱类型。</p>
 
           
         
@@ -1546,7 +1694,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="hellodavid.top/2018/10/11/ALS/">
+    <link itemprop="mainEntityOfPage" href="hellodavid.top/2019/06/07/my experience/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="David">
@@ -1565,7 +1713,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/10/11/ALS/" itemprop="url">ALS 交替最小二乘</a></h1>
+                <a class="post-title-link" href="/2019/06/07/my experience/" itemprop="url">我的一些成长经历</a></h1>
         
 
         <div class="post-meta">
@@ -1577,8 +1725,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-11T21:05:57+08:00">
-                2018-10-11
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-07T18:39:02+08:00">
+                2019-06-07
               </time>
             
 
@@ -1600,8 +1748,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/推荐系统/" itemprop="url" rel="index">
-                    <span itemprop="name">推荐系统</span>
+                  <a href="/categories/personal/" itemprop="url" rel="index">
+                    <span itemprop="name">personal</span>
                   </a>
                 </span>
 
@@ -1638,172 +1786,11 @@
 
       
         
-          <p>ALS算法是矩阵分解的一种，用于评分预测。</p>
-<h1 id="矩阵分解"><a href="#矩阵分解" class="headerlink" title="矩阵分解"></a>矩阵分解</h1><p>假设我们有一批用户数据，其中包含m个User和n个Item, 用户和物品的关系是一个三元组，<user, item,="" rating="">, 即用户对物品的评分，因此我们得到矩阵$R_{m\times n}$, 其中的元素$r_{ui}$表示第u个用户对第i个item的评分。</user,></p>
-<p><img src="/../typora-images/1538020000484.png" alt="1538020000484"></p>
-<p>评分矩阵通常规模很大，并且通常是稀疏矩阵，因为一个用户不可能给所有商品评分。矩阵中缺失的评分，称为missing item.</p>
-<p>接下来将这个矩阵分解为两个子矩阵，使得两个子矩阵能近似得到原矩阵：</p>
-<p><img src="/../typora-images/1538020213031.png" alt="1538020213031"></p>
-<p>如下图所示，左边X矩阵实际代表用户的隐矩阵，即每个用户用一个k维向量表示，而右边的矩阵代表物品的隐矩阵，即每个物品用一个k维向量表示。k的值通常远小于n和m.</p>
+          <h1 id="实习"><a href="#实习" class="headerlink" title="实习"></a>实习</h1><p>秋招还在进行中，这次秋招确定的工作也将作为我人生的一个新的阶段了。先说下手上目前已经拿到的offer情况，网易考拉，京东, 网易游戏，携程，银联，vivo, 华为，基本上也就这些了。</p>
+<p>我比较想从我的第一次实习开始说起，于我而言，从我找的第一份实习开始到现在，可能会作为一个整体贯穿在我的人生中。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/10/11/ALS/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="hellodavid.top/2018/10/11/SVM 支持向量机/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="David">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/myavatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="HelloDavid">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/10/11/SVM 支持向量机/" itemprop="url">SVM 支持向量机</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-11T21:05:57+08:00">
-                2018-10-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/机器学习/" itemprop="url" rel="index">
-                    <span itemprop="name">机器学习</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>通俗来讲，它是一种<strong>二分类</strong>模型，其基本模型定义为特征空间上的间隔最大的线性分类器，其学习策略便是<strong>间隔最大化</strong>，最终可转化为一个凸二次规划问题的求解。</p>
-<h1 id="SVM"><a href="#SVM" class="headerlink" title="SVM"></a>SVM</h1><h2 id="SVM的目标函数基本型"><a href="#SVM的目标函数基本型" class="headerlink" title="SVM的目标函数基本型"></a>SVM的目标函数基本型</h2><script type="math/tex; mode=display">min \frac{1}{2}w^2</script><script type="math/tex; mode=display">s.t. y_i(w^Tx_i+b)\ge1, i=1,2,...,m</script><p>函数间隔和几何间隔，假设超平面为$w^Tx+b=0$:</p>
-<p><strong>函数间隔</strong>：</p>
-<p>用$|w^Tx+b|$衡量点x到超平面的远近，若$w^Tx+b$的符号与类标记符号y一致，则分类正确。</p>
-<p>因此可以用$y(w^Tx+b)$的正负性判断分类正确性。</p>
-<p>定义<strong>函数间隔</strong>为$r=y(W^Tx+b)$</p>
-<p><strong>几何间隔</strong>：</p>
-<p>点到超平面的距离为$\frac{|w^Tx+b|}{||w||}$</p>
-<p>定义<strong>几何间隔</strong>为$r=\frac{y(w^Tx+b)}{||w||}$</p>
-<p>因此，几何间隔实际上相当于函数间隔初上$||w||$</p>
-<p><strong>基本型中函数间隔取1</strong>，目标函数的最大化几何间隔$2/||w||$, 约束中要满足每个样本的函数间隔大于1.</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/10/11/SVM 支持向量机/#more" rel="contents">
+            <a class="btn" href="/2019/06/07/my experience/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1970,7 +1957,7 @@
 
   <span class="post-meta-divider">|</span>
 
-
+<a href="http://www.miitbeian.gov.cn/">苏ICP备17049163号-2</a> 
 
   <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
 
